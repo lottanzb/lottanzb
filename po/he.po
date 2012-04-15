@@ -1,0 +1,1914 @@
+# Hebrew translation for lottanzb
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the lottanzb package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: lottanzb\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-08 00:01+0200\n"
+"PO-Revision-Date: 2011-01-17 16:17+0000\n"
+"Last-Translator: Tomer <Unknown>\n"
+"Language-Team: Hebrew <he@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2011-05-08 04:32+0000\n"
+"X-Generator: Launchpad (build 12959)\n"
+
+#: ../lottanzb/core/log.py:113
+msgid "An unhandled exception occurred:"
+msgstr ""
+
+#: ../lottanzb/backend/__init__.py:123
+#, python-format
+msgid "Connection to '%s' established."
+msgstr ""
+
+#: ../data/ui/session_selection_local.ui.h:1
+msgid "<b>News Server</b>"
+msgstr "<b>שרת חדשות</b>"
+
+#: ../lottanzb/gui/main/speed_limit_menu.py:41
+msgid "Unlimited"
+msgstr "לא מוגבל"
+
+#: ../lottanzb/core/__init__.py:96
+#, python-format
+msgid "Starting LottaNZB %s..."
+msgstr "הפעלת ה־%s של LottaNZB..."
+
+#: ../lottanzb/core/__init__.py:110
+msgid "Exiting..."
+msgstr "יוצא..."
+
+#: ../lottanzb/config/lotta.py:91
+#, python-format
+msgid "Configuration upgraded to revision %i."
+msgstr "ההגדרות עודכנו לגרסה %i"
+
+#: ../desktop/lottanzb.desktop.in.h:1
+msgid "Add an NZB File"
+msgstr ""
+
+#: ../desktop/lottanzb.desktop.in.h:2
+msgid "Add an URL"
+msgstr ""
+
+#: ../desktop/lottanzb.desktop.in.h:3
+msgid "Download from the Usenet with the help of NZB files"
+msgstr "הורידו ממאגר ה-Usenet בעזרת קבצי NZB"
+
+#: ../desktop/lottanzb.desktop.in.h:4
+msgid "LottaNZB Usenet Downloader"
+msgstr ""
+
+#: ../desktop/lottanzb.desktop.in.h:5
+msgid "Usenet Downloader"
+msgstr ""
+
+#: ../lottanzb/core/environ.py:41
+#, python-format
+msgid "Moving configuration directory from %s to %s..."
+msgstr "מעביר ספריית הגדרות מ-%s ל-%s"
+
+#: ../lottanzb/gui/messaging/servers.py:54
+#: ../lottanzb/backend/sessions/errors.py:84
+#: ../lottanzb/gui/messaging/space.py:74
+msgid "No news server has been specified."
+msgstr "לא הוגדר שרת חדשות."
+
+#: ../lottanzb/gui/messaging/servers.py:55
+#: ../lottanzb/gui/messaging/space.py:75
+msgid "At least one server is required for downloading."
+msgstr "דרוש שרת חדשות אחד לפחות לצורך הורדה"
+
+#: ../lottanzb/gui/messaging/servers.py:60
+#: ../lottanzb/gui/messaging/space.py:80
+msgid "_Add Server"
+msgstr "הו_סף שרת"
+
+#: ../lottanzb/config/errors.py:53
+#, python-format
+msgid "Invalid option '%s' in section '%s'."
+msgstr "אפשרות לא חוקית '%s' בסעיף '%s'."
+
+#: ../lottanzb/config/errors.py:65
+#, python-format
+msgid "Invalid value for option '%s' in section '%s'."
+msgstr "ערך לא חוקי '%s' בסעיף '%s'."
+
+#: ../lottanzb/config/errors.py:85
+#, python-format
+msgid "Unable to load the configuration file %s: %s"
+msgstr "לא ניתן לטעון את קובץ ההגדרות %s: %s"
+
+#: ../lottanzb/config/errors.py:92
+msgid "File not found."
+msgstr "הקובץ לא נמצא."
+
+#: ../lottanzb/config/errors.py:99
+#, python-format
+msgid "Syntax error on line %i: %s"
+msgstr ""
+
+#: ../lottanzb/config/errors.py:108
+#, python-format
+msgid "Unable to save the configuration file %s: %s"
+msgstr "לא ניתן לשמור את קובץ ההגדרות %s: %s"
+
+#: ../lottanzb/gui/prefs/widgets.py:78
+msgid "<a>Additional software</a> is required."
+msgstr ""
+
+#: ../lottanzb/gui/prefs/widgets.py:98
+#, python-format
+msgid ""
+"To make full use of LottaNZB, please install the following software on '%s' "
+"and restart SABnzbd using the button below."
+msgstr ""
+"על מנת לעשות שימוש מלא ב-LottaNZB, אנא התקן את התוכנות הבאות ב-'%s' ואתחל את "
+"SABnzbd ע\"י שימוש בכפתור הנמצא מטה."
+
+#: ../lottanzb/gui/prefs/widgets.py:102
+msgid ""
+"To make full use of LottaNZB, please install the following software and "
+"restart SABnzbd using the button below."
+msgstr ""
+"על מנת לעשות שימוש מלא ב-LottaNZB, אנא התקן את התוכנות הבאות ואתחל את "
+"SABnzbd ע\"י שימוש בכפתור הנמצא מטה."
+
+#: ../lottanzb/gui/main/download_list.py:160
+msgid "Cancel download?"
+msgstr "האם לבטל הורדה?"
+
+#: ../lottanzb/gui/main/download_list.py:161
+#: ../lottanzb/gui/prefs/servers.py:103
+msgid "This cannot be undone."
+msgstr "לא ניתן לשחזר פעולה זו."
+
+#: ../lottanzb/gui/main/download_list.py:355
+msgid "Downloading {0.recovery_block_count} recovery block..."
+msgid_plural "Downloading {0.recovery_block_count} recovery blocks..."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../lottanzb/gui/main/download_list.py:359
+msgid "Verifying... ({0.verification_percentage}%)"
+msgstr ""
+
+#: ../lottanzb/gui/main/download_list.py:361
+msgid "Repairing... ({0.repair_percentage}%)"
+msgstr ""
+
+#: ../lottanzb/gui/main/download_list.py:363
+msgid "Extracting... ({0.unpack_percentage}%)"
+msgstr ""
+
+#: ../lottanzb/gui/main/download_list.py:365
+msgid "Joining..."
+msgstr ""
+
+#: ../lottanzb/gui/main/download_list.py:367
+msgid "Moving to download folder..."
+msgstr ""
+
+#: ../lottanzb/gui/main/download_list.py:369
+msgid "Executing user script..."
+msgstr ""
+
+#: ../lottanzb/gui/main/download_list.py:380
+msgid "Downloading - {0.time_left.short} left"
+msgstr ""
+
+#: ../lottanzb/gui/main/download_list.py:382
+msgid "Downloading - Remaining time unknown"
+msgstr ""
+
+#: ../lottanzb/gui/main/download_list.py:384
+msgid "Downloading NZB file..."
+msgstr ""
+
+#: ../data/ui/properties_dialog.ui.h:1
+msgid "<b>Activity</b>"
+msgstr "‏<b>פעילות</b>"
+
+#: ../data/ui/properties_dialog.ui.h:2
+msgid "<b>Settings</b>"
+msgstr "<b>הגדרות</b>"
+
+#: ../data/ui/properties_dialog.ui.h:3
+msgid "Download Properties"
+msgstr ""
+
+#: ../data/ui/properties_dialog.ui.h:4
+msgid "Open _Folder"
+msgstr "פתח _תיקייה"
+
+#: ../data/ui/properties_dialog.ui.h:5
+msgid "_Name:"
+msgstr "_שם:"
+
+#: ../data/ui/properties_dialog.ui.h:6
+msgid "_Priority:"
+msgstr "_עדיפות:"
+
+#: ../lottanzb/gui/log.py:36
+msgid "Debugging"
+msgstr "ניפוי שגיאות"
+
+#: ../lottanzb/gui/log.py:37
+msgid "Default"
+msgstr "ברירת מחדל"
+
+#: ../lottanzb/gui/log.py:38
+msgid "Warnings"
+msgstr "אזהרות"
+
+#: ../lottanzb/gui/log.py:39
+msgid "Errors"
+msgstr "שגיאות"
+
+#: ../lottanzb/gui/log.py:235
+#, python-format
+msgid "Could not write message log to %s: %s"
+msgstr "לא ניתן לכתוב הודעות דיווח אל %s: %s"
+
+#: ../lottanzb/gui/log.py:238
+#, python-format
+msgid "Message log saved to %s."
+msgstr "הודעת הדיווח נשמרה אל  %s."
+
+#: ../lottanzb/gui/log.py:242
+msgid "Save Message Log"
+msgstr ""
+
+#: ../lottanzb/gui/main/info_bar.py:42
+msgid "Limit the download speed"
+msgstr ""
+
+#: ../lottanzb/gui/main/info_bar.py:78
+msgid "{0.size_left} left ({0.time_left.short})"
+msgstr ""
+
+#: ../lottanzb/gui/main/info_bar.py:80
+msgid "{0.size_left} left"
+msgstr ""
+
+#: ../lottanzb/gui/main/info_bar.py:99
+msgid "{0} free"
+msgstr ""
+
+#: ../lottanzb/gui/main/info_bar.py:111
+msgid "{0} free (temp)"
+msgstr ""
+
+#: ../lottanzb/gui/download_properties.py:68
+msgid "Downloaded"
+msgstr "הורדו"
+
+#: ../lottanzb/gui/download_properties.py:71
+msgid "Size"
+msgstr "גודל"
+
+#: ../lottanzb/gui/download_properties.py:73
+msgid "Time left"
+msgstr "זמן שנותר"
+
+#: ../lottanzb/gui/download_properties.py:75
+msgid "ETA"
+msgstr "זמן משוער"
+
+#: ../lottanzb/gui/download_properties.py:77
+msgid "Age"
+msgstr "גיל"
+
+#: ../lottanzb/gui/download_properties.py:79
+msgid "Download time"
+msgstr ""
+
+#: ../lottanzb/gui/download_properties.py:81
+msgid "Post-processing"
+msgstr ""
+
+#: ../lottanzb/gui/download_properties.py:83
+#: ../lottanzb/backend/hubs/general/download.py:50
+msgid "Completed"
+msgstr "הושלם"
+
+#: ../lottanzb/gui/download_properties.py:281
+msgid "Unknown"
+msgstr "לא ידוע"
+
+#: ../lottanzb/gui/download_properties.py:294
+msgid "Status"
+msgstr "מצב"
+
+#: ../lottanzb/gui/download_properties.py:321
+msgid "Error"
+msgstr "שגיאה"
+
+#: ../data/ui/session_selection_remote.ui.h:1
+msgid "<b>Connect to Computer</b>"
+msgstr ""
+
+#: ../data/ui/session_selection_remote.ui.h:2
+msgid "API _key:"
+msgstr ""
+
+#: ../data/ui/session_selection_remote.ui.h:3
+#: ../data/ui/prefs_tab_remote_access.ui.h:2
+#: ../data/ui/server_editor_pane.ui.h:4
+msgid "Pass_word:"
+msgstr "סיס_מה:"
+
+#: ../data/ui/session_selection_remote.ui.h:4
+msgid "_Host:"
+msgstr "_מארח:"
+
+#: ../data/ui/session_selection_remote.ui.h:5
+#: ../data/ui/prefs_tab_remote_access.ui.h:4
+#: ../data/ui/server_editor_pane.ui.h:8
+msgid "_Port:"
+msgstr "_פתחה:"
+
+#: ../data/ui/session_selection_remote.ui.h:6
+#: ../data/ui/prefs_tab_remote_access.ui.h:6
+#: ../data/ui/server_editor_pane.ui.h:9
+msgid "_Username:"
+msgstr "_שם משתמש:"
+
+#: ../lottanzb/config/roots.py:255
+#, python-format
+msgid "Configuration directory %s created."
+msgstr "ספריית הגדרות %s נוצרה."
+
+#: ../lottanzb/config/roots.py:265
+#, python-format
+msgid "Configuration file %s saved."
+msgstr "קובץ הגדרות %s נשמר."
+
+#: ../data/ui/prefs_tab_general.ui.h:1
+msgid "<b>After Downloading</b>"
+msgstr ""
+
+#: ../data/ui/prefs_tab_general.ui.h:2
+msgid "<b>Downloading</b>"
+msgstr ""
+
+#: ../data/ui/prefs_tab_general.ui.h:3
+msgid "Choose the Download Folder"
+msgstr ""
+
+#: ../data/ui/prefs_tab_general.ui.h:4
+msgid "Choose the Folder to be Observed"
+msgstr ""
+
+#: ../data/ui/prefs_tab_general.ui.h:5
+msgid "KB/s"
+msgstr "ק\"ב/ש"
+
+#: ../data/ui/prefs_tab_general.ui.h:6
+msgid "_Automatically add NZB files from:"
+msgstr ""
+
+#: ../data/ui/prefs_tab_general.ui.h:7
+msgid "_Download folder:"
+msgstr ""
+
+#: ../data/ui/prefs_tab_general.ui.h:8
+msgid "_Limit download speed:"
+msgstr ""
+
+#: ../data/ui/session_selection_local_sabnzbd_pane.ui.h:1
+msgid "<b>SABnzbd</b>"
+msgstr "<b>SABnzbd</b>"
+
+#: ../data/ui/session_selection_local_sabnzbd_pane.ui.h:2
+msgid "Select SABnzbd Executable"
+msgstr "בחר את קובץ ההפעלה של SABnzbd"
+
+#: ../data/ui/session_selection_local_sabnzbd_pane_quick_install.ui.h:1
+msgid "The program required for downloading is not installed."
+msgstr "התוכנה הדרושה להורדה אינה מותקנת."
+
+#: ../data/ui/session_selection_local_sabnzbd_pane_quick_install.ui.h:2
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:384
+msgid "_Install..."
+msgstr "_התקנה..."
+
+#: ../lottanzb/backend/hubs/general/download.py:37
+msgid "Downloading NZB file"
+msgstr "מוריד קובץ NZB"
+
+#: ../lottanzb/backend/hubs/general/download.py:38
+msgid "Queued"
+msgstr "בתור"
+
+#: ../lottanzb/backend/hubs/general/download.py:39
+msgid "Downloading"
+msgstr "מוריד"
+
+#: ../lottanzb/backend/hubs/general/download.py:40
+msgid "Paused"
+msgstr "מושהה"
+
+#: ../lottanzb/backend/hubs/general/download.py:41
+msgid "Quick check"
+msgstr "בדיקה מהירה"
+
+#: ../lottanzb/backend/hubs/general/download.py:42
+msgid "Downloading recovery data"
+msgstr "הורדת מידע לתיקון"
+
+#: ../lottanzb/backend/hubs/general/download.py:43
+msgid "Verifying"
+msgstr "מוודא"
+
+#: ../lottanzb/backend/hubs/general/download.py:44
+msgid "Repairing"
+msgstr "מתקן"
+
+#: ../lottanzb/backend/hubs/general/download.py:45
+msgid "Extracting"
+msgstr "מחלץ"
+
+#: ../lottanzb/backend/hubs/general/download.py:46
+msgid "Joining"
+msgstr "מאחד"
+
+#: ../lottanzb/backend/hubs/general/download.py:47
+msgid "Moving to download directory"
+msgstr "מעביר לספריית הורדות"
+
+#: ../lottanzb/backend/hubs/general/download.py:48
+msgid "Executing script"
+msgstr "מריץ תסריט"
+
+#: ../lottanzb/backend/hubs/general/download.py:49
+msgid "Failed"
+msgstr "נכשל"
+
+#: ../lottanzb/backend/interface/queries.py:111
+#: ../lottanzb/backend/interface/queries.py:112
+msgid "Wrong number of arguments."
+msgstr ""
+
+#: ../lottanzb/backend/interface/queries.py:113
+msgid "No integer value."
+msgstr "לא ערך של מספר שלם (integer)"
+
+#: ../lottanzb/backend/interface/queries.py:114
+msgid "No regular file."
+msgstr "לא קובץ רגיל."
+
+#: ../lottanzb/backend/interface/queries.py:115
+msgid "File does not exist."
+msgstr "הקובץ לא קיים."
+
+#: ../lottanzb/backend/interface/queries.py:116
+msgid "Format not supported."
+msgstr "תבנית נתונים לא נתמכת"
+
+#: ../lottanzb/backend/interface/queries.py:117
+msgid "Configuration option does not exist."
+msgstr "אפשרות קונפיגורציה לא קיימת"
+
+#: ../lottanzb/backend/interface/queries.py:118
+msgid "Invalid server settings."
+msgstr "הגדרות שרת לא חוקיות."
+
+#: ../lottanzb/backend/interface/queries.py:690
+#: ../data/ui/restart_dialog.ui.h:2
+msgid "Restarting SABnzbd..."
+msgstr "מאתחל את SABnzbd..."
+
+#: ../lottanzb/backend/interface/queries.py:743
+msgid "SABnzbd has been successfully restarted."
+msgstr "SABnzbd אותחל בהצלחה."
+
+#: ../data/ui/prefs_window.ui.h:1
+msgid "LottaNZB Preferences"
+msgstr ""
+
+#: ../data/ui/main_window.ui.h:1
+msgid "Add"
+msgstr "הוסף"
+
+#: ../data/ui/main_window.ui.h:2
+msgid "Add _URL..."
+msgstr "הוספת _כתובת URL..."
+
+#: ../data/ui/main_window.ui.h:3
+msgid "Add a new NZB file"
+msgstr ""
+
+#: ../data/ui/main_window.ui.h:4
+msgid "Cl_ear Completed"
+msgstr ""
+
+#: ../data/ui/main_window.ui.h:5
+msgid "Clear the list of completed downloads"
+msgstr ""
+
+#: ../data/ui/main_window.ui.h:6 ../lottanzb/config/sabnzbd/constants.py:26
+#: ../lottanzb/config/sabnzbd/misc.py:158
+msgid "Downloads"
+msgstr "הורדות"
+
+#: ../data/ui/main_window.ui.h:7
+msgid "Message _Log"
+msgstr "יומן_הודעות"
+
+#: ../data/ui/main_window.ui.h:8
+msgid "Open _Web Interface"
+msgstr ""
+
+#: ../data/ui/main_window.ui.h:9
+msgid "Open the download folder"
+msgstr ""
+
+#: ../data/ui/main_window.ui.h:10
+msgid "Pause all downloads"
+msgstr ""
+
+#: ../data/ui/main_window.ui.h:11
+msgid "Report a Problem..."
+msgstr "דיווח על בעיה..."
+
+#: ../data/ui/main_window.ui.h:12
+msgid "Translate This Application..."
+msgstr "תרגום יישום זה..."
+
+#: ../data/ui/main_window.ui.h:13
+msgid "Web Interface"
+msgstr "ממשק דפדפן"
+
+#: ../data/ui/main_window.ui.h:14
+msgid "_About"
+msgstr "_אודות"
+
+#: ../data/ui/main_window.ui.h:15
+msgid "_Add File..."
+msgstr ""
+
+#: ../data/ui/main_window.ui.h:16
+msgid "_Contents"
+msgstr "_תכנים"
+
+#: ../data/ui/main_window.ui.h:17
+msgid "_Download to this Computer..."
+msgstr ""
+
+#: ../data/ui/main_window.ui.h:18
+msgid "_Edit"
+msgstr "_עריכה"
+
+#: ../data/ui/main_window.ui.h:19
+msgid "_File"
+msgstr "_קובץ"
+
+#: ../data/ui/main_window.ui.h:20
+msgid "_Help"
+msgstr "_עזרה"
+
+#: ../data/ui/main_window.ui.h:21
+msgid "_Infobar"
+msgstr ""
+
+#: ../data/ui/main_window.ui.h:22
+msgid "_Monitor another Computer..."
+msgstr ""
+
+#: ../data/ui/main_window.ui.h:23
+msgid "_Open Download Folder"
+msgstr ""
+
+#: ../data/ui/main_window.ui.h:24
+msgid "_Pause All"
+msgstr ""
+
+#: ../data/ui/main_window.ui.h:25
+msgid "_Reordering Pane"
+msgstr ""
+
+#: ../data/ui/main_window.ui.h:26
+msgid "_Toolbar"
+msgstr ""
+
+#: ../data/ui/main_window.ui.h:27
+msgid "_View"
+msgstr "_תצוגה"
+
+#: ../data/ui/log_window.ui.h:1
+msgid "Message Log"
+msgstr "יומן הודעות"
+
+#: ../data/ui/log_window.ui.h:2
+msgid "_Level:"
+msgstr ""
+
+#: ../lottanzb/gui/prefs/servers.py:36
+msgid "Servers"
+msgstr "שרתים"
+
+#: ../lottanzb/gui/prefs/servers.py:102
+msgid "Delete server?"
+msgstr ""
+
+#: ../lottanzb/gui/prefs/servers.py:195
+msgid "No authentication required"
+msgstr "לא נדרש אימות"
+
+#. LottaNZB users are much more likely to be used to the term
+#. 'Backup server' compared to 'Fillserver'.
+#: ../lottanzb/gui/prefs/servers.py:200
+#, python-format
+msgid "%s (Backup server)"
+msgstr ""
+
+#: ../lottanzb/gui/prefs/servers.py:374
+msgid "Add Server"
+msgstr "הוסף שרת"
+
+#: ../lottanzb/gui/prefs/servers.py:393
+msgid "Edit Server"
+msgstr "ערוך שרת"
+
+#: ../lottanzb/gui/prefs/remote_access.py:27
+msgid "Remote Access"
+msgstr "גישה מרחוק"
+
+#: ../lottanzb/backend/sessions/errors.py:45
+#, python-format
+msgid "Unknown error in session '%s'."
+msgstr ""
+
+#: ../lottanzb/backend/sessions/errors.py:47
+msgid "Unknown error in session."
+msgstr ""
+
+#: ../lottanzb/backend/sessions/errors.py:52
+msgid "Could not start session"
+msgstr ""
+
+#: ../lottanzb/backend/sessions/errors.py:55
+#, python-format
+msgid "Could not start session '%s'"
+msgstr ""
+
+#: ../lottanzb/backend/sessions/errors.py:63
+msgid "No session has been selected."
+msgstr ""
+
+#: ../lottanzb/backend/sessions/errors.py:67
+msgid "Unknown session type."
+msgstr ""
+
+#: ../lottanzb/backend/sessions/errors.py:80
+msgid "Could not find the SABnzbd executable."
+msgstr ""
+
+#: ../lottanzb/backend/sessions/errors.py:88
+msgid "Not allowed to launch SABnzbd."
+msgstr ""
+
+#: ../lottanzb/backend/sessions/errors.py:96
+#, python-format
+msgid "%s is probably not executable."
+msgstr ""
+
+#: ../lottanzb/backend/sessions/errors.py:106
+#, python-format
+msgid "Could not find the Python module '%s'."
+msgstr ""
+
+#: ../lottanzb/backend/interface/errors.py:38
+msgid "Unknown error."
+msgstr "שגיאה לא ידועה."
+
+#: ../lottanzb/backend/interface/errors.py:41
+#, python-format
+msgid "Query '%s' to %s failed: %s"
+msgstr ""
+
+#: ../lottanzb/backend/interface/errors.py:49
+msgid "IO error."
+msgstr "שגיאה קלט/פלט."
+
+#: ../lottanzb/backend/interface/errors.py:55
+msgid "Unknown host."
+msgstr ""
+
+#: ../lottanzb/backend/interface/errors.py:61
+msgid "Connection refused."
+msgstr "החיבור סורב."
+
+#: ../lottanzb/backend/interface/errors.py:69
+#, python-format
+msgid "HTTP error code %i."
+msgstr ""
+
+#: ../lottanzb/backend/interface/errors.py:77
+#, python-format
+msgid "SABnzbd version %s is installed, but %s is required."
+msgstr ""
+
+#: ../lottanzb/backend/interface/errors.py:80
+#, python-format
+msgid "Host '%s' runs SABnzbd version %s, but %s is required."
+msgstr ""
+
+#: ../lottanzb/backend/interface/errors.py:89
+msgid "Invalid response."
+msgstr "תגובה בלתי חוקית."
+
+#: ../lottanzb/backend/interface/errors.py:99
+msgid "Invalid API key."
+msgstr ""
+
+#: ../lottanzb/backend/interface/errors.py:105
+msgid "Invalid username or password."
+msgstr ""
+
+#: ../lottanzb/backend/interface/errors.py:111
+msgid "Query took too long to execute."
+msgstr ""
+
+#: ../lottanzb/backend/interface/errors.py:117
+#, python-format
+msgid "Restart didn't finish in %d seconds."
+msgstr ""
+
+#: ../lottanzb/backend/interface/errors.py:122
+msgid "Invalid arguments."
+msgstr ""
+
+#: ../lottanzb/backend/interface/errors.py:128
+msgid "Not implemented."
+msgstr ""
+
+#: ../data/ui/add_file_dialog.ui.h:1
+msgctxt "yes"
+msgid "Add NZB File"
+msgstr ""
+
+#: ../lottanzb/gui/messaging/download_import.py:158
+#, python-format
+msgid "Import %i incomplete download?"
+msgid_plural "Import %i incomplete downloads?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../lottanzb/gui/messaging/download_import.py:162
+msgid "It was started using a previous version of the program."
+msgid_plural "They were started using a previous versions of the program."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../lottanzb/gui/messaging/download_import.py:165
+msgid "Any progress will be lost."
+msgstr ""
+
+#: ../lottanzb/gui/messaging/download_import.py:169
+#, python-format
+msgid "Importing %i download..."
+msgid_plural "Importing %i downloads..."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../lottanzb/gui/messaging/download_import.py:183
+msgid "_Import"
+msgstr "_ייבא"
+
+#: ../lottanzb/gui/messaging/download_import.py:184
+#: ../lottanzb/gui/messaging/postprocessing_priority.py:149
+msgid "_Cancel"
+msgstr "_ביטול"
+
+#: ../lottanzb/gui/add_file.py:44
+msgid "NZB files and archives"
+msgstr ""
+
+#: ../data/ui/prefs_tab_remote_access.ui.h:1
+msgid "API key:"
+msgstr ""
+
+#: ../data/ui/prefs_tab_remote_access.ui.h:3
+msgid "_Allow access from other computers"
+msgstr "_אפשר גישה ממחשבים אחרים"
+
+#: ../data/ui/prefs_tab_remote_access.ui.h:5
+msgid "_Require authentication"
+msgstr "_דורש אימות"
+
+#: ../lottanzb/gui/framework/proxy.py:326
+msgid "Invalid value"
+msgstr ""
+
+#: ../lottanzb/gui/framework/proxy.py:335
+msgid "This field is mandatory"
+msgstr ""
+
+#: ../lottanzb/gui/framework/proxy.py:419
+msgid "Invalid IP address or host name"
+msgstr ""
+
+#: ../data/ui/session_selection_local_sabnzbd_pane_searching.ui.h:1
+msgid "The program required for downloading is being searched..."
+msgstr ""
+
+#: ../lottanzb/gui/messaging/postprocessing_priority.py:139
+msgid "Post-processing may slow down system"
+msgstr "עיבוד הנתונים לאחר ההורדה עשוי להאט את המחשב"
+
+#: ../lottanzb/gui/messaging/postprocessing_priority.py:140
+msgid ""
+"It's recommended to decrease the priority of download post-processing. Post-"
+"processing may take a bit longer afterwards."
+msgstr ""
+"מומלץ להוריד את העדיפות של עיבוד הנתונים. יתכן שזמן עיבוד הנתונים יתארך מעט."
+
+#: ../lottanzb/gui/messaging/postprocessing_priority.py:147
+msgid "_Decrease Priority"
+msgstr "הורד _עדיפות"
+
+#: ../lottanzb/gui/sessions/local/__init__.py:77
+msgid "_Download to this computer"
+msgstr ""
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:370
+msgid "Installing..."
+msgstr "מתקין..."
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:382
+msgid "Installed"
+msgstr "מותקן"
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:410
+msgid "Install the updates available for your system."
+msgstr ""
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:430
+msgid "Updating..."
+msgstr "מעדכן..."
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:449
+msgid "Updated"
+msgstr "עודכן"
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:460
+#: ../data/ui/session_selection_local_sabnzbd_pane_quick_upgrade.ui.h:1
+msgid "The program required for downloading is out-of-date."
+msgstr ""
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:471
+msgid "Learn <a href=''>how to upgrade</a> it."
+msgstr ""
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:493
+msgid ""
+"The program required for downloading could not be found. {0}Install it{1} "
+"and specify where it is."
+msgstr ""
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:539
+msgid ""
+"The program required for downloading cannot be started. Make sure that it is "
+"executable."
+msgstr ""
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:568
+msgid "The program required for downloading could not be started."
+msgstr ""
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:572
+msgid "Ensure that cherrypy.zip is extracted."
+msgstr ""
+
+#: ../lottanzb/gui/sessions/remote.py:106
+#, python-format
+msgid "HTTPS is automatically enabled for the connection to '%s'."
+msgstr ""
+
+#: ../lottanzb/gui/sessions/remote.py:109
+#, python-format
+msgid "HTTPS is automatically disabled for the connection to '%s'."
+msgstr ""
+
+#: ../lottanzb/gui/sessions/remote.py:153
+msgid "Ensure that SABnzbd is running."
+msgstr ""
+
+#: ../lottanzb/gui/sessions/remote.py:155
+#, python-format
+msgid ""
+"Ensure that SABnzbd is running on '%s' and allows access from other "
+"computers."
+msgstr ""
+
+#: ../lottanzb/gui/sessions/remote.py:166
+msgid "_Manage the downloads of another computer"
+msgstr ""
+
+#: ../data/ui/restart_dialog.ui.h:1
+msgid "Please wait while SABnzbd is being restarted."
+msgstr ""
+
+#: ../data/ui/add_url_dialog.ui.h:1
+msgid "Add URL"
+msgstr ""
+
+#: ../data/ui/add_url_dialog.ui.h:2
+msgid "_URL of the NZB file:"
+msgstr ""
+
+#: ../lottanzb/backend/sessions/local.py:72
+#, python-format
+msgid "HellaNZB configuration file %s imported."
+msgstr ""
+
+#: ../lottanzb/backend/sessions/local.py:141
+#, python-format
+msgid "Launching SABnzbd (%s)..."
+msgstr ""
+
+#: ../lottanzb/backend/sessions/local.py:194
+#, python-format
+msgid "Could not start SABnzbd in %d seconds."
+msgstr ""
+
+#: ../lottanzb/backend/sessions/local.py:204
+msgid "SABnzbd has been successfully launched."
+msgstr ""
+
+#: ../lottanzb/backend/sessions/local.py:227
+msgid "Shutting down SABnzbd..."
+msgstr ""
+
+#: ../data/ui/additional_software_dialog.ui.h:1
+msgid "<big><b>Additional Software</b></big>"
+msgstr ""
+
+#: ../data/ui/additional_software_dialog.ui.h:2
+msgid "Additional Software"
+msgstr ""
+
+#: ../data/ui/additional_software_dialog.ui.h:3
+msgid "_Restart SABnzbd"
+msgstr ""
+
+#: ../lottanzb/gui/prefs/general.py:38
+msgid "General"
+msgstr "כללי"
+
+#: ../lottanzb/gui/prefs/general.py:213
+msgid "<i>Do nothing</i>"
+msgstr ""
+
+#: ../lottanzb/gui/prefs/general.py:215
+msgid "Repair downloaded archives if necessary"
+msgstr ""
+
+#: ../lottanzb/gui/prefs/general.py:217
+msgid "Repair and extract downloaded archives"
+msgstr ""
+
+#: ../lottanzb/gui/prefs/general.py:219
+msgid "Repair, extract and delete downloaded archives"
+msgstr ""
+
+#: ../lottanzb/gui/prefs/general.py:251
+#, python-format
+msgid "%s for verifying and reparing downloads"
+msgstr ""
+
+#: ../lottanzb/gui/prefs/general.py:252 ../lottanzb/gui/prefs/general.py:253
+#, python-format
+msgid "%s for extracting downloaded archives"
+msgstr ""
+
+#: ../lottanzb/gui/prefs/general.py:257
+msgid "<b>par2</b> or <b>par2cmdline</b>"
+msgstr ""
+
+#: ../data/ui/server_editor_pane.ui.h:1
+msgid "Advanced Settings"
+msgstr ""
+
+#: ../data/ui/server_editor_pane.ui.h:2
+msgid "If needed by the news server:"
+msgstr ""
+
+#: ../data/ui/server_editor_pane.ui.h:3
+msgid "Maximum number of connections:"
+msgstr "מספר החיבורים המירבי:"
+
+#: ../data/ui/server_editor_pane.ui.h:5
+msgid "Use _SSL encryption"
+msgstr "השתמש בה_צפנת SSL"
+
+#: ../data/ui/server_editor_pane.ui.h:6
+msgid "Use as backup server"
+msgstr "השתמש בשרת גיבוי"
+
+#: ../data/ui/server_editor_pane.ui.h:7
+msgid "_Address:"
+msgstr "_כתובת:"
+
+#: ../lottanzb/backend/hubs/__init__.py:80
+msgid "byte"
+msgid_plural "bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Don't show any decimal places when displaying a number of bytes.
+#: ../lottanzb/backend/hubs/__init__.py:83
+#, python-format
+msgid "%(data_size).0f %(data_size_unit)s"
+msgstr ""
+
+#: ../lottanzb/backend/hubs/__init__.py:85
+#, python-format
+msgid "%(data_size).1f %(data_size_unit)s"
+msgstr ""
+
+#: ../lottanzb/backend/hubs/__init__.py:151
+#, python-format
+msgid "%s/s"
+msgstr ""
+
+#: ../lottanzb/backend/hubs/__init__.py:264
+#, python-format
+msgid "%(major_time_scale)s and %(minor_time_scale)s"
+msgstr ""
+
+#: ../lottanzb/backend/hubs/__init__.py:325
+#, python-format
+msgid "%i day"
+msgid_plural "%i days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../lottanzb/backend/hubs/__init__.py:327
+#, python-format
+msgid "%i hour"
+msgid_plural "%i hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../lottanzb/backend/hubs/__init__.py:329
+#, python-format
+msgid "%i minute"
+msgid_plural "%i minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../lottanzb/backend/hubs/__init__.py:331
+#, python-format
+msgid "%i second"
+msgid_plural "%i seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../data/ui/about_dialog.ui.h:1
+msgid "Copyright (C) 2007-2011 LottaNZB Development Team"
+msgstr ""
+
+#: ../data/ui/about_dialog.ui.h:2
+msgid ""
+"LottaNZB - Usenet Downloader\n"
+"Copyright (C) 2007-2011 LottaNZB Development Team\n"
+"\n"
+"This program is free software: you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation, version 3 of the License.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+
+#: ../data/ui/about_dialog.ui.h:16
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Ddorda https://launchpad.net/~ddorda\n"
+"  LottaNZB Development Team https://launchpad.net/~lottanzb\n"
+"  Nir Misgav https://launchpad.net/~nirmisgav\n"
+"  Tomer https://launchpad.net/~tomeri-st\n"
+"  Yaron https://launchpad.net/~sh-yaron"
+
+#: ../data/ui/download_list.ui.h:1
+msgid "Move _down"
+msgstr "העבר למ_טה"
+
+#: ../data/ui/download_list.ui.h:2
+msgid "Move _up"
+msgstr "העבר למ_עלה"
+
+#: ../data/ui/download_list.ui.h:3
+msgid "Move to _bottom of queue"
+msgstr ""
+
+#: ../data/ui/download_list.ui.h:4
+msgid "Remove the selected download"
+msgstr ""
+
+#: ../data/ui/download_list.ui.h:5
+msgid "_Open Folder"
+msgstr ""
+
+#: ../data/ui/download_list.ui.h:6
+msgid "_Pause"
+msgstr ""
+
+#: ../data/ui/download_list.ui.h:7
+msgid "_Properties"
+msgstr "_מאפיינים"
+
+#: ../data/ui/download_list.ui.h:8
+msgid "_Start"
+msgstr ""
+
+#: ../lottanzb/gui/panel_menu.py:93
+msgid "Show LottaNZB"
+msgstr ""
+
+#: ../lottanzb/core/constants.py:36
+msgid "Force"
+msgstr ""
+
+#: ../lottanzb/core/constants.py:37
+msgid "High"
+msgstr ""
+
+#: ../lottanzb/core/constants.py:38
+msgid "Normal"
+msgstr ""
+
+#: ../lottanzb/core/constants.py:39
+msgid "Low"
+msgstr ""
+
+#: ../data/ui/session_selection_local_sabnzbd_pane_quick_upgrade.ui.h:2
+msgid "_Update..."
+msgstr ""
+
+#: ../lottanzb/core/ipc.py:30
+msgid "LottaNZB is already running on this computer."
+msgstr "LottaNZB כבר רץ במחשב זה."
+
+#: ../data/ui/session_selection_dialog.ui.h:1
+msgid "Start Downloading"
+msgstr ""
+
+#: ../lottanzb/gui/add_url.py:61
+msgid "Invalid URL"
+msgstr ""
+
+#~ msgid "Could not add file to the download queue."
+#~ msgstr "לא ניתן להוסיף קובץ אל תור ההורדה."
+
+#, python-format
+#~ msgid "Added %s to the download queue."
+#~ msgstr "נוסף %s אל תור ההורדה."
+
+#~ msgid "The specified password is invalid. Please check your input."
+#~ msgstr "הסיסמה שצויינה שגויה. נא בדקו את הפלט שלכם."
+
+#~ msgid "Could not resume the download."
+#~ msgstr "לא ניתן להמשיך את ההורדה."
+
+#~ msgid "Paused downloads."
+#~ msgstr "הורדות מושהות."
+
+#~ msgid "Could not pause the download."
+#~ msgstr "לא ניתן להשהות את ההורדה."
+
+#~ msgid "Could not dequeue item."
+#~ msgstr "לא ניתן להסיר פריטים מהתור."
+
+#~ msgid "Could not cancel the current download."
+#~ msgstr "לא ניתן לבטל את ההורדה הנוכחית."
+
+#~ msgid "Resuming downloads."
+#~ msgstr "ממשיך הורדות."
+
+#~ msgid "Removed download speed limit."
+#~ msgstr "הוסרה מגבלת מהירות ההורדה."
+
+#~ msgid "Could not set the maxium download speed."
+#~ msgstr "לא ניתן להגדיר את מהירות ההורדה המירבית."
+
+#~ msgid "Software"
+#~ msgstr "תוכנה"
+
+#~ msgid "Music"
+#~ msgstr "מוסיקה"
+
+#~ msgid "DVD Movie"
+#~ msgstr "סרט DVD"
+
+#~ msgid "XVID Movie"
+#~ msgstr "סרט XVID"
+
+#~ msgid "TV Series"
+#~ msgstr "סדרה טלויזיונית"
+
+#~ msgid "HD Movie"
+#~ msgstr "סרט באיכות גבוהה"
+
+#~ msgid "Game"
+#~ msgstr "משחק"
+
+#~ msgid "Other"
+#~ msgstr "אחר"
+
+#, python-format
+#~ msgid "Remaining: %s MB"
+#~ msgstr "נותרו: %s מ\"ב"
+
+#, python-format
+#~ msgid "%s KB/s"
+#~ msgstr "%s ק\"ב/ש"
+
+#~ msgid "Progress"
+#~ msgstr "תהליך"
+
+#~ msgid "Category"
+#~ msgstr "קטגוריה"
+
+#, python-format
+#~ msgid "Total remaining: %s MB"
+#~ msgstr "סה\"כ שנותרו: %s מ\"ב"
+
+#~ msgid "Name"
+#~ msgstr "שם"
+
+#~ msgid "Queued: Need PAR recovery"
+#~ msgstr "המתנה בתור: נדרש תיקון PAR"
+
+#~ msgid "Processing"
+#~ msgstr "מעבד"
+
+#~ msgid "Repairing and extracting"
+#~ msgstr "מתקן ומחלץ"
+
+#~ msgid "Finished"
+#~ msgstr "הסתיים"
+
+#, python-format
+#~ msgid "Paused at: %s%%"
+#~ msgstr "הושהה במיקום: %s%%"
+
+#, python-format
+#~ msgid "Downloading PAR recovery files: %s"
+#~ msgstr "מוריד קבצי PAR לתיקון: %s"
+
+#~ msgid "None"
+#~ msgstr "ללא"
+
+#~ msgid "Are you sure you want to cancel this download?"
+#~ msgstr "האם אתם בטוחים שברצונכם לבטל הורדה זו?"
+
+#~ msgid "Could not set the filename."
+#~ msgstr "לא ניתן להגדיר את שם הקובץ."
+
+#~ msgid "HellaNZB only"
+#~ msgstr "HellaNZB בלבד"
+
+#~ msgid "Debug"
+#~ msgstr "ניפוי שגיאות"
+
+#~ msgid "Warning"
+#~ msgstr "אזהרה"
+
+#~ msgid "Info"
+#~ msgstr "מידע"
+
+#~ msgid "LottaNZB only"
+#~ msgstr "LottaNZB בלבד"
+
+#~ msgid "LottaNZB and HellaNZB"
+#~ msgstr "LottaNZB ו- HellaNZB"
+
+#, python-format
+#~ msgid "Could not open %s to write message log: %s"
+#~ msgstr "לא ניתן לפתוח את %s לכתיבת הודעות דיווח: %s"
+
+#, python-format
+#~ msgid "Removed '%s' from queue."
+#~ msgstr "'%s' הוסר מהתור."
+
+#, python-format
+#~ msgid "Could not leave current usage mode '%s'."
+#~ msgstr "לא ניתן לעזוב את מצב השימוש הנוכחי '%s'."
+
+#, python-format
+#~ msgid "Could not enter usage mode '%s'."
+#~ msgstr "לא ניתן לעבור למצב השימוש '%s'."
+
+#~ msgid "Save message log"
+#~ msgstr "שמור את הודעת הדיווח"
+
+#~ msgid "Launching GUI..."
+#~ msgstr "טוען את מנשק המשתמש..."
+
+#~ msgid "Stand-alone"
+#~ msgstr "עצמאי"
+
+#~ msgid "Stand-alone mode"
+#~ msgstr "מצב עצמאי"
+
+#~ msgid ""
+#~ "Use LottaNZB as a normal NZB Usenet client. When launching LottaNZB, "
+#~ "HellaNZB is started in the background. You can easily change the HellaNZB "
+#~ "preferences from within LottaNZB."
+#~ msgstr ""
+#~ "השתמשו ב-LottaNZB כלקוח NZB רגיל למערכת Usenet. בעת טעינת LottaNZB, נטען גם "
+#~ "HellaNZB ברקע. תוכלו בקלות לשנות את ההעדפות של HellaNZB מתוך LottaNZB."
+
+#, python-format
+#~ msgid "Set usage mode to '%s'."
+#~ msgstr "הגדירו את מצב השימוש ל-'%s'."
+
+#, python-format
+#~ msgid "Left usage mode '%s'."
+#~ msgstr "יצא ממצב השימוש '%s'."
+
+#, python-format
+#~ msgid "Reentered usage mode '%s'."
+#~ msgstr "עבר מחדש למצב השימוש '%s'."
+
+#, python-format
+#~ msgid "Changed usage mode from '%s' to '%s'."
+#~ msgstr "מצב השימוש שונה מ-'%s' ל-'%s'."
+
+#~ msgid "HellaNZB daemon stopped."
+#~ msgstr "סוכן ה-HellaNZB נעצר."
+
+#~ msgid "Started HellaNZB daemon."
+#~ msgstr "הופעל סוכן ה-HellaNZB"
+
+#, python-format
+#~ msgid ""
+#~ "The port %s is already in use. Another HellaNZB daemon might be already "
+#~ "running."
+#~ msgstr ""
+#~ "הפתחה %s כבר נמצאת בשימוש. ייתכן כי סוכן HellaNZB נוסף כבר נמצא בשימוש."
+
+#~ msgid ""
+#~ "The HellaNZB daemon is already running using the configuration file managed "
+#~ "by LottaNZB."
+#~ msgstr "סוכן ה-HellaNZB כבר רץ באמצעות קובץ ההגדרות המנוהל על ידי LottaNZB."
+
+#, python-format
+#~ msgid "Could not find the HellaNZB executable (%s)."
+#~ msgstr "לא ניתן למצוא את קובץ ההפעלה של HellaNZB (%s)."
+
+#~ msgid "Could not start the HellaNZB daemon."
+#~ msgstr "לא ניתן להפעיל את סוכן ה-HellaNZB."
+
+#~ msgid "The HellaNZB daemon could not be started for an unknown reason."
+#~ msgstr "לא ניתן להפעיל את סוכן ה-HellaNZB מסיבות שאינן ידועות."
+
+#~ msgid "Could not stop the HellaNZB daemon."
+#~ msgstr "לא ניתן לעצור את סוכן ה-HellaNZB."
+
+#~ msgid ""
+#~ "Monitor a HellaNZB daemon on this computer, which is already configured and "
+#~ "running."
+#~ msgstr "עקוב אחר סוכן ה-HellaNZB שכבר מותקן ומוגדר על גבי מחשב זה."
+
+#~ msgid ""
+#~ "Please make sure HellaNZB is running and the correct configuration file is "
+#~ "selected."
+#~ msgstr "נא וודאו כי HellaNZB פעיל ושקובץ ההגדרות הנכון נבחר."
+
+#~ msgid "Local front-end mode"
+#~ msgstr "מצב מנשק מקומי"
+
+#~ msgid "Local front-end"
+#~ msgstr "מנשק מקומי"
+
+#~ msgid ""
+#~ "Monitor a HellaNZB daemon on another computer, which is already configured "
+#~ "and running."
+#~ msgstr "עקבו אחר סוכן HellaNZB שכבר מותקן ומוגדר על גבי מחשב אחר."
+
+#~ msgid ""
+#~ "Please make sure HellaNZB is running and the connection information are "
+#~ "correctly set."
+#~ msgstr "נא ודאו כי HellaNZB פעיל ונתוני החיבור מוגדרים כראוי."
+
+#~ msgid "Remote front-end mode"
+#~ msgstr "מצב מנשק מרוחק"
+
+#~ msgid "Remote front-end"
+#~ msgstr "מנשק מרוחק"
+
+#~ msgid ""
+#~ "The HellaNZB executable could not be found. This could mean that it isn't "
+#~ "installed on your system or that you've installed it in a non-standard way. "
+#~ "If you want to control a HellaNZB daemon on another computer, select the "
+#~ "remote front-end usage mode. Otherwise, make sure HellaNZB is installed "
+#~ "properly."
+#~ msgstr ""
+#~ "לא ניתן למצוא את קובץ ההפעלה של HellaNZB. ייתכן ומשמעות הדבר היא שאינו מותקן "
+#~ "על מחשבך או שאינו מותקן בצורה התקנית. אם ברצונכם לשלוט בסוכן ה-HellaNZB "
+#~ "המופעל על מחשב אחר, בחרו את מצב השימוש למנשק מרוחק. אחרת, ודאו כי HellaNZB "
+#~ "מותקן כראוי."
+
+#~ msgid ""
+#~ "No HellaNZB daemon seems to be listening on the default port, so it's most "
+#~ "likely not running. The stand-alone mode might be the most appropriate usage "
+#~ "mode for you."
+#~ msgstr ""
+#~ "ייתכן ואין כל סוכן HellaNZB מאזין לפתחת ברירת המחדל, לכן סביר להניח כי אינו "
+#~ "פעיל."
+
+#~ msgid ""
+#~ "The HellaNZB daemon seems to be already running. The local front-end mode "
+#~ "might be the most appropriate usage mode for you."
+#~ msgstr ""
+#~ "ייתכן וסוכן ה-HellaNZB כבר פעיל. ייתכן ומצב מנשק המשתמש המקומי הינו מצב "
+#~ "השימוש הראוי עבורך."
+
+#~ msgid "Default Server"
+#~ msgstr "שרת ברירת המחדל"
+
+#~ msgid ""
+#~ "LottaNZB is currently in stand-alone mode. HellaNZB is already running and "
+#~ "uses the configuration file managed by LottaNZB."
+#~ msgstr ""
+#~ "LottaNZB נמצא כעת במצב עצמאי. HellaNZB כבר פעיל ומשתמש בקובץ ההגדרות המנוהל "
+#~ "על ידי LottaNZB."
+
+#~ msgid "Add a new server"
+#~ msgstr "הוסף שרת חדש"
+
+#~ msgid "<b>Authentication</b>"
+#~ msgstr "<b>הזדהות</b>"
+
+#~ msgid "Are you sure you want to delete this server?"
+#~ msgstr "האם אתם בטוחים שברצונכם למחוק שרת זה?"
+
+#~ msgid "Edit server"
+#~ msgstr "ערוך שרת"
+
+#~ msgid "<b>Download settings</b>"
+#~ msgstr "<b>הגדרות הורדה</b>"
+
+#~ msgid "<b>HellaNZB information</b>"
+#~ msgstr "<b>נתוני HellaNZB</b>"
+
+#~ msgid "<b>News Server Information</b>"
+#~ msgstr "<b>נתוני שרת החדשות</b>"
+
+#~ msgid "<b>HellaNZB Information</b>"
+#~ msgstr "<b>נתוני HellaNZB</b>"
+
+#~ msgid "<b>Error</b>"
+#~ msgstr "<b>שגיאה</b>"
+
+#~ msgid "<b>Connection Settings</b>"
+#~ msgstr "<b>הגדרות חיבור</b>"
+
+#~ msgid "<b>General</b>"
+#~ msgstr "<b>כללי</b>"
+
+#~ msgid "Add download"
+#~ msgstr "הוסף הורדה"
+
+#~ msgid "Choose the download directory"
+#~ msgstr "בחרו את תיקיית ההורדה"
+
+#~ msgid "Add NZB files"
+#~ msgstr "הוסף קבצי NZB"
+
+#~ msgid "Address:"
+#~ msgstr "כתובת:"
+
+#~ msgid "Add file from Newzbin.com"
+#~ msgstr "הוסף קובץ מ-Newzbin.com"
+
+#~ msgid ""
+#~ "<small>LottaNZB won't change the configuration file in any way. It's only "
+#~ "parsed so that we know how to connect to HellaNZB and where the download "
+#~ "directory is etc.</small>"
+#~ msgstr ""
+#~ "<small>LottaNZB לא תשנה את קובץ ההגדרות בכל צורה שהיא. הקובץ אך ורק מנותח "
+#~ "כדי שנדע כיצד להתחבר ל-HellaNZB והיכן תיקיית ההורדה וכו'.</small>"
+
+#~ msgid "Download directory:"
+#~ msgstr "תיקיית הורדה:"
+
+#~ msgid "Enable SSL encryption"
+#~ msgstr "אפשר תמיכה בהצפנת SSL"
+
+#~ msgid "Executable:"
+#~ msgstr "קובץ הפעלה:"
+
+#~ msgid "Configuration file:"
+#~ msgstr "קובץ ההגדרות:"
+
+#~ msgid "Download PAR recovery files only if necessary"
+#~ msgstr "הורד קבצי שיחזור PAR רק במידת הצורך"
+
+#~ msgid "Level:"
+#~ msgstr "רמה:"
+
+#~ msgid "LottaNZB preferences"
+#~ msgstr "העדפות LottaNZB"
+
+#~ msgid "Limit download speed:"
+#~ msgstr "הגבלת מהירות ההורדה:"
+
+#~ msgid "Please enter the ID of the Newzbin.com file you want to download:"
+#~ msgstr "נא הזינו את מזהה הקובץ ב-Newzbin.com אותו ברצונכם להוריד:"
+
+#~ msgid "Newzbin"
+#~ msgstr "Newzbin"
+
+#~ msgid "Port:"
+#~ msgstr "פתחה:"
+
+#~ msgid "Password:"
+#~ msgstr "סיסמה:"
+
+#~ msgid "Source:"
+#~ msgstr "מקור:"
+
+#~ msgid "Select LottaNZB's usage mode"
+#~ msgstr "בחרו את מצב השימוש ב-LottaNZB"
+
+#~ msgid "Select a file"
+#~ msgstr "בחר קובץ"
+
+#~ msgid "Show Main Window"
+#~ msgstr "הצגת החלון הראשי"
+
+#~ msgid "Server requires authentication"
+#~ msgstr "השרת דורש אימות"
+
+#~ msgid "_Server name:"
+#~ msgstr "ש_ם השרת:"
+
+#~ msgid "_Password:"
+#~ msgstr "_סיסמה:"
+
+#~ msgid "Username:"
+#~ msgstr "שם המשתמש:"
+
+#~ msgid "NZB download file"
+#~ msgstr "קובץ להורדה NZB"
+
+#~ msgid "LottaNZB Automated Usenet Client"
+#~ msgstr "LottaNZB לקוח Usenet אוטומטי"
+
+#~ msgid "Automated Usenet Client"
+#~ msgstr "לקוח Usenet אוטומטי"
+
+#~ msgid "Multiple files selected"
+#~ msgstr "נבחרו מספר קבצים"
+
+#~ msgid "Category:"
+#~ msgstr "קטגוריה:"
+
+#, python-format
+#~ msgid "Unable to load the LottaNZB configuration file %s: %s"
+#~ msgstr "לא ניתן לטעון את קובץ התצורה של LottaNZB %s: %s"
+
+#~ msgid "LottaNZB configuration file loaded."
+#~ msgstr "קובץ התצורה של LottaNZB נטען."
+
+#~ msgid "LottaNZB configuration file saved."
+#~ msgstr "קובץ התצורה של LottaNZB נשמר."
+
+#, python-format
+#~ msgid "The HellaNZB configuration file %s has been loaded successfully."
+#~ msgstr "קובץ התצורה של HellNZB - %s נטען בהצלחה."
+
+#~ msgid "Add a new category..."
+#~ msgstr "הוספת קטגוריה חדשה..."
+
+#~ msgid "OpenSSL for Python not installed"
+#~ msgstr "לא מותקנת OpenSSL עבור Python"
+
+#, python-format
+#~ msgid "Unable to load the HellaNZB configuration file %s: %s"
+#~ msgstr "לא ניתן לטעון את קובץ התצורה של HellaNZB %s: %s"
+
+#~ msgid "Contains invalid characters."
+#~ msgstr "מכילה תווים לא תקניים."
+
+#~ msgid "Categories"
+#~ msgstr "קטגוריות"
+
+#, python-format
+#~ msgid "Unable to save the HellaNZB configuration to the file %s: %s"
+#~ msgstr "לא ניתן לשמור את התצורה של HellaNZB אל הקובץ %s: %s"
+
+#, python-format
+#~ msgid "The HellaNZB preferences were successfully written into the file %s."
+#~ msgstr "ההעדפות של HellaNZB נכתבו בהצלחה אל הקובץ %s."
+
+#~ msgid "The specified Newzbin username or password is invalid."
+#~ msgstr "שם המשתמש או הסיסמה שצויינו עבור ה־Newzbin אינם תקניים."
+
+#~ msgid "The Newzbin service is currently unavailable."
+#~ msgstr "שירות ה־Newzbin אינו פעיל כעת."
+
+#, python-format
+#~ msgid "Too many NZB download requests. Waiting %d second."
+#~ msgstr "יותר מדי בקשות הורדה דרך NZB. בהמתנה למשך %d שניה."
+
+#~ msgid "Invalid response from the Newzbin server received."
+#~ msgstr "התקבלה תגובה לא תקנית משרת ה־Newzbin."
+
+#, python-format
+#~ msgid "Too many NZB download requests. Waiting %d seconds."
+#~ msgstr "יותר מדי בקשות הורדה דרך NZB. בהמתנה למשך %d שניות"
+
+#, python-format
+#~ msgid "Newzbin report %i does not exist."
+#~ msgstr "דוח ה־Newzbin %i אינו קיים."
+
+#~ msgid "The specified account does not have any Premium credit left."
+#~ msgstr "לחשבון שצויין לא נותר אשראי פרימיום."
+
+#~ msgid ""
+#~ "The connection to the HellaNZB daemon was lost unexpectedly and trying to "
+#~ "restart and reconnect failed."
+#~ msgstr ""
+#~ "ההתחברות לסוכן ה־HellaNZB נותקה באופן פתאומי ונסיון החיבור מחדש נכשל."
+
+#~ msgid "Extract RAR archives in completed downloads"
+#~ msgstr "חילוץ ארכיוני RAR בהורדות שהסתיימו"
+
+#~ msgid "<b>Connection information</b>"
+#~ msgstr "<b>נתוני ההתחברות</b>"
+
+#~ msgid "<b>Custom categories</b>"
+#~ msgstr "<b>קטגוריות מותאמות אישית</b>"
+
+#, python-format
+#~ msgid "Could not connect to the HellaNZB daemon at %s."
+#~ msgstr "לא ניתן להתחבר אל סוכן ה־HellaNZB בכתובת %s."
+
+#, python-format
+#~ msgid "Connected to the HellaNZB daemon at %s."
+#~ msgstr "מחובר אל סוכן ה־HellaNZB בכתובת %s."
+
+#, python-format
+#~ msgid "The HellaNZB daemon doesn't seem to be running at %s."
+#~ msgstr "ייתכן כי סוכן ה־HellaNZB אינו פעיל בכתובת %s."
+
+#, python-format
+#~ msgid "Could not connect to %s. This might be due to network issues."
+#~ msgstr "לא ניתן להתחבר אל %s. ייתכן כי בעיה זו נגרמה עקב תקלות רשת."
+
+#~ msgid "Canceled current download."
+#~ msgstr "ההורדה הנוכחית בוטלה."
+
+#~ msgid "Cleared queue."
+#~ msgstr "התור התרוקן."
+
+#~ msgid "Could not clear the queue."
+#~ msgstr "לא ניתן לרוקן את התור."
+
+#, python-format
+#~ msgid "Set the maximum download speed to %s KiB/s."
+#~ msgstr "הגדירו את מהירות ההורדה המירבית ל־%s ק\"ב/ש"
+
+#~ msgid "Cleared the finished items."
+#~ msgstr "התרוקנו הפריטים שהסתיימו."
+
+#~ msgid ""
+#~ "Could not get an update from the HellaNZB daemon, is it (still) running?"
+#~ msgstr "לא ניתן לאחזר עדכון מסוכן ה־HellaNZB, האם הסוכן (עדיין) פעיל?"
+
+#~ msgid "Unable to save the LottaNZB configuration to the file %s: %s"
+#~ msgstr "לא ניתן לשמור את התצורה של LottaNZB אל הקובץ %s: %s"
+
+#~ msgid "No usage mode has been selected. Shutting down LottaNZB..."
+#~ msgstr "לא נבחר מצב שימוש. מכבה את LottaNZB..."
+
+#~ msgid "Enable Newzbin.com support (requires subscription)"
+#~ msgstr "אפשר תמיכה ב-Newzbin.com (דורש הרשמה)"
+
+#~ msgid "Add multiple files to download queue"
+#~ msgstr "הוספת מספר קבצים לתור ההורדה"
+
+#~ msgid "Name:"
+#~ msgstr "שם:"
+
+#~ msgid "<b>Other settings</b>"
+#~ msgstr "<b>הגדרות אחרות</b>"
+
+#~ msgid "Start in the system tray"
+#~ msgstr "הפעל במגשית המערכת"
+
+#~ msgid "Use libnotify notifications"
+#~ msgstr "השתמש בהתראות libnotify"
+
+#~ msgid "Add file from Newzbin.com with a Newzbin ID"
+#~ msgstr "הוסף קובץ מ-Newzbin.com באמצעות מזהה Newzbin"
+
+#~ msgid "Choose usage mode..."
+#~ msgstr "בחרו מצב שימוש..."
+
+#~ msgid "Clear finished"
+#~ msgstr "נקה מושלמים"
+
+#~ msgid "Contents"
+#~ msgstr "תכנים"
+
+#~ msgid "Move down"
+#~ msgstr "הזז מטה"
+
+#~ msgid "Move item down"
+#~ msgstr "הזז את הפריט מטה"
+
+#~ msgid "Move item up"
+#~ msgstr "הזז את הפריט מעלה"
+
+#~ msgid "Move up"
+#~ msgstr "הזז מעלה"
+
+#~ msgid "Move up one place"
+#~ msgstr "הזז מעלה במקום אחד"
+
+#~ msgid "Pause all"
+#~ msgstr "השהה הכל"
+
+#~ msgid "Remove"
+#~ msgstr "הסר"
+
+#~ msgid "Remove item"
+#~ msgstr "הסר פריט"
+
+#~ msgid "Report a bug"
+#~ msgstr "דווחו על באג"
+
+#~ msgid "Show Message Log"
+#~ msgstr "הצג רישום הודעות"
+
+#~ msgid "Only display the notification area icon when starting."
+#~ msgstr "מציג את סימלון איזור ההתרעות בעת הפעלה."
+
+#~ msgid "LottaNZB Development Team"
+#~ msgstr "קבוצת הפיתוח של LottaNZB"
+
+#~ msgid "Notification area icon"
+#~ msgstr "סימלון איזור ההתרעות"
+
+#~ msgid ""
+#~ "Displays an icon in the notification area and allows LottaNZB to be "
+#~ "controlled through it."
+#~ msgstr "מציג סימלון באיזור ההתרעות ומאפשר שליטה ב־LottaNZB באמצעותו."
+
+#~ msgid "Start minimized"
+#~ msgstr "התחל במצב ממוזער"
+
+#~ msgid "Show main window"
+#~ msgstr "הצג חלון ראשי"
+
+#~ msgid "Unsupported plug-in type."
+#~ msgstr "סוג התוסף לא נתמך."
+
+#~ msgid "Maximum number of _connections:"
+#~ msgstr "מ_ספר חיבורים מירבי:"
+
+#, python-format
+#~ msgid "%s is not installed."
+#~ msgstr "%s אינו מותקן."
+
+#~ msgid "RGBA support enabled."
+#~ msgstr "תמיכת RGBA אופשרה."
+
+#~ msgid "RGBA support not available."
+#~ msgstr "תמיכת RGBA אינה זמינה."
+
+#~ msgid "Anime"
+#~ msgstr "אנימה"
+
+#~ msgid "Miscellaneous"
+#~ msgstr "שונות"
+
+#~ msgid "Consoles"
+#~ msgstr "קונסולות משחקים"
+
+#~ msgid "Movies"
+#~ msgstr "סרטים"
+
+#~ msgid "Apps"
+#~ msgstr "יישומים"
+
+#~ msgid "Resources"
+#~ msgstr "מקורות"
+
+#~ msgid "TV"
+#~ msgstr "טלוויזיה"
+
+#~ msgid "Books"
+#~ msgstr "ספרים"
+
+#~ msgid "Games"
+#~ msgstr "משחקים"
+
+#~ msgid "Emulation"
+#~ msgstr "אמולציה"
+
+#~ msgid "<b>Web Interface</b>"
+#~ msgstr "ממשק רשת"
+
+#~ msgid "PDA"
+#~ msgstr "מחשב כף-יד"
+
+#~ msgid "If your news server needs this information:"
+#~ msgstr "אם שרת החדשות שלך זקוק למידע זה:"
+
+#~ msgid "Remaining: {0.size_left}"
+#~ msgstr "נותרו: {0.size_left}"
+
+#, python-format
+#~ msgid "%sAdditional software%s is required."
+#~ msgstr "%sתוכנה נוספת%s דרושה"
+
+#~ msgid "Show..."
+#~ msgstr "הצג..."
+
+#, python-format
+#~ msgid "Syntax error on line: %i"
+#~ msgstr "שגיאת תחביר בשורה: %i"
+
+#~ msgid "ETA:"
+#~ msgstr "הערכת זמן:"
+
+#~ msgid "Download time:"
+#~ msgstr "זמן הורדה:"
+
+#~ msgid "Downloaded:"
+#~ msgstr "ירד:"
+
+#~ msgid "Age:"
+#~ msgstr "גיל:"
+
+#~ msgid "Download properties"
+#~ msgstr "אפשרויות הורדה"
+
+#~ msgid "Completed:"
+#~ msgstr "הושלמה:"
+
+#~ msgid "Status:"
+#~ msgstr "מצב:"
+
+#~ msgid "Time left:"
+#~ msgstr "זמן נותר:"
+
+#~ msgid "Postprocessing:"
+#~ msgstr "עיבוד נתונים לאחר הורדה:"
+
+#~ msgid "Size:"
+#~ msgstr "גודל:"
+
+#~ msgid "Error message:"
+#~ msgstr "הודעת שגיאה:"
+
+#~ msgid "<b>Connect to computer</b>"
+#~ msgstr "<b>התחבר אל מחשב</b>"
+
+#~ msgid "Web"
+#~ msgstr "אינטרנט"
+
+#~ msgid "Incomplete"
+#~ msgstr "לא שלם"
+
+#~ msgid "Open..."
+#~ msgstr "פתיחה..."
+
+#~ msgid "Start downloading"
+#~ msgstr "התחל להוריד"
+
+#~ msgid "Select SABnzbd executable"
+#~ msgstr "בחר את קובץ ההפעלה של SABnzbd"
+
+#~ msgid "Move to top of queue"
+#~ msgstr "העבר לראש התור"
+
+#~ msgid "Clear completed"
+#~ msgstr "הניקוי הושלם"
+
+#~ msgid "_Add..."
+#~ msgstr "ה_וספה..."
+
+#~ msgid "Report a problem"
+#~ msgstr "דווח על תקלה"

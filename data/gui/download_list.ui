@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.0 -->
+  <object class="GtkUIManager" id="ui_manager">
+    <child>
+      <object class="GtkActionGroup" id="important_action_group">
+        <child>
+          <object class="GtkAction" id="remove">
+            <property name="tooltip" translatable="yes">Remove the selected download</property>
+            <property name="stock_id">gtk-remove</property>
+            <signal name="activate" handler="lottanzb_download_list_on_remove_activate" swapped="no"/>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkActionGroup" id="action_group">
+        <child>
+          <object class="GtkAction" id="move_down">
+            <property name="label" translatable="yes">Move _down</property>
+            <property name="tooltip" translatable="yes">Move the selected download down</property>
+            <property name="stock_id">gtk-go-down</property>
+            <signal name="activate" handler="lottanzb_download_list_on_move_down_activate" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="move_up">
+            <property name="label" translatable="yes">Move _up</property>
+            <property name="tooltip" translatable="yes">Move the selected download up</property>
+            <property name="stock_id">gtk-go-up</property>
+            <signal name="activate" handler="lottanzb_download_list_on_move_up_activate" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="move_up_to_top">
+            <property name="label" translatable="yes">_Start</property>
+            <property name="tooltip" translatable="yes">Start the selected download</property>
+            <property name="stock_id">gtk-goto-top</property>
+            <signal name="activate" handler="lottanzb_download_list_on_move_up_to_top_activate" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="move_down_to_bottom">
+            <property name="label" translatable="yes">Move to _bottom of queue</property>
+            <property name="tooltip" translatable="yes">Move the selected download to the bottom of the queue</property>
+            <property name="stock_id">gtk-goto-bottom</property>
+            <signal name="activate" handler="lottanzb_download_list_on_move_down_to_bottom_activate" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="show_properties_dialog">
+            <property name="label" translatable="yes">_Properties</property>
+            <property name="stock_id">gtk-properties</property>
+            <signal name="activate" handler="lottanzb_download_list_on_show_properties_dialog_activate" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToggleAction" id="pause">
+            <property name="label" translatable="yes">_Pause</property>
+            <signal name="toggled" handler="lottanzb_download_list_on_pause_toggled" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="open_folder">
+            <property name="label" translatable="yes">_Open Folder</property>
+            <property name="stock_id">gtk-open</property>
+            <signal name="activate" handler="lottanzb_download_list_on_open_folder_activate" swapped="no"/>
+          </object>
+        </child>
+      </object>
+    </child>
+    <ui>
+      <popup name="context_menu">
+        <menuitem action="show_properties_dialog"/>
+        <menuitem action="open_folder"/>
+        <separator/>
+        <menuitem action="move_up_to_top"/>
+        <menuitem action="pause"/>
+        <menuitem action="remove"/>
+      </popup>
+      <toolbar name="reordering_pane">
+        <toolitem action="move_up_to_top"/>
+        <toolitem action="move_up"/>
+        <toolitem action="move_down"/>
+        <toolitem action="move_down_to_bottom"/>
+      </toolbar>
+    </ui>
+  </object>
+  <object class="GtkMenu" id="context_menu" constructor="ui_manager">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+  </object>
+  <object class="GtkWindow" id="window1">
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkHBox" id="download_list">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkToolbar" id="reordering_pane" constructor="ui_manager">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
+            <property name="toolbar_style">icons</property>
+            <property name="icon_size">1</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="download_list_container">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="hscrollbar_policy">never</property>
+            <property name="shadow_type">etched-in</property>
+            <child>
+              <object class="GtkTreeView" id="treeview">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="headers_visible">False</property>
+                <property name="search_column">0</property>
+                <signal name="button-press-event" handler="lottanzb_download_list_on_treeview_button_press_event" swapped="no"/>
+                <signal name="drag-data-received" handler="lottanzb_download_list_on_treeview_drag_data_received" swapped="no"/>
+                <signal name="key-press-event" handler="lottanzb_download_list_on_treeview_key_press_event" swapped="no"/>
+                <signal name="drag-data-get" handler="lottanzb_download_list_on_treeview_drag_data_get" swapped="no"/>
+                <signal name="row-activated" handler="lottanzb_download_list_on_treeview_row_activated" swapped="no"/>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection" id="treeview-selection1"/>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

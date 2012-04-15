@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/lottanzb">
+    <file preprocess="xml-stripblanks">gui/about_dialog.ui</file>
+    <file preprocess="xml-stripblanks">gui/add_file_dialog.ui</file>
+    <file preprocess="xml-stripblanks">gui/add_url_dialog.ui</file>
+    <file preprocess="xml-stripblanks">gui/download_list.ui</file>
+    <file preprocess="xml-stripblanks">gui/download_properties_dialog.ui</file>
+    <file preprocess="xml-stripblanks">gui/info_bar.ui</file>
+    <file preprocess="to-pixdata">gui/logo.png</file>
+    <file preprocess="xml-stripblanks">gui/main_window.ui</file>
+    <file preprocess="xml-stripblanks">gui/prefs_tab_general.ui</file>
+    <file preprocess="xml-stripblanks">gui/prefs_window.ui</file>
+    <file preprocess="xml-stripblanks">gui/servers_dialog.ui</file>
+  </gresource>
+</gresources>

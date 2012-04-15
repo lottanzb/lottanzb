@@ -1,0 +1,2636 @@
+# German translation for lottanzb
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the lottanzb package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+# Severin Heiniger <severinheiniger@gmail.com>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: lottanzb\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-08 00:01+0200\n"
+"PO-Revision-Date: 2011-02-02 23:30+0000\n"
+"Last-Translator: Severin Heiniger <severinheiniger@gmail.com>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2011-05-08 04:32+0000\n"
+"X-Generator: Launchpad (build 12959)\n"
+
+#: ../lottanzb/core/log.py:113
+msgid "An unhandled exception occurred:"
+msgstr "Eine unerwarteter Fehler ist aufgetreten:"
+
+#: ../lottanzb/backend/__init__.py:123
+#, python-format
+msgid "Connection to '%s' established."
+msgstr "Verbindung zu ' %s' hergestellt."
+
+#: ../data/ui/session_selection_local.ui.h:1
+msgid "<b>News Server</b>"
+msgstr "<b>News-Server</b>"
+
+#: ../lottanzb/gui/main/speed_limit_menu.py:41
+msgid "Unlimited"
+msgstr "Unbegrenzt"
+
+#: ../lottanzb/core/__init__.py:96
+#, python-format
+msgid "Starting LottaNZB %s..."
+msgstr "LottaNZB %s wird gestartet..."
+
+#: ../lottanzb/core/__init__.py:110
+msgid "Exiting..."
+msgstr "Beenden..."
+
+#: ../lottanzb/config/lotta.py:91
+#, python-format
+msgid "Configuration upgraded to revision %i."
+msgstr "Konfiguration auf Revision %i aktualisiert."
+
+#: ../desktop/lottanzb.desktop.in.h:1
+msgid "Add an NZB File"
+msgstr ""
+
+#: ../desktop/lottanzb.desktop.in.h:2
+msgid "Add an URL"
+msgstr ""
+
+#: ../desktop/lottanzb.desktop.in.h:3
+msgid "Download from the Usenet with the help of NZB files"
+msgstr "Aus dem Usenet mit Hilfe von NZB-Dateien herunterladen"
+
+#: ../desktop/lottanzb.desktop.in.h:4
+msgid "LottaNZB Usenet Downloader"
+msgstr "LottaNZB Usenet-Downloader"
+
+#: ../desktop/lottanzb.desktop.in.h:5
+msgid "Usenet Downloader"
+msgstr "Usenet-Downloader"
+
+#: ../lottanzb/core/environ.py:41
+#, python-format
+msgid "Moving configuration directory from %s to %s..."
+msgstr "Konfigurationsverzeichnis wird von %s nach %s verschoben..."
+
+#: ../lottanzb/gui/messaging/servers.py:54
+#: ../lottanzb/backend/sessions/errors.py:84
+#: ../lottanzb/gui/messaging/space.py:74
+msgid "No news server has been specified."
+msgstr "Kein News-Server wurde angegeben."
+
+#: ../lottanzb/gui/messaging/servers.py:55
+#: ../lottanzb/gui/messaging/space.py:75
+msgid "At least one server is required for downloading."
+msgstr "Mindestens ein Server wird zum Herunterladen benötigt."
+
+#: ../lottanzb/gui/messaging/servers.py:60
+#: ../lottanzb/gui/messaging/space.py:80
+msgid "_Add Server"
+msgstr "_Server hinzufügen"
+
+#: ../lottanzb/config/errors.py:53
+#, python-format
+msgid "Invalid option '%s' in section '%s'."
+msgstr "Ungültige Option '%s' im Abschnitt '%s'."
+
+#: ../lottanzb/config/errors.py:65
+#, python-format
+msgid "Invalid value for option '%s' in section '%s'."
+msgstr "Ungültiger Wert für Option '%s' im Abschnitt '%s'."
+
+#: ../lottanzb/config/errors.py:85
+#, python-format
+msgid "Unable to load the configuration file %s: %s"
+msgstr "Laden der Konfigurationsdatei %s fehlgeschlagen: %s"
+
+#: ../lottanzb/config/errors.py:92
+msgid "File not found."
+msgstr "Datei nicht gefunden."
+
+#: ../lottanzb/config/errors.py:99
+#, python-format
+msgid "Syntax error on line %i: %s"
+msgstr "Syntax-Fehler auf Zeile %i: %s"
+
+#: ../lottanzb/config/errors.py:108
+#, python-format
+msgid "Unable to save the configuration file %s: %s"
+msgstr "Speichern der Konfigurationsdatei %s fehlgeschlagen: %s"
+
+#: ../lottanzb/gui/prefs/widgets.py:78
+msgid "<a>Additional software</a> is required."
+msgstr "<a>Zusätzliche Software</a> wird benötigt."
+
+#: ../lottanzb/gui/prefs/widgets.py:98
+#, python-format
+msgid ""
+"To make full use of LottaNZB, please install the following software on '%s' "
+"and restart SABnzbd using the button below."
+msgstr ""
+"Um vollen Gebrauch von LottaNZB zu machen, installieren Sie bitte die "
+"folgende Software auf '%s' und starten SABnzbd mit dem Knopf unten neu."
+
+#: ../lottanzb/gui/prefs/widgets.py:102
+msgid ""
+"To make full use of LottaNZB, please install the following software and "
+"restart SABnzbd using the button below."
+msgstr ""
+"Um vollen Gebrauch von LottaNZB zu machen, installieren Sie bitte die "
+"folgende Software und starten SABnzbd mit dem Knopf unten neu."
+
+#: ../lottanzb/gui/main/download_list.py:160
+msgid "Cancel download?"
+msgstr "Download abbrechen?"
+
+#: ../lottanzb/gui/main/download_list.py:161
+#: ../lottanzb/gui/prefs/servers.py:103
+msgid "This cannot be undone."
+msgstr "Dies kann nicht rückgängig gemacht werden."
+
+#: ../lottanzb/gui/main/download_list.py:355
+msgid "Downloading {0.recovery_block_count} recovery block..."
+msgid_plural "Downloading {0.recovery_block_count} recovery blocks..."
+msgstr[0] ""
+"Herunterladen von {0.recovery_block_count} Wiederherstellungs-Block..."
+msgstr[1] ""
+"Herunterladen von {0.recovery_block_count} Wiederherstellungs-Blöcken..."
+
+#: ../lottanzb/gui/main/download_list.py:359
+msgid "Verifying... ({0.verification_percentage}%)"
+msgstr "Überprüfen... ({0.verification_percentage}%)"
+
+#: ../lottanzb/gui/main/download_list.py:361
+msgid "Repairing... ({0.repair_percentage}%)"
+msgstr "Reparieren... ({0.repair_percentage}%)"
+
+#: ../lottanzb/gui/main/download_list.py:363
+msgid "Extracting... ({0.unpack_percentage}%)"
+msgstr "Entpacken... ({0.unpack_percentage}%)"
+
+#: ../lottanzb/gui/main/download_list.py:365
+msgid "Joining..."
+msgstr "Zusammenführen..."
+
+#: ../lottanzb/gui/main/download_list.py:367
+msgid "Moving to download folder..."
+msgstr "In den Download-Ordner verschieben..."
+
+#: ../lottanzb/gui/main/download_list.py:369
+msgid "Executing user script..."
+msgstr "Ausführen des Benutzer-Skripts..."
+
+#: ../lottanzb/gui/main/download_list.py:380
+msgid "Downloading - {0.time_left.short} left"
+msgstr "Herunterladen - {0.time_left.short} verbleibend"
+
+#: ../lottanzb/gui/main/download_list.py:382
+msgid "Downloading - Remaining time unknown"
+msgstr "Herunterladen - Verbleibende Zeit unbekannt"
+
+#: ../lottanzb/gui/main/download_list.py:384
+msgid "Downloading NZB file..."
+msgstr "Herunterladen der NZB-Datei..."
+
+#: ../data/ui/properties_dialog.ui.h:1
+msgid "<b>Activity</b>"
+msgstr "<b>Aktivität</b>"
+
+#: ../data/ui/properties_dialog.ui.h:2
+msgid "<b>Settings</b>"
+msgstr "<b>Einstellungen</b>"
+
+#: ../data/ui/properties_dialog.ui.h:3
+msgid "Download Properties"
+msgstr "Download-Eigenschaften"
+
+#: ../data/ui/properties_dialog.ui.h:4
+msgid "Open _Folder"
+msgstr "_Ordner öffnen"
+
+#: ../data/ui/properties_dialog.ui.h:5
+msgid "_Name:"
+msgstr "_Name:"
+
+#: ../data/ui/properties_dialog.ui.h:6
+msgid "_Priority:"
+msgstr "_Priorität:"
+
+#: ../lottanzb/gui/log.py:36
+msgid "Debugging"
+msgstr "Fehlersuche"
+
+#: ../lottanzb/gui/log.py:37
+msgid "Default"
+msgstr "Standard"
+
+#: ../lottanzb/gui/log.py:38
+msgid "Warnings"
+msgstr "Warnungen"
+
+#: ../lottanzb/gui/log.py:39
+msgid "Errors"
+msgstr "Fehler"
+
+#: ../lottanzb/gui/log.py:235
+#, python-format
+msgid "Could not write message log to %s: %s"
+msgstr "Konnte Nachrichtenprotokoll nicht nach %s speichern: %s"
+
+#: ../lottanzb/gui/log.py:238
+#, python-format
+msgid "Message log saved to %s."
+msgstr "Nachrichtenprotokoll nach %s gespeichert."
+
+#: ../lottanzb/gui/log.py:242
+msgid "Save Message Log"
+msgstr "Nachrichtenprotokoll speichern"
+
+#: ../lottanzb/gui/main/info_bar.py:42
+msgid "Limit the download speed"
+msgstr "Die Downloadgeschwindigkeit begrenzen"
+
+#: ../lottanzb/gui/main/info_bar.py:78
+msgid "{0.size_left} left ({0.time_left.short})"
+msgstr "{0.size_left} verbleibend ({0.time_left.short})"
+
+#: ../lottanzb/gui/main/info_bar.py:80
+msgid "{0.size_left} left"
+msgstr "{0.size_left} verbleibend"
+
+#: ../lottanzb/gui/main/info_bar.py:99
+msgid "{0} free"
+msgstr "{0} frei"
+
+#: ../lottanzb/gui/main/info_bar.py:111
+msgid "{0} free (temp)"
+msgstr "{0} frei (temporär)"
+
+#: ../lottanzb/gui/download_properties.py:68
+msgid "Downloaded"
+msgstr "Heruntergeladen"
+
+#: ../lottanzb/gui/download_properties.py:71
+msgid "Size"
+msgstr "Grösse"
+
+#: ../lottanzb/gui/download_properties.py:73
+msgid "Time left"
+msgstr "Verbleibende Zeit"
+
+#: ../lottanzb/gui/download_properties.py:75
+msgid "ETA"
+msgstr "ETA"
+
+#: ../lottanzb/gui/download_properties.py:77
+msgid "Age"
+msgstr "Alter"
+
+#: ../lottanzb/gui/download_properties.py:79
+msgid "Download time"
+msgstr "Download-Dauer"
+
+#: ../lottanzb/gui/download_properties.py:81
+msgid "Post-processing"
+msgstr "Nachbearbeitung"
+
+#: ../lottanzb/gui/download_properties.py:83
+#: ../lottanzb/backend/hubs/general/download.py:50
+msgid "Completed"
+msgstr "Fertiggestellt"
+
+#: ../lottanzb/gui/download_properties.py:281
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: ../lottanzb/gui/download_properties.py:294
+msgid "Status"
+msgstr "Status"
+
+#: ../lottanzb/gui/download_properties.py:321
+msgid "Error"
+msgstr "Fehler"
+
+#: ../data/ui/session_selection_remote.ui.h:1
+msgid "<b>Connect to Computer</b>"
+msgstr "<b>Mit Rechner verbinden</b>"
+
+#: ../data/ui/session_selection_remote.ui.h:2
+msgid "API _key:"
+msgstr "API-_Schlüssel:"
+
+#: ../data/ui/session_selection_remote.ui.h:3
+#: ../data/ui/prefs_tab_remote_access.ui.h:2
+#: ../data/ui/server_editor_pane.ui.h:4
+msgid "Pass_word:"
+msgstr "Pass_wort:"
+
+#: ../data/ui/session_selection_remote.ui.h:4
+msgid "_Host:"
+msgstr "_Rechner:"
+
+#: ../data/ui/session_selection_remote.ui.h:5
+#: ../data/ui/prefs_tab_remote_access.ui.h:4
+#: ../data/ui/server_editor_pane.ui.h:8
+msgid "_Port:"
+msgstr "_Port:"
+
+#: ../data/ui/session_selection_remote.ui.h:6
+#: ../data/ui/prefs_tab_remote_access.ui.h:6
+#: ../data/ui/server_editor_pane.ui.h:9
+msgid "_Username:"
+msgstr "_Benutzername:"
+
+#: ../lottanzb/config/roots.py:255
+#, python-format
+msgid "Configuration directory %s created."
+msgstr "Konfigurationsverzeichnis %s erstellt."
+
+#: ../lottanzb/config/roots.py:265
+#, python-format
+msgid "Configuration file %s saved."
+msgstr "Konfigurationsdatei %s gespeichert."
+
+#: ../data/ui/prefs_tab_general.ui.h:1
+msgid "<b>After Downloading</b>"
+msgstr "<b>Nach dem Herunterladen</b>"
+
+#: ../data/ui/prefs_tab_general.ui.h:2
+msgid "<b>Downloading</b>"
+msgstr "<b>Herunterladen</b>"
+
+#: ../data/ui/prefs_tab_general.ui.h:3
+msgid "Choose the Download Folder"
+msgstr "Download-Ordner wählen"
+
+#: ../data/ui/prefs_tab_general.ui.h:4
+msgid "Choose the Folder to be Observed"
+msgstr "Zu beobachtenden Ordner wählen"
+
+#: ../data/ui/prefs_tab_general.ui.h:5
+msgid "KB/s"
+msgstr "KB/s"
+
+#: ../data/ui/prefs_tab_general.ui.h:6
+msgid "_Automatically add NZB files from:"
+msgstr "_Automatisch NZB-Dateien hinzufügen aus:"
+
+#: ../data/ui/prefs_tab_general.ui.h:7
+msgid "_Download folder:"
+msgstr "_Download-Ordner:"
+
+#: ../data/ui/prefs_tab_general.ui.h:8
+msgid "_Limit download speed:"
+msgstr "Download-Geschwindigkeit _begrenzen:"
+
+#: ../data/ui/session_selection_local_sabnzbd_pane.ui.h:1
+msgid "<b>SABnzbd</b>"
+msgstr "<b>SABnzbd</b>"
+
+#: ../data/ui/session_selection_local_sabnzbd_pane.ui.h:2
+msgid "Select SABnzbd Executable"
+msgstr "SABnzbd-Programmdatei auswählen"
+
+#: ../data/ui/session_selection_local_sabnzbd_pane_quick_install.ui.h:1
+msgid "The program required for downloading is not installed."
+msgstr "Das zum Herunterladen nötige Programm ist nicht installiert."
+
+#: ../data/ui/session_selection_local_sabnzbd_pane_quick_install.ui.h:2
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:384
+msgid "_Install..."
+msgstr "_Installieren..."
+
+#: ../lottanzb/backend/hubs/general/download.py:37
+msgid "Downloading NZB file"
+msgstr "Herunterladen der NZB-Datei"
+
+#: ../lottanzb/backend/hubs/general/download.py:38
+msgid "Queued"
+msgstr "In der Warteschlange"
+
+#: ../lottanzb/backend/hubs/general/download.py:39
+msgid "Downloading"
+msgstr "Herunterladen"
+
+#: ../lottanzb/backend/hubs/general/download.py:40
+msgid "Paused"
+msgstr "Angehalten"
+
+#: ../lottanzb/backend/hubs/general/download.py:41
+msgid "Quick check"
+msgstr "Schnelle Überprüfung"
+
+#: ../lottanzb/backend/hubs/general/download.py:42
+msgid "Downloading recovery data"
+msgstr "Herunterladen von Wiederherstellungsdaten"
+
+#: ../lottanzb/backend/hubs/general/download.py:43
+msgid "Verifying"
+msgstr "Überprüfen"
+
+#: ../lottanzb/backend/hubs/general/download.py:44
+msgid "Repairing"
+msgstr "Reparieren"
+
+#: ../lottanzb/backend/hubs/general/download.py:45
+msgid "Extracting"
+msgstr "Entpacken"
+
+#: ../lottanzb/backend/hubs/general/download.py:46
+msgid "Joining"
+msgstr "Zusammenführen"
+
+#: ../lottanzb/backend/hubs/general/download.py:47
+msgid "Moving to download directory"
+msgstr "Verschieben ins Download-Verzeichnis"
+
+#: ../lottanzb/backend/hubs/general/download.py:48
+msgid "Executing script"
+msgstr "Ausführen des Skripts"
+
+#: ../lottanzb/backend/hubs/general/download.py:49
+msgid "Failed"
+msgstr "Fehlgeschlagen"
+
+#: ../lottanzb/backend/interface/queries.py:111
+#: ../lottanzb/backend/interface/queries.py:112
+msgid "Wrong number of arguments."
+msgstr "Falsche Anzahl Argumente."
+
+#: ../lottanzb/backend/interface/queries.py:113
+msgid "No integer value."
+msgstr "Keine Ganzzahl."
+
+#: ../lottanzb/backend/interface/queries.py:114
+msgid "No regular file."
+msgstr "Keine normale Datei."
+
+#: ../lottanzb/backend/interface/queries.py:115
+msgid "File does not exist."
+msgstr "Datei nicht vorhanden."
+
+#: ../lottanzb/backend/interface/queries.py:116
+msgid "Format not supported."
+msgstr "Format nicht unterstützt."
+
+#: ../lottanzb/backend/interface/queries.py:117
+msgid "Configuration option does not exist."
+msgstr "Konfigurations-Eintrag existiert nicht."
+
+#: ../lottanzb/backend/interface/queries.py:118
+msgid "Invalid server settings."
+msgstr "Ungültige Server-Einstellung."
+
+#: ../lottanzb/backend/interface/queries.py:690
+#: ../data/ui/restart_dialog.ui.h:2
+msgid "Restarting SABnzbd..."
+msgstr "SABnzbd wird neu gestartet..."
+
+#: ../lottanzb/backend/interface/queries.py:743
+msgid "SABnzbd has been successfully restarted."
+msgstr "SABnzbd wurde erfolgreich neu gestartet."
+
+#: ../data/ui/prefs_window.ui.h:1
+msgid "LottaNZB Preferences"
+msgstr "LottaNZB-Einstellungen"
+
+#: ../data/ui/main_window.ui.h:1
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: ../data/ui/main_window.ui.h:2
+msgid "Add _URL..."
+msgstr "_URL hinzufügen…"
+
+#: ../data/ui/main_window.ui.h:3
+msgid "Add a new NZB file"
+msgstr "Eine neue NZB-Datei hinzufügen"
+
+#: ../data/ui/main_window.ui.h:4
+msgid "Cl_ear Completed"
+msgstr "_Fertige entfernen"
+
+#: ../data/ui/main_window.ui.h:5
+msgid "Clear the list of completed downloads"
+msgstr "Die Liste der fertigen Downloads leeren"
+
+#: ../data/ui/main_window.ui.h:6 ../lottanzb/config/sabnzbd/constants.py:26
+#: ../lottanzb/config/sabnzbd/misc.py:158
+msgid "Downloads"
+msgstr "Downloads"
+
+#: ../data/ui/main_window.ui.h:7
+msgid "Message _Log"
+msgstr "_Nachrichtenprotokoll"
+
+#: ../data/ui/main_window.ui.h:8
+msgid "Open _Web Interface"
+msgstr "_Web-Oberfläche öffnen"
+
+#: ../data/ui/main_window.ui.h:9
+msgid "Open the download folder"
+msgstr "Den Download-Ordner öffnen"
+
+#: ../data/ui/main_window.ui.h:10
+msgid "Pause all downloads"
+msgstr "Alle Downloads anhalten"
+
+#: ../data/ui/main_window.ui.h:11
+msgid "Report a Problem..."
+msgstr "Ein Problem melden..."
+
+#: ../data/ui/main_window.ui.h:12
+msgid "Translate This Application..."
+msgstr "Diese Anwendung übersetzen …"
+
+#: ../data/ui/main_window.ui.h:13
+msgid "Web Interface"
+msgstr "Web-Oberfläche"
+
+#: ../data/ui/main_window.ui.h:14
+msgid "_About"
+msgstr "_Über"
+
+#: ../data/ui/main_window.ui.h:15
+msgid "_Add File..."
+msgstr "Datei _hinzufügen..."
+
+#: ../data/ui/main_window.ui.h:16
+msgid "_Contents"
+msgstr "_Inhalt"
+
+#: ../data/ui/main_window.ui.h:17
+msgid "_Download to this Computer..."
+msgstr "Auf _diesen Rechner herunterladen..."
+
+#: ../data/ui/main_window.ui.h:18
+msgid "_Edit"
+msgstr "_Bearbeiten"
+
+#: ../data/ui/main_window.ui.h:19
+msgid "_File"
+msgstr "_Datei"
+
+#: ../data/ui/main_window.ui.h:20
+msgid "_Help"
+msgstr "_Hilfe"
+
+#: ../data/ui/main_window.ui.h:21
+msgid "_Infobar"
+msgstr "_Infoleiste"
+
+#: ../data/ui/main_window.ui.h:22
+msgid "_Monitor another Computer..."
+msgstr "Anderen Rechner _überwachen..."
+
+#: ../data/ui/main_window.ui.h:23
+msgid "_Open Download Folder"
+msgstr "Download-_Ordner öffnen"
+
+#: ../data/ui/main_window.ui.h:24
+msgid "_Pause All"
+msgstr "Alle _pausieren"
+
+#: ../data/ui/main_window.ui.h:25
+msgid "_Reordering Pane"
+msgstr "_Umordnungs-Bereich"
+
+#: ../data/ui/main_window.ui.h:26
+msgid "_Toolbar"
+msgstr "_Werkzeugleiste"
+
+#: ../data/ui/main_window.ui.h:27
+msgid "_View"
+msgstr "_Ansicht"
+
+#: ../data/ui/log_window.ui.h:1
+msgid "Message Log"
+msgstr "Nachrichtenprotokoll"
+
+#: ../data/ui/log_window.ui.h:2
+msgid "_Level:"
+msgstr "_Stufe:"
+
+#: ../lottanzb/gui/prefs/servers.py:36
+msgid "Servers"
+msgstr "Server"
+
+#: ../lottanzb/gui/prefs/servers.py:102
+msgid "Delete server?"
+msgstr "Server löschen?"
+
+#: ../lottanzb/gui/prefs/servers.py:195
+msgid "No authentication required"
+msgstr "Keine Authentifizierung nötig"
+
+#. LottaNZB users are much more likely to be used to the term
+#. 'Backup server' compared to 'Fillserver'.
+#: ../lottanzb/gui/prefs/servers.py:200
+#, python-format
+msgid "%s (Backup server)"
+msgstr "%s (Ersatz-Server)"
+
+#: ../lottanzb/gui/prefs/servers.py:374
+msgid "Add Server"
+msgstr "Server hinzufügen"
+
+#: ../lottanzb/gui/prefs/servers.py:393
+msgid "Edit Server"
+msgstr "Server bearbeiten"
+
+#: ../lottanzb/gui/prefs/remote_access.py:27
+msgid "Remote Access"
+msgstr "Fernzugriff"
+
+#: ../lottanzb/backend/sessions/errors.py:45
+#, python-format
+msgid "Unknown error in session '%s'."
+msgstr "Unbekannter Fehler in der Sitzung '%s'."
+
+#: ../lottanzb/backend/sessions/errors.py:47
+msgid "Unknown error in session."
+msgstr "Unbekannter Fehler in der Session."
+
+#: ../lottanzb/backend/sessions/errors.py:52
+msgid "Could not start session"
+msgstr "Konnte Session nicht starten"
+
+#: ../lottanzb/backend/sessions/errors.py:55
+#, python-format
+msgid "Could not start session '%s'"
+msgstr "Konnte Session '%s' nicht starten"
+
+#: ../lottanzb/backend/sessions/errors.py:63
+msgid "No session has been selected."
+msgstr "Keine Sitzung wurde ausgewählt."
+
+#: ../lottanzb/backend/sessions/errors.py:67
+msgid "Unknown session type."
+msgstr "Unbekannte Sitzungsart."
+
+#: ../lottanzb/backend/sessions/errors.py:80
+msgid "Could not find the SABnzbd executable."
+msgstr "SABnzbd-Programmdatei konnte nicht gefunden werden."
+
+#: ../lottanzb/backend/sessions/errors.py:88
+msgid "Not allowed to launch SABnzbd."
+msgstr "SABnzbd darf nicht gestartet werden."
+
+#: ../lottanzb/backend/sessions/errors.py:96
+#, python-format
+msgid "%s is probably not executable."
+msgstr "%s ist wahrscheinlich nicht ausführbar."
+
+#: ../lottanzb/backend/sessions/errors.py:106
+#, python-format
+msgid "Could not find the Python module '%s'."
+msgstr "Konnte das Python-Modul '%s' nicht finden."
+
+#: ../lottanzb/backend/interface/errors.py:38
+msgid "Unknown error."
+msgstr "Unbekannter Fehler."
+
+#: ../lottanzb/backend/interface/errors.py:41
+#, python-format
+msgid "Query '%s' to %s failed: %s"
+msgstr "Abfrage '%s' an %s fehlgeschlagen: %s"
+
+#: ../lottanzb/backend/interface/errors.py:49
+msgid "IO error."
+msgstr "Eingabe-Ausgabe-Fehler."
+
+#: ../lottanzb/backend/interface/errors.py:55
+msgid "Unknown host."
+msgstr "Unbekannter Rechner."
+
+#: ../lottanzb/backend/interface/errors.py:61
+msgid "Connection refused."
+msgstr "Verbindung abgelehnt."
+
+#: ../lottanzb/backend/interface/errors.py:69
+#, python-format
+msgid "HTTP error code %i."
+msgstr "HTTP-Fehlercode %i."
+
+#: ../lottanzb/backend/interface/errors.py:77
+#, python-format
+msgid "SABnzbd version %s is installed, but %s is required."
+msgstr "SABnzbd version %s ist installiert, aber %s wird benötigt."
+
+#: ../lottanzb/backend/interface/errors.py:80
+#, python-format
+msgid "Host '%s' runs SABnzbd version %s, but %s is required."
+msgstr ""
+"Auf dem Rechner '%s' läuft SABnzbd version %s, aber %s wird benötigt."
+
+#: ../lottanzb/backend/interface/errors.py:89
+msgid "Invalid response."
+msgstr "Ungültige Antwort."
+
+#: ../lottanzb/backend/interface/errors.py:99
+msgid "Invalid API key."
+msgstr "Ungültiger API-Schlüssel."
+
+#: ../lottanzb/backend/interface/errors.py:105
+msgid "Invalid username or password."
+msgstr "Ungültiger Benutzername oder ungültiges Passwort."
+
+#: ../lottanzb/backend/interface/errors.py:111
+msgid "Query took too long to execute."
+msgstr "Ausführen der Abfrage dauerte zu lange."
+
+#: ../lottanzb/backend/interface/errors.py:117
+#, python-format
+msgid "Restart didn't finish in %d seconds."
+msgstr "Neustart benötigt mehr als %d Sekunden."
+
+#: ../lottanzb/backend/interface/errors.py:122
+msgid "Invalid arguments."
+msgstr "Ungültige Argumente."
+
+#: ../lottanzb/backend/interface/errors.py:128
+msgid "Not implemented."
+msgstr "Nicht implementiert."
+
+#: ../data/ui/add_file_dialog.ui.h:1
+msgctxt "yes"
+msgid "Add NZB File"
+msgstr "NZB-Datei hinzufügen"
+
+#: ../lottanzb/gui/messaging/download_import.py:158
+#, python-format
+msgid "Import %i incomplete download?"
+msgid_plural "Import %i incomplete downloads?"
+msgstr[0] "%i unvollständigen Download importieren?"
+msgstr[1] "%i unvollständige Downloads importieren?"
+
+#: ../lottanzb/gui/messaging/download_import.py:162
+msgid "It was started using a previous version of the program."
+msgid_plural "They were started using a previous versions of the program."
+msgstr[0] "Er wurde mit einer früheren Version des Programms gestartet."
+msgstr[1] "Sie wurden mit einer früheren Version des Programms gestartet."
+
+#: ../lottanzb/gui/messaging/download_import.py:165
+msgid "Any progress will be lost."
+msgstr "Jeglicher Fortschritt geht verloren."
+
+#: ../lottanzb/gui/messaging/download_import.py:169
+#, python-format
+msgid "Importing %i download..."
+msgid_plural "Importing %i downloads..."
+msgstr[0] "%i Download wird importiert..."
+msgstr[1] "%i Downloads werden importiert..."
+
+#: ../lottanzb/gui/messaging/download_import.py:183
+msgid "_Import"
+msgstr "_Importieren"
+
+#: ../lottanzb/gui/messaging/download_import.py:184
+#: ../lottanzb/gui/messaging/postprocessing_priority.py:149
+msgid "_Cancel"
+msgstr "_Abbrechen"
+
+#: ../lottanzb/gui/add_file.py:44
+msgid "NZB files and archives"
+msgstr "NZB-Dateien und Archive"
+
+#: ../data/ui/prefs_tab_remote_access.ui.h:1
+msgid "API key:"
+msgstr "API-Schlüssel:"
+
+#: ../data/ui/prefs_tab_remote_access.ui.h:3
+msgid "_Allow access from other computers"
+msgstr "_Zugriff von anderen Rechnern erlauben"
+
+#: ../data/ui/prefs_tab_remote_access.ui.h:5
+msgid "_Require authentication"
+msgstr "_Authentifizierung verlangen"
+
+#: ../lottanzb/gui/framework/proxy.py:326
+msgid "Invalid value"
+msgstr "Ungültiger Wert"
+
+#: ../lottanzb/gui/framework/proxy.py:335
+msgid "This field is mandatory"
+msgstr "Dieses Feld ist obligatorisch"
+
+#: ../lottanzb/gui/framework/proxy.py:419
+msgid "Invalid IP address or host name"
+msgstr "Ungültige IP-Addresse oder ungültiger Rechnername"
+
+#: ../data/ui/session_selection_local_sabnzbd_pane_searching.ui.h:1
+msgid "The program required for downloading is being searched..."
+msgstr "Das zum Herunterladen nötige Programm wird gesucht..."
+
+#: ../lottanzb/gui/messaging/postprocessing_priority.py:139
+msgid "Post-processing may slow down system"
+msgstr "Nachbearbeitung kann Rechner verlangsamen"
+
+#: ../lottanzb/gui/messaging/postprocessing_priority.py:140
+msgid ""
+"It's recommended to decrease the priority of download post-processing. Post-"
+"processing may take a bit longer afterwards."
+msgstr ""
+"Es wird empfohlen, die Priorität der Download-Nachbearbeitung zu verringern. "
+"Die Nachbearbeitung kann danach etwas länger dauern."
+
+#: ../lottanzb/gui/messaging/postprocessing_priority.py:147
+msgid "_Decrease Priority"
+msgstr "_Priorität senken"
+
+#: ../lottanzb/gui/sessions/local/__init__.py:77
+msgid "_Download to this computer"
+msgstr "_Auf diesen Rechner herunterladen"
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:370
+msgid "Installing..."
+msgstr "Installiere..."
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:382
+msgid "Installed"
+msgstr "Installiert"
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:410
+msgid "Install the updates available for your system."
+msgstr "Installieren Sie die für Ihr System verfügbaren Aktualisierungen."
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:430
+msgid "Updating..."
+msgstr "Aktualisiere..."
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:449
+msgid "Updated"
+msgstr "Aktualisiert"
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:460
+#: ../data/ui/session_selection_local_sabnzbd_pane_quick_upgrade.ui.h:1
+msgid "The program required for downloading is out-of-date."
+msgstr "Das zum Herunterladen nötige Programm ist veraltet."
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:471
+msgid "Learn <a href=''>how to upgrade</a> it."
+msgstr "Erfahren Sie, <a href=''>wie es aktualisiert werden kann</a>."
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:493
+msgid ""
+"The program required for downloading could not be found. {0}Install it{1} "
+"and specify where it is."
+msgstr ""
+"Das zum Herunterladen nötige Programm konnte nicht gefunden werden. "
+"{0}Installieren{1} Sie es und geben Sie an, wo es ist."
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:539
+msgid ""
+"The program required for downloading cannot be started. Make sure that it is "
+"executable."
+msgstr ""
+"Das zum Herunterladen nötige Programm konnte nicht gestartet werden. Stellen "
+"Sie sicher, dass es ausführbar ist."
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:568
+msgid "The program required for downloading could not be started."
+msgstr "Das zum Herunterladen nötige Programm konnte nicht gestartet werden."
+
+#: ../lottanzb/gui/sessions/local/sabnzbd_pane.py:572
+msgid "Ensure that cherrypy.zip is extracted."
+msgstr "Stellen Sie sicher, dass cherrypy.zip entpackt ist."
+
+#: ../lottanzb/gui/sessions/remote.py:106
+#, python-format
+msgid "HTTPS is automatically enabled for the connection to '%s'."
+msgstr "HTTPS wird automatisch aktiviert für die Verbindung zu '%s'."
+
+#: ../lottanzb/gui/sessions/remote.py:109
+#, python-format
+msgid "HTTPS is automatically disabled for the connection to '%s'."
+msgstr "HTTPS wird automatisch deaktiviert für die Verbindung zu '%s'."
+
+#: ../lottanzb/gui/sessions/remote.py:153
+msgid "Ensure that SABnzbd is running."
+msgstr "Vergewissern, dass SABnzbd gestartet ist."
+
+#: ../lottanzb/gui/sessions/remote.py:155
+#, python-format
+msgid ""
+"Ensure that SABnzbd is running on '%s' and allows access from other "
+"computers."
+msgstr ""
+"Stellen Sie sicher, dass SABnzbd auf '%s' läuft und den Zugriff von anderen "
+"Rechnern erlaubt."
+
+#: ../lottanzb/gui/sessions/remote.py:166
+msgid "_Manage the downloads of another computer"
+msgstr "_Verwalte die Downloads eines anderen Rechners"
+
+#: ../data/ui/restart_dialog.ui.h:1
+msgid "Please wait while SABnzbd is being restarted."
+msgstr "Bitte warten Sie, während SABnzbd neu gestartet wird."
+
+#: ../data/ui/add_url_dialog.ui.h:1
+msgid "Add URL"
+msgstr "URL hinzufügen"
+
+#: ../data/ui/add_url_dialog.ui.h:2
+msgid "_URL of the NZB file:"
+msgstr "_URL der NZB-Datei:"
+
+#: ../lottanzb/backend/sessions/local.py:72
+#, python-format
+msgid "HellaNZB configuration file %s imported."
+msgstr "HellaNZB-Konfigurationsdatei %s importiert."
+
+#: ../lottanzb/backend/sessions/local.py:141
+#, python-format
+msgid "Launching SABnzbd (%s)..."
+msgstr "SABnzbd wird gestartet (%s)..."
+
+#: ../lottanzb/backend/sessions/local.py:194
+#, python-format
+msgid "Could not start SABnzbd in %d seconds."
+msgstr "SABnzbd konnte nicht in %d Sekunden gestartet werden."
+
+#: ../lottanzb/backend/sessions/local.py:204
+msgid "SABnzbd has been successfully launched."
+msgstr "SABnzbd wurde erfolgreich gestartet."
+
+#: ../lottanzb/backend/sessions/local.py:227
+msgid "Shutting down SABnzbd..."
+msgstr "SABnzbd wird beendet..."
+
+#: ../data/ui/additional_software_dialog.ui.h:1
+msgid "<big><b>Additional Software</b></big>"
+msgstr "<big><b>Zusätzliche Software</b></big>"
+
+#: ../data/ui/additional_software_dialog.ui.h:2
+msgid "Additional Software"
+msgstr "Zusätzliche Software"
+
+#: ../data/ui/additional_software_dialog.ui.h:3
+msgid "_Restart SABnzbd"
+msgstr "SABnzbd _neustarten"
+
+#: ../lottanzb/gui/prefs/general.py:38
+msgid "General"
+msgstr "Allgemein"
+
+#: ../lottanzb/gui/prefs/general.py:213
+msgid "<i>Do nothing</i>"
+msgstr "<i>Nichts tun</i>"
+
+#: ../lottanzb/gui/prefs/general.py:215
+msgid "Repair downloaded archives if necessary"
+msgstr "Heruntergeladene Archive wenn nötig reparieren"
+
+#: ../lottanzb/gui/prefs/general.py:217
+msgid "Repair and extract downloaded archives"
+msgstr "Heruntergeladene Archive reparieren und entpacken"
+
+#: ../lottanzb/gui/prefs/general.py:219
+msgid "Repair, extract and delete downloaded archives"
+msgstr "Heruntergeladene Archive reparieren, entpacken und löschen"
+
+#: ../lottanzb/gui/prefs/general.py:251
+#, python-format
+msgid "%s for verifying and reparing downloads"
+msgstr "%s zum Überprüfen und Reparieren von Downloads"
+
+#: ../lottanzb/gui/prefs/general.py:252 ../lottanzb/gui/prefs/general.py:253
+#, python-format
+msgid "%s for extracting downloaded archives"
+msgstr "%s zum Entpacken von heruntergeladenen Archiven"
+
+#: ../lottanzb/gui/prefs/general.py:257
+msgid "<b>par2</b> or <b>par2cmdline</b>"
+msgstr "<b>par2</b> oder <b>par2cmdline</b>"
+
+#: ../data/ui/server_editor_pane.ui.h:1
+msgid "Advanced Settings"
+msgstr "Erweiterte Einstellungen"
+
+#: ../data/ui/server_editor_pane.ui.h:2
+msgid "If needed by the news server:"
+msgstr "Wenn vom News-Server benötigt:"
+
+#: ../data/ui/server_editor_pane.ui.h:3
+msgid "Maximum number of connections:"
+msgstr "Maximale Verbindungsanzahl:"
+
+#: ../data/ui/server_editor_pane.ui.h:5
+msgid "Use _SSL encryption"
+msgstr "_SSL-Verschlüsselung verwenden"
+
+#: ../data/ui/server_editor_pane.ui.h:6
+msgid "Use as backup server"
+msgstr "Als Ersatz-Server verwenden"
+
+#: ../data/ui/server_editor_pane.ui.h:7
+msgid "_Address:"
+msgstr "_Adresse:"
+
+#: ../lottanzb/backend/hubs/__init__.py:80
+msgid "byte"
+msgid_plural "bytes"
+msgstr[0] "Byte"
+msgstr[1] "Bytes"
+
+#. Don't show any decimal places when displaying a number of bytes.
+#: ../lottanzb/backend/hubs/__init__.py:83
+#, python-format
+msgid "%(data_size).0f %(data_size_unit)s"
+msgstr "%(data_size).0f %(data_size_unit)s"
+
+#: ../lottanzb/backend/hubs/__init__.py:85
+#, python-format
+msgid "%(data_size).1f %(data_size_unit)s"
+msgstr "%(data_size).1f %(data_size_unit)s"
+
+#: ../lottanzb/backend/hubs/__init__.py:151
+#, python-format
+msgid "%s/s"
+msgstr "%s/s"
+
+#: ../lottanzb/backend/hubs/__init__.py:264
+#, python-format
+msgid "%(major_time_scale)s and %(minor_time_scale)s"
+msgstr "%(major_time_scale)s und %(minor_time_scale)s"
+
+#: ../lottanzb/backend/hubs/__init__.py:325
+#, python-format
+msgid "%i day"
+msgid_plural "%i days"
+msgstr[0] "%i Tag"
+msgstr[1] "%i Tage"
+
+#: ../lottanzb/backend/hubs/__init__.py:327
+#, python-format
+msgid "%i hour"
+msgid_plural "%i hours"
+msgstr[0] "%i Stunde"
+msgstr[1] "%i Stunden"
+
+#: ../lottanzb/backend/hubs/__init__.py:329
+#, python-format
+msgid "%i minute"
+msgid_plural "%i minutes"
+msgstr[0] "%i Minute"
+msgstr[1] "%i Minuten"
+
+#: ../lottanzb/backend/hubs/__init__.py:331
+#, python-format
+msgid "%i second"
+msgid_plural "%i seconds"
+msgstr[0] "%i Sekunde"
+msgstr[1] "%i Sekunden"
+
+#: ../data/ui/about_dialog.ui.h:1
+msgid "Copyright (C) 2007-2011 LottaNZB Development Team"
+msgstr "Copyright (C) 2007-2011 LottaNZB-Entwicklungsteam"
+
+#: ../data/ui/about_dialog.ui.h:2
+msgid ""
+"LottaNZB - Usenet Downloader\n"
+"Copyright (C) 2007-2011 LottaNZB Development Team\n"
+"\n"
+"This program is free software: you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation, version 3 of the License.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"LottaNZB - Usenet-Downloader\n"
+"Copyright (C) 2007-2011 LottaNZB-Entwicklungsteam\n"
+"\n"
+"Dieses Programm ist freie Software. Sie können es unter den\n"
+"Bedingungen der GNU General Public License, wie von\n"
+"der Free Software Foundation veröffentlicht,\n"
+"weitergeben und/oder modifizieren, entweder gemäß\n"
+"Version 3 der Lizenz oder (nach Ihrer Option) jeder\n"
+"späteren Version.\n"
+"\n"
+"Die Veröffentlichung dieses Programms erfolgt in der\n"
+"Hoffnung, daß es Ihnen von Nutzen sein wird, aber\n"
+"OHNE IRGENDEINE GARANTIE, sogar ohne die implizite\n"
+"Garantie der MARKTREIFE oder der VERWENDBARKEIT\n"
+"FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in\n"
+"der GNU General Public License.\n"
+"\n"
+"Sie sollten ein Exemplar der GNU General Public License\n"
+"zusammen mit diesem Programm erhalten haben. Falls\n"
+"nicht, siehe <http://www.gnu.org/licenses/>."
+
+#: ../data/ui/about_dialog.ui.h:16
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Barristan https://launchpad.net/~aw0815\n"
+"  Hendrik Knackstedt https://launchpad.net/~hennekn\n"
+"  Keruskerfuerst https://launchpad.net/~arminmohring\n"
+"  LottaNZB Development Team https://launchpad.net/~lottanzb\n"
+"  Mark Jozefiak https://launchpad.net/~emjay\n"
+"  Roger https://launchpad.net/~roger-sikorski\n"
+"  Severin Heiniger https://launchpad.net/~lantash\n"
+"  Steffen Hornung https://launchpad.net/~steffen-hornung\n"
+"  codingfreak https://launchpad.net/~codingfreak\n"
+"  hakaishi https://launchpad.net/~hakaishi"
+
+#: ../data/ui/download_list.ui.h:1
+msgid "Move _down"
+msgstr "Nach _unten"
+
+#: ../data/ui/download_list.ui.h:2
+msgid "Move _up"
+msgstr "Nach _oben"
+
+#: ../data/ui/download_list.ui.h:3
+msgid "Move to _bottom of queue"
+msgstr "An den _Schluss der Warteschlange verschieben"
+
+#: ../data/ui/download_list.ui.h:4
+msgid "Remove the selected download"
+msgstr "Den gewählten Download entfernen"
+
+#: ../data/ui/download_list.ui.h:5
+msgid "_Open Folder"
+msgstr "_Ordner öffnen"
+
+#: ../data/ui/download_list.ui.h:6
+msgid "_Pause"
+msgstr "_Anhalten"
+
+#: ../data/ui/download_list.ui.h:7
+msgid "_Properties"
+msgstr "_Eigenschaften"
+
+#: ../data/ui/download_list.ui.h:8
+msgid "_Start"
+msgstr "_Starten"
+
+#: ../lottanzb/gui/panel_menu.py:93
+msgid "Show LottaNZB"
+msgstr "LottaNZB anzeigen"
+
+#: ../lottanzb/core/constants.py:36
+msgid "Force"
+msgstr "Erzwingen"
+
+#: ../lottanzb/core/constants.py:37
+msgid "High"
+msgstr "Hoch"
+
+#: ../lottanzb/core/constants.py:38
+msgid "Normal"
+msgstr "Normal"
+
+#: ../lottanzb/core/constants.py:39
+msgid "Low"
+msgstr "Niedrig"
+
+#: ../data/ui/session_selection_local_sabnzbd_pane_quick_upgrade.ui.h:2
+msgid "_Update..."
+msgstr "_Aktualisieren..."
+
+#: ../lottanzb/core/ipc.py:30
+msgid "LottaNZB is already running on this computer."
+msgstr "LottaNZB läuft bereits auf diesem Rechner."
+
+#: ../data/ui/session_selection_dialog.ui.h:1
+msgid "Start Downloading"
+msgstr "Mit dem Herunterladen beginnen"
+
+#: ../lottanzb/gui/add_url.py:61
+msgid "Invalid URL"
+msgstr "Ungültige URL"
+
+#~ msgid "None"
+#~ msgstr "Nichts"
+
+#~ msgid "Show Main Window"
+#~ msgstr "Hauptfenster anzeigen"
+
+#~ msgid "Select a file"
+#~ msgstr "Datei auswählen"
+
+#~ msgid "LottaNZB preferences"
+#~ msgstr "LottaNZB-Einstellungen"
+
+#~ msgid "Choose the download directory"
+#~ msgstr "Download-Verzeichnis wählen"
+
+#~ msgid "<b>Download settings</b>"
+#~ msgstr "<b>Download-Einstellungen</b>"
+
+#~ msgid "Download directory:"
+#~ msgstr "Download-Verzeichnis:"
+
+#~ msgid "_Password:"
+#~ msgstr "_Passwort:"
+
+#~ msgid "Newzbin"
+#~ msgstr "Newzbin"
+
+#~ msgid "Edit server"
+#~ msgstr "Server bearbeiten"
+
+#~ msgid "<b>General</b>"
+#~ msgstr "<b>Allgemein</b>"
+
+#~ msgid "<b>Connection Settings</b>"
+#~ msgstr "<b>Verbindungseinstellungen</b>"
+
+#~ msgid "Enable SSL encryption"
+#~ msgstr "SSL-Verschlüsselung aktivieren"
+
+#~ msgid "_Server name:"
+#~ msgstr "_Servername:"
+
+#~ msgid "Could not start the HellaNZB daemon."
+#~ msgstr "Der HellaNZB-Daemon konnte nicht gestartet werden."
+
+#~ msgid "Started HellaNZB daemon."
+#~ msgstr "HellaNZB-Daemon gestartet."
+
+#~ msgid "HellaNZB daemon stopped."
+#~ msgstr "HellaNZB-Daemon beendet."
+
+#~ msgid "Could not stop the HellaNZB daemon."
+#~ msgstr "Der HellaNZB-Daemon konnte nicht beendet werden."
+
+#~ msgid "Could not add file to the download queue."
+#~ msgstr "Konnte Datei nicht zur Download-Warteschlange hinzufügen."
+
+#, python-format
+#~ msgid "Added %s to the download queue."
+#~ msgstr "%s zur Download-Warteschlange hinzugefügt."
+
+#~ msgid ""
+#~ "Could not get an update from the HellaNZB daemon, is it (still) running?"
+#~ msgstr ""
+#~ "Der Status des HellaNZB-Daemons konnte nicht abgefragt werden. Wird er "
+#~ "(noch) ausgeführt?"
+
+#, python-format
+#~ msgid "Downloading PAR recovery files: %s"
+#~ msgstr "PAR-Wiederherstellungsdateien herunterladen: %s"
+
+#~ msgid "Queued: Need PAR recovery"
+#~ msgstr "In der Warteschlange: PAR-Dateien benötigt"
+
+#~ msgid "Repairing and extracting"
+#~ msgstr "Reparieren und entpacken"
+
+#~ msgid "Processing"
+#~ msgstr "Verarbeiten"
+
+#~ msgid "Finished"
+#~ msgstr "Fertig"
+
+#~ msgid "Cleared the finished items."
+#~ msgstr "Die fertigen Elemente wurden entfernt."
+
+#, python-format
+#~ msgid "Paused at: %s%%"
+#~ msgstr "Pausiert: %s%%"
+
+#~ msgid "Could not pause the download."
+#~ msgstr "Der Download konnte nicht pausiert werden."
+
+#~ msgid "Paused downloads."
+#~ msgstr "Downloads pausiert."
+
+#~ msgid "Could not resume the download."
+#~ msgstr "Der Download konnte nicht fortgesetzt werden."
+
+#~ msgid "Resuming downloads."
+#~ msgstr "Downloads werden fortgesetzt."
+
+#~ msgid "Progress"
+#~ msgstr "Fortschritt"
+
+#, python-format
+#~ msgid "%s KB/s"
+#~ msgstr "%s KB/s"
+
+#, python-format
+#~ msgid "Remaining: %s MB"
+#~ msgstr "Verbleibend: %s MB"
+
+#~ msgid "Could not set the filename."
+#~ msgstr "Der Dateiname konnte nicht festgelegt werden."
+
+#~ msgid "Music"
+#~ msgstr "Musik"
+
+#~ msgid "DVD Movie"
+#~ msgstr "DVD-Film"
+
+#~ msgid "XVID Movie"
+#~ msgstr "XVID-Film"
+
+#~ msgid "TV Series"
+#~ msgstr "TV-Serie"
+
+#~ msgid "HD Movie"
+#~ msgstr "HD-Film"
+
+#~ msgid "Game"
+#~ msgstr "Spiel"
+
+#~ msgid "Software"
+#~ msgstr "Software"
+
+#~ msgid "Other"
+#~ msgstr "Sonstiges"
+
+#~ msgid "Add NZB files"
+#~ msgstr "NZB-Dateien hinzufügen"
+
+#~ msgid "<b>Authentication</b>"
+#~ msgstr "<b>Authentifizierung</b>"
+
+#~ msgid "Are you sure you want to delete this server?"
+#~ msgstr "Sind Sie sicher, dass Sie diesen Server löschen möchten?"
+
+#~ msgid "Add a new server"
+#~ msgstr "Neuen Server hinzufügen"
+
+#~ msgid "Server requires authentication"
+#~ msgstr "Server benötigt Authentifizierung"
+
+#~ msgid "Name"
+#~ msgstr "Name"
+
+#~ msgid "Category"
+#~ msgstr "Kategorie"
+
+#~ msgid "Canceled current download."
+#~ msgstr "Der aktive Download wurde abgebrochen."
+
+#~ msgid "Could not cancel the current download."
+#~ msgstr "Der aktive Download konnte nicht abgebrochen werden."
+
+#~ msgid "Could not clear the queue."
+#~ msgstr "Die Warteschlange konnte nicht geleert werden."
+
+#~ msgid "Cleared queue."
+#~ msgstr "Warteschlange geleert."
+
+#~ msgid "Could not set the maxium download speed."
+#~ msgstr ""
+#~ "Die maximale Download-Geschwindigkeit konnte nicht eingestellt werden."
+
+#, python-format
+#~ msgid "Set the maximum download speed to %s KiB/s."
+#~ msgstr "Die maximale Download-Geschwindigkeit wurde auf %s KiB/s gesetzt."
+
+#~ msgid "Are you sure you want to cancel this download?"
+#~ msgstr "Sind Sie sicher, dass Sie diesen Download abbrechen möchten?"
+
+#~ msgid "Download PAR recovery files only if necessary"
+#~ msgstr "PAR-Wiederherstellungsdateien nur wenn nötig herunterladen"
+
+#~ msgid "Limit download speed:"
+#~ msgstr "Download-Geschwindigkeit begrenzen:"
+
+#~ msgid "Default Server"
+#~ msgstr "Standard-Server"
+
+#~ msgid "Add file from Newzbin.com"
+#~ msgstr "Datei von Newzbin.com hinzufügen"
+
+#~ msgid "Add download"
+#~ msgstr "Download hinzufügen"
+
+#~ msgid "Please enter the ID of the Newzbin.com file you want to download:"
+#~ msgstr ""
+#~ "Bitte geben Sie die ID der Newzbin.com-Datei ein, die Sie herunterladen "
+#~ "möchten:"
+
+#~ msgid "Level:"
+#~ msgstr "Stufe:"
+
+#~ msgid "Source:"
+#~ msgstr "Quelle:"
+
+#~ msgid "Select LottaNZB's usage mode"
+#~ msgstr "LottaNZBs Verwendungsmodus wählen"
+
+#~ msgid "Executable:"
+#~ msgstr "Programmdatei:"
+
+#~ msgid "<b>HellaNZB Information</b>"
+#~ msgstr "<b>HellaNZB-Informationen</b>"
+
+#~ msgid "Password:"
+#~ msgstr "Passwort:"
+
+#~ msgid "Username:"
+#~ msgstr "Benutzername:"
+
+#~ msgid "<b>News Server Information</b>"
+#~ msgstr "<b>Newsserver-Informationen</b>"
+
+#~ msgid "Address:"
+#~ msgstr "Adresse:"
+
+#~ msgid "Port:"
+#~ msgstr "Port:"
+
+#~ msgid "<b>HellaNZB information</b>"
+#~ msgstr "<b>HellaNZB-Informationen</b>"
+
+#~ msgid "Configuration file:"
+#~ msgstr "Konfigurationsdatei:"
+
+#~ msgid ""
+#~ "<small>LottaNZB won't change the configuration file in any way. It's only "
+#~ "parsed so that we know how to connect to HellaNZB and where the download "
+#~ "directory is etc.</small>"
+#~ msgstr ""
+#~ "<small>LottaNZB wird die Konfigurationsdatei in keiner Weise ändern, sondern "
+#~ "sie nur einlesen, um eine Verbindung zum HellaNZB-Daemon herstellen zu "
+#~ "können und damit LottaNZB weiss, wo sich das Download-Verzeichnis befindet "
+#~ "usw.</small>"
+
+#~ msgid "<b>Error</b>"
+#~ msgstr "<b>Fehler</b>"
+
+#, python-format
+#~ msgid "Could not connect to the HellaNZB daemon at %s."
+#~ msgstr "Konnte keine Verbindung zum HellaNZB-Daemon auf %s herstellen."
+
+#, python-format
+#~ msgid "Connected to the HellaNZB daemon at %s."
+#~ msgstr "Verbindung zum HellaNZB-Daemon auf %s hergestellt."
+
+#~ msgid "Debug"
+#~ msgstr "Sonstiges"
+
+#~ msgid "Info"
+#~ msgstr "Info"
+
+#~ msgid "Warning"
+#~ msgstr "Warnung"
+
+#~ msgid "LottaNZB and HellaNZB"
+#~ msgstr "LottaNZB und HellaNZB"
+
+#~ msgid "LottaNZB only"
+#~ msgstr "Nur LottaNZB"
+
+#~ msgid "HellaNZB only"
+#~ msgstr "Nur HellaNZB"
+
+#, python-format
+#~ msgid "Could not open %s to write message log: %s"
+#~ msgstr "Konnte %s nicht öffnen, um Nachrichtenprotokoll zu speichern: %s"
+
+#~ msgid "Save message log"
+#~ msgstr "Nachrichtenprotokoll speichern"
+
+#~ msgid "Launching GUI..."
+#~ msgstr "Benutzeroberfläche wird gestartet..."
+
+#, python-format
+#~ msgid "Could not enter usage mode '%s'."
+#~ msgstr "Konnte den Verwendungsmodus '%s' nicht aktivieren."
+
+#, python-format
+#~ msgid "Could not leave current usage mode '%s'."
+#~ msgstr "Konnte den aktuellen Verwendungsmodus '%s' nicht verlassen."
+
+#, python-format
+#~ msgid "Left usage mode '%s'."
+#~ msgstr "Verwendungsmodus '%s' verlassen."
+
+#, python-format
+#~ msgid "Reentered usage mode '%s'."
+#~ msgstr "Erneut in den Verwendungsmodus '%s' eingetreten."
+
+#, python-format
+#~ msgid "Changed usage mode from '%s' to '%s'."
+#~ msgstr "Verwendungsmodus von '%s' auf '%s' gewechselt."
+
+#, python-format
+#~ msgid "Set usage mode to '%s'."
+#~ msgstr "Verwendungsmodus '%s' aktiviert."
+
+#~ msgid "Stand-alone mode"
+#~ msgstr "Eigenständiger Modus"
+
+#~ msgid "Stand-alone"
+#~ msgstr "Eigenständig"
+
+#~ msgid ""
+#~ "Use LottaNZB as a normal NZB Usenet client. When launching LottaNZB, "
+#~ "HellaNZB is started in the background. You can easily change the HellaNZB "
+#~ "preferences from within LottaNZB."
+#~ msgstr ""
+#~ "LottaNZB als normales NZB-Usenet-Programm verwenden. Wenn Sie LottaNZB "
+#~ "starten, wird automatisch HellaNZB im Hintergrund ausgeführt. Sie können die "
+#~ "HellaNZB-Einstellungen bequem mit LottaNZB verändern."
+
+#~ msgid ""
+#~ "The HellaNZB daemon is already running using the configuration file managed "
+#~ "by LottaNZB."
+#~ msgstr ""
+#~ "Der HellaNZB-Daemon läuft bereits mit der von LottaNZB verwalteten "
+#~ "Konfigurationsdatei."
+
+#, python-format
+#~ msgid ""
+#~ "The port %s is already in use. Another HellaNZB daemon might be already "
+#~ "running."
+#~ msgstr ""
+#~ "Der Port %s wird bereits verwendet. Ein anderer HellaNZB-Daemon wird "
+#~ "möglicherweise bereits ausgeführt."
+
+#~ msgid "The HellaNZB daemon could not be started for an unknown reason."
+#~ msgstr ""
+#~ "Der HellaNZB-Daemon konnte aus einem unbekannten Grund nicht gestartet "
+#~ "werden."
+
+#, python-format
+#~ msgid "Could not find the HellaNZB executable (%s)."
+#~ msgstr "Die HellaNZB-Programmdatei (%s) konnte nicht gefunden werden."
+
+#~ msgid "Local front-end mode"
+#~ msgstr "Lokaler Front-end-Modus"
+
+#~ msgid "Local front-end"
+#~ msgstr "Lokales Front-end"
+
+#~ msgid ""
+#~ "Monitor a HellaNZB daemon on this computer, which is already configured and "
+#~ "running."
+#~ msgstr ""
+#~ "Überwachen Sie einen HellaNZB-Daemon auf diesem Computer, der bereits "
+#~ "eingerichtet ist und läuft."
+
+#~ msgid ""
+#~ "Please make sure HellaNZB is running and the correct configuration file is "
+#~ "selected."
+#~ msgstr ""
+#~ "Bitte stellen Sie sicher, dass HellaNZB läuft und die richtige "
+#~ "Konfigurationsdatei ausgewählt ist."
+
+#~ msgid "Remote front-end mode"
+#~ msgstr "Entfernter Front-end-Modus"
+
+#~ msgid "Remote front-end"
+#~ msgstr "Entferntes Front-end"
+
+#~ msgid ""
+#~ "Monitor a HellaNZB daemon on another computer, which is already configured "
+#~ "and running."
+#~ msgstr ""
+#~ "Überwachen Sie einen HellaNZB-Daemon auf einem anderen Computer, der bereits "
+#~ "eingerichtet ist und läuft."
+
+#~ msgid ""
+#~ "Please make sure HellaNZB is running and the connection information are "
+#~ "correctly set."
+#~ msgstr ""
+#~ "Bitte stellen Sie sicher, dass HellaNZB läuft und die "
+#~ "Verbindungsinformationen korrekt sind."
+
+#~ msgid ""
+#~ "LottaNZB is currently in stand-alone mode. HellaNZB is already running and "
+#~ "uses the configuration file managed by LottaNZB."
+#~ msgstr ""
+#~ "LottaNZB befindet sich momentan im eigenständigen Modus. HellaNZB läuft "
+#~ "bereits und verwendet die von LottaNZB verwaltete Konfigurationsdatei."
+
+#~ msgid ""
+#~ "The HellaNZB daemon seems to be already running. The local front-end mode "
+#~ "might be the most appropriate usage mode for you."
+#~ msgstr ""
+#~ "Der HellaNZB-Daemon scheint bereits zu laufen. Der Frontend-Modus ist für "
+#~ "Sie wahrscheinlich die passendste Option."
+
+#~ msgid "Removed download speed limit."
+#~ msgstr "Begrenzung der Downloadgeschwindigkeit entfernt."
+
+#~ msgid ""
+#~ "No HellaNZB daemon seems to be listening on the default port, so it's most "
+#~ "likely not running. The stand-alone mode might be the most appropriate usage "
+#~ "mode for you."
+#~ msgstr ""
+#~ "Beim standardmässigen Port scheint kein HellaNZB-Daemon zu antworten, was "
+#~ "meistens bedeutet, dass er nicht läuft. Der eigenständige Modus ist für Sie "
+#~ "wahrscheinlich die passendste Option."
+
+#~ msgid ""
+#~ "The HellaNZB executable could not be found. This could mean that it isn't "
+#~ "installed on your system or that you've installed it in a non-standard way. "
+#~ "If you want to control a HellaNZB daemon on another computer, select the "
+#~ "remote front-end usage mode. Otherwise, make sure HellaNZB is installed "
+#~ "properly."
+#~ msgstr ""
+#~ "Die Programmdatei von HellaNZB konnte nicht gefunden werden. Dies könnte "
+#~ "bedeuten, dass es nicht bzw. auf eine unübliche Weise auf dem System "
+#~ "installiert ist. Wenn Sie HellaNZB-Daemon auf einem anderen Computer steuern "
+#~ "möchten, wählen Sie die unterste Option. Stellen Sie ansonsten sicher, dass "
+#~ "HellaNZB korrekt installiert ist oder wählen Sie den Frontend-Modus."
+
+#~ msgid "Automated Usenet Client"
+#~ msgstr "Automatisierter Usenet-Client"
+
+#~ msgid "NZB download file"
+#~ msgstr "NZB-Downloaddatei"
+
+#, python-format
+#~ msgid "Removed '%s' from queue."
+#~ msgstr "'%s' von der Warteschlange entfernt."
+
+#~ msgid "The specified password is invalid. Please check your input."
+#~ msgstr ""
+#~ "Das angegebe Passwort ist ungültig. Bitte überprüfen Sie Ihre Eingabe."
+
+#~ msgid "LottaNZB Automated Usenet Client"
+#~ msgstr "LottaNZB Automatisierter Usenet-Client"
+
+#, python-format
+#~ msgid "Total remaining: %s MB"
+#~ msgstr "Insgesamt verbleibend: %s MB"
+
+#, python-format
+#~ msgid "Could not connect to %s. This might be due to network issues."
+#~ msgstr ""
+#~ "Konnte keine Verbindung zu %s herstellen. Dies könnte auf Netzwerkprobleme "
+#~ "zurückzuführen sein."
+
+#~ msgid "Multiple files selected"
+#~ msgstr "Mehrere Dateien ausgewählt"
+
+#~ msgid "Category:"
+#~ msgstr "Kategorie:"
+
+#, python-format
+#~ msgid "Unable to load the LottaNZB configuration file %s: %s"
+#~ msgstr "Laden der LottaNZB-Konfigurationsdatei %s fehlgeschlagen: %s"
+
+#~ msgid "LottaNZB configuration file loaded."
+#~ msgstr "LottaNZB-Konfigurationsdatei geladen."
+
+#~ msgid "LottaNZB configuration file saved."
+#~ msgstr "LottaNZB-Konfigurationsdatei gespeichert."
+
+#, python-format
+#~ msgid "The HellaNZB configuration file %s has been loaded successfully."
+#~ msgstr "Die HellaNZB-Konfigurationsdatei %s wurde erfolgreich geladen."
+
+#, python-format
+#~ msgid "Unable to save the HellaNZB configuration to the file %s: %s"
+#~ msgstr "Speichern der HelllaNZB-Konfigurationsdatei %s fehlgeschlagen: %s"
+
+#, python-format
+#~ msgid "The HellaNZB preferences were successfully written into the file %s."
+#~ msgstr ""
+#~ "Die HellaNZB-Einstellungen wurden erfolgreich in die Datei %s gespeichert."
+
+#, python-format
+#~ msgid "Unable to load the HellaNZB configuration file %s: %s"
+#~ msgstr "Laden der HellaNZB-Konfigurationsdatei %s fehlgeschlagen: %s"
+
+#~ msgid "Categories"
+#~ msgstr "Kategorien"
+
+#~ msgid "Add a new category..."
+#~ msgstr "Neue Kategorie hinzufügen..."
+
+#~ msgid "Contains invalid characters."
+#~ msgstr "Enthält ungültige Zeichen."
+
+#~ msgid "OpenSSL for Python not installed"
+#~ msgstr "OpenSSL für Python ist nicht installiert"
+
+#, python-format
+#~ msgid "Too many NZB download requests. Waiting %d second."
+#~ msgstr "Zu viele NZB-Downloadanfragen. Warte %d Sekunde."
+
+#, python-format
+#~ msgid "Too many NZB download requests. Waiting %d seconds."
+#~ msgstr "Zu viele NZB-Downloadanfragen. Warte %d Sekunden."
+
+#~ msgid "Invalid response from the Newzbin server received."
+#~ msgstr "Ungültige Antwort vom Newzbin-Server erhalten."
+
+#~ msgid "The Newzbin service is currently unavailable."
+#~ msgstr "Der Newzbin-Dienst ist momentan nicht verfügbar."
+
+#~ msgid "The specified Newzbin username or password is invalid."
+#~ msgstr "Der angegebene Newzbin-Benutzername oder das Passwort ist ungültig."
+
+#, python-format
+#~ msgid "Newzbin report %i does not exist."
+#~ msgstr "Der Newzbin-Eintrag %i existiert nicht."
+
+#~ msgid "The specified account does not have any Premium credit left."
+#~ msgstr "Das angegebene Konto verfügt nicht über Premium-Credits."
+
+#~ msgid ""
+#~ "The connection to the HellaNZB daemon was lost unexpectedly and trying to "
+#~ "restart and reconnect failed."
+#~ msgstr ""
+#~ "Die Verbindung zu HellaNZB wurde unerwartet abgebrochen und ein Neustart und "
+#~ "ein erneuter Verbindungsaufbau scheiterten."
+
+#~ msgid "<b>Connection information</b>"
+#~ msgstr "<b>Verbindungsinformationen</b>"
+
+#~ msgid "<b>Custom categories</b>"
+#~ msgstr "<b>Benutzerdefinierte Kategorien</b>"
+
+#~ msgid "Extract RAR archives in completed downloads"
+#~ msgstr "RAR-Archive in fertigen Downloads entpacken"
+
+#, python-format
+#~ msgid "The HellaNZB daemon doesn't seem to be running at %s."
+#~ msgstr "Der HellaNZB-Daemon scheint auf %s nicht zu laufen."
+
+#~ msgid "Unable to save the LottaNZB configuration to the file %s: %s"
+#~ msgstr "Speichern der LottaNZB-Konfigurationsdatei %s fehlgeschlagen: %s"
+
+#~ msgid "No usage mode has been selected. Shutting down LottaNZB..."
+#~ msgstr "Es wurde kein Verwendungsmodus gewählt. LottaNZB wird beendet..."
+
+#~ msgid "Enable Newzbin.com support (requires subscription)"
+#~ msgstr "Newzbin.com-Unterstützung aktivieren (Abonnement erforderlich)"
+
+#~ msgid "Add multiple files to download queue"
+#~ msgstr "Mehrere Dateien zur Download-Warteschlange hinzufügen"
+
+#~ msgid "Name:"
+#~ msgstr "Name:"
+
+#~ msgid "<b>Other settings</b>"
+#~ msgstr "<b>Andere Einstellungen</b>"
+
+#~ msgid "Start in the system tray"
+#~ msgstr "Minimiert starten"
+
+#~ msgid "Use libnotify notifications"
+#~ msgstr "libnotify-Meldungen verwenden"
+
+#~ msgid "Add file from Newzbin.com with a Newzbin ID"
+#~ msgstr "Datei von Newzbin.com mit einer Newzbin-ID hinzufügen"
+
+#~ msgid "Choose usage mode..."
+#~ msgstr "Verwendungsmodus wählen..."
+
+#~ msgid "Clear finished"
+#~ msgstr "Fertige entfernen"
+
+#~ msgid "Contents"
+#~ msgstr "Inhalte"
+
+#~ msgid "Move down"
+#~ msgstr "Nach unten"
+
+#~ msgid "Move item down"
+#~ msgstr "Nach unten verschieben"
+
+#~ msgid "Move item up"
+#~ msgstr "Nach oben verschieben"
+
+#~ msgid "Move to top of queue"
+#~ msgstr "An die Spitze der Warteschlange verschieben"
+
+#~ msgid "Move up"
+#~ msgstr "Nach oben"
+
+#~ msgid "Move up one place"
+#~ msgstr "Um einen Platz nach oben verschieben"
+
+#~ msgid "Remove"
+#~ msgstr "Entfernen"
+
+#~ msgid "Remove item"
+#~ msgstr "Element entfernen"
+
+#~ msgid "Report a bug"
+#~ msgstr "Einen Fehler melden"
+
+#~ msgid "Show Message Log"
+#~ msgstr "Nachrichtenprotokoll anzeigen"
+
+#~ msgid "%s MB"
+#~ msgstr "%s MB"
+
+#~ msgid "Address"
+#~ msgstr "Adresse"
+
+#~ msgid "Username"
+#~ msgstr "Benutzername"
+
+#~ msgid "Could not delete server."
+#~ msgstr "Server konnte nicht gelöscht werden."
+
+#~ msgid "Selected multiple files"
+#~ msgstr "Mehrere Dateien auswählen"
+
+#~ msgid "Could not move item."
+#~ msgstr "Element konnte nicht verschoben werden."
+
+#~ msgid "Can't move finished downloads or downloads that are being processed."
+#~ msgstr ""
+#~ "Fertige Downloads und Downloads, die gerade verarbeitet werden, können nicht "
+#~ "verschoben werden."
+
+#~ msgid ""
+#~ "Could not load the LottaNZB configuration file as it seems to be invalid."
+#~ msgstr ""
+#~ "Konnte die LottaNZB-Konfigurationsdatei nicht laden, da sie ungültig zu sein "
+#~ "scheint."
+
+#~ msgid "Change the password for rar archives"
+#~ msgstr "Das Passwort von RAR-Archiven ändern"
+
+#~ msgid "Set rar password"
+#~ msgstr "RAR-Passwort einstellen"
+
+#~ msgid "Shutting down backend thread..."
+#~ msgstr "Backend-Thread wird beendet..."
+
+#~ msgid "Could not update LottaNZB's state."
+#~ msgstr "Konnte LottaNZBs Status nicht aktualisieren."
+
+#~ msgid "Could not find the download directory."
+#~ msgstr "Das Download-Verzeichnis konnte nicht gefunden werden."
+
+#~ msgid "You need to install pyGTK to run LottaNZB."
+#~ msgstr "Sie benötigen pyGTK, um LottaNZB verwenden zu können."
+
+#~ msgid "Starting backend thread..."
+#~ msgstr "Backend-Thread wird gestartet..."
+
+#~ msgid "Saving preferences..."
+#~ msgstr "Einstellungen werden gespeichert..."
+
+#~ msgid ""
+#~ "The LottaNZB configuration file couldn't be found or might be invalid. "
+#~ "Launching usage mode selection window..."
+#~ msgstr ""
+#~ "Die Konfigurationsdatei von LottaNZB konnte nicht gefunden werden oder ist "
+#~ "ungültig. Das Fenster zum Auswählen des Verwendungsmodus wird geöffnet..."
+
+#~ msgid "HellaNZB daemon restarted."
+#~ msgstr "HellaNZB-Daemon neu gestartet."
+
+#~ msgid "Usage modes"
+#~ msgstr "Verwendungsmodi"
+
+#~ msgid ""
+#~ "In order to use SSL, you need to install the Python wrapper around OpenSSL. "
+#~ "On Ubuntu, the package name is 'python-openssl'."
+#~ msgstr ""
+#~ "Um SSL nutzen zu können, müssen die Python-Bindungen für OpenSSL installiert "
+#~ "sein. Unter Ubuntu heisst das Paket 'python-openssl'."
+
+#~ msgid "HellaNZB preferences saved."
+#~ msgstr "HellaNZB-Einstellungen gespeichert."
+
+#~ msgid "LottaNZB preferences saved."
+#~ msgstr "LottaNZB-Einstellungen gespeichert."
+
+#~ msgid "Forced '%s' to begin."
+#~ msgstr "Mit dem Download von '%s' wird sofort begonnen."
+
+#~ msgid "Moved '%s' up."
+#~ msgstr "'%s' wurde nach oben verschoben."
+
+#~ msgid "Moved '%s' down."
+#~ msgstr "'%s' wurde nach unten verschoben."
+
+#~ msgid "The specified HellaNZB configuration file doesn't exist."
+#~ msgstr "Die angegebene HellaNZB-Konfigurationsdatei ist existiert nicht."
+
+#~ msgid "<b>Usenet News Servers</b>"
+#~ msgstr "<b>Usenet-Newsserver</b>"
+
+#~ msgid "Launching usage mode selection window..."
+#~ msgstr "Das Fenster zum Auswählen des Verwendungsmodus wird geöffnet..."
+
+#~ msgid "Opening %(connections)s connection to %(server_name)s..."
+#~ msgstr "%(connections)s Verbindung zu %(server_name)s wird hergestellt."
+
+#~ msgid "Opening %(connections)s connections to %(server_name)s..."
+#~ msgstr "%(connections)s Verbindungen zu %(server_name)s werden hergestellt."
+
+#~ msgid "Could not dequeue item."
+#~ msgstr "Elemente konnte nicht aus der Warteschlange entfernt werden."
+
+#~ msgid "Start minimized"
+#~ msgstr "Minimiert starten"
+
+#~ msgid "Only display the notification area icon when starting."
+#~ msgstr "Beim Starten nur das Symbol im Benachrichtigungsfeld anzeigen."
+
+#~ msgid "LottaNZB Development Team"
+#~ msgstr "LottaNZB-Entwicklungsteam"
+
+#~ msgid "Notification area icon"
+#~ msgstr "Symbol im Benachrichtigungsfeld"
+
+#~ msgid ""
+#~ "Displays an icon in the notification area and allows LottaNZB to be "
+#~ "controlled through it."
+#~ msgstr ""
+#~ "Zeigt ein Symbol im Benachrichtigungsfeld an, mit dem LottaNZB gesteuert "
+#~ "werden kann."
+
+#, python-format
+#~ msgid "Syntax error on line: %i"
+#~ msgstr "Syntax-Fehler in Zeile: %i"
+
+#, python-format
+#~ msgid "Unable to save the LottaNZB configuration file %s: %s"
+#~ msgstr "Speichern der LottaNZB-Konfigurationsdatei %s fehlgeschlagen: %s"
+
+#~ msgid "Upgraded old-fashioned XML configuration file."
+#~ msgstr "Alte XML-Konfigurationsdatei wurde aktualisiert."
+
+#~ msgid "The connection to the HellaNZB daemon has been lost unexpectedly."
+#~ msgstr "Die Verbindung zu HellaNZB wurde unerwartet abgebrochen."
+
+#~ msgid "Can only be used in stand-alone mode."
+#~ msgstr "Kann nur im eigenständigen Modus verwendet werden."
+
+#, python-format
+#~ msgid "Disabling plug-in '%s'... %s"
+#~ msgstr "Erweiterung '%s' wird deaktiviert... %s"
+
+#~ msgid "Unsupported plug-in type."
+#~ msgstr "Nicht unterstützter Erweiterungs-Typ."
+
+#, python-format
+#~ msgid "This plug-in depends on %s."
+#~ msgstr "Diese Erweiterung hängt ab von %s."
+
+#, python-format
+#~ msgid "Could not load plug-in '%s'. %s"
+#~ msgstr "Laden der Erweiterung '%s' fehlgeschlagen. %s"
+
+#, python-format
+#~ msgid "Could not enable plug-in '%s'. %s"
+#~ msgstr "Aktivieren der Erweiterung '%s' fehlgeschlagen. %s"
+
+#, python-format
+#~ msgid "%s is not installed."
+#~ msgstr "%s ist nicht installiert."
+
+#~ msgid ""
+#~ "You don't seem to be running a compatible HellaNZB daemon. Please make sure "
+#~ "you have installed the latest version."
+#~ msgstr ""
+#~ "Es scheint kein kompatibler HellaNZB-Daemon zu laufen. Bitte stellen Sie "
+#~ "sicher, dass Sie die neuste Version installiert haben."
+
+#, python-format
+#~ msgid "Removing enqueued NZB file %s..."
+#~ msgstr "Zur Warteschlange hinzugefügte NZB-Datei %s wird entfernt..."
+
+#~ msgid "Finished downloads cannot be moved."
+#~ msgstr "Fertige Downloads können nicht verschoben werden."
+
+#~ msgid "Downloads that are being processed cannot be moved."
+#~ msgstr ""
+#~ "Downloads, die gerade verarbeitet werden, können nicht verschoben werden."
+
+#~ msgid "Use the Newzbin.com service to download NZB files."
+#~ msgstr "Den Newzbin.com-Dienst zum Herunterladen von NZB-Dateien verwenden."
+
+#~ msgid "The Newzbin plug-in has been enabled automatically."
+#~ msgstr "Die Newzbin-Erweiterung wurde automatisch aktiviert."
+
+#~ msgid "Add NZB file"
+#~ msgstr "NZB-Datei hinzufügen"
+
+#~ msgid "Download directory"
+#~ msgstr "Download-Verzeichnis"
+
+#~ msgid "Plug-ins"
+#~ msgstr "Erweiterungen"
+
+#~ msgid "Categorization"
+#~ msgstr "Kategorisierung"
+
+#~ msgid ""
+#~ "Use categories to group completed downloads in the download directory."
+#~ msgstr ""
+#~ "Kategorien zum Gruppieren fertiger Downloads im Downloadverzeichnis "
+#~ "verwenden."
+
+#~ msgid ""
+#~ "LottaNZB now uses the more reliable 'unrar' application to extract "
+#~ "downloaded archives."
+#~ msgstr ""
+#~ "LottaNZB verwendet nun die verlässlichere 'unrar'-Anwendung, um "
+#~ "heruntergeladene Archive zu entpacken."
+
+#~ msgid "HellaNZB is restarted for the configuration changes to take effect."
+#~ msgstr ""
+#~ "HellaNZB muss neu gestartet werden, damit die Konfigurationsänderungen "
+#~ "wirksam werden."
+
+#~ msgid "Copyright (C) 2007 - 2009  LottaNZB Development Team"
+#~ msgstr "Copyright (C) 2007 - 2009  LottaNZB-Entwicklungsteam"
+
+#~ msgid ""
+#~ "LottaNZB - Automated Usenet Client\n"
+#~ "Copyright (C) 2007 - 2009  LottaNZB Development Team\n"
+#~ "\n"
+#~ "This program is free software: you can redistribute it and/or modify\n"
+#~ "it under the terms of the GNU General Public License as published by\n"
+#~ "the Free Software Foundation, version 3 of the License.\n"
+#~ "\n"
+#~ "This program is distributed in the hope that it will be useful,\n"
+#~ "but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+#~ "GNU General Public License for more details.\n"
+#~ "\n"
+#~ "You should have received a copy of the GNU General Public License\n"
+#~ "along with this program.  If not, see <http://www.gnu.org/licenses/>."
+#~ msgstr ""
+#~ "LottaNZB - Automatisierter Usenet-Client\n"
+#~ "Copyright (C) 2007 - 2009  LottaNZB-Entwicklungsteam\n"
+#~ "\n"
+#~ "LottaNZB ist freie Software. Sie können es unter den\n"
+#~ "Bedingungen der GNU General Public License, wie von\n"
+#~ "der Free Software Foundation veröffentlicht,\n"
+#~ "weitergeben und/oder modifizieren, entweder gemäß\n"
+#~ "Version 3 der Lizenz oder (nach Ihrer Option) jeder\n"
+#~ "späteren Version.\n"
+#~ "\n"
+#~ "Die Veröffentlichung dieses Programms erfolgt in der\n"
+#~ "Hoffnung, daß es Ihnen von Nutzen sein wird, aber\n"
+#~ "OHNE IRGENDEINE GARANTIE, sogar ohne die implizite\n"
+#~ "Garantie der MARKTREIFE oder der VERWENDBARKEIT\n"
+#~ "FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in\n"
+#~ "der GNU General Public License.\n"
+#~ "\n"
+#~ "Sie sollten ein Exemplar der GNU General Public License\n"
+#~ "zusammen mit diesem Programm erhalten haben. Falls\n"
+#~ "nicht, siehe <http://www.gnu.org/licenses/>."
+
+#~ msgid "Inhibit hibernation"
+#~ msgstr "Ruhezustand verhindern"
+
+#~ msgid "Prevents the computer from going into hibernation while downloading."
+#~ msgstr ""
+#~ "Verhindert den Wechsel in den Ruhezustand, solange heruntergeladen wird."
+
+#~ msgid "Your desktop environment isn't supported by the plug-in."
+#~ msgstr "Die Desktop-Umgebung wird von der Erweiterung nicht unterstützt."
+
+#~ msgid "Download activity"
+#~ msgstr "Download-Aktivität"
+
+#, python-format
+#~ msgid "Could not disallow desktop hibernation: %s"
+#~ msgstr "Wechsel in den Ruhezustand kann nicht unterbunden werden: %s"
+
+#~ msgid "Disallowing desktop hibernation."
+#~ msgstr "Wechsel in den Ruhezustand wird unterbunden."
+
+#~ msgid "Allowing desktop hibernation."
+#~ msgstr "Erlaube Wechsel in den Ruhezustand."
+
+#~ msgid "Delete NZB files added to the download queue"
+#~ msgstr "Zur Warteschlange hinzugefügte NZB-Dateien löschen"
+
+#~ msgid "_Tools"
+#~ msgstr "_Extras"
+
+#, python-format
+#~ msgid "Could not reallow desktop hibernation: %s"
+#~ msgstr "Wechseln in den Ruhezustand konnte nicht wieder erlaubt werden: %s"
+
+#~ msgid "Show main window"
+#~ msgstr "Hauptfenster anzeigen"
+
+#, python-format
+#~ msgid "Could not find configuration class '%s'."
+#~ msgstr "Die Konfigurationsklasse '%s' konnte nicht gefunden werden."
+
+#~ msgid "RGBA support enabled."
+#~ msgstr "RGBA-Unterstützung aktiviert."
+
+#~ msgid "RGBA support not available."
+#~ msgstr "RGBA-Unterstützung nicht verfügbar."
+
+#~ msgid "Looking for existing HellaNZB configuration files..."
+#~ msgstr "Suche nach existierenden HellaNZB-Konfigurationsdateien..."
+
+#, python-format
+#~ msgid "Unsupported server option '%s'."
+#~ msgstr "Nicht unterstützte Server-Option '%s'."
+
+#~ msgid ""
+#~ "Could not find any existing HellaNZB configuration files in common places."
+#~ msgstr ""
+#~ "An den üblichen Orten konnten keine HellaNZB-Konfigurationsdateien gefunden "
+#~ "werden."
+
+#, python-format
+#~ msgid "Invalid server option '%s'."
+#~ msgstr "Ungültige Sever-Option '%s'."
+
+#~ msgid ""
+#~ "In order to use SSL, you need to install the Python bindings for OpenSSL. "
+#~ "The package is usually called python-openssl."
+#~ msgstr ""
+#~ "Um SSL nutzen zu können, müssen die Python-Bindungen für OpenSSL installiert "
+#~ "sein. Das Paket heisst üblicherweise 'python-openssl'."
+
+#~ msgid ""
+#~ "Backup servers are only used if a certain file cannot be downloaded from all "
+#~ "other servers."
+#~ msgstr ""
+#~ "Ersatz-Server werden nur verwendet, wenn eine bestimmte Datei nicht von "
+#~ "allen anderen Servern heruntergeladen werden kann."
+
+#~ msgid "Maximum number of _connections:"
+#~ msgstr "Maximale _Verbindungsanzahl:"
+
+#~ msgid "Use SSL encryption"
+#~ msgstr "SSL-Verschlüsselung verwenden"
+
+#, python-format
+#~ msgid "'%s' is now the new main server."
+#~ msgstr "'%s' ist nun der neue Hauptserver."
+
+#~ msgid ""
+#~ "SSL support has been disabled because the necessary Python bindings for "
+#~ "OpenSSL aren't installed."
+#~ msgstr ""
+#~ "Die SSL-Unterstützung wurde deaktiviert, weil die nötigen Python-Bindungen "
+#~ "für OpenSSL nicht installiert sind."
+
+#~ msgid "Extraction of downloads not possible"
+#~ msgstr "Entpacken von Downloads nicht möglich"
+
+#~ msgid ""
+#~ "In order to enable the automatic extraction of completed downloads, you need "
+#~ "to install the 'unrar' package."
+#~ msgstr ""
+#~ "Um das automatische Entpacken von fertigen Downloads einzuschalten, muss das "
+#~ "'unrar'-Paket installiert werden."
+
+#~ msgid ""
+#~ "Automatic extraction of downloads has been disabled because the necessary "
+#~ "'unrar' program is missing."
+#~ msgstr ""
+#~ "Das automatische Entpacken von Downloads wurde deaktiviert, weil das "
+#~ "benötigte 'unrar'-Programm fehlt."
+
+#~ msgid ""
+#~ "SSL support has been disabled because the necessary Python bindings for "
+#~ "OpenSSL are missing."
+#~ msgstr ""
+#~ "Die SSL-Unterstützung wurde deaktiviert, weil die nötigen Python-Bindungen "
+#~ "für OpenSSL fehlen."
+
+#~ msgid ""
+#~ "The program for extracting completed downloads could not be found. Please "
+#~ "install the 'unrar' package."
+#~ msgstr ""
+#~ "Das Programm zum Entpacken fertiger Downloads konnte nicht gefunden werden. "
+#~ "Bitte installieren Sie das 'unrar'-Paket."
+
+#, python-format
+#~ msgid "Embedded NZB file removed from %s to avoid download issues."
+#~ msgstr ""
+#~ "Eingebettete NZB-Datei aus %s entfernt, um Probleme beim Herunterladen zu "
+#~ "vermeiden."
+
+#~ msgid "Copyright (C) 2007-2010 LottaNZB Development Team"
+#~ msgstr "Copyright (C) 2007-2010 LottaNZB-Entwicklungsteam"
+
+#~ msgid ""
+#~ "LottaNZB - Automated Usenet Client\n"
+#~ "Copyright (C) 2007-2010 LottaNZB Development Team\n"
+#~ "\n"
+#~ "This program is free software: you can redistribute it and/or modify\n"
+#~ "it under the terms of the GNU General Public License as published by\n"
+#~ "the Free Software Foundation, version 3 of the License.\n"
+#~ "\n"
+#~ "This program is distributed in the hope that it will be useful,\n"
+#~ "but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+#~ "GNU General Public License for more details.\n"
+#~ "\n"
+#~ "You should have received a copy of the GNU General Public License\n"
+#~ "along with this program.  If not, see <http://www.gnu.org/licenses/>."
+#~ msgstr ""
+#~ "LottaNZB - Automatisierter Usenet-Client\n"
+#~ "Copyright (C) 2007-2010 LottaNZB-Entwicklungsteam\n"
+#~ "\n"
+#~ "LottaNZB ist freie Software. Sie können es unter den\n"
+#~ "Bedingungen der GNU General Public License, wie von\n"
+#~ "der Free Software Foundation veröffentlicht,\n"
+#~ "weitergeben und/oder modifizieren, entweder gemäß\n"
+#~ "Version 3 der Lizenz oder (nach Ihrer Option) jeder\n"
+#~ "späteren Version.\n"
+#~ "\n"
+#~ "Die Veröffentlichung dieses Programms erfolgt in der\n"
+#~ "Hoffnung, daß es Ihnen von Nutzen sein wird, aber\n"
+#~ "OHNE IRGENDEINE GARANTIE, sogar ohne die implizite\n"
+#~ "Garantie der MARKTREIFE oder der VERWENDBARKEIT\n"
+#~ "FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in\n"
+#~ "der GNU General Public License.\n"
+#~ "\n"
+#~ "Sie sollten ein Exemplar der GNU General Public License\n"
+#~ "zusammen mit diesem Programm erhalten haben. Falls\n"
+#~ "nicht, siehe <http://www.gnu.org/licenses/>."
+
+#~ msgid "Control LottaNZB using a menu in the panel."
+#~ msgstr "LottaNZB durch ein Menü im Panel steuern."
+
+#~ msgid "Panel menu"
+#~ msgstr "Panel-Menü"
+
+#, python-format
+#~ msgid ""
+#~ "Use the default download directory '%(default_dir)s' because '%(dir)s' "
+#~ "doesn't exist and could not be created."
+#~ msgstr ""
+#~ "Verwende das standardmässige Download-Verzeichnis '%(default_dir)s', da "
+#~ "'%(dir)s' nicht existiert und nicht angelegt werden konnte."
+
+#~ msgid "Plug-in not found."
+#~ msgstr "Erweiterung nicht gefunden."
+
+#~ msgid "Allowing suspending."
+#~ msgstr "Erlaube Bereitschaftszustand."
+
+#~ msgid "Inhibit suspending"
+#~ msgstr "Bereitschaftszustand verhindern"
+
+#~ msgid "Prevents the computer from being suspended while downloading."
+#~ msgstr ""
+#~ "Verhindert, dass der Rechner während des Herunterladens in Bereitschaft "
+#~ "versetzt wird."
+
+#~ msgid "Disallowing suspending."
+#~ msgstr "Verbiete Bereitschaftszustand."
+
+#~ msgid "Pause all"
+#~ msgstr "Alle anhalten"
+
+#, python-format
+#~ msgid "Could not reallow suspending: %s"
+#~ msgstr "Konnte Bereitschaftszustand nicht erneut erlauben: %s"
+
+#, python-format
+#~ msgid "Could not disallow suspending: %s"
+#~ msgstr "Konnte Bereitschaftszustand nicht verbieten: %s"
+
+#~ msgid "Anime"
+#~ msgstr "Anime"
+
+#~ msgid "PDA"
+#~ msgstr "PDA"
+
+#~ msgid "Resources"
+#~ msgstr "Ressourcen"
+
+#~ msgid "Movies"
+#~ msgstr "Filme"
+
+#~ msgid "Apps"
+#~ msgstr "Programme"
+
+#~ msgid "TV"
+#~ msgstr "TV"
+
+#~ msgid "Misc"
+#~ msgstr "Verschiedenes"
+
+#~ msgid "Games"
+#~ msgstr "Spiele"
+
+#~ msgid "Books"
+#~ msgstr "Bücher"
+
+#~ msgid "Emulation"
+#~ msgstr "Emulation"
+
+#~ msgid "<b>Web Interface</b>"
+#~ msgstr "<b>Web-Oberfläche</b>"
+
+#~ msgid "Generate new API key"
+#~ msgstr "Neuen API-Schlüssel generieren"
+
+#~ msgid "<b>Use this news server</b>"
+#~ msgstr "<b>Diesen News-Server verwenden</b>"
+
+#~ msgid "<b>Other information</b>"
+#~ msgstr "<b>Weitere Informationen</b>"
+
+#, python-format
+#~ msgid "%sAdditional software%s is required."
+#~ msgstr "%sZusätzliche Software%s wird benötigt."
+
+#, python-format
+#~ msgid "Remaining: %(size)s"
+#~ msgstr "Verbleibend: %(size)s"
+
+#~ msgid "SABnzbd _executable:"
+#~ msgstr "SABnzbd-Programm_datei:"
+
+#~ msgid "If your news server needs this information:"
+#~ msgstr "Wenn der News-Server diese Informationen benötigt:"
+
+#, python-format
+#~ msgid "Remaining: %(size)s - %(time)s"
+#~ msgstr "Verbleibend: %(size)s - %(time)s"
+
+#~ msgid "Download time:"
+#~ msgstr "Download-Zeit:"
+
+#~ msgid "Age:"
+#~ msgstr "Alter:"
+
+#~ msgid "Downloaded:"
+#~ msgstr "Heruntergeladen:"
+
+#~ msgid ""
+#~ "To make full use of LottaNZB, please install the following software and "
+#~ "restart SABnzbd using the button below.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Um LottaNZB in vollem Umfang nutzen zu können, installieren Sie bitte die "
+#~ "folgende Software und starten SABnzbd mit dem Knopf unten neu.\n"
+#~ "\n"
+
+#, python-format
+#~ msgid ""
+#~ "To make full use of LottaNZB, please install the following software on '%s' "
+#~ "and restart SABnzbd using the button below.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Um LottaNZB in vollem Umfang nutzen zu können, installieren Sie bitte die "
+#~ "folgende Software auf '%s' und starten SABnzbd mit dem Knopf unten neu.\n"
+#~ "\n"
+
+#~ msgid "Show..."
+#~ msgstr "Anzeigen..."
+
+#~ msgid "Download properties"
+#~ msgstr "Download-Eigenschaften"
+
+#~ msgid "Completed:"
+#~ msgstr "Erledigt:"
+
+#~ msgid "Status:"
+#~ msgstr "Status:"
+
+#~ msgid "Postprocessing:"
+#~ msgstr "Verarbeitung:"
+
+#~ msgid "Size:"
+#~ msgstr "Größe:"
+
+#~ msgid "ETA:"
+#~ msgstr "ETA:"
+
+#~ msgid "Error message:"
+#~ msgstr "Fehlermeldung:"
+
+#~ msgid "Time left:"
+#~ msgstr "Verbleibende Zeit:"
+
+#~ msgid "<b>Connect to computer</b>"
+#~ msgstr "<b>Verbinden mit Rechner</b>"
+
+#, python-format
+#~ msgid "%(time)s\t%(message)s\n"
+#~ msgstr "%(time)s\t%(message)s\n"
+
+#~ msgid "_Download directory:"
+#~ msgstr "_Download-Verzeichnis:"
+
+#~ msgid "Web"
+#~ msgstr "Web"
+
+#~ msgid "Incomplete"
+#~ msgstr "Unvollständig"
+
+#~ msgid "Start downloading"
+#~ msgstr "Mit dem Herunterladen beginnen"
+
+#~ msgid "Script"
+#~ msgstr "Skript"
+
+#~ msgid "Moving"
+#~ msgstr "Verschieben"
+
+#~ msgid "Report a problem"
+#~ msgstr "Problem berichten"
+
+#~ msgid "Clear completed"
+#~ msgstr "Fertige entfernen"
+
+#, python-format
+#~ msgid "Repairing download... (%s%%)"
+#~ msgstr "Reparieren... (%s%%)"
+
+#~ msgid "Verifying download..."
+#~ msgstr "Überprüfen..."
+
+#~ msgid "Downloading recovery files..."
+#~ msgstr "Herunterladen von Wiederherstellungsdateien..."
+
+#~ msgid "Joining download..."
+#~ msgstr "Zusammenführen..."
+
+#, python-format
+#~ msgid "Unpacking download... (%s%%)"
+#~ msgstr "Entpacken...  (%s%%)"
+
+#~ msgid "Moving download to its destination..."
+#~ msgstr "Ins Downloadverzeichnis verschieben..."
+
+#, python-format
+#~ msgid "%(remaining_time)s remaining"
+#~ msgstr "%(remaining_time)s verbleibend"
+
+#~ msgid "Miscellaneous"
+#~ msgstr "Verschiedenes"
+
+#~ msgid "Consoles"
+#~ msgstr "Konsolen"
+
+#~ msgid "Moving to download directory..."
+#~ msgstr "Verschieben ins Download-Verzeichnis..."
+
+#, python-format
+#~ msgid "Unpacking... (%s%%)"
+#~ msgstr "Entpacken... (%s%%)"
+
+#, python-format
+#~ msgid "Repairing... (%s%%)"
+#~ msgstr "Reparieren... (%s%%)"
+
+#~ msgid "Verifying..."
+#~ msgstr "Überprüfen..."
+
+#, python-format
+#~ msgid "Unable to start session '%s': %s"
+#~ msgstr "Starten der Sitzung '%s' fehlgeschlagen: %s"
+
+#~ msgid "Configuration item does not exist."
+#~ msgstr "Konfigurations-Entität existiert nicht."
+
+#~ msgid "Requires authentication"
+#~ msgstr "Erfordert Authentifizierung"
+
+#~ msgid "Query took too long too execute."
+#~ msgstr "Abfrage dauerte zu lange."
+
+#~ msgid "Not a file"
+#~ msgstr "Keine Datei"
+
+#~ msgid "SABnzbd has been successfully shut down."
+#~ msgstr "SABnzbd wurde erfolgreich beendet."
+
+#~ msgid "File not executable"
+#~ msgstr "Datei nicht ausführbar"
+
+#~ msgid "Additional software"
+#~ msgstr "Zusätzliche Software"
+
+#~ msgid "<big><b>Additional software</b></big>"
+#~ msgstr "<big><b>Zusätzliche Software</b></big>"
+
+#, python-format
+#~ msgid "Verifying... (%s%%)"
+#~ msgstr "Überprüfen... (%s%%)"
+
+#~ msgid "Unpacking... ({0.unpack_percentage}%)"
+#~ msgstr "Entpacken... ({0.unpack_percentage}%)"
+
+#~ msgid "Remaining: {0.size_left} - {0.time_left.short}"
+#~ msgstr "Verbleibend: {0.size_left} - {0.time_left.short}"
+
+#~ msgid "Remaining: {0.size_left}"
+#~ msgstr "Verbleibend: {0.size_left}"
+
+#~ msgid "Downloading - {0.time_left.short} remaining"
+#~ msgstr "Herunterladen - {0.time_left.short} verbleibend"
+
+#~ msgid "Open..."
+#~ msgstr "Öffnen..."
+
+#~ msgid "Select SABnzbd executable"
+#~ msgstr "SABnzbd-Programmdatei auswählen"
+
+#, python-format
+#~ msgid "Could not start session '%s': %s"
+#~ msgstr "Konnte Session '%s' nicht starten: %s"
+
+#~ msgid "_Add..."
+#~ msgstr "_Hinzufügen..."
+
+#, python-format
+#~ msgid "Import %i unfinished download from previous program version?"
+#~ msgid_plural "Import %i unfinished downloads from previous program version?"
+#~ msgstr[0] ""
+#~ "%i unfertigen Download aus vorheriger Programmversion importieren?"
+#~ msgstr[1] ""
+#~ "%i unfertige Downloads aus vorheriger Programmversion importieren?"
+
+#, python-format
+#~ msgid "Import %i unfinished download?"
+#~ msgid_plural "Import %i unfinished downloads?"
+#~ msgstr[0] "%i unfertigen Download importieren?"
+#~ msgstr[1] "%i unfertige Downloads importieren?"
+
+#~ msgid "Clear Completed"
+#~ msgstr "Fertige entfernen"
+
+#~ msgid "Pause All"
+#~ msgstr "Alle anhalten"
+
+#~ msgid "Add NZB File"
+#~ msgstr "NZB-Datei hinzufügen"
+
+#~ msgid "Report a Problem"
+#~ msgstr "Ein Problem melden"
+
+#~ msgid "Move to _top of queue"
+#~ msgstr "An den _Anfang der Warteschlange verschieben"
+
+#~ msgid "Message _Log..."
+#~ msgstr "Nachrichtenprotokoll..."
+
+#~ msgid "_Open Directory..."
+#~ msgstr "_Verzeichnis öffnen..."
+
+#~ msgid "_Download"
+#~ msgstr "_Download"
+
+#~ msgid "<b>Miscellaneous</b>"
+#~ msgstr "<b>Verschiedenes</b>"
+
+#~ msgid "_Clear Completed"
+#~ msgstr "_Fertige entfernen"
+
+#~ msgid "Open _Web Interface..."
+#~ msgstr "_Web-Oberfläche öffnen..."
+
+#~ msgid "_Open Download Folder..."
+#~ msgstr "Download-_Ordner öffnen..."
+
+#~ msgid ""
+#~ "LottaNZB - Automated Usenet Client\n"
+#~ "Copyright (C) 2007-2011 LottaNZB Development Team\n"
+#~ "\n"
+#~ "This program is free software: you can redistribute it and/or modify\n"
+#~ "it under the terms of the GNU General Public License as published by\n"
+#~ "the Free Software Foundation, version 3 of the License.\n"
+#~ "\n"
+#~ "This program is distributed in the hope that it will be useful,\n"
+#~ "but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+#~ "GNU General Public License for more details.\n"
+#~ "\n"
+#~ "You should have received a copy of the GNU General Public License\n"
+#~ "along with this program.  If not, see <http://www.gnu.org/licenses/>."
+#~ msgstr ""
+#~ "LottaNZB - Automatisierter Usenet-Client\n"
+#~ "Copyright (C) 2007-2011 LottaNZB-Entwicklungsteam\n"
+#~ "\n"
+#~ "LottaNZB ist freie Software. Sie können es unter den\n"
+#~ "Bedingungen der GNU General Public License, wie von\n"
+#~ "der Free Software Foundation veröffentlicht,\n"
+#~ "weitergeben und/oder modifizieren, entweder gemäß\n"
+#~ "Version 3 der Lizenz oder (nach Ihrer Option) jeder\n"
+#~ "späteren Version.\n"
+#~ "\n"
+#~ "Die Veröffentlichung dieses Programms erfolgt in der\n"
+#~ "Hoffnung, daß es Ihnen von Nutzen sein wird, aber\n"
+#~ "OHNE IRGENDEINE GARANTIE, sogar ohne die implizite\n"
+#~ "Garantie der MARKTREIFE oder der VERWENDBARKEIT\n"
+#~ "FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in\n"
+#~ "der GNU General Public License.\n"
+#~ "\n"
+#~ "Sie sollten ein Exemplar der GNU General Public License\n"
+#~ "zusammen mit diesem Programm erhalten haben. Falls\n"
+#~ "nicht, siehe <http://www.gnu.org/licenses/>."
+
+#~ msgid ""
+#~ "SABnzbd {version} is not supported yet.\n"
+#~ "Use the <a href='{url}'>web interface</a> instead."
+#~ msgstr ""
+#~ "SABnzbd {version} wird noch nicht unterstützt.\n"
+#~ "Verwenden Sie stattdessen das <a href='{url}'>Web-Interface</a>."

@@ -1,0 +1,22 @@
+[Desktop Entry]
+Version=1.0
+_Name=LottaNZB Usenet Downloader
+_GenericName=Usenet Downloader
+_Comment=Download from the Usenet with the help of NZB files
+Exec=lottanzb %F
+Icon=lottanzb
+Terminal=false
+Type=Application
+MimeType=application/x-nzb;application/force-download;
+Categories=Network;FileTransfer;GNOME;GTK;
+X-Ayatana-Desktop-Shortcuts=AddFile;AddURL;
+
+[AddFile Shortcut Group]
+_Name=Add an NZB File
+Exec=lottanzb --gui add
+TargetEnvironment=Unity
+
+[AddURL Shortcut Group]
+_Name=Add an URL
+Exec=lottanzb --gui add_url
+TargetEnvironment=Unity

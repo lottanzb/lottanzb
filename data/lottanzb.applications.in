@@ -1,0 +1,7 @@
+lottanzb
+	command=lottanzb
+	name=LottaNZB
+	can_open_multiple_files=true
+	expects_uris=false
+	requires_terminal=false
+	mime_types=application/x-nzb;application/force-download;

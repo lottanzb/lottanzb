@@ -1,0 +1,8 @@
+application/x-nzb:
+	_description=NZB Download File
+	icon_filename=application-x-nzb
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=lottanzb
+	short_list_application_ids_for_intermediate_user_level=lottanzb
+	short_list_application_ids_for_advanced_user_level=lottanzb
+

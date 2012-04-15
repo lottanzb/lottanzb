@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="apps.lottanzb" path="/apps/lottanzb/" gettext-domain="lottanzb">
+    <child schema="apps.lottanzb.backend" name="backend"/>
+    <child schema="apps.lottanzb.gui" name="gui"/>
+    <child schema="apps.lottanzb.plugins" name="plugins"/>
+  </schema>
+  <schema id="apps.lottanzb.backend" path="/apps/lottanzb/backend/"
+      gettext-domain="lottanzb">
+    <key type="s" name="active-session">
+      <choices>
+        <choice value="local" />
+        <choice value="remote" />
+      </choices>
+      <default>'local'</default>
+      <summary>Active session</summary>
+      <description>
+        The name of the active session, i.e. 'local' when downloading to the
+        current computer and 'remote' when downloading to another computer.
+      </description>
+    </key>
+    <key type="b" name="delete-nzb-files">
+      <default>false</default>
+      <summary>Delete added NZB files</summary>
+      <description>
+        Whether to delete NZB files manually added to the download queue.
+      </description>
+    </key>
+    <child schema="apps.lottanzb.backend.remote" name="remote"/>
+  </schema>
+  <schema id="apps.lottanzb.backend.remote" path="/apps/lottanzb/backend/remote/"
+      gettext-domain="lottanzb">
+    <key type="s" name="host">
+      <default>'localhost'</default>
+      <summary></summary>
+      <description>
+      </description>
+    </key>
+    <key type="i" name="port">
+      <default>8080</default>
+      <summary></summary>
+      <description>
+      </description>
+    </key>
+    <key type="s" name="username">
+      <default>''</default>
+      <summary></summary>
+      <description>
+      </description>
+    </key>
+    <key type="s" name="password">
+      <default>''</default>
+      <summary></summary>
+      <description>
+      </description>
+    </key>
+    <key type="s" name="api-key">
+      <default>''</default>
+      <summary></summary>
+      <description>
+      </description>
+    </key>
+    <key type="b" name="https">
+      <default>false</default>
+      <summary></summary>
+      <description>
+      </description>
+    </key>
+  </schema>
+  <schema id="apps.lottanzb.gui" path="/apps/lottanzb/gui/"
+      gettext-domain="lottanzb">
+    <child schema="apps.lottanzb.gui.add-file" name="add-file"/>
+    <child schema="apps.lottanzb.gui.main" name="main"/>
+  </schema>
+  <schema id="apps.lottanzb.gui.add-file" path="/apps/lottanzb/gui/add-file/"
+      gettext-domain="lottanzb">
+    <key type="s" name="last-folder-uri">
+      <default>''</default>
+      <summary>Most recently accessed folder</summary>
+      <description>
+        The path to the folder that was selected the most recent in the dialog
+        for adding NZB files.
+      </description>
+    </key>
+  </schema>
+  <schema id="apps.lottanzb.gui.main" path="/apps/lottanzb/gui/main/"
+      gettext-domain="lottanzb">
+    <key type="(ii)" name="size">
+      <default>(700, 350)</default>
+      <summary>Main window size</summary>
+      <description>The main window width and height in pixels.</description>
+    </key>
+    <key type="(ii)" name="position">
+      <default>(100, 100)</default>
+      <summary>Main window position</summary>
+      <description>
+        The X and Y coordinate of the main window in pixels.
+      </description>
+    </key>
+    <key type="i" name="state">
+      <default>0</default>
+      <summary>Main window</summary>
+      <description>
+        Whether the main window should fill the whole screen or not.
+      </description>
+    </key>
+    <key type="b" name="show-infobar">
+      <default>true</default>
+      <summary>Show the infobar</summary>
+      <description>Whether to show the infobar in the main window.</description>
+    </key>
+    <key type="b" name="show-reordering-pane">
+      <default>true</default>
+      <summary>Show the reordering pane</summary>
+      <description>
+        Whether to show the download reordering pane in the main window.
+      </description>
+    </key>
+    <key type="b" name="show-toolbar">
+      <default>true</default>
+      <summary>Show the toolbar</summary>
+      <description>Whether to show the toolbar in the main window.</description>
+    </key>
+  </schema>
+  <schema id="apps.lottanzb.plugins" path="/apps/lottanzb/plugins/"
+      gettext-domain="lottanzb">
+  </schema>
+</schemalist>

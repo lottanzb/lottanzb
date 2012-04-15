@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="apps.lottanzb.backend.sabnzbdplus" gettext-domain="lottanzb">
+    <child schema="apps.lottanzb.backend.sabnzbdplus.misc" name="misc" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.servers" name="servers" />
+  </schema>
+  <schema id="apps.lottanzb.backend.sabnzbdplus.misc">
+    <key type="b" name="quick-check">
+      <default>true</default>
+    </key>
+    <key type="b" name="fail-on-crc">
+      <default>false</default>
+    </key>
+    <key type="b" name="send-group">
+      <default>false</default>
+    </key>
+    <key type="b" name="sfv-check">
+      <default>true</default>
+    </key>
+    <key type="s" name="email-server">
+      <default>''</default>
+    </key>
+    <key type="as" name="email-to">
+      <default>[]</default>
+    </key>
+    <key type="s" name="email-from">
+      <default>''</default>
+    </key>
+    <key type="s" name="email-account">
+      <default>''</default>
+    </key>
+    <key type="s" name="email-pwd">
+      <default>''</default>
+    </key>
+    <key type="b" name="email-endjob">
+      <default>false</default>
+    </key>
+    <key type="b" name="email-full">
+      <default>false</default>
+    </key>
+    <key type="s" name="email-dir">
+      <default>''</default>
+    </key>
+    <key type="i" name="dirscan-speed">
+      <default>5</default>
+    </key>
+    <key type="b" name="auto-browser">
+      <default>false</default>
+    </key>
+    <key type="b" name="check-new-rel">
+      <default>true</default>
+    </key>
+    <key type="b" name="enable-unrar">
+      <default>true</default>
+    </key>
+    <key type="b" name="enable-unzip">
+      <default>true</default>
+    </key>
+    <key type="b" name="enable-filejoin">
+      <default>true</default>
+    </key>
+    <key type="b" name="enable-tsjoin">
+      <default>true</default>
+    </key>
+    <key type="b" name="enable-par-cleanup">
+      <default>true</default>
+    </key>
+    <key type="b" name="never-repair">
+      <default>false</default>
+    </key>
+    <key type="s" name="par-option">
+      <default>''</default>
+    </key>
+    <key type="s" name="nice">
+      <default>'-n 19'</default>
+    </key>
+    <key type="s" name="ionice">
+      <default>'-c3'</default>
+    </key>
+    <key type="b" name="ignore-wrong-unrar">
+      <default>true</default>
+    </key>
+    <key type="b" name="par2-multicore">
+      <default>true</default>
+    </key>
+    <key type="b" name="allow-64bit-tools">
+      <default>true</default>
+    </key>
+    <key type="s" name="password-file">
+      <default>''</default>
+    </key>
+    <key type="b" name="allow-streaming">
+      <default>false</default>
+    </key>
+    <key type="b" name="top-only">
+      <default>true</default>
+    </key>
+    <key type="b" name="auto-disconnect">
+      <default>true</default>
+    </key>
+    <key type="s" name="queue-complete">
+      <default>''</default>
+    </key>
+    <key type="b" name="queue-complete-pers">
+      <default>true</default>
+    </key>
+    <key type="b" name="replace-illegal">
+      <default>true</default>
+    </key>
+    <key type="b" name="replace-spaces">
+      <default>false</default>
+    </key>
+    <key type="b" name="replace-dots">
+      <default>false</default>
+    </key>
+    <key type="b" name="no-dupes">
+      <default>true</default>
+    </key>
+    <key type="b" name="ignore-samples">
+      <default>false</default>
+    </key>
+    <key type="s" name="size-limit">
+      <default>''</default>
+    </key>
+
+    <key type="b" name="create-group-folders">
+      <default>false</default>
+    </key>
+    <key type="b" name="auto-sort">
+      <default>false</default>
+    </key>
+    <key type="b" name="folder-rename">
+      <default>true</default>
+    </key>
+    <key type="i" name="folder-max-length">
+      <default>256</default>
+    </key>
+    <key type="b" name="safe-postproc">
+      <default>false</default>
+    </key>
+    <key type="b" name="pause-on-post-processing">
+      <default>false</default>
+    </key>
+    <key type="b" name="enable-tv-sorting">
+      <default>false</default>
+    </key>
+    <key type="s" name="tv-sort-string">
+      <default>''</default>
+    </key>
+    <key type="b" name="tv-sort-countries">
+      <default>true</default>
+    </key>
+    <key type="b" name="enable-movie-sorting">
+      <default>false</default>
+    </key>
+    <key type="s" name="movie-sort-string">
+      <default>''</default>
+    </key>
+    <key type="s" name="movie-sort-extra">
+      <default>'cd%1'</default>
+    </key>
+    <key type="b" name="movie-extra-folder">
+      <default>false</default>
+    </key>
+    <key type="b" name="enable-date-sorting">
+      <default>false</default>
+    </key>
+    <key type="s" name="date-sort-string">
+      <default>''</default>
+    </key>
+    <key type="b" name="config-lock">
+      <default>false</default>
+    </key>
+    <key type="s" name="permissions">
+      <default>''</default>
+    </key>
+    <key type="s" name="download-dir">
+      <default>''</default>
+    </key>
+    <key type="s" name="download-free">
+      <default>''</default>
+    </key>
+    <key type="s" name="complete-dir">
+      <default>''</default>
+    </key>
+    <key type="s" name="cache-dir">
+      <default>''</default>
+    </key>
+    <key type="s" name="admin-dir">
+      <default>'admin'</default>
+    </key>
+    <key type="s" name="log-dir">
+      <default>'logs'</default>
+    </key>
+    <key type="s" name="nzb-backup-dir">
+      <default>''</default>
+    </key>
+    <key type="s" name="script-dir">
+      <default>''</default>
+    </key>
+    <key type="s" name="dirscan-dir">
+      <default>''</default>
+    </key>
+    <key type="s" name="host">
+      <default>'localhost'</default>
+    </key>
+    <key type="i" name="port">
+      <default>8080</default>
+    </key>
+    <key type="s" name="username">
+      <default>''</default>
+    </key>
+    <key type="s" name="password">
+      <default>''</default>
+    </key>
+    <key type="s" name="login-realm">
+      <default>'SABnzbd'</default>
+    </key>
+    <key type="i" name="bandwidth-limit">
+      <default>0</default>
+    </key>
+    <key type="i" name="refresh-rate">
+      <default>0</default>
+    </key>
+    <key type="i" name="rss-rate">
+      <default>60</default>
+    </key>
+    <key type="s" name="cache-limit">
+      <default>''</default>
+    </key>
+    <key type="s" name="web-dir">
+      <default>'Default'</default>
+    </key>
+    <key type="s" name="web-dir2">
+      <default>''</default>
+    </key>
+    <key type="s" name="web-color">
+      <default>''</default>
+    </key>
+    <key type="s" name="web-color2">
+      <default>''</default>
+    </key>
+    <key type="b" name="enable-https">
+      <default>false</default>
+    </key>
+    <key type="i" name="https-port">
+      <default>9090</default>
+    </key>
+    <key type="s" name="https-key">
+      <default>'server.key'</default>
+    </key>
+    <key type="s" name="https-cert">
+      <default>'server.cert'</default>
+    </key>
+    <key type="s" name="ssl-type">
+      <default>'v23'</default>
+    </key>
+    <key type="s" name="language">
+      <default>'en'</default>
+    </key>
+    <key type="b" name="unpack-check">
+      <default>true</default>
+    </key>
+    <key type="b" name="no-penalties">
+      <default>false</default>
+    </key>
+    <key type="s" name="api-key">
+      <default>''</default>
+    </key>
+    <key type="b" name="disable-api-key">
+      <default>false</default>
+    </key>
+    <key type="b" name="api-warnings">
+      <default>true</default>
+    </key>
+  </schema>
+  <schema id="apps.lottanzb.backend.sabnzbdplus.server">
+    <key type="s" name="name">
+      <default>''</default>
+    </key>
+    <key type="s" name="host">
+      <default>''</default>
+    </key>
+    <key type="i" name="port">
+      <default>119</default>
+    </key>
+    <key type="s" name="username">
+      <default>''</default>
+    </key>
+    <key type="s" name="password">
+      <default>''</default>
+    </key>
+    <key type="b" name="enable">
+      <default>true</default>
+    </key>
+    <key type="b" name="fillserver">
+      <default>false</default>
+    </key>
+    <key type="b" name="optional">
+      <default>false</default>
+    </key>
+    <key type="b" name="ssl">
+      <default>false</default>
+    </key>
+    <key type="i" name="connections">
+      <default>6</default>
+    </key>
+    <key type="i" name="timeout">
+      <default>30</default>
+    </key>
+    <key type="i" name="retention">
+      <default>0</default>
+    </key>
+  </schema>
+  <schema id="apps.lottanzb.backend.sabnzbdplus.servers">
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server0" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server1" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server2" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server3" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server4" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server5" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server6" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server7" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server8" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server9" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server10" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server11" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server12" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server13" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server14" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server15" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server16" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server17" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server18" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server19" />
+  </schema>
+</schemalist>
