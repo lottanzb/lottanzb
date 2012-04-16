@@ -17,15 +17,6 @@
 
 using Lottanzb;
 
-public Gee.List<Download> make_downloads (string[] ids, DownloadStatus status = DownloadStatus.QUEUED) {
-	var downloads = new Gee.ArrayList<Download> ();
-	foreach (var id in ids) {
-		var download = make_download (id, status);
-		downloads.add (download);
-	}
-	return downloads;
-}
-
 public void assert_download_list_store_download_order (DownloadListStore list_store, string[] ids) {
 	Gtk.TreeIter iter;
 	assert (list_store.iter_n_children (null) == ids.length);

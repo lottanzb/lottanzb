@@ -17,13 +17,6 @@
 
 using Lottanzb;
 
-public Download make_download (string id, DownloadStatus status = DownloadStatus.QUEUED) {
-	var download = new DownloadImpl ();
-	download.id = id;
-	download.status = status;
-	return download;
-}
-
 public void test_download_list_store_basic () {
 	var store = new DownloadListStore ();
 	var first_download = make_download ("a");
