@@ -16,12 +16,17 @@
 */
 
 
-public class Lottanzb.MockQueryProcessor : Object, QueryProcessor, QueryNotifier<Query> {
+public class Lottanzb.MockQueryProcessor : Object, QueryNotifier<Query>, QueryProcessor {
 
 	public ConnectionInfo connection_info { get; construct set; }
 	
-	public MockQueryProcessor (ConnectionInfo connection_info) {
+	public MockQueryProcessor.with_connection_info (ConnectionInfo connection_info) {
 		this.connection_info = connection_info;
+	}
+
+	public MockQueryProcessor () {
+		var connection_info = new ConnectionInfo ("localhost", 119, "", "", "", false);
+		this.with_connection_info (connection_info);
 	}
 
 	public QueryNotifier<T> get_query_notifier<T> () {
