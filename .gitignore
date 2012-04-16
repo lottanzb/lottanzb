@@ -3,3 +3,4 @@ local
 po/.intlcache
 .waf*
 .lock*
+*.swp
