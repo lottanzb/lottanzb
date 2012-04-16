@@ -62,9 +62,13 @@ public struct Lottanzb.TimeDelta {
 					TimeDeltaUnit time_delta_unit = TimeDeltaUnit.from_char(time_delta_unit_char);
 					this.with_unit(time_delta, time_delta_unit);
 					this.total_seconds = time_delta_unit.get_seconds() * time_delta;
+				} else {
+					this.total_seconds = 0;
+					if (time_delta_string.length > 0) {
+						warning ("could not parse time delta: %s", time_delta_string);
+					}
 				}
 			}
-			// this.total_seconds = 0; // TODO: Throw error
 		} catch (RegexError e) {
 			warning ("%s", e.message);
 		}
