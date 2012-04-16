@@ -279,8 +279,12 @@ public class Lottanzb.DownloadImpl : Object, Download {
 	}
 	public int percentage {
 		get { return _percentage; }
-		internal set { _percentage = value; }
-	} // TODO: Limit to [0, 100]
+		internal set {
+			assert (0 <= value);
+			assert (value <= 100);
+			_percentage = value;
+		}
+	}
 	public string script {
 		get { return _script; }
 		internal set { _script = value; }
@@ -319,20 +323,35 @@ public class Lottanzb.DownloadImpl : Object, Download {
 	}
 	public int verification_percentage {
 		get { return _verification_percentage; }
-		internal set { _verification_percentage = value; }
-	} // TODO: Limit to [0, 100]
+		internal set {
+			assert (0 <= value);
+			assert (value <= 100);
+			_verification_percentage = value;
+		}
+	}
 	public int repair_percentage {
 		get { return _repair_percentage; }
-		internal set { _repair_percentage = value; }
-	} // TODO: Limit to [0, 100]
+		internal set {
+			assert (0 <= value);
+			assert (value <= 100);
+			_repair_percentage = value;
+		}
+	}
 	public int unpack_percentage {
 		get { return _unpack_percentage; }
-		internal set { _unpack_percentage = value; }
-	} // TODO: Limit to [0, 100]
+		internal set {
+		   	assert (0 <= value);
+			assert (value <= 100);
+			_unpack_percentage = value;
+		}
+	}
 	public int recovery_block_count {
 		get { return _recovery_block_count; }
-		internal set { _recovery_block_count = value; }
-	} // TODO: Minimum 0
+		internal set {
+			assert (0 <= value);
+			_recovery_block_count = value;
+		}
+	}
 	
 	public void update (Download download) {
 		id = download.id;
