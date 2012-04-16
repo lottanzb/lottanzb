@@ -35,7 +35,7 @@ public struct Lottanzb.DataSize {
 			MatchInfo match_info;
 			bool match = pattern.match(data_size_string, 0, out match_info);
 			if (match) {
-				string unit_string = match_info.fetch_named("unit"); // TODO: strip 'B'
+				string unit_string = match_info.fetch_named("unit");
 				var unit_char = 'B';
 				if (unit_string.length > 0) {
 					unit_char = unit_string[0];
@@ -43,11 +43,13 @@ public struct Lottanzb.DataSize {
 				DataSizeUnit unit = DataSizeUnit.from_char(unit_char);
 				var size = double.parse(match_info.fetch_named("size"));
 				this.bytes = (long) (size * unit.get_bytes());
-				// this.with_unit(size, unit); // TODO: Does not work
-			} else if (data_size_string.length == 0) {
+				// NOTE: Calling this.with_unit (size, unit) does not work.
+			} else {
 				this.bytes = 0;
+				if (data_size_string.length > 0) {
+					warning ("could not parse data size: %s", data_size_string);
+				}
 			}
-			// TODO: Error
 		} catch (RegexError e) {
 			warning ("%s", e.message);
 		}
@@ -114,7 +116,7 @@ public struct Lottanzb.DataSize {
 		var size = get(major_unit);
 		if (unit == DataSizeUnit.BYTES) {
 			var unit_string = ngettext("byte", "bytes", (long) size);
-			// Don't show any decimal places when displaying a number of bytes.
+			// Do not show any decimal places when displaying a number of bytes.
 			return "%.0f %s".printf(size, unit_string);
 		} else {
 			var unit_string = unit.to_string();
@@ -237,5 +239,4 @@ public enum Lottanzb.DataSizeUnit {
 		}
 	}
 	
-	// TODO: Comparison methods
 }
