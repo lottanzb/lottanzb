@@ -13,7 +13,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 using Gtk;
 
@@ -88,7 +88,7 @@ public class Lottanzb.GeneralHub : Object {
 	private void handle_history_query (GetHistoryQuery query) {
 		history_updater.update (query.get_response ().downloads);	
 	}
-	
+
 	public bool paused {
 		get {
 			return _paused;
@@ -122,16 +122,16 @@ public class Lottanzb.GeneralHub : Object {
 
 	public void add_file (string file_name, DownloadPostProcessing? post_processing = null, string? script = null, string? category = null, DownloadPriority? priority = DownloadPriority.NORMAL,
 		string? name = null) {
-		
+
 	}
-	
+
 	public void add_url (string url, DownloadPostProcessing post_processing,
 		string script, string category, DownloadPriority priority) {
 	}
-	
+
 	public void add_id (string id, DownloadPostProcessing post_processing,
 		string script, string category, DownloadPriority priority) {
-		
+
 	}
 
 	public void pause_downloads (Gee.List<Download> downloads) {
@@ -150,12 +150,8 @@ public class Lottanzb.GeneralHub : Object {
 		query_processor.resume_downloads (download_ids);
 	}
 
-	public void move_download (Download download, int index) {
-		var is_movable = download.status.is_in_group (DownloadStatusGroup.MOVABLE);
-		if (!is_movable) {
-			// TODO: Throw error
-			return;
-		}
+	public void move_download (Download download, int index)
+		requires (download.status.is_in_group (DownloadStatusGroup.MOVABLE)) {
 		var filter = download_list_store.get_filter_not_fully_loaded ();
 		var filter_path = new Gtk.TreePath.from_indices (index);
 		Gtk.TreeIter filter_iter, target_iter;
