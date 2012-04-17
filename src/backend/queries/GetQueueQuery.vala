@@ -291,7 +291,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			} else if (status.is_in_group(DownloadStatusGroup.FULLY_LOADED)) {
 				return 100;
 			}
-			return -1;
+			return 0;
 		}
 		internal set { assert(false); }
 	}
@@ -349,7 +349,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 					return int.parse(message_id_string);
 				}
 			}
-			return -1;
+			return 0;
 		}
 		internal set { assert(false); }
 	}
@@ -425,7 +425,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 					return verified_pieces / total_pieces * 100;
 				}
 			}
-			return -1;
+			return 0;
 		}
 		internal set { assert(false); }
 	}
@@ -440,7 +440,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 					return int.parse(match_info.fetch(1));
 				}
 			}
-			return -1;
+			return 0;
 		}
 		internal set { assert(false); }
 	}
@@ -457,7 +457,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 					return extracted_pieces / total_pieces * 100;
 				}
 			}
-			return -1;
+			return 0;
 		}
 		internal set { assert(false); }
 	}
@@ -472,7 +472,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 					return int.parse(match_info.fetch(1));
 				}
 			}
-			return -1;
+			return 0;
 		}
 		internal set { assert(false); }
 	}
