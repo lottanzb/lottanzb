@@ -15,6 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Lottanzb;
+
+public ConnectionInfo make_mock_connection_info () {
+	var connection_info = new ConnectionInfo ("localhost", 119, "", "", "", false);
+	return connection_info;
+
+}
 
 public class Lottanzb.MockQueryProcessor : Object, QueryNotifier<Query>, QueryProcessor<Query> {
 
@@ -25,7 +32,6 @@ public class Lottanzb.MockQueryProcessor : Object, QueryNotifier<Query>, QueryPr
 	}
 
 	public MockQueryProcessor () {
-		var connection_info = new ConnectionInfo ("localhost", 119, "", "", "", false);
 		this.with_connection_info (connection_info);
 	}
 
