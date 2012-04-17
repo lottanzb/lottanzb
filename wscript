@@ -108,7 +108,8 @@ def build(bld):
                 for header_file in ['config.h', 'data/lottanzb.gresource.h']],
         packages='glib-2.0 gio-2.0 gtk+-3.0 gmodule-2.0 json-glib-1.0 ' + \
             'libsoup-2.4 libvala-0.16 gee-1.0 launchpad-integration-3.0 ' + \
-            'lottanzb-config lottanzb-resource lottanzb-gsettings-workaround',
+            'lottanzb-config lottanzb-resource lottanzb-test-resource ' + \
+            'lottanzb-gsettings-workaround',
         uselib='GLIB GIO GTK+ GMODULE LIBSOUP JSON VALA GEE LP',
         vala_defines=['DEBUG'])
     app.add_settings_schemas(['data/apps.lottanzb.gschema.xml',
@@ -185,16 +186,18 @@ def process_resource_bundles(self):
         input_nodes = [bundle_node]
         output_nodes = [r_change_ext (bundle_node, '.c'), r_change_ext (bundle_node, '.h')]
         bundle_list_node = r_change_ext(bundle_node, '.list')
-        
+       
+        source_node = bundle_node.parent
         get = self.env.get_flat
         self.bld.exec_command('%s --generate-dependencies --sourcedir=%s %s > %s' %
-                (get('GLIB_COMPILE_RESOURCES'), 'data', bundle_node.abspath(),
-                bundle_list_node.abspath()))
+                (get('GLIB_COMPILE_RESOURCES'), source_node.abspath(),
+                bundle_node.abspath(), bundle_list_node.abspath()))
         
         for resource_file in bundle_list_node.read().splitlines():
-            resource_node = self.path.find_or_declare(resource_file)
+            relative_resource_file = resource_file[len(source_node.abspath ()):]
+            resource_node = source_node.find_resource(relative_resource_file)
             input_nodes.append(resource_node)
-        
+
         bundle_task.set_inputs (input_nodes)
         bundle_task.set_outputs (output_nodes)
 
@@ -207,13 +210,15 @@ class compile_resource_bundle(Task):
         input_node = self.inputs[0]
         bld = input_node.__class__.ctx
         get = self.env.get_flat
-        data_dir = bld.path.find_dir('data').abspath()
+        source_node = input_node.parent
+        print ("INPUT NODE: " + input_node.abspath())
         for output_node in self.outputs:
             output_node.delete()
             output_file = output_node.abspath()
             input_file = input_node.abspath()
             self.exec_command('%s --generate --sourcedir=%s --target=%s %s' %
-                (get('GLIB_COMPILE_RESOURCES'), data_dir, output_file, input_file))
+                (get('GLIB_COMPILE_RESOURCES'), source_node.abspath(),
+                output_file, input_file))
 
 """import os
 from waflib import Logs

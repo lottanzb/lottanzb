@@ -55,6 +55,8 @@ private static int main (string[] args) {
 		test_download_list_store_updater_idempotence);
 	Test.add_data_func ("/lottanzb/backend/hubs/general/updater/simple_reordering",
 		test_download_list_store_updater_simple_reordering);
+	Test.add_data_func ("/lottanzb/backend/queries/get_queue_query",
+		test_queue_query);
 	
 	return Test.run ();
 }
