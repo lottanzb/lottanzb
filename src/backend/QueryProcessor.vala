@@ -41,15 +41,23 @@ public enum Lottanzb.AuthenticationType {
 	API_KEY
 }
 
-public interface Lottanzb.QueryProcessor : Object, QueryNotifier<Query> {
+public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 
 	public abstract ConnectionInfo connection_info { get; construct set; }
 	
 	public abstract QueryNotifier<T> get_query_notifier<T> ();
 
+	public abstract void run_query (T query);
+
 	// public abstract Query set_config (string section, string key, string value);
 	
-	public abstract GetConfigQuery get_config ();
+	public abstract GetConfigQuery make_get_config_query ();
+	
+	public GetConfigQuery get_config () {
+		var query = make_get_config_query ();
+		run_query (query);
+		return query;
+	}
 	
 	/* public abstract Query delete_config (string section, string key);
 	
@@ -59,30 +67,72 @@ public interface Lottanzb.QueryProcessor : Object, QueryNotifier<Query> {
 	
 	public abstract Query set_completion_action (CompletionAction completion_action); */
 	
-	public abstract GetQueueQuery get_queue ();
-	
+	public abstract GetQueueQuery make_get_queue_query ();
+
+	public GetQueueQuery get_queue () {
+		var query = make_get_queue_query ();
+		run_query (query);
+		return query;
+	}
+
 	/* public abstract Query sort_queue (QueueSortField field, QueueSortDirection direction); */
 	
-	public abstract DeleteDownloadsQuery delete_downloads (Gee.List<string> download_ids);
+	public abstract DeleteDownloadsQuery make_delete_downloads_query (Gee.List<string> download_ids);
 	
+	public DeleteDownloadsQuery delete_downloads (Gee.List<string> download_ids) {
+		var query = make_delete_downloads_query (download_ids);
+		run_query (query);
+		return query;
+	}
+
 	/* public abstract Query delete_all_downloads ();
 	
 	public abstract Query delete_file (string download_id, string file_id); */
 
-	public abstract RenameDownloadQuery rename_download (string download_id, string new_name);
+	public abstract RenameDownloadQuery make_rename_download_query (string download_id, string new_name);
 	
+	public RenameDownloadQuery rename_download (string download_id, string new_name) {
+		var query = make_rename_download_query (download_id, new_name);
+		run_query (query);
+		return query;
+	}
+
 	/* public abstract Query purge_queue (); */
 	
-	public abstract PauseDownloadsQuery pause_downloads (Gee.List<string> download_ids);
+	public abstract PauseDownloadsQuery make_pause_downloads_query (Gee.List<string> download_ids);
 	
-	public abstract ResumeDownloadsQuery resume_downloads (Gee.List<string> download_ids);
+	public PauseDownloadsQuery pause_downloads (Gee.List<string> download_ids) {
+		var query = make_pause_downloads_query (download_ids);
+		run_query (query);
+		return query;
+	}
+
+	public abstract ResumeDownloadsQuery make_resume_downloads_query (Gee.List<string> download_ids);
 	
+	public ResumeDownloadsQuery resume_downloads (Gee.List<string> download_ids) {
+		var query = make_resume_downloads_query (download_ids);
+		run_query (query);
+		return query;
+	}
+
 	/* public abstract Query retry (string file_name, string download_id); */
 	
-	public abstract SwitchDownloadsQuery switch_downloads (string first_download_id, string second_download_id);
+	public abstract SwitchDownloadsQuery make_switch_downloads_query (string first_download_id, string second_download_id);
 
-	public abstract SetDownloadPriorityQuery set_download_priority (Gee.List<string> download_ids, DownloadPriority new_priority);
+	public SwitchDownloadsQuery switch_downloads (string first_download_id, string second_download_id) {
+		var query = make_switch_downloads_query (first_download_id, second_download_id);
+		run_query (query);
+		return query;
+	}
+
+	public abstract SetDownloadPriorityQuery make_set_download_priority_query (Gee.List<string> download_ids, DownloadPriority new_priority);
 	
+	public SetDownloadPriorityQuery set_download_priority (Gee.List<string> download_ids, DownloadPriority new_priority) {
+		var query = make_set_download_priority_query (download_ids, new_priority);
+		run_query (query);
+		return query;
+	}
+
 	/* public abstract Query set_download_category (string category, string download_ids, ...);
 	
 	public abstract Query set_download_script (string script, string download_ids, ...);
@@ -97,16 +147,34 @@ public interface Lottanzb.QueryProcessor : Object, QueryNotifier<Query> {
 	
 	public abstract Query get_files (string download_id); */
 	
-	public abstract GetHistoryQuery get_history ();
+	public abstract GetHistoryQuery make_get_history_query ();
 	
+	public GetHistoryQuery get_history () {
+		var query = make_get_history_query ();
+		run_query (query);
+		return query;
+	}
+
 	/* public abstract Query delete_history (string download_ids, ...);
 	
 	public abstract Query purge_history (); */
 	
-	public abstract PauseQuery pause ();
+	public abstract PauseQuery make_pause_query ();
 
-	public abstract ResumeQuery resume ();
+	public PauseQuery pause () {
+		var query = make_pause_query ();
+		run_query (query);
+		return query;
+	}
+
+	public abstract ResumeQuery make_resume_query ();
 	
+	public ResumeQuery resume () {
+		var query = make_resume_query ();
+		run_query (query);
+		return query;
+	}
+
 	/* public abstract Query shutdown ();
 	
 	public abstract Query restart ();
@@ -115,21 +183,39 @@ public interface Lottanzb.QueryProcessor : Object, QueryNotifier<Query> {
 	
 	public abstract Query rescan (); */
 	
-	public abstract GetWarningsQuery get_warnings ();
+	public abstract GetWarningsQuery make_get_warnings_query ();
 	
+	public GetWarningsQuery get_warnings () {
+		var query = make_get_warnings_query ();
+		run_query (query);
+		return query;
+	}
+
 	/* public abstract Query clear_warnings ();
 	
 	public abstract Query get_scripts (); */
 	
-	public abstract GetVersionQuery get_version ();
+	public abstract GetVersionQuery make_get_version_query ();
 	
+	public GetVersionQuery get_version () {
+		var query = make_get_version_query ();
+		run_query (query);
+		return query;
+	}
+
 	/* public abstract Query get_speed_limit ();
 	
 	public abstract Query set_speed_limit ();
 	
 	public abstract Query get_newzbin_bookmarks (); */
 	
-	public abstract GetAuthenticationTypeQuery get_authentication_type ();
+	public abstract GetAuthenticationTypeQuery make_get_authentication_type_query ();
+
+	public GetAuthenticationTypeQuery get_authentication_type () {
+		var query = make_get_authentication_type_query ();
+		run_query (query);
+		return query;
+	}
 
 }
 		

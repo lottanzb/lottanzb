@@ -16,7 +16,7 @@
 */
 
 
-public class Lottanzb.MockQueryProcessor : Object, QueryNotifier<Query>, QueryProcessor {
+public class Lottanzb.MockQueryProcessor : Object, QueryNotifier<Query>, QueryProcessor<Query> {
 
 	public ConnectionInfo connection_info { get; construct set; }
 	
@@ -33,78 +33,83 @@ public class Lottanzb.MockQueryProcessor : Object, QueryNotifier<Query>, QueryPr
 		var result = new FilteringQueryNotifier<T> (this);
 		return result;
 	}
-	
-	public GetConfigQuery get_config () {
+
+	public void run_query (Query query) {
+		query_started (query);
+		query_completed (query);
+	}
+
+	public GetConfigQuery make_get_config_query () {
 		var response = new Json.Object ();
 		var query = new MockGetConfigQuery (response);
 		return query;
 	}
 	
-	public GetQueueQuery get_queue () {
+	public GetQueueQuery make_get_queue_query () {
 		var response = new MockGetQueueQueryResponse ();
 		var query = new MockGetQueueQuery (response);
 		return query;
 	}
 
-	public DeleteDownloadsQuery delete_downloads (Gee.List<string> download_ids) {
+	public DeleteDownloadsQuery make_delete_downloads_query (Gee.List<string> download_ids) {
 		var query = new MockDeleteDownloadsQuery (download_ids);
 		return query;
 	}
 
-	public RenameDownloadQuery rename_download (string download_id, string new_name) {
+	public RenameDownloadQuery make_rename_download_query (string download_id, string new_name) {
 		var query = new MockRenameDownloadQuery (download_id, new_name);
 		return query;
 	}
 
-	public PauseDownloadsQuery pause_downloads (Gee.List<string> download_ids) {
+	public PauseDownloadsQuery make_pause_downloads_query (Gee.List<string> download_ids) {
 		var query = new MockPauseDownloadsQuery (download_ids);
 		return query;
 	}
 	
-	public ResumeDownloadsQuery resume_downloads (Gee.List<string> download_ids) {
+	public ResumeDownloadsQuery make_resume_downloads_query (Gee.List<string> download_ids) {
 		var query = new MockResumeDownloadsQuery (download_ids);
 		return query;
 	}
 
-	public SwitchDownloadsQuery switch_downloads (string first_download_id, string second_download_id) {
+	public SwitchDownloadsQuery make_switch_downloads_query (string first_download_id, string second_download_id) {
 		var query = new MockSwitchDownloadsQuery (first_download_id, second_download_id);
 		return query;
 	}
 
-	public SetDownloadPriorityQuery set_download_priority (Gee.List<string> download_ids, DownloadPriority new_priority) {
+	public SetDownloadPriorityQuery make_set_download_priority_query (Gee.List<string> download_ids, DownloadPriority new_priority) {
 		var query = new MockSetDownloadPriorityQuery (download_ids, new_priority);
 		return query;
 	}
 	
-	public GetHistoryQuery get_history () {
+	public GetHistoryQuery make_get_history_query () {
 		var response = new MockGetHistoryQueryResponse.empty ();
 		var query = new MockGetHistoryQuery (response);
 		return query;
 	}
 
-	public PauseQuery pause () {
+	public PauseQuery make_pause_query () {
 		var query = new MockPauseQuery ();
 		return query;
 	}
 	
-	public ResumeQuery resume () {
+	public ResumeQuery make_resume_query () {
 		var query = new MockResumeQuery ();
 		return query;
 	}
 
-	public GetWarningsQuery get_warnings () {
+	public GetWarningsQuery make_get_warnings_query () {
 		var log_messages = new Gee.ArrayList<LogMessage> ();
 		var query = new MockGetWarningsQuery (log_messages);
 		return query;
 	}
 	
-	public GetVersionQuery get_version () {
+	public GetVersionQuery make_get_version_query () {
 		var response = "0.6.0";
 		var query = new MockGetVersionQuery (response);
 		return query;
 	}
 	
-	public GetAuthenticationTypeQuery get_authentication_type () {
+	public GetAuthenticationTypeQuery make_get_authentication_type_query () {
 		var response = AuthenticationType.NOTHING;
 	   	var query = new MockGetAuthenticationTypeQuery (response);
 		return query;	
