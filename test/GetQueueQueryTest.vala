@@ -21,7 +21,7 @@ public string get_fixture (string path) {
 	var resource = LottanzbTestResource.get_resource ();
 	var absolute_path = "/org/lottanzb/test/fixtures/" + path;
 	var bytes = resource.lookup_data (absolute_path, ResourceLookupFlags.NONE);
-	return (string) bytes.get_data();
+	return (string) LottanzbResource.bytes_get_data (bytes);
 }
 
 public void test_queue_query () {
