@@ -22,8 +22,8 @@ public errordomain QueryError {
 
 public interface Lottanzb.Query<R> : Object {
 
-	// TODO: Do not use GObject property because of problems that arise when
-	// an enum is chosen as R.
+	// Do not use a GObject property because of problems that arise
+	// when an enum is chosen as R.
 	// See https://bugzilla.gnome.org/show_bug.cgi?id=672099.
 	public abstract R get_response();
 
