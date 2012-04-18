@@ -31,6 +31,7 @@ public class Lottanzb.GeneralHub : Object {
 	public DateTime eta { get; private set; }
 
 	private DownloadNameBinding download_name_binding;
+	private DownloadPriorityBinding download_priority_binding;
 	private DownloadListStoreUpdater queue_updater;
 	private DownloadListStoreUpdater history_updater;
 
@@ -47,6 +48,7 @@ public class Lottanzb.GeneralHub : Object {
 		});
 
 		this.download_name_binding = new DownloadNameBinding (download_list_store, query_processor);
+		this.download_priority_binding = new DownloadPriorityBinding (download_list_store, query_processor);
 		this.queue_updater = new DownloadListStoreUpdater (download_list_store,
 			DownloadStatusGroup.INCOMPLETE);
 		this.history_updater = new DownloadListStoreUpdater (download_list_store,

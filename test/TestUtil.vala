@@ -15,10 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+public Resource TEST_RESOURCE = null;
+
 public string get_fixture (string path) {
-	var resource = LottanzbTestResource.get_resource ();
+	// Calling LottanzbTestResource.get_resource () more than two times causes
+	// segmentation faults for unknown reasons.
+	if (TEST_RESOURCE == null) {
+		TEST_RESOURCE = LottanzbTestResource.get_resource ();
+	}
 	var absolute_path = "/org/lottanzb/test/fixtures/" + path;
-	var bytes = resource.lookup_data (absolute_path, ResourceLookupFlags.NONE);
+	var bytes = TEST_RESOURCE.lookup_data (absolute_path, ResourceLookupFlags.NONE);
 	return (string) bytes.get_data();
 }
 

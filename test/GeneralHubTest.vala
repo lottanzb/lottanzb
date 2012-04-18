@@ -28,7 +28,7 @@ private class CustomMockQueryProcessor : MockQueryProcessor {
 
 }
 
-public void test_general_hub_download_renaming () {
+public void test_general_hub_download_name_binding () {
 	var query_processor = new CustomMockQueryProcessor ();
 	var general_hub = new GeneralHub (query_processor);
 	var list_store = general_hub.download_list_store;
@@ -50,4 +50,28 @@ public void test_general_hub_download_renaming () {
 	query_processor.rename_download (download.id, "baz");
 	assert (has_row_changed);
 	assert (download.name == "baz");
+}
+
+public void test_general_hub_download_priority_binding () {
+	var query_processor = new CustomMockQueryProcessor ();
+	var general_hub = new GeneralHub (query_processor);
+	var list_store = general_hub.download_list_store;
+	Gtk.TreeIter iter;
+	list_store.get_iter_first (out iter);
+	var download = list_store.get_download (iter);
+	assert (download.priority == DownloadPriority.NORMAL); 
+	bool has_row_changed = false;
+	list_store.row_changed.connect ((model, path, iter) => {
+		has_row_changed = true;
+	});
+	download.priority = DownloadPriority.FORCE;
+	var set_download_priority_queries = query_processor.get_queries<SetDownloadPriorityQuery> ();
+	assert (set_download_priority_queries.size == 1);
+	var set_download_priority_query = set_download_priority_queries[0];
+	assert (set_download_priority_query.new_priority == DownloadPriority.FORCE);
+	assert (has_row_changed);
+	has_row_changed = false;
+	query_processor.set_single_download_priority (download.id, DownloadPriority.HIGH);
+	assert (has_row_changed);
+	assert (download.priority == DownloadPriority.HIGH);
 }
