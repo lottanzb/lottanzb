@@ -70,9 +70,18 @@ public class Lottanzb.DownloadPropertiesDialog : AbstractDownloadPropertiesDialo
 			};
 
 			// Change the download name seamlessly
-			// TODO: Only set when non-empty (could add check to Download)
 			download.bind_property ("name", widgets.name, "text",
-				BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL, null, null);
+				BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL, null,
+				(binding, source_value, ref target_value) => {
+					var name = source_value.get_string ();
+					// Only sync when the given download name is non-empty
+					if (name.length == 0) {
+						return false;
+					} else {
+						target_value.set_string (name);
+						return true;
+					}
+				});
 			
 			// Change the download priority seamlessly
 			download.bind_property ("priority", widgets.priority, "active",
