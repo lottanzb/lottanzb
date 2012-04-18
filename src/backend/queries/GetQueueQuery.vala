@@ -139,7 +139,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return "";
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public DownloadStatus status { 
@@ -181,7 +181,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return _status;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public DownloadPriority priority {
@@ -201,7 +201,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return DownloadPriority.NORMAL;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public string file_name {
@@ -211,7 +211,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return "";
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public string name {
@@ -224,7 +224,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return "";
 		}
-		set { assert(false); }
+		set { assert_not_reached (); }
 	}
 
 	public TimeDelta? average_age { 
@@ -235,7 +235,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return null;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public TimeDelta? time_left { 
@@ -246,7 +246,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return null;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public DataSize? size { 
@@ -261,7 +261,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return null;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public DataSize? size_left { 
@@ -273,7 +273,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return null;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public DateTime? eta { 
@@ -284,7 +284,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return null;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public int percentage { 
@@ -297,7 +297,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return 0;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public string script { 
@@ -314,7 +314,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return _script;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public string category { 
@@ -324,7 +324,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return "";
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public DownloadPostProcessing post_processing { 
@@ -345,7 +345,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return DownloadPostProcessing.NOTHING;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public int message_id { 
@@ -358,7 +358,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return 0;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public TimeDelta? post_processing_time { 
@@ -369,7 +369,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return null;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public TimeDelta? download_time { 
@@ -380,7 +380,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return null;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public DateTime? completed { 
@@ -393,7 +393,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return _completed;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public string? storage_path { 
@@ -404,7 +404,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return null;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public string error_message { 
@@ -419,7 +419,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return "";
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public int verification_percentage { 
@@ -436,7 +436,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return 0;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public int repair_percentage { 
@@ -451,7 +451,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return 0;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public int unpack_percentage { 
@@ -468,7 +468,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return 0;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	public int recovery_block_count { 
@@ -483,7 +483,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 			}
 			return 0;
 		}
-		internal set { assert(false); }
+		internal set { assert_not_reached (); }
 	}
 
 	internal void update (Download download) {
