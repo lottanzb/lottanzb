@@ -39,7 +39,7 @@ public void test_queue_query () {
 	assert (download.size_left.megabytes == 564.69);
 	assert (download.eta == null);
 	assert (download.percentage == 15);
-	assert (download.script == "None");
+	assert (download.script == "");
 	assert (download.category == "*");
 	assert (download.post_processing == DownloadPostProcessing.DELETE);
 	assert (download.message_id == 0);

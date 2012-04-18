@@ -111,6 +111,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 
 	private Json.Object _slot;
 	private DownloadStatus? _status;
+	private string? _script;
 	private DateTime? _completed;
 	private bool _is_paused;
 
@@ -118,6 +119,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 		_slot = slot;
 		_status = null;
 		_is_paused = is_paused;
+		_script = null;
 		_completed = null;
 		try {
 			PERCENTAGE_PATTERN = new Regex("(\\d{1,2})%");
@@ -300,14 +302,17 @@ public class Lottanzb.DynamicDownload : Object, Download {
 
 	public string script { 
 		get {
-			if (_slot.has_member("script")) {
-				return _slot.get_string_member("script");
-				/* var script_string = _slot.get_string_member("script");
-				   if (script_string != "None") {
-				   return script_string;
-				   } */
+			if (_script == null) {
+				if (_slot.has_member("script")) {
+					_script = _slot.get_string_member("script");
+					if (_script == "None") {
+						_script = "";
+					}
+				} else {
+					_script = "";
+				}
 			}
-			return "";
+			return _script;
 		}
 		internal set { assert(false); }
 	}
