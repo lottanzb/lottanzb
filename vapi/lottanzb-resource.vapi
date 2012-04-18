@@ -39,12 +39,6 @@ namespace LottanzbResource {
 	[CCode (cname = "gtk_list_store_reorder")]
 	public void reorder (Gtk.ListStore list_store,
 		[CCode (array_length = false)] int[] new_order);
-	
-	// Prevent C compiler warning
-	// 'assignment discards ‘const’ qualifier from pointer target type'
-	// by ensuring that the return value is a constant.
-	[CCode (cname = "g_bytes_get_data", type = "const guint8*", array_length_type = "gsize")]
-	public unowned uint8[] bytes_get_data (GLib.Bytes bytes);
 
 }
 
