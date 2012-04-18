@@ -15,39 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public class Lottanzb.DownloadNameBinding : Object {
-
-	public QueryProcessor query_processor { get; construct set; }
-	public DownloadListStore download_list_store { get; construct set; }
+public class Lottanzb.DownloadNameBinding : DownloadPropertyBinding {
 
 	public DownloadNameBinding (DownloadListStore download_list_store, QueryProcessor query_processor) {
-		this.query_processor = query_processor;
+		base (download_list_store, query_processor, "name");
 		this.query_processor.get_query_notifier<RenameDownloadQuery> ()
 			.query_started.connect (on_download_rename_query_started); 
-		this.download_list_store = download_list_store;
-		foreach (var iter in this.download_list_store) {
-			var download = this.download_list_store.get_download (iter);
-			if (download != null) {
-				handle_download_insertion (download);
-			}
-		}
-		this.download_list_store.row_inserted.connect ((model, path, iter) => {
-			var download = download_list_store.get_download (iter);
-			if (download != null) {
-				handle_download_insertion (download);
-			}
-		});
 	}
-
-	private void handle_download_insertion (Download download) {
-		download.notify["name"].connect (on_download_name_changed);
-	}
-
-	public void on_download_name_changed (Object object, ParamSpec param) {
-		var download = (Download) object;
+	
+	public override void handle_download_property_change (Download download) {
+		base.handle_download_property_change (download);
 		var new_name = download.name;
 		query_processor.rename_download (download.id, new_name);
-		download_list_store.register_download_change (download);
 	}
 
 	public void on_download_rename_query_started (QueryNotifier query_notifier,
