@@ -133,6 +133,13 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 		return query;
 	}
 
+	public SetDownloadPriorityQuery set_single_download_priority (string download_id, DownloadPriority new_priority) {
+		var download_ids = new Gee.ArrayList<string> ();
+		download_ids.add (download_id);
+		var query = set_download_priority (download_ids, new_priority);
+		return query;
+	}
+
 	/* public abstract Query set_download_category (string category, string download_ids, ...);
 	
 	public abstract Query set_download_script (string script, string download_ids, ...);
