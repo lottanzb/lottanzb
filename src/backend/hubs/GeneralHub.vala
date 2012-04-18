@@ -30,50 +30,29 @@ public class Lottanzb.GeneralHub : Object {
 	public DataSize size_left { get; private set; }
 	public DateTime eta { get; private set; }
 
+	private DownloadNameBinding download_name_binding;
 	private DownloadListStoreUpdater queue_updater;
 	private DownloadListStoreUpdater history_updater;
 
 	public GeneralHub (QueryProcessor query_processor) {
 		this.query_processor = query_processor;
+		this.download_list_store = new DownloadListStore();
 		this.query_processor.get_query_notifier<GetQueueQuery> ()
 			.query_completed.connect ((query_processor, queue_query) => {
+			handle_queue_query (queue_query);
 		});
-		this.query_processor.get_query_notifier<RenameDownloadQuery> ()
-			.query_started.connect ((query_processor, rename_download_query) => {
-			var download_id = rename_download_query.download_id;
-			var new_name = rename_download_query.new_name;
-			var download = download_list_store.get_download_by_id (download_id);
-			if (download.name != new_name) {
-				download.name = new_name;
-				download_list_store.register_download_change (download);
-			}
+		this.query_processor.get_query_notifier<GetHistoryQuery> ()
+			.query_completed.connect ((query_processor, history_query) => {
+			handle_history_query (history_query);
 		});
-		this.download_list_store = new DownloadListStore();
-		this.download_list_store.row_inserted.connect ((model, path, iter) => {
-			var download = download_list_store.get_download (iter);
-			download.notify["name"].connect ((object, prop) => {
-				if (!queue_updater.is_updating && !history_updater.is_updating) {
-					rename_download (download, download.name);
-					download_list_store.register_download_change (download);
-				}	
-			});
-		});
+
+		this.download_name_binding = new DownloadNameBinding (download_list_store, query_processor);
 		this.queue_updater = new DownloadListStoreUpdater (download_list_store,
 			DownloadStatusGroup.INCOMPLETE);
 		this.history_updater = new DownloadListStoreUpdater (download_list_store,
 			DownloadStatusGroup.COMPLETE | DownloadStatusGroup.PROCESSING);
-		update_simple ();
-		Timeout.add_seconds (2, () => {
-			update_simple ();
-			return true;
-		});
-	}
-
-	private void update_simple () {
-		GetHistoryQuery history_query = _query_processor.get_history ();
-		GetQueueQuery queue_query = _query_processor.get_queue ();
-		handle_history_query (history_query);
-		handle_queue_query (queue_query);
+		this.query_processor.get_queue ();
+		this.query_processor.get_history ();
 	}
 
 	private void handle_queue_query (GetQueueQuery query) {

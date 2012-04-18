@@ -17,6 +17,37 @@
 
 using Lottanzb;
 
-public void test_general_hub () {
+private class CustomMockQueryProcessor : MockQueryProcessor {
 
+	public override GetQueueQuery make_get_queue_query () {
+		var queue_query = new GetQueueQueryImpl ();
+		var raw_response = get_fixture ("get_queue_query_response.json");
+		queue_query.set_raw_response (raw_response);
+		return queue_query;
+	}
+
+}
+
+public void test_general_hub_download_renaming () {
+	var query_processor = new CustomMockQueryProcessor ();
+	var general_hub = new GeneralHub (query_processor);
+	var list_store = general_hub.download_list_store;
+	Gtk.TreeIter iter;
+	list_store.get_iter_first (out iter);
+	var download = list_store.get_download (iter);
+	assert (download.name == "foo");
+	bool has_row_changed = false;
+	list_store.row_changed.connect ((model, path, iter) => {
+		has_row_changed = true;
+	});
+	download.name = "bar";
+	var rename_download_queries = query_processor.get_queries<RenameDownloadQuery> ();
+	assert (rename_download_queries.size == 1);
+	var rename_download_query = rename_download_queries[0];
+	assert (rename_download_query.new_name == "bar");
+	assert (has_row_changed);
+	has_row_changed = false;
+	query_processor.rename_download (download.id, "baz");
+	assert (has_row_changed);
+	assert (download.name == "baz");
 }

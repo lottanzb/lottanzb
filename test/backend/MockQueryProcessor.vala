@@ -25,22 +25,59 @@ public ConnectionInfo make_mock_connection_info () {
 
 public class Lottanzb.MockQueryProcessor : Object, QueryNotifier<Query>, QueryProcessor<Query> {
 
+	private Gee.Map<Type, FilteringQueryNotifier> filtering_query_notifiers;
+	private Gee.Map<Type, Gee.List<Query>> queries_by_type;
 	public ConnectionInfo connection_info { get; construct set; }
 	
 	public MockQueryProcessor.with_connection_info (ConnectionInfo connection_info) {
 		this.connection_info = connection_info;
+		this.filtering_query_notifiers = new Gee.HashMap<Type, FilteringQueryNotifier> ();
+		this.queries_by_type = new Gee.HashMap<Type, Gee.List<Query>> ();
 	}
 
 	public MockQueryProcessor () {
-		this.with_connection_info (connection_info);
+		this.with_connection_info (make_mock_connection_info ());
 	}
-
+	
 	public QueryNotifier<T> get_query_notifier<T> () {
-		var result = new FilteringQueryNotifier<T> (this);
+		Type query_type = typeof (T);
+		FilteringQueryNotifier<T>? result = filtering_query_notifiers [query_type];
+		if (result == null) {
+			result = new FilteringQueryNotifier<T> (this);
+			filtering_query_notifiers [query_type] = result;
+		}
 		return result;
 	}
 
+	public Gee.List<T> get_queries<T> () {
+		Type query_type = typeof (T);
+		Gee.List<T> result = new Gee.ArrayList<T> ();
+		foreach (var type in queries_by_type.keys) {
+			if (type.is_a (query_type)) {
+				result.add_all (queries_by_type [type]);
+			}
+		}
+		return result;
+	}
+
+	public bool has_queries<T> () {
+		Type query_type = typeof (T);
+		foreach (var type in queries_by_type.keys) {
+			if (type.is_a (query_type)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public void run_query (Query query) {
+		Type query_type = Type.from_instance (query); 
+		Gee.List<Query>? queries_of_same_type = queries_by_type [query_type];
+		if (queries_of_same_type == null) {
+			queries_of_same_type = new Gee.ArrayList<Query> ();
+			queries_by_type [query_type] = queries_of_same_type;
+		}
+		queries_of_same_type.add (query);
 		query_started (query);
 		query_completed (query);
 	}
@@ -51,7 +88,7 @@ public class Lottanzb.MockQueryProcessor : Object, QueryNotifier<Query>, QueryPr
 		return query;
 	}
 	
-	public GetQueueQuery make_get_queue_query () {
+	public virtual GetQueueQuery make_get_queue_query () {
 		var response = new MockGetQueueQueryResponse ();
 		var query = new MockGetQueueQuery (response);
 		return query;
