@@ -111,12 +111,14 @@ public class Lottanzb.DynamicDownload : Object, Download {
 
 	private Json.Object _slot;
 	private DownloadStatus? _status;
+	private DateTime? _completed;
 	private bool _is_paused;
 
 	public DynamicDownload (Json.Object slot, bool is_paused) {
 		_slot = slot;
 		_status = null;
 		_is_paused = is_paused;
+		_completed = null;
 		try {
 			PERCENTAGE_PATTERN = new Regex("(\\d{1,2})%");
 			PIECES_PROGRESS_PATTERN = new Regex("(\\d+)/(\\d+)");
@@ -378,11 +380,13 @@ public class Lottanzb.DynamicDownload : Object, Download {
 
 	public DateTime? completed { 
 		get {
-			if (_slot.has_member("completed")) {
-				// var completed_string = _slot.get_string_member("completed");
-				// self.completed = DateTime.fromtimestamp(data["completed"])
+			if (_completed == null) {
+				if (_slot.has_member("completed")) {
+					var completed_timestamp = _slot.get_int_member("completed");
+					_completed = new DateTime.from_unix_local (completed_timestamp);
+				}
 			}
-			return null;
+			return _completed;
 		}
 		internal set { assert(false); }
 	}
