@@ -79,18 +79,13 @@ public class Lottanzb.DownloadPropertiesDialog : AbstractDownloadPropertiesDialo
 				BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL,
 				(binding, source_value, ref target_value) => {
 					var priority = (DownloadPriority) source_value.get_enum ();
-					var priorities = DownloadPriority.all ();
-					for (var index = 0; index < priorities.length; index++) {
-						if (priorities[index] == priority) {
-							target_value.set_int (index);
-							return true;
-						}
-					}
-					assert_not_reached ();
+					var index = priority.to_index ();
+					target_value.set_int (index);
+					return true;
 				},
 				(binding, source_value, ref target_value) => {
 					var index = source_value.get_int ();
-					var priority = DownloadPriority.all ()[index];
+					var priority = DownloadPriority.from_index (index);
 					target_value.set_enum (priority);
 					return true;
 				});

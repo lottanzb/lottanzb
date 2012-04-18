@@ -150,6 +150,16 @@ public enum Lottanzb.DownloadPriority {
 		}
 	}
 
+	public int to_index () {
+		var priorities = all ();
+		for (var index = 0; index < priorities.length; index++) {
+			if (priorities[index] == this) {
+				return index;
+			}
+		}
+		assert_not_reached ();
+	}
+
 	public static DownloadPriority[] all () {
 		return {
 			FORCE,
@@ -157,6 +167,11 @@ public enum Lottanzb.DownloadPriority {
 			NORMAL,
 			LOW
 		};
+	}
+
+	public static DownloadPriority from_index (int index) {
+		var priority = all ()[index];
+		return priority;
 	}
 
 }
