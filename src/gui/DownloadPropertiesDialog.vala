@@ -75,19 +75,26 @@ public class Lottanzb.DownloadPropertiesDialog : AbstractDownloadPropertiesDialo
 				BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL, null, null);
 			
 			// Change the download priority seamlessly
-			var priorities = DownloadPriority.all ();
-			for (var index = 0; index < priorities.length; index++) {
-				if (priorities[index] == download.priority) {
-					widgets.priority.set_active (index);
-					break;
-				}
-			}
-			_priority_change_signal_id = widgets.priority.changed.connect ((widget) => {
-				var index = (DownloadPriority) widgets.priority.get_active ();
-				var new_priority = DownloadPriority.all ()[index];
-				general_hub.set_download_priority (download, new_priority);
-			});
-
+			download.bind_property ("priority", widgets.priority, "active",
+				BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL,
+				(binding, source_value, ref target_value) => {
+					var priority = (DownloadPriority) source_value.get_enum ();
+					var priorities = DownloadPriority.all ();
+					for (var index = 0; index < priorities.length; index++) {
+						if (priorities[index] == priority) {
+							target_value.set_int (index);
+							return true;
+						}
+					}
+					assert_not_reached ();
+				},
+				(binding, source_value, ref target_value) => {
+					var index = source_value.get_int ();
+					var priority = DownloadPriority.all ()[index];
+					target_value.set_enum (priority);
+					return true;
+				});
+			
 			_download_status_changed_signal_id = download.notify["status"].connect ((download, prop) => {
 				on_download_status_changed ();		
 			});
