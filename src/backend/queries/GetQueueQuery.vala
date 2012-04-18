@@ -102,25 +102,13 @@ public class Lottanzb.GetQueueQueryResponseImpl : Object, GetQueueQueryResponse 
 
 public class Lottanzb.DynamicDownload : Object, Download {
 
-	// TODO: Should be static
-	private Regex PERCENTAGE_PATTERN = null;
-	private Regex PIECES_PROGRESS_PATTERN = null;
-	private Regex RECOVERY_BLOCKS_PATTERN = null;
-	private Regex URL_PATTERN = null;
-	private Regex HTML_LINK_PATTERN = null;
+	private static Regex PERCENTAGE_PATTERN = null;
+	private static Regex PIECES_PROGRESS_PATTERN = null;
+	private static Regex RECOVERY_BLOCKS_PATTERN = null;
+	private static Regex URL_PATTERN = null;
+	private static Regex HTML_LINK_PATTERN = null;
 
-	private Json.Object _slot;
-	private DownloadStatus? _status;
-	private string? _script;
-	private DateTime? _completed;
-	private bool _is_paused;
-
-	public DynamicDownload (Json.Object slot, bool is_paused) {
-		_slot = slot;
-		_status = null;
-		_is_paused = is_paused;
-		_script = null;
-		_completed = null;
+	static construct {
 		try {
 			PERCENTAGE_PATTERN = new Regex("(\\d{1,2})%");
 			PIECES_PROGRESS_PATTERN = new Regex("(\\d+)/(\\d+)");
@@ -130,6 +118,22 @@ public class Lottanzb.DynamicDownload : Object, Download {
 		} catch (RegexError e) {
 			warning ("%s", e.message);
 		}
+	}
+
+	private Json.Object _slot;
+	private DownloadStatus? _status;
+	private DateTime? _eta;
+	private string? _script;
+	private DateTime? _completed;
+	private bool _is_paused;
+
+	public DynamicDownload (Json.Object slot, bool is_paused) {
+		_slot = slot;
+		_status = null;
+		_is_paused = is_paused;
+		_eta = null;
+		_script = null;
+		_completed = null;
 	}
 
 	public string id { 
@@ -278,11 +282,11 @@ public class Lottanzb.DynamicDownload : Object, Download {
 
 	public DateTime? eta { 
 		get {
-			if (_slot.has_member("eta") && !is_eta_unknown) {
-				// var eta_string = _slot.get_string_member("eta");
-				// TODO: DateTime
+			if (_eta == null && !is_eta_unknown && time_left != null) {
+				var now = new DateTime.now_local ();
+				_eta = now.add_seconds (time_left.seconds);
 			}
-			return null;
+			return _eta;
 		}
 		internal set { assert_not_reached (); }
 	}
