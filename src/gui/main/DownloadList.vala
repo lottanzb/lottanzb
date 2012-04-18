@@ -116,8 +116,6 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 				var queue_length = queue.iter_n_children (null);
 				TreeIter first_iter, last_iter;
 				Value first_value, last_value;
-				stdout.printf ("Count: " + queue_length.to_string () + "\n");
-				stdout.flush ();
 				queue.get_iter (out first_iter, new TreePath.first ());
 				queue.get_iter (out last_iter, new TreePath.from_indices (queue_length - 1));
 				queue.get_value (first_iter, DownloadListStore.COLUMN, out first_value);
