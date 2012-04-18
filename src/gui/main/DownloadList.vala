@@ -393,7 +393,7 @@ public class Lottanzb.DownloadPrimaryColumn : DownloadListColumn {
 			var is_paused = download.status != DownloadStatus.PAUSED;
 			var content = @"<b>$(html_escape(download.name))</b>";
 			if (is_expanded) {
-				var status_string = get_status_string (download);
+				var status_string = get_status_string (download, iter);
 				content += "\n" + status_string;
 			}
 			_cell_renderer.markup = content;
@@ -401,7 +401,7 @@ public class Lottanzb.DownloadPrimaryColumn : DownloadListColumn {
 		}
 	}
 	
-	private string get_status_string (Download download) {
+	private string get_status_string (Download download, Gtk.TreeIter iter) {
 		switch (download.status) {
 			case DownloadStatus.DOWNLOADING_RECOVERY_DATA:
 				var recovery_block_count = download.recovery_block_count;
@@ -426,7 +426,14 @@ public class Lottanzb.DownloadPrimaryColumn : DownloadListColumn {
 				if (download.error_message != null) {
 					error_message = html_escape (download.error_message);
 				}
-				return @"<span foreground='red'>$(error_message)</span>";
+				// Only use red color when the download is not selected.
+				// Otherwise, depending on the selection color,
+				// the message may be hard to read.
+				var is_download_selected = is_iter_selected (iter);
+				if (!is_download_selected) {
+					error_message = @"<span foreground='red'>$(error_message)</span>";
+				}
+				return error_message;
 			case DownloadStatus.DOWNLOADING:
 				if (download.time_left == null) {
 					return _("Downloading - Remaining time unknown");
@@ -440,6 +447,23 @@ public class Lottanzb.DownloadPrimaryColumn : DownloadListColumn {
 		}
 		return "";
 	}
+
+	private bool is_iter_selected (Gtk.TreeIter iter) {
+		var tree_view = (Gtk.TreeView) get_tree_view ();
+		var selection = tree_view.get_selection ();
+		if (selection == null) {
+			return false;
+		}
+		TreeModel tree_model;
+		TreeIter? selected_iter;
+		bool has_selection = selection.get_selected (out tree_model, out selected_iter);
+		if (has_selection) {
+			Gtk.TreePath selected_path = tree_model.get_path (selected_iter);
+			Gtk.TreePath path = tree_model.get_path (iter);
+			return selected_path.compare (path) == 0;
+		}
+		return false;
+	}
 	
 	private string html_escape (string unescaped) {
 		return unescaped
@@ -449,13 +473,6 @@ public class Lottanzb.DownloadPrimaryColumn : DownloadListColumn {
 	}
 
 }
-
-/* class DownloadPrimaryColumn(gtk.TreeViewColumn):
-	def __init__(self, download_list):
-		# TODO: Access to the download list is required because for certain
-		# rows, it needs to know whether it represents the download currently
-		# being selected.
-		self.download_list = download_list */
 
 
 public class Lottanzb.DownloadSizeColumn : DownloadListColumn {
