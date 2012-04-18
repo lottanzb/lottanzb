@@ -27,7 +27,6 @@ public class Lottanzb.SetDownloadPriorityQueryImpl : SetDownloadPriorityQuery, S
 	public SetDownloadPriorityQueryImpl (Gee.List<string> download_ids, DownloadPriority new_priority) {
 		var arguments = new Gee.HashMap<string, string> ();
 		arguments["name"] = "priority";
-		stdout.printf (download_ids[0] + "\n");
 		arguments["value"] = string.joinv (",", download_ids.to_array ());
 		arguments["value2"] = ((int) new_priority).to_string ();
 		base.with_arguments ("queue", arguments);
