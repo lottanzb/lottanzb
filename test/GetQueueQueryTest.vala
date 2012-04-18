@@ -17,13 +17,6 @@
 
 using Lottanzb;
 
-public string get_fixture (string path) {
-	var resource = LottanzbTestResource.get_resource ();
-	var absolute_path = "/org/lottanzb/test/fixtures/" + path;
-	var bytes = resource.lookup_data (absolute_path, ResourceLookupFlags.NONE);
-	return (string) bytes.get_data();
-}
-
 public void test_queue_query () {
 	var queue_query = new GetQueueQueryImpl ();
 	var raw_response = get_fixture ("get_queue_query_response.json");
