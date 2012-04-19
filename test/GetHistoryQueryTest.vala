@@ -24,7 +24,7 @@ public void test_get_history_query () {
 	var downloads = query.get_response ().downloads;
 	assert (downloads.size == 2);
 	Download succeeded_download = downloads[0];
-	assert (succeeded_download.id == "SABnzbd_nzo_kixuo4");
+	assert (succeeded_download.id == "spam");
 	assert (succeeded_download.status == DownloadStatus.SUCCEEDED);
 	assert (succeeded_download.file_name == "spam.nzb");
 	assert (succeeded_download.name == "spam");
@@ -50,7 +50,7 @@ public void test_get_history_query () {
 	assert (succeeded_download.recovery_block_count == 0);
 
 	Download failed_download = downloads[1];
-	assert (failed_download.id == "SABnzbd_nzo_GkCkeI");
+	assert (failed_download.id == "ham");
 	assert (failed_download.status == DownloadStatus.FAILED);
 	assert (failed_download.file_name == "ham.nzb");
 	assert (failed_download.name == "ham");

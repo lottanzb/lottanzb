@@ -19,7 +19,7 @@
             "mbleft": "6806.19",
             "timeleft": "185:57:19",
             "percentage": "67",
-            "nzo_id": "SABnzbd_nzo_pRIZDA",
+            "nzo_id": "foo",
             "unpackopts": "1",
             "size": "20.6 GB"
         }, {
@@ -39,7 +39,7 @@
             "mbleft": "564.69",
             "timeleft": "0:00:00",
             "percentage": "15",
-            "nzo_id": "SABnzbd_nzo_PXK5Ja",
+            "nzo_id": "bar",
             "unpackopts": "3",
             "size": "672 MB"
         }, {
@@ -59,7 +59,7 @@
             "mbleft": "132.13",
             "timeleft": "194:48:20",
             "percentage": "0",
-            "nzo_id": "SABnzbd_nzo_R9RaKC",
+            "nzo_id": "baz",
             "unpackopts": "2",
             "size": "132 MB"
         }],
