@@ -17,17 +17,6 @@
 
 using Lottanzb;
 
-public void assert_download_list_store_download_order (DownloadListStore list_store, string[] ids) {
-	Gtk.TreeIter iter;
-	assert (list_store.iter_n_children (null) == ids.length);
-	list_store.get_iter_first (out iter);
-	foreach (var id in ids) {
-		var download = list_store.get_download (iter);
-		assert (download.id == id);
-		list_store.iter_next (ref iter);
-	}
-}
-
 public void test_download_list_store_updater_initial_update () {
 	var list_store = new DownloadListStore ();
 	var updater = new DownloadListStoreUpdater (list_store, DownloadStatusGroup.NOT_FULLY_LOADED);
