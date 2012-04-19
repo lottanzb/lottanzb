@@ -35,13 +35,54 @@ private class CustomMockQueryProcessor : MockQueryProcessor {
 
 }
 
-public void test_general_hub_moving_downloads () {
+public GeneralHub make_general_hub () {
+	var query_processor = new CustomMockQueryProcessor ();
+	var general_hub = new GeneralHub (query_processor);
+	return general_hub;
+}
 
+private void assert_order (DownloadListStoreMixin download_list_store, string[] order) {
+	assert_download_list_store_download_order (download_list_store, order);
+}
+
+private void assert_last_switch_download_query_arguments (MockQueryProcessor query_processor, string first_download_id, string second_download_id) {
+	var switch_download_queries = query_processor.get_queries<SwitchDownloadsQuery> ();
+	assert (switch_download_queries.size > 0);
+	var last_query = switch_download_queries[switch_download_queries.size - 1];
+	assert (last_query.first_download_id == first_download_id);
+	assert (last_query.second_download_id == second_download_id);
+}
+
+public void test_general_hub_moving_downloads () {
+	var general_hub = make_general_hub ();
+	var query_processor = (MockQueryProcessor) general_hub.query_processor;
+	var list_store = general_hub.download_list_store;
+	var queue = list_store.get_filter_not_fully_loaded ();
+	assert_order (list_store, new string[] { "spam", "ham", "foo", "bar", "baz" });
+	assert_order (queue, new string[] { "foo", "bar", "baz" });
+	general_hub.force_download (list_store.get_download_by_id ("baz"));
+	assert_last_switch_download_query_arguments (query_processor, "baz", "foo");
+	assert_order (queue, new string[] { "baz", "foo", "bar" });
+	general_hub.force_download (list_store.get_download_by_id ("baz"));
+	assert (query_processor.get_queries<SwitchDownloadsQuery> ().size == 1);
+	assert_order (queue, new string[] { "baz", "foo", "bar" });
+	general_hub.move_download_up (list_store.get_download_by_id ("bar"));
+	assert_last_switch_download_query_arguments (query_processor, "bar", "foo");
+	assert_order (queue, new string[] { "baz", "bar", "foo" });
+	general_hub.move_download_down (list_store.get_download_by_id ("bar"));
+	assert_last_switch_download_query_arguments (query_processor, "bar", "foo");
+	assert_order (queue, new string[] { "baz", "foo", "bar" });
+	general_hub.move_download_down_to_bottom (list_store.get_download_by_id ("baz"));
+	assert_last_switch_download_query_arguments (query_processor, "baz", "bar");
+	assert_order (queue, new string[] { "foo", "bar", "baz" });
+
+	// TODO: Check invalid operations
+	// TODO: Check side-effects
 }
 
 public void test_general_hub_download_name_binding () {
-	var query_processor = new CustomMockQueryProcessor ();
-	var general_hub = new GeneralHub (query_processor);
+	var general_hub = make_general_hub ();
+	var query_processor = (MockQueryProcessor) general_hub.query_processor;
 	var list_store = general_hub.download_list_store;
 	var download = list_store.get_download_by_id ("foo");
 	assert (download.name == "foo");
@@ -62,8 +103,8 @@ public void test_general_hub_download_name_binding () {
 }
 
 public void test_general_hub_download_priority_binding () {
-	var query_processor = new CustomMockQueryProcessor ();
-	var general_hub = new GeneralHub (query_processor);
+	var general_hub = make_general_hub ();
+	var query_processor = (MockQueryProcessor) general_hub.query_processor;
 	var list_store = general_hub.download_list_store;
 	Gtk.TreeIter iter;
 	list_store.get_iter_first (out iter);
