@@ -40,5 +40,11 @@ namespace LottanzbResource {
 	public void reorder (Gtk.ListStore list_store,
 		[CCode (array_length = false)] int[] new_order);
 
+	[CCode (cname = "gtk_list_store_move_before")]
+	public void move_before (Gtk.ListStore list_store, Gtk.TreeIter iter, Gtk.TreeIter? position);
+
+	[CCode (cname = "gtk_list_store_move_after")]
+	public void move_after (Gtk.ListStore list_store, Gtk.TreeIter iter, Gtk.TreeIter? position);
+
 }
 

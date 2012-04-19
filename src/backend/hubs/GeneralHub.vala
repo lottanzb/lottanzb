@@ -155,9 +155,9 @@ public class Lottanzb.GeneralHub : Object {
 		var target_position = download_list_store.get_path (target_iter).get_indices ()[0];
 		var source_position = download_list_store.get_path (source_iter).get_indices ()[0];
 		if (target_position < source_position) {
-			download_list_store.move_before (ref source_iter, target_iter);
+			LottanzbResource.move_before (download_list_store, source_iter, target_iter);
 		} else {
-			download_list_store.move_after (ref source_iter, target_iter);
+			LottanzbResource.move_after (download_list_store, source_iter, target_iter);
 		}
 		query_processor.switch_downloads (download.id, target_download.id);
 	}
