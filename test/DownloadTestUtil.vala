@@ -33,7 +33,7 @@ public Gee.List<Download> make_downloads (string[] ids, DownloadStatus status = 
 	return downloads;
 }
 
-public void assert_download_list_store_download_order (DownloadListStore list_store, string[] ids) {
+public void assert_download_list_store_download_order (DownloadListStoreMixin list_store, string[] ids) {
 	Gtk.TreeIter iter;
 	assert (list_store.iter_n_children (null) == ids.length);
 	list_store.get_iter_first (out iter);
