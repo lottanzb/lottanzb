@@ -26,7 +26,7 @@ public void test_queue_query () {
 	assert (response.time_left.seconds == 0);
 	assert (response.size_left.bytes == 0);
 	assert (response.speed.bytes_per_second == 0);
-	assert (response.downloads.size == 2);
+	assert (response.downloads.size == 3);
 	var active_download = response.downloads[0];
 	assert (active_download.id == "SABnzbd_nzo_pRIZDA");
 	assert (active_download.status == DownloadStatus.DOWNLOADING);
@@ -78,4 +78,14 @@ public void test_queue_query () {
 	assert (paused_download.repair_percentage == 0);
 	assert (paused_download.unpack_percentage == 0);
 	assert (paused_download.recovery_block_count == 0);
+
+	var queued_download = response.downloads[2];
+	assert (queued_download.id == "SABnzbd_nzo_R9RaKC");
+	assert (queued_download.status == DownloadStatus.QUEUED);
+	assert (queued_download.priority == DownloadPriority.LOW);
+	assert (queued_download.file_name == "baz");
+	assert (queued_download.name == "baz");
+	assert (queued_download.time_left != null);
+	assert (queued_download.eta != null);
+	assert (queued_download.post_processing == DownloadPostProcessing.UNPACK);
 }
