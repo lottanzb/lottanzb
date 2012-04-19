@@ -124,7 +124,7 @@ public class Lottanzb.MockQueryProcessor : Object, QueryNotifier<Query>, QueryPr
 		return query;
 	}
 	
-	public GetHistoryQuery make_get_history_query () {
+	public virtual GetHistoryQuery make_get_history_query () {
 		var response = new MockGetHistoryQueryResponse.empty ();
 		var query = new MockGetHistoryQuery (response);
 		return query;

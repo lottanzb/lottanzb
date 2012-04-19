@@ -20,11 +20,22 @@ using Lottanzb;
 private class CustomMockQueryProcessor : MockQueryProcessor {
 
 	public override GetQueueQuery make_get_queue_query () {
-		var queue_query = new GetQueueQueryImpl ();
+		var get_queue_query = new GetQueueQueryImpl ();
 		var raw_response = get_fixture ("get_queue_query_response.json");
-		queue_query.set_raw_response (raw_response);
-		return queue_query;
+		get_queue_query.set_raw_response (raw_response);
+		return get_queue_query;
 	}
+
+	public override GetHistoryQuery make_get_history_query () {
+		var get_history_query = new GetHistoryQueryImpl ();
+		var raw_response = get_fixture ("get_history_query_response.json");
+		get_history_query.set_raw_response (raw_response);
+		return get_history_query;
+	}
+
+}
+
+public void test_general_hub_moving_downloads () {
 
 }
 
@@ -32,9 +43,7 @@ public void test_general_hub_download_name_binding () {
 	var query_processor = new CustomMockQueryProcessor ();
 	var general_hub = new GeneralHub (query_processor);
 	var list_store = general_hub.download_list_store;
-	Gtk.TreeIter iter;
-	list_store.get_iter_first (out iter);
-	var download = list_store.get_download (iter);
+	var download = list_store.get_download_by_id ("foo");
 	assert (download.name == "foo");
 	bool has_row_changed = false;
 	list_store.row_changed.connect ((model, path, iter) => {
