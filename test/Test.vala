@@ -61,6 +61,8 @@ private static int main (string[] args) {
 		test_download_list_store_updater_simple_reordering);
 	Test.add_data_func ("/lottanzb/backend/queries/get_queue_query",
 		test_queue_query);
-	
+	Test.add_data_func ("/lottanzb/backend/queries/get_history_query",
+		test_get_history_query);
+
 	return Test.run ();
 }
