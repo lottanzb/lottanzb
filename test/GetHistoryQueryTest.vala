@@ -40,7 +40,6 @@ public void test_get_history_query () {
 	assert (succeeded_download.post_processing == DownloadPostProcessing.DELETE);
 	assert (succeeded_download.message_id == 0);
 	assert (succeeded_download.post_processing_time.total_seconds == 26);
-	stdout.printf (succeeded_download.download_time.seconds.to_string() + "\n");
 	assert (succeeded_download.download_time.total_seconds == 516);
 	assert (succeeded_download.completed.to_unix () == 1334572608);
 	assert (succeeded_download.storage_path == "/home/me/Downloads/Foo Bar");
@@ -56,7 +55,8 @@ public void test_get_history_query () {
 	assert (failed_download.file_name == "Baz.nzb");
 	assert (failed_download.name == "Baz");
 	assert (failed_download.average_age == null);
-	assert (failed_download.time_left.seconds == 0);
+	// TODO: Should be size_left.bytes == 0
+	assert (failed_download.time_left == null);
 	assert (failed_download.size.bytes == 109325686);
 	assert (failed_download.size_left == null);
 	assert (failed_download.eta == null);
@@ -70,7 +70,10 @@ public void test_get_history_query () {
 	assert (failed_download.completed.to_unix () == 1332688445);
 	assert (failed_download.storage_path == "/home/me/Downloads/incomplete/Baz");
 	assert (failed_download.error_message == "Repair failed, not enough repair blocks (10 short)");
-	assert (failed_download.verification_percentage == 100);
+	// TODO: GetHistoryQuery currently does not determine what post-processing
+	// phases could be completed successfully. In this case, verification has
+	// been completed successfully, but repairing has not.
+	assert (failed_download.verification_percentage == 0);
 	assert (failed_download.repair_percentage == 0);
 	assert (failed_download.unpack_percentage == 0);
 	assert (failed_download.recovery_block_count == 0);

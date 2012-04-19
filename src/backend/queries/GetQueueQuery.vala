@@ -447,15 +447,20 @@ public class Lottanzb.DynamicDownload : Object, Download {
 
 	public int verification_percentage { 
 		get {
-			if (status == DownloadStatus.VERIFYING && _slot.has_member("action_line")) {
-				var action_line = _slot.get_string_member("action_line");
-				MatchInfo match_info;
-				var match = PIECES_PROGRESS_PATTERN.match(action_line, 0, out match_info);
-				if (match) {
-					var verified_pieces = int.parse(match_info.fetch(1));
-					var total_pieces = int.parse(match_info.fetch(2));
-					return verified_pieces / total_pieces * 100;
+			if (status == DownloadStatus.VERIFYING) {
+				if (_slot.has_member("action_line")) {
+					var action_line = _slot.get_string_member("action_line");
+					MatchInfo match_info;
+					var match = PIECES_PROGRESS_PATTERN.match(action_line, 0, out match_info);
+					if (match) {
+						var verified_pieces = int.parse(match_info.fetch(1));
+						var total_pieces = int.parse(match_info.fetch(2));
+						return verified_pieces / total_pieces * 100;
+					}
 				}
+			} else if (DownloadPostProcessing.NOTHING < post_processing &&
+				(DownloadStatus.VERIFYING < status && DownloadStatus.FAILED != status)) {
+				return 100;
 			}
 			return 0;
 		}
@@ -464,13 +469,18 @@ public class Lottanzb.DynamicDownload : Object, Download {
 
 	public int repair_percentage { 
 		get {
-			if (status == DownloadStatus.REPAIRING && _slot.has_member("action_line")) {
-				var action_line = _slot.get_string_member("action_line");
-				MatchInfo match_info;
-				var match = PERCENTAGE_PATTERN.match(action_line, 0, out match_info);
-				if (match) {
-					return int.parse(match_info.fetch(1));
+			if (status == DownloadStatus.REPAIRING) {
+				if (_slot.has_member("action_line")) {
+					var action_line = _slot.get_string_member("action_line");
+					MatchInfo match_info;
+					var match = PERCENTAGE_PATTERN.match(action_line, 0, out match_info);
+					if (match) {
+						return int.parse(match_info.fetch(1));
+					}
 				}
+			} else if (DownloadPostProcessing.REPAIR <= post_processing &&
+				DownloadStatus.REPAIRING < status && DownloadStatus.FAILED != status) {
+				return 100;
 			}
 			return 0;
 		}
@@ -479,15 +489,20 @@ public class Lottanzb.DynamicDownload : Object, Download {
 
 	public int unpack_percentage { 
 		get {
-			if (status == DownloadStatus.EXTRACTING && _slot.has_member("action_line")) {
-				var action_line = _slot.get_string_member("action_line");
-				MatchInfo match_info;
-				var match = PIECES_PROGRESS_PATTERN.match(action_line, 0, out match_info);
-				if (match) {
-					var extracted_pieces = int.parse(match_info.fetch(1));
-					var total_pieces = int.parse(match_info.fetch(2));
-					return extracted_pieces / total_pieces * 100;
+			if (status == DownloadStatus.EXTRACTING) {
+				if (_slot.has_member("action_line")) {
+					var action_line = _slot.get_string_member("action_line");
+					MatchInfo match_info;
+					var match = PIECES_PROGRESS_PATTERN.match(action_line, 0, out match_info);
+					if (match) {
+						var extracted_pieces = int.parse(match_info.fetch(1));
+						var total_pieces = int.parse(match_info.fetch(2));
+						return extracted_pieces / total_pieces * 100;
+					}
 				}
+			} else if (DownloadPostProcessing.UNPACK <= post_processing &&
+				DownloadStatus.EXTRACTING < status && DownloadStatus.FAILED != status) {
+				return 100;
 			}
 			return 0;
 		}
@@ -496,12 +511,14 @@ public class Lottanzb.DynamicDownload : Object, Download {
 
 	public int recovery_block_count { 
 		get {
-			if (status == DownloadStatus.EXTRACTING && _slot.has_member("action_line")) {
-				var action_line = _slot.get_string_member("action_line");
-				MatchInfo match_info;
-				var match = RECOVERY_BLOCKS_PATTERN.match(action_line, 0, out match_info);
-				if (match) {
-					return int.parse(match_info.fetch(1));
+			if (status == DownloadStatus.EXTRACTING) {
+				if (_slot.has_member("action_line")) {
+					var action_line = _slot.get_string_member("action_line");
+					MatchInfo match_info;
+					var match = RECOVERY_BLOCKS_PATTERN.match(action_line, 0, out match_info);
+					if (match) {
+						return int.parse(match_info.fetch(1));
+					}
 				}
 			}
 			return 0;
