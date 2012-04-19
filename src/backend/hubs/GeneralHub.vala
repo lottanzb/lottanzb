@@ -137,7 +137,6 @@ public class Lottanzb.GeneralHub : Object {
 		var filter_path = new Gtk.TreePath.from_indices (index);
 		Gtk.TreeIter filter_iter, target_iter;
 		bool is_valid_iter = filter.get_iter (out filter_iter, filter_path);
-		stdout.printf (@"Index: $(index)\n");
 		assert (is_valid_iter);
 		filter.convert_iter_to_child_iter (out target_iter, filter_iter);
 		var target_download = download_list_store.get_download (target_iter);
@@ -150,7 +149,6 @@ public class Lottanzb.GeneralHub : Object {
 			var some_download = download_list_store.get_download (iter);
 			if (some_download.id == download.id) {
 				source_iter = iter;
-				stdout.printf ("Found iter\n");
 				break;
 			}
 		}
