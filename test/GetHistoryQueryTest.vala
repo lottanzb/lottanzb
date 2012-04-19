@@ -26,8 +26,8 @@ public void test_get_history_query () {
 	Download succeeded_download = downloads[0];
 	assert (succeeded_download.id == "SABnzbd_nzo_kixuo4");
 	assert (succeeded_download.status == DownloadStatus.SUCCEEDED);
-	assert (succeeded_download.file_name == "Foo Bar.nzb");
-	assert (succeeded_download.name == "Foo Bar");
+	assert (succeeded_download.file_name == "spam.nzb");
+	assert (succeeded_download.name == "spam");
 	assert (succeeded_download.average_age == null);
 	assert (succeeded_download.time_left == null);
 	assert (succeeded_download.size.bytes == 603355611);
@@ -42,7 +42,7 @@ public void test_get_history_query () {
 	assert (succeeded_download.post_processing_time.total_seconds == 26);
 	assert (succeeded_download.download_time.total_seconds == 516);
 	assert (succeeded_download.completed.to_unix () == 1334572608);
-	assert (succeeded_download.storage_path == "/home/me/Downloads/Foo Bar");
+	assert (succeeded_download.storage_path == "/home/me/Downloads/spam");
 	assert (succeeded_download.error_message == "");
 	assert (succeeded_download.verification_percentage == 100);
 	assert (succeeded_download.repair_percentage == 100);
@@ -52,8 +52,8 @@ public void test_get_history_query () {
 	Download failed_download = downloads[1];
 	assert (failed_download.id == "SABnzbd_nzo_GkCkeI");
 	assert (failed_download.status == DownloadStatus.FAILED);
-	assert (failed_download.file_name == "Baz.nzb");
-	assert (failed_download.name == "Baz");
+	assert (failed_download.file_name == "ham.nzb");
+	assert (failed_download.name == "ham");
 	assert (failed_download.average_age == null);
 	// TODO: Should be size_left.bytes == 0
 	assert (failed_download.time_left == null);
@@ -63,12 +63,12 @@ public void test_get_history_query () {
 	assert (failed_download.percentage == 100);
 	assert (failed_download.script == "");
 	assert (failed_download.category == "*");
-	assert (failed_download.post_processing == DownloadPostProcessing.DELETE);
+	assert (failed_download.post_processing == DownloadPostProcessing.UNPACK);
 	assert (failed_download.message_id == 0);
 	assert (failed_download.post_processing_time.total_seconds == 2);
 	assert (failed_download.download_time.total_seconds == 123);
 	assert (failed_download.completed.to_unix () == 1332688445);
-	assert (failed_download.storage_path == "/home/me/Downloads/incomplete/Baz");
+	assert (failed_download.storage_path == "/home/me/Downloads/incomplete/ham");
 	assert (failed_download.error_message == "Repair failed, not enough repair blocks (10 short)");
 	// TODO: GetHistoryQuery currently does not determine what post-processing
 	// phases could be completed successfully. In this case, verification has
