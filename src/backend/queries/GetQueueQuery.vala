@@ -210,8 +210,10 @@ public class Lottanzb.DynamicDownload : Object, Download {
 
 	public string file_name {
 		get {
-			if (_slot.has_member("filename")) {
+			if (_slot.has_member("filename")) { // GetQueueQuery
 				return _slot.get_string_member("filename");
+			} else if (_slot.has_member("nzb_name")) { // GetHistoryQuery
+				return _slot.get_string_member("nzb_name");
 			}
 			return "";
 		}
@@ -222,11 +224,9 @@ public class Lottanzb.DynamicDownload : Object, Download {
 		get {
 			if (_slot.has_member("name")) {
 				return _slot.get_string_member("name");
+			} else {
+				return file_name;
 			}
-			if (_slot.has_member("filename")) {
-				return _slot.get_string_member("filename");
-			}
-			return "";
 		}
 		set { assert_not_reached (); }
 	}
@@ -323,8 +323,10 @@ public class Lottanzb.DynamicDownload : Object, Download {
 
 	public string category { 
 		get {
-			if (_slot.has_member("cat")) {
+			if (_slot.has_member("cat")) { // GetQueueQuery
 				return _slot.get_string_member("cat");
+			} else if (_slot.has_member ("category")) { // GetHistoryQuery
+				return _slot.get_string_member("category");
 			}
 			return "";
 		}
@@ -333,7 +335,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 
 	public DownloadPostProcessing post_processing { 
 		get {
-			if (_slot.has_member("unpackopts")) {
+			if (_slot.has_member("unpackopts")) { // GetQueueQuery
 				var unpackopts_string = _slot.get_string_member("unpackopts");
 				var unpackopts = int.parse(unpackopts_string);
 				switch (unpackopts) {
@@ -345,6 +347,24 @@ public class Lottanzb.DynamicDownload : Object, Download {
 						return DownloadPostProcessing.UNPACK;
 					case 3:
 						return DownloadPostProcessing.DELETE;
+					default:
+						warning ("cannot handle value '%d' for member 'unpackopts'", unpackopts);
+						break;
+				}
+			} else if (_slot.has_member ("pp")) { // GetHistoryQuery
+				var pp_string = _slot.get_string_member("pp");
+				switch (pp_string) {
+					case "":
+						return DownloadPostProcessing.NOTHING;
+					case "R":
+						return DownloadPostProcessing.REPAIR;
+					case "U":
+						return DownloadPostProcessing.UNPACK;
+					case "D":
+						return DownloadPostProcessing.DELETE;
+					default:
+						warning ("cannot handle value '%s' for member 'pp'", pp_string);
+						break;
 				}
 			}
 			return DownloadPostProcessing.NOTHING;
