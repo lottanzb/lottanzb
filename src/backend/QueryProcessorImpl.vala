@@ -39,7 +39,6 @@ public class Lottanzb.QueryProcessorImpl : Object, QueryNotifier<Query>, QueryPr
 		query_started (query);
 		var url = build_url (query);
 		var session = new Soup.SessionSync ();
-		stdout.printf (url + "\n");
 		var message = new Soup.Message ("GET", url);
 		session.send_message (message);
 		try {

@@ -49,7 +49,7 @@ public class Lottanzb.AddFileDialog : AbstractAddFileDialog {
 		if (response_id == Gtk.ResponseType.OK) {
 			general_hub.add_file (get_selected_filename ());	
 		} else if (response_id == Gtk.ResponseType.HELP) {
-			stdout.printf ("Help\n");
+
 		}
 	}
 

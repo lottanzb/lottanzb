@@ -282,7 +282,6 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 		if (selection_data != null) {
 			switch (info) {
 				case DnDTargets.DOWNLOAD:
-					// stdout.printf(selection_data.get_text());
 					/* handle_download_move (selection_data.get_text (), path,
 						drop_position); */
 					break;
@@ -344,7 +343,7 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 			target_index = 0;
 		}
 		
-		// TODO: general_hub.move_download (download, target_index);
+		general_hub.move_download (download, target_index);
 	}
 
 }

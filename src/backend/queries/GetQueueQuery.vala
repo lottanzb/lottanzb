@@ -403,7 +403,6 @@ public class Lottanzb.DynamicDownload : Object, Download {
 	public string? storage_path { 
 		get {
 			if (_slot.has_member("storage")) {
-				// stdout.printf(_slot.get_string_member("storage"));
 				return _slot.get_string_member("storage");
 			}
 			return null;
