@@ -17,12 +17,6 @@
 
 using Gtk;
 
-public interface Lottanzb.MenuProvider : Object {
-
-	public abstract Gtk.Menu make_menu ();
-
-}
-
 public class Lottanzb.SpeedLimitMenuProvider : MenuProvider, Object {
 
 	private static DataSpeed UNLIMITED_SPEED = DataSpeed (0);
