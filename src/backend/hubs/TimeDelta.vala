@@ -57,7 +57,7 @@ public struct Lottanzb.TimeDelta {
 			} else {
 				match = PATTERN_2.match(time_delta_string, 0, out match_info);
 				if (match) {
-					var time_delta = int.parse(match_info.fetch_named("time_delta"));
+					var time_delta = long.parse(match_info.fetch_named("time_delta"));
 					var time_delta_unit_char = match_info.fetch_named("unit")[0];
 					TimeDeltaUnit time_delta_unit = TimeDeltaUnit.from_char(time_delta_unit_char);
 					this.with_unit(time_delta, time_delta_unit);
