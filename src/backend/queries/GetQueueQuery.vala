@@ -76,7 +76,7 @@ public class Lottanzb.GetQueueQueryResponseImpl : Object, GetQueueQueryResponse 
 
 	public TimeDelta time_left {
 		get {
-			if (_object.has_member ("time_left")) {
+			if (_object.has_member ("timeleft")) {
 				var time_left_string = _object.get_string_member ("timeleft");
 				return TimeDelta.parse (time_left_string);
 			} else {
