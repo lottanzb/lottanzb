@@ -15,8 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// modules: glib-2.0 gio-2.0 gtk+-3.0 gmodule-2.0 
-
 using Gtk;
 using Pango;
 
@@ -31,7 +29,7 @@ public class Lottanzb.InfoBar : AbstractInfoBar {
 		_statistics_hub = backend.statistics_hub;
 
 		var speed_icon = new Image.from_stock(Stock.GO_DOWN, IconSize.MENU);
-		var speed_limit_menu_provider = new SpeedLimitMenuProvider (backend);
+		var speed_limit_menu_provider = new SpeedLimitMenuProvider (backend.config_hub);
 		_speed_button = new MenuButton(speed_limit_menu_provider);
 		_speed_button.image = speed_icon;
 		_speed_button.relief = ReliefStyle.NONE;

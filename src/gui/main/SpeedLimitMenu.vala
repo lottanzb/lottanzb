@@ -29,16 +29,14 @@ public class Lottanzb.SpeedLimitMenuProvider : MenuProvider, Object {
 		DataSpeed.with_unit (50, DataSizeUnit.KILOBYTES)
 	};
 	
-	private GeneralHub _general_hub;
-	private ConfigHub _config_hub;
+	private ConfigHub config_hub;
 
-	public SpeedLimitMenuProvider (Backend backend) {
-		_general_hub = backend.general_hub;
-		_config_hub = backend.config_hub;
+	public SpeedLimitMenuProvider (ConfigHub config_hub) {
+		this.config_hub = config_hub;
 	}
 
 	public Gtk.Menu make_menu () {
-		var speed_limit = _config_hub.speed_limit;
+		var speed_limit = config_hub.speed_limit;
 		var menu = new SpeedLimitMenu (speed_limit);
 		var is_default_speed_limit = speed_limit in DEFAULT_SPEED_LIMITS;
 		menu.add_speed_limit (UNLIMITED_SPEED);
@@ -48,7 +46,7 @@ public class Lottanzb.SpeedLimitMenuProvider : MenuProvider, Object {
 		menu.add_separator ();
 		menu.add_speed_limits (DEFAULT_SPEED_LIMITS);
 		menu.speed_limit_changed.connect ((menu, new_speed_limit) => {
-			_config_hub.speed_limit = new_speed_limit;	
+			config_hub.speed_limit = new_speed_limit;	
 		});
 		return menu;
 	}
