@@ -49,40 +49,40 @@ public class Lottanzb.BetterSettings : Settings {
 	public void set_from_json_object (Json.Object source_object) {
 		foreach (var target_key in list_keys ()) {
 			var source_key = target_key.replace ("-", "_");
-			if (source_object.has_member (source_key)) {
-				var source_member = source_object.get_member (source_key);
-				if (source_member.get_node_type () == Json.NodeType.VALUE) {
-					var target_type = get_value (target_key).get_type ();
-					if (target_type.equal (VariantType.STRING)) {
-						var source_value = source_member.get_string ();
-						set_string (target_key, source_value);
-					} else if (target_type.equal (VariantType.INT32)) {
-						var source_type = source_member.get_value_type ();
-						if (source_type.is_a (typeof (string))) {
-							var source_string_value = source_member.get_string ();
-							var source_int_value = int.parse (source_string_value);
-							set_int (target_key, source_int_value);
-						} else if (source_type.is_a (typeof (int64))) {
-							var source_value = (int) source_member.get_int ();
-							set_int (target_key, source_value);
-						} else {
-							assert_not_reached ();
-						}
-					} else if (target_type.equal (VariantType.BOOLEAN)) {
-						var source_type = source_member.get_value_type ();
-						if (source_type.is_a (typeof (int64))) {
-							var source_bool_value = source_member.get_int () != 0;
-							set_boolean (target_key, source_bool_value);
-						} else {
-							assert_not_reached ();
-						}
-					}	
-				} else {
-					stdout.printf (@"source member with key $(source_key) is not a value\n");
-				}
-			} else {
+			if (!source_object.has_member (source_key)) {
 				stdout.printf (@"source object has no member with key $(source_key)\n");
+				continue;
 			}
+			var source_member = source_object.get_member (source_key);
+			if (source_member.get_node_type () != Json.NodeType.VALUE) {
+				stdout.printf (@"source member with key $(source_key) is not a value\n");
+				continue;
+			}
+			var target_type = get_value (target_key).get_type ();
+			if (target_type.equal (VariantType.STRING)) {
+				var source_value = source_member.get_string ();
+				set_string (target_key, source_value);
+			} else if (target_type.equal (VariantType.INT32)) {
+				var source_type = source_member.get_value_type ();
+				if (source_type.is_a (typeof (string))) {
+					var source_string_value = source_member.get_string ();
+					var source_int_value = int.parse (source_string_value);
+					set_int (target_key, source_int_value);
+				} else if (source_type.is_a (typeof (int64))) {
+					var source_value = (int) source_member.get_int ();
+					set_int (target_key, source_value);
+				} else {
+					assert_not_reached ();
+				}
+			} else if (target_type.equal (VariantType.BOOLEAN)) {
+				var source_type = source_member.get_value_type ();
+				if (source_type.is_a (typeof (int64))) {
+					var source_bool_value = source_member.get_int () != 0;
+					set_boolean (target_key, source_bool_value);
+				} else {
+					assert_not_reached ();
+				}
+			}	
 		}
 	}
 
