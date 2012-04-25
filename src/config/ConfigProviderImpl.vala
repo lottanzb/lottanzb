@@ -18,16 +18,16 @@
 
 public class Lottanzb.ConfigProviderImpl : Object, ConfigProvider {
 	
-	public Settings _lottanzb_config;
+	public BetterSettings _lottanzb_config;
 	
-	public Settings lottanzb_config {
+	public BetterSettings lottanzb_config {
 		get {
 			return _lottanzb_config;
 		}
 	}
 	
 	public ConfigProviderImpl () {
-		_lottanzb_config = new Settings ("apps.lottanzb");
+		_lottanzb_config = new BetterSettings ("apps.lottanzb");
 	}
 	
 }

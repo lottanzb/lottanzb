@@ -19,11 +19,11 @@
 public class Lottanzb.SessionProviderImpl : Object, SessionProvider {
 
 	private ConfigProvider config_provider;
-	private Settings backend_settings;
+	private BetterSettings backend_settings;
 	
 	public SessionProviderImpl (ConfigProvider config_provider) {
 		this.config_provider = config_provider;
-		this.backend_settings = config_provider.lottanzb_config.get_child (Backend.SETTINGS_KEY);
+		this.backend_settings = config_provider.lottanzb_config.get_child_for_same_backend_cached (Backend.SETTINGS_KEY);
 	}
 
 	public Session? build_session () {

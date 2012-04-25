@@ -22,14 +22,15 @@ public class Lottanzb.ConfigHub : Object {
 
 	private static const string SCHEMA_ID = "apps.lottanzb.backend.sabnzbdplus";
 	private static const string PATH = "/apps/lottanzb/backend/sabnzbdplus";
+	public static const int MAX_SERVER_COUNT = 10;
 
 	private SettingsBackend settings_backend;
 
 	public QueryProcessor query_processor { get; construct set; }
-	public Settings root { get; construct set; }
-	public Settings misc { get; construct set; }
-	public Settings servers { get; construct set; }
-	public Settings internal_root { get; construct set; }
+	public BetterSettings root { get; construct set; }
+	public BetterSettings misc { get; construct set; }
+	public BetterSettings servers { get; construct set; }
+	public BetterSettings internal_root { get; construct set; }
 	
 	public DataSpeed speed_limit {
 		get {
@@ -63,25 +64,25 @@ public class Lottanzb.ConfigHub : Object {
 	public ConfigHub (QueryProcessor query_processor) {
 		this.query_processor = query_processor;
 		settings_backend = g_memory_settings_backend_new ();
-		root = new Settings.with_backend_and_path (SCHEMA_ID, settings_backend, PATH);
-		misc = root.get_child ("misc");
-		servers = root.get_child ("servers");
-		internal_root = new Settings.with_backend_and_path (SCHEMA_ID, settings_backend, PATH);
-		var internal_misc = internal_root.get_child ("misc");
+		root = new BetterSettings.with_backend_and_path (SCHEMA_ID, settings_backend, PATH);
+		misc = root.get_child_for_same_backend_cached ("misc");
+		servers = root.get_child_for_same_backend_cached ("servers");
+		internal_root = new BetterSettings.with_backend_and_path (SCHEMA_ID, settings_backend, PATH);
+		var internal_misc = internal_root.get_child_for_same_backend_cached ("misc");
 		var query = query_processor.get_config ();
 		var misc_member = query.get_response ().get_object_member ("misc");
 		set_settings_from_json_object (misc_member, internal_misc);
-		var internal_servers = internal_root.get_child ("servers");
+		var internal_servers = internal_root.get_child_for_same_backend_cached ("servers");
 		var servers_member = query.get_response ().get_array_member ("servers");
 		for (var index = 0; index < servers_member.get_length (); index++) {
 			var server_member = servers_member.get_object_element (index);
 			var server_key = @"server$(index)";
-			var internal_server = internal_servers.get_child (server_key);
+			var internal_server = internal_servers.get_child_for_same_backend_cached (server_key);
 			set_settings_from_json_object (server_member, internal_server);
 		}
 	}
 
-	private void set_settings_from_json_object (Json.Object source_object, Settings target_settings) {
+	private void set_settings_from_json_object (Json.Object source_object, BetterSettings target_settings) {
 		var target_keys = target_settings.list_keys ();
 		foreach (var target_key in target_keys) {
 			var source_key = target_key.replace ("-", "_");

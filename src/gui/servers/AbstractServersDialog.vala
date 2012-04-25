@@ -9,6 +9,7 @@ public abstract class Lottanzb.AbstractServersDialog : Object {
 		public Gtk.ButtonBox dialog1_action_area { get; set; }
 		public Gtk.Button close { get; set; }
 		public Gtk.Button help { get; set; }
+		public Gtk.Button apply { get; set; }
 		public Gtk.Box box1 { get; set; }
 		public Gtk.Box box2 { get; set; }
 		public Gtk.ScrolledWindow scrolled_window { get; set; }
@@ -17,6 +18,7 @@ public abstract class Lottanzb.AbstractServersDialog : Object {
 		public Gtk.Toolbar add_remove_toolbar { get; set; }
 		public Gtk.ToolButton button_add { get; set; }
 		public Gtk.ToolButton button_remove { get; set; }
+		public Gtk.EventBox server_editor_pane_container { get; set; }
 
 	}
 

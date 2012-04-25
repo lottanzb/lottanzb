@@ -29,9 +29,9 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	private static string DOWNLOAD_LIST_ITEMS_PATH = "/toolbar/download_list_actions";
 	
 	private Backend? _backend;
-	private Settings settings;
-	private Settings gui_settings;
-	private Settings window_settings;
+	private BetterSettings settings;
+	private BetterSettings gui_settings;
+	private BetterSettings window_settings;
 	private Gdk.WindowState window_state;
 	private DownloadList? _download_list;
 	private InfoBar? _info_bar;
@@ -108,8 +108,8 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 
 	public MainWindow (ConfigProvider config_provider) {
 		settings = config_provider.lottanzb_config;
-		gui_settings = settings.get_child ("gui");
-		window_settings = gui_settings.get_child (SETTINGS_KEY);
+		gui_settings = settings.get_child_for_same_backend_cached ("gui");
+		window_settings = gui_settings.get_child_for_same_backend_cached (SETTINGS_KEY);
 		window_settings.bind (SETTINGS_SHOW_INFOBAR,
 			widgets.show_infobar, "active", SettingsBindFlags.DEFAULT);
 		window_settings.bind (SETTINGS_SHOW_REORDERING_PANE,
@@ -182,7 +182,7 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	[CCode (instance_pos = -1)]
 	public void on_manage_servers_activate (Gtk.Window window) {
 		if (backend != null) {
-			var dialog = new ServersDialog ();
+			var dialog = new ServersDialog (backend.config_hub);
 			dialog.run (widgets.main_window);
 		}
 	} 

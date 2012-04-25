@@ -17,8 +17,23 @@
 
 public class Lottanzb.ServersDialog : AbstractServersDialog {
 
-	public ServersDialog () {
+	private ConfigHub config_hub;
+	private ServersTreeModel model;
+	private ServerEditorPane? server_editor_pane;
+
+	public ServersDialog (ConfigHub config_hub) {
 		base ();
+		
+		this.config_hub = config_hub;
+		this.model = new ServersTreeModel (config_hub.servers);
+		widgets.tree_view.set_model (model);
+		widgets.tree_view.append_column (new ServerColumn ());
+		widgets.tree_view.get_selection ().set_mode (Gtk.SelectionMode.BROWSE);
+		widgets.tree_view.get_selection ().changed.connect ((selection) => {
+			update_server_editor_pane ();
+		});
+
+		update_server_editor_pane ();
 
 		// Join the add/remove toolbar to the treeview
 		Gtk.StyleContext context;
@@ -26,6 +41,7 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 		context.set_junction_sides (Gtk.JunctionSides.BOTTOM);
 		context = widgets.add_remove_toolbar.get_style_context ();
 		context.set_junction_sides (Gtk.JunctionSides.TOP);
+		context.add_class ("inline-toolbar");
 	}
 
 	public Gtk.Dialog dialog {
@@ -42,6 +58,30 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 		widgets.servers_dialog.run ();
 		widgets.servers_dialog.destroy ();
 	}
- 
 
+	private void update_server_editor_pane () {
+		if (server_editor_pane != null) {
+			widgets.server_editor_pane_container.remove (server_editor_pane.widget);
+			server_editor_pane = null;
+		}
+
+		var selected_server = get_selected_server ();
+		if (selected_server != null) {
+			server_editor_pane = new ServerEditorPane (selected_server);
+			widgets.server_editor_pane_container.child = server_editor_pane.widget;
+		}	
+	}
+
+	private BetterSettings? get_selected_server () {
+		var selection = widgets.tree_view.get_selection ();
+		if (selection != null) {
+			Gtk.TreeIter? iter;
+			bool has_selected_server = selection.get_selected (null, out iter);
+			if (has_selected_server) {
+				return model.get_server (iter);
+			}
+		}
+		return null;
+	}
+ 
 }

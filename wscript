@@ -89,6 +89,7 @@ def build(bld):
         'download_properties_dialog.ui': 'gui/AbstractDownloadPropertiesDialog.vala',
         'prefs_window.ui': 'gui/prefs/AbstractPreferencesWindow.vala',
         'prefs_tab_general.ui': 'gui/prefs/AbstractGeneralPreferencesTab.vala',
+        'server_editor_pane.ui': 'gui/servers/AbstractServerEditorPane.vala',
         'servers_dialog.ui': 'gui/servers/AbstractServersDialog.vala'
     }
     src_dir_node = bld.path.find_dir('src')

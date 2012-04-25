@@ -11,6 +11,7 @@
     <file preprocess="xml-stripblanks">gui/main_window.ui</file>
     <file preprocess="xml-stripblanks">gui/prefs_tab_general.ui</file>
     <file preprocess="xml-stripblanks">gui/prefs_window.ui</file>
+    <file preprocess="xml-stripblanks">gui/server_editor_pane.ui</file>
     <file preprocess="xml-stripblanks">gui/servers_dialog.ui</file>
   </gresource>
 </gresources>

@@ -22,11 +22,11 @@ public class Lottanzb.AddFileDialog : AbstractAddFileDialog {
 	private static string SETTINGS_LAST_FOLDER_URI = "last-folder-uri";
 	
 	private GeneralHub general_hub;
-	private Settings add_file_settings;
+	private BetterSettings add_file_settings;
 
-	public AddFileDialog (GeneralHub general_hub, Settings gui_settings) {
+	public AddFileDialog (GeneralHub general_hub, BetterSettings gui_settings) {
 		this.general_hub = general_hub;
-		this.add_file_settings = gui_settings.get_child (SETTINGS_KEY);
+		this.add_file_settings = gui_settings.get_child_for_same_backend_cached (SETTINGS_KEY);
 		var last_folder_uri = add_file_settings.get_string (SETTINGS_LAST_FOLDER_URI);
 		widgets.add_file_dialog.set_current_folder (last_folder_uri);
 	}

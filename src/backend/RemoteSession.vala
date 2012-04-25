@@ -34,8 +34,8 @@ public class Lottanzb.RemoteSession : Object, Session {
 	
 	public RemoteSession (ConfigProvider config_provider) {
 		var settings = config_provider.lottanzb_config;
-		var backend_settings = settings.get_child (Backend.SETTINGS_KEY);
-		var session_settings = backend_settings.get_child (SETTINGS_KEY);
+		var backend_settings = settings.get_child_for_same_backend_cached (Backend.SETTINGS_KEY);
+		var session_settings = backend_settings.get_child_for_same_backend_cached (SETTINGS_KEY);
 		var host = session_settings.get_string (SETTINGS_HOST_KEY);
 		var port = session_settings.get_int (SETTINGS_PORT_KEY);
 		var username = session_settings.get_string (SETTINGS_USERNAME_KEY);
