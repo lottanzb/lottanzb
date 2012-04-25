@@ -20,8 +20,6 @@ extern SettingsBackend g_memory_settings_backend_new ();
 
 public class Lottanzb.ConfigHub : Object {
 
-	private static const string SCHEMA_ID = "apps.lottanzb.backend.sabnzbdplus";
-	private static const string PATH = "/apps/lottanzb/backend/sabnzbdplus";
 	public static const int MAX_SERVER_COUNT = 10;
 
 	private SettingsBackend settings_backend;
@@ -64,10 +62,10 @@ public class Lottanzb.ConfigHub : Object {
 	public ConfigHub (QueryProcessor query_processor) {
 		this.query_processor = query_processor;
 		settings_backend = g_memory_settings_backend_new ();
-		root = new BetterSettings.with_backend_and_path (SCHEMA_ID, settings_backend, PATH);
+		root = new SABnzbdRootSettings (settings_backend);
 		misc = root.get_child_for_same_backend_cached ("misc");
 		servers = root.get_child_for_same_backend_cached ("servers");
-		internal_root = new BetterSettings.with_backend_and_path (SCHEMA_ID, settings_backend, PATH);
+		internal_root = new SABnzbdRootSettings (settings_backend);
 		var internal_misc = internal_root.get_child_for_same_backend_cached ("misc");
 		var query = query_processor.get_config ();
 		var misc_member = query.get_response ().get_object_member ("misc");

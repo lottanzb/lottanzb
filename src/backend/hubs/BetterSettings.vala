@@ -47,3 +47,14 @@ public class Lottanzb.BetterSettings : Settings {
 	}
 
 }
+
+public class Lottanzb.SABnzbdRootSettings : BetterSettings {
+
+	private static const string SCHEMA_ID = "apps.lottanzb.backend.sabnzbdplus";
+	private static const string PATH = "/apps/lottanzb/backend/sabnzbdplus";
+
+	public SABnzbdRootSettings (SettingsBackend backend) {
+		base.with_backend_and_path (SCHEMA_ID, backend, PATH);	
+	}
+
+}
