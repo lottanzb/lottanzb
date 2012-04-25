@@ -51,6 +51,7 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 	}
 
 	public bool get_iter (out Gtk.TreeIter iter, Gtk.TreePath path) {
+		iter = Gtk.TreeIter ();
 		var index = path.get_indices ()[0];
 		if (0 <= index && index < server_count) {
 			iter.user_data = (void *) index;
@@ -79,7 +80,7 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 			var index = (int) iter.user_data;
 			if (0 <= index && index < server_count) {
 				var server = servers.get_child_for_same_backend_cached (@"server$(index)");
-				value.init (typeof (BetterSettings));
+				value = Value (typeof (BetterSettings));
 				value.set_object (server);
 			}
 		}
@@ -87,6 +88,7 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 
 	public bool iter_children (out Gtk.TreeIter iter, Gtk.TreeIter? parent) {
 		if (parent == null) {
+			iter = Gtk.TreeIter ();
 			iter.user_data = (void *) 0;
 			return true;
 		} else {
@@ -118,6 +120,7 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 
 	public bool iter_nth_child (out Gtk.TreeIter iter, Gtk.TreeIter? parent, int index) {
 		if (parent == null && 0 <= index && index < server_count) {
+			iter = Gtk.TreeIter ();
 			iter.user_data = (void *) index;
 			return true;
 		} else {
