@@ -85,6 +85,35 @@ public class Lottanzb.BetterSettings : Settings {
 			}	
 		}
 	}
+	
+	public void apply_recursively () {
+		apply ();
+		foreach (var key in list_keys ()) {
+			var child_settings = get_child_for_same_backend_cached (key);
+			child_settings.apply_recursively ();
+		}
+	}
+
+	public void delay_recursively () {
+		delay ();
+		foreach (var key in list_keys ()) {
+			var child_settings = get_child_for_same_backend_cached (key);
+			child_settings.delay_recursively ();
+		}
+	}
+
+	public bool get_has_unapplied_recursively () {
+		if (get_has_unapplied ()) {
+			return true;
+		}
+		foreach (var key in list_keys ()) {
+			var child_settings = get_child_for_same_backend_cached (key);
+			if (child_settings.get_has_unapplied_recursively ()) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 }
 
