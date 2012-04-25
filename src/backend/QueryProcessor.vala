@@ -49,8 +49,14 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 
 	public abstract void run_query (T query);
 
-	// public abstract Query set_config (string section, string key, string value);
+	public abstract SetConfigQuery make_set_config_query (Gee.List<string> path, Gee.Map<string, string> entries);
 	
+	public SetConfigQuery set_config (Gee.List<string> path, Gee.Map<string, string> entries) {
+		var query = make_set_config_query (path, entries);
+		run_query (query);
+		return query;
+	}
+
 	public abstract GetConfigQuery make_get_config_query ();
 	
 	public GetConfigQuery get_config () {

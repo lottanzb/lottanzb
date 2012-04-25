@@ -67,11 +67,11 @@ public class Lottanzb.QueryProcessorImpl : Object, QueryNotifier<Query>, QueryPr
 		return url;
 	}
 
-	/* public Query set_config (string section, string key, string value) {
-		var query = new QueryImpl("set_config");
+	public SetConfigQuery make_set_config_query (Gee.List<string> path, Gee.Map<string, string> entries) {
+		var query = new SetConfigQueryImpl (path, entries);
 		return query;
-	} */
-	
+	}
+
 	public GetConfigQuery make_get_config_query () {
 		var query = new GetConfigQueryImpl ();
 		return query;

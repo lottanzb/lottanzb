@@ -82,6 +82,11 @@ public class Lottanzb.MockQueryProcessor : Object, QueryNotifier<Query>, QueryPr
 		query_completed (query);
 	}
 
+	public SetConfigQuery make_set_config_query (Gee.List<string> path, Gee.Map<string, string> entries) {
+		var query = new MockSetConfigQuery (path, entries);
+		return query;
+	}
+
 	public GetConfigQuery make_get_config_query () {
 		var response = new Json.Object ();
 		var query = new MockGetConfigQuery (response);

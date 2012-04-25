@@ -43,6 +43,18 @@ public class Lottanzb.SimpleMockQuery : MockQuery<Object> {
 
 }
 
+public class Lottanzb.MockSetConfigQuery : SetConfigQuery, SimpleMockQuery {
+
+	public Gee.List<string> path { get; construct set; }
+	public Gee.Map<string, string> entries { get; construct set; }
+
+	public MockSetConfigQuery (Gee.List<string> path, Gee.Map<string, string> entries) {
+		this.path = path;
+		this.entries = entries;
+	}
+
+}
+
 public class Lottanzb.MockGetConfigQuery : GetConfigQuery, MockQuery<Json.Object> {
 
 	public MockGetConfigQuery (Json.Object response) {
