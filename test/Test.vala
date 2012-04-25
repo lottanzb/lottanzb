@@ -16,6 +16,7 @@
 */
 
 private static int main (string[] args) {
+	Gtk.init_check (ref args);
 	Test.init (ref args);
 	Test.add_data_func ("/lottanzb/backend/datasize/constructors",
 		test_data_size_constructors);
