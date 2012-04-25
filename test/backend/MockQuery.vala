@@ -157,6 +157,20 @@ public class Lottanzb.MockSetDownloadPriorityQuery : SetDownloadPriorityQuery, S
 
 }
 
+public class Lottanzb.MockAddDownloadQuery : AddDownloadQuery, SimpleMockQuery {
+
+	public string uri { get; construct set; }
+	public AddDownloadQueryOptionalArguments optional_arguments { get; construct set; }
+
+	public MockAddDownloadQuery (string uri,
+		AddDownloadQueryOptionalArguments optional_arguments) {
+		base ();
+		this.uri = uri;
+		this.optional_arguments = optional_arguments;
+	}
+
+}
+
 public class Lottanzb.MockGetHistoryQuery : GetHistoryQuery, MockQuery<GetHistoryQueryResponse> {
 
 	public MockGetHistoryQuery (GetHistoryQueryResponse response) {

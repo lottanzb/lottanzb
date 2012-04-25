@@ -133,6 +133,12 @@ public class Lottanzb.MockQueryProcessor : Object, QueryNotifier<Query>, QueryPr
 		var query = new MockSetDownloadPriorityQuery (download_ids, new_priority);
 		return query;
 	}
+
+	public AddDownloadQuery make_add_download_query (string uri,
+		AddDownloadQueryOptionalArguments optional_arguments) {
+		var query = new MockAddDownloadQuery (uri, optional_arguments);
+		return query;
+	}
 	
 	public virtual GetHistoryQuery make_get_history_query () {
 		var response = new MockGetHistoryQueryResponse.empty ();

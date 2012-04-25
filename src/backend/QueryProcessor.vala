@@ -156,13 +156,19 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public abstract Query set_download_script (string script, string download_ids, ...);
 
-	public abstract Query set_download_post_processing (string post_processing, string download_ids, ...);
+	public abstract Query set_download_post_processing (string post_processing, string download_ids, ...); */
 
-	public abstract Query add_download_by_file (string file_name);
+	public abstract AddDownloadQuery make_add_download_query (string uri,
+		AddDownloadQueryOptionalArguments optional_arguments);
+
+	public AddDownloadQuery add_download (string uri,
+		AddDownloadQueryOptionalArguments optional_arguments) {
+		var query = make_add_download_query (uri, optional_arguments);
+		run_query (query);
+		return query;
+	}
 	
-	public abstract Query add_download_by_url (string url);
-	
-	public abstract Query add_download_by_id (string id);
+	/* public abstract Query add_download_by_id (string id);
 	
 	public abstract Query get_files (string download_id); */
 	

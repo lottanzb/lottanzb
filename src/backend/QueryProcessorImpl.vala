@@ -172,19 +172,15 @@ public class Lottanzb.QueryProcessorImpl : Object, QueryNotifier<Query>, QueryPr
 	public Query set_download_post_processing (string post_processing, string download_ids, ...) {
 		var query = new QueryImpl("change_opts");
 		return query;
-	}
-
-	public Query add_download_by_file (string file_name) {
-		var query = new QueryImpl("");
+	} */
+	
+	public AddDownloadQuery make_add_download_query (string uri,
+		AddDownloadQueryOptionalArguments optional_arguments) {
+		var query = new AddDownloadQueryImpl (uri, optional_arguments);
 		return query;
 	}
 	
-	public Query add_download_by_url (string url) {
-		var query = new QueryImpl("addurl");
-		return query;
-	}
-	
-	public Query add_download_by_id (string id) {
+	/* public Query add_download_by_id (string id) {
 		var query = new QueryImpl("addid");
 		return query;
 	}
