@@ -49,6 +49,7 @@ public class Lottanzb.MockSetConfigQuery : SetConfigQuery, SimpleMockQuery {
 	public Gee.Map<string, string> entries { get; construct set; }
 
 	public MockSetConfigQuery (Gee.List<string> path, Gee.Map<string, string> entries) {
+		base ();
 		this.path = path;
 		this.entries = entries;
 	}
@@ -61,6 +62,19 @@ public class Lottanzb.MockGetConfigQuery : GetConfigQuery, MockQuery<Json.Object
 		base (response);
 	}
 	
+}
+
+public class Lottanzb.MockDeleteConfigQuery : DeleteConfigQuery, SimpleMockQuery {
+
+	public Gee.List<string> path { get; construct set; }
+	public string key { get; construct set; }
+
+	public MockDeleteConfigQuery (Gee.List<string> path, string key) {
+		base ();
+		this.path = path;
+		this.key = key;
+	}
+
 }
 
 public class Lottanzb.MockGetQueueQuery : GetQueueQuery, MockQuery<GetQueueQueryResponse> {

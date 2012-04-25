@@ -65,9 +65,15 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 		return query;
 	}
 	
-	/* public abstract Query delete_config (string section, string key);
+	public abstract DeleteConfigQuery make_delete_config_query (Gee.List<string> path, string key);
+
+	public DeleteConfigQuery delete_config (Gee.List<string> path, string key) {
+		var query = make_delete_config_query (path, key);
+		run_query (query);
+		return query;
+	}
 	
-	public abstract Query get_status ();
+	/* public abstract Query get_status ();
 	
 	public abstract Query get_capabilities ();
 	

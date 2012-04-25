@@ -77,12 +77,12 @@ public class Lottanzb.QueryProcessorImpl : Object, QueryNotifier<Query>, QueryPr
 		return query;
 	}
 	
-	/* public Query delete_config (string section, string key) {
-		var query = new QueryImpl("del_config");
+	public DeleteConfigQuery make_delete_config_query (Gee.List<string> path, string key) {
+		var query = new DeleteConfigQueryImpl (path, key);
 		return query;
 	}
 	
-	public Query get_status () {
+	/* public Query get_status () {
 		var query = new QueryImpl("qstatus");
 		return query;
 	}

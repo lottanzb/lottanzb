@@ -93,6 +93,11 @@ public class Lottanzb.MockQueryProcessor : Object, QueryNotifier<Query>, QueryPr
 		return query;
 	}
 	
+	public DeleteConfigQuery make_delete_config_query (Gee.List<string> path, string key) {
+		var query = new MockDeleteConfigQuery (path, key);
+		return query;
+	}
+
 	public virtual GetQueueQuery make_get_queue_query () {
 		var response = new MockGetQueueQueryResponse ();
 		var query = new MockGetQueueQuery (response);
