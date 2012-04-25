@@ -115,6 +115,14 @@ public class Lottanzb.BetterSettings : Settings {
 		return false;
 	}
 
+	public void revert_recursively () {
+		revert ();
+		foreach (var key in list_keys ()) {
+			var child_settings = get_child_for_same_backend_cached (key);
+			child_settings.revert ();
+		}
+	}
+
 }
 
 public class Lottanzb.SABnzbdRootSettings : BetterSettings {
