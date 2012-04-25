@@ -76,19 +76,19 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 	}
 
 	public void get_value (Gtk.TreeIter iter, int column, out Value value) {
+		value = Value (typeof (BetterSettings));
 		if (column == 0) {
 			var index = (int) iter.user_data;
 			if (0 <= index && index < server_count) {
 				var server = servers.get_child_for_same_backend_cached (@"server$(index)");
-				value = Value (typeof (BetterSettings));
 				value.set_object (server);
 			}
 		}
 	}
 
 	public bool iter_children (out Gtk.TreeIter iter, Gtk.TreeIter? parent) {
+		iter = Gtk.TreeIter ();
 		if (parent == null) {
-			iter = Gtk.TreeIter ();
 			iter.user_data = (void *) 0;
 			return true;
 		} else {
