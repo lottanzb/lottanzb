@@ -101,20 +101,6 @@ public class Lottanzb.GeneralHub : Object {
 		}
 	}
 
-	public void add_file (string file_name, DownloadPostProcessing? post_processing = null, string? script = null, string? category = null, DownloadPriority? priority = DownloadPriority.NORMAL,
-		string? name = null) {
-
-	}
-
-	public void add_url (string url, DownloadPostProcessing post_processing,
-		string script, string category, DownloadPriority priority) {
-	}
-
-	public void add_id (string id, DownloadPostProcessing post_processing,
-		string script, string category, DownloadPriority priority) {
-
-	}
-
 	public void pause_downloads (Gee.List<Download> downloads) {
 		var download_ids = new Gee.ArrayList<string> ();
 		foreach (var download in downloads) {
