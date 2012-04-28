@@ -309,7 +309,7 @@ public class Lottanzb.StatusField : SimpleActivityField {
 public class Lottanzb.DownloadedField : FormattedActivityField {
 
 	public DownloadedField (Download download) {
-		base (download, _("Downloaded"), { "size-downloaded", "percent" },
+		base (download, _("Downloaded"), { "size-downloaded", "percentage" },
 			DownloadStatusGroup.NOT_FULLY_LOADED);
 	}
 
