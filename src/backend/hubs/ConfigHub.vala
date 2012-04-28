@@ -41,18 +41,18 @@ public class Lottanzb.ConfigHub : Object {
 
 	public string download_folder {
 		owned get {
-			var download_folder_path = misc.get_string ("complete-dir");
+			var result = misc.get_string ("complete-dir");
 			var is_local = query_processor.connection_info.is_local;
 			if (is_local) {
-				var download_folder = File.new_for_path (download_folder_path);
-				if (!download_folder.query_exists (null)) {
+				var result_file = File.new_for_path (result);
+				if (!result_file.query_exists ()) {
 					var home_folder_path = Environment.get_home_dir ();
 					var home_folder = File.new_for_path (home_folder_path);
-					download_folder = home_folder.get_child (download_folder_path);
-					download_folder_path = download_folder.get_path ();
+					result_file = home_folder.get_child (result);
+					result = result_file.get_path ();
 				}
 			}
-			return download_folder;
+			return result;
 		}
 		set {
 			misc.set_string ("complete-dir", value);
