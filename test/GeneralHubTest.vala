@@ -17,7 +17,7 @@
 
 using Lottanzb;
 
-private class CustomMockQueryProcessor : MockQueryProcessor {
+private class GeneralHubTestMockQueryProcessor : MockQueryProcessor {
 
 	public override GetQueueQuery make_get_queue_query () {
 		var get_queue_query = new GetQueueQueryImpl ();
@@ -36,7 +36,7 @@ private class CustomMockQueryProcessor : MockQueryProcessor {
 }
 
 public GeneralHub make_general_hub () {
-	var query_processor = new CustomMockQueryProcessor ();
+	var query_processor = new GeneralHubTestMockQueryProcessor ();
 	var general_hub = new GeneralHub (query_processor);
 	return general_hub;
 }

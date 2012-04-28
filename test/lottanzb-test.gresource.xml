@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/org/lottanzb/test">
-  	<file>fixtures/get_history_query_response.json</file>
+    <file>fixtures/get_config_query_response.json</file>
+    <file>fixtures/get_history_query_response.json</file>
     <file>fixtures/get_queue_query_response.json</file>
   </gresource>
 </gresources>
