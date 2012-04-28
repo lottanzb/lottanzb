@@ -21,11 +21,11 @@ public class Lottanzb.AddFileDialog : AbstractAddFileDialog {
 	private static string SETTINGS_KEY = "add-file";
 	private static string SETTINGS_LAST_FOLDER_URI = "last-folder-uri";
 	
-	private GeneralHub general_hub;
+	private QueryProcessor query_processor;
 	private BetterSettings add_file_settings;
 
-	public AddFileDialog (GeneralHub general_hub, BetterSettings gui_settings) {
-		this.general_hub = general_hub;
+	public AddFileDialog (QueryProcessor query_processor, BetterSettings gui_settings) {
+		this.query_processor = query_processor;
 		this.add_file_settings = gui_settings.get_child_for_same_backend_cached (SETTINGS_KEY);
 		var last_folder_uri = add_file_settings.get_string (SETTINGS_LAST_FOLDER_URI);
 		widgets.add_file_dialog.set_current_folder (last_folder_uri);
@@ -47,7 +47,8 @@ public class Lottanzb.AddFileDialog : AbstractAddFileDialog {
 	[CCode (instance_pos = -1)]
 	public void on_response (Gtk.FileChooserDialog dialog, int response_id) {
 		if (response_id == Gtk.ResponseType.OK) {
-			general_hub.add_file (get_selected_filename ());	
+			query_processor.add_download ("file://" + get_selected_filename (),
+				new AddDownloadQueryOptionalArguments ());	
 		} else if (response_id == Gtk.ResponseType.HELP) {
 
 		}

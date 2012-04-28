@@ -162,7 +162,7 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	
 	[CCode (instance_pos = -1)]
 	public void on_add_activate (Gtk.Window window) {
-		var dialog = new AddFileDialog (backend.general_hub, gui_settings);
+		var dialog = new AddFileDialog (backend.query_processor, gui_settings);
 		dialog.run (widgets.main_window);
 	}
 	
