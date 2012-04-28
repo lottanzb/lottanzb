@@ -309,13 +309,13 @@ public class Lottanzb.StatusField : SimpleActivityField {
 public class Lottanzb.DownloadedField : FormattedActivityField {
 
 	public DownloadedField (Download download) {
-		base (download, _("Downloaded"), { "size-downloaded", "size", "percent" },
+		base (download, _("Downloaded"), { "size-downloaded", "percent" },
 			DownloadStatusGroup.NOT_FULLY_LOADED);
 	}
 
 	protected override string get_text () {
-		if (download.size_downloaded != null && download.size != null) {
-			return @"$(download.size_downloaded) / $(download.size) ($(download.percentage)%)";
+		if (download.size_downloaded != null) {
+			return @"$(download.size_downloaded) ($(download.percentage)%)";
 		}
 		return LABEL_TEXT_UNKNOWN_VALUE;
 	}
