@@ -87,7 +87,7 @@ public class Lottanzb.MockQueryProcessor : Object, QueryNotifier<Query>, QueryPr
 		return query;
 	}
 
-	public GetConfigQuery make_get_config_query () {
+	public virtual GetConfigQuery make_get_config_query () {
 		var response = new Json.Object ();
 		var query = new MockGetConfigQuery (response);
 		return query;
