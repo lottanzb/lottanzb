@@ -53,39 +53,87 @@ public class Lottanzb.BetterSettings : Settings {
 				stdout.printf (@"source object has no member with key $(source_key)\n");
 				continue;
 			}
-			var source_member = source_object.get_member (source_key);
-			if (source_member.get_node_type () != Json.NodeType.VALUE) {
-				stdout.printf (@"source member with key $(source_key) is not a value\n");
-				continue;
+			stdout.printf (source_key + "\t");
+			var source_node = source_object.get_member (source_key);
+			Variant target_variant;
+			VariantType target_variant_type = get_value (target_key).get_type();
+			var is_valid = json_node_to_variant (source_node, target_variant_type, out target_variant);
+			stdout.printf ("\n");
+			if (is_valid) {
+				set_value (target_key, target_variant);
 			}
-			var target_type = get_value (target_key).get_type ();
-			if (target_type.equal (VariantType.STRING)) {
-				var source_value = source_member.get_string ();
-				set_string (target_key, source_value);
-			} else if (target_type.equal (VariantType.INT32)) {
-				var source_type = source_member.get_value_type ();
-				if (source_type.is_a (typeof (string))) {
-					var source_string_value = source_member.get_string ();
-					var source_int_value = int.parse (source_string_value);
-					set_int (target_key, source_int_value);
-				} else if (source_type.is_a (typeof (int64))) {
-					var source_value = (int) source_member.get_int ();
-					set_int (target_key, source_value);
-				} else {
-					assert_not_reached ();
-				}
-			} else if (target_type.equal (VariantType.BOOLEAN)) {
-				var source_type = source_member.get_value_type ();
-				if (source_type.is_a (typeof (int64))) {
-					var source_bool_value = source_member.get_int () != 0;
-					set_boolean (target_key, source_bool_value);
-				} else {
-					assert_not_reached ();
-				}
-			}	
 		}
 	}
-	
+
+	private bool json_node_to_variant (Json.Node source_node, VariantType target_type, out Variant target_variant) {
+		var source_node_type = source_node.get_node_type ();
+		var is_valid = false;
+		switch (source_node_type) {
+			case Json.NodeType.VALUE:
+				is_valid = json_value_node_to_variant (source_node, target_type, out target_variant);
+				break;
+			case Json.NodeType.ARRAY:
+				is_valid = json_array_node_to_variant (source_node, target_type, out target_variant);
+				break;
+			default:
+				break;
+		}
+		return is_valid;
+	}
+
+	private bool json_value_node_to_variant (Json.Node source_node, VariantType target_type, out Variant target_variant)
+		requires (source_node.get_node_type () == Json.NodeType.VALUE) {
+		var source_value_type = source_node.get_value_type ();
+		var is_valid = false;
+		if (target_type.equal (VariantType.STRING)) {
+			var source_value = source_node.get_string ();
+			target_variant = new Variant.string (source_value);
+			is_valid = true;
+		} else if (target_type.equal (VariantType.INT32)) {
+			if (source_value_type.is_a (typeof (string))) {
+				var source_string_value = source_node.get_string ();
+				var source_value = int.parse (source_string_value);
+				target_variant = new Variant.int32 (source_value);
+				is_valid = true;
+			} else if (source_value_type.is_a (typeof (int64))) {
+				var source_value = (int) source_node.get_int ();
+				target_variant = new Variant.int32 (source_value);
+				is_valid = true;
+			}
+		} else if (target_type.equal (VariantType.BOOLEAN)) {
+			if (source_value_type.is_a (typeof (int64))) {
+				var source_value = source_node.get_int () != 0;
+				target_variant = new Variant.boolean (source_value);
+				is_valid = true;
+			}
+		}
+		return is_valid;
+	}
+
+	private bool json_array_node_to_variant (Json.Node source_node, VariantType target_type, out Variant target_variant)
+		requires (source_node.get_node_type () == Json.NodeType.ARRAY) {
+		var is_valid = true;
+		if (target_type.is_array () && target_type.element () == VariantType.STRING) {
+			var source_array = source_node.get_array ();
+			var target_value = new string [source_array.get_length ()];
+			for (var index = 0; index < source_array.get_length (); index++) {
+				var source_element_node = source_array.get_element (index);
+				Variant target_element_variant;
+				var is_valid_element = json_node_to_variant (source_element_node, VariantType.STRING,
+					out target_element_variant);
+				if (is_valid_element) {
+					target_value[index] = target_element_variant.get_string ();
+				} else {
+					is_valid = false;
+				}
+			}
+			target_variant = new Variant.strv (target_value);
+		} else {
+			is_valid = false;
+		}
+		return is_valid;
+	}
+
 	public void apply_recursively () {
 		apply ();
 		foreach (var key in list_keys ()) {
