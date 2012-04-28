@@ -51,6 +51,36 @@ public abstract class Lottanzb.QueryImpl<R> : Object, Query<R> {
 		get { return _arguments; }
 	}
 
+	public virtual Soup.Message build_message (ConnectionInfo connection_info) {
+		var url = build_url (connection_info);
+		var message = new Soup.Message ("GET", url);
+		return message;
+	}
+	
+	public virtual string build_url (ConnectionInfo connection_info) {
+		var api_url = connection_info.api_url;
+		var arguments = build_arguments (connection_info);
+		var real_arguments = new HashTable<string, string> (str_hash, str_equal);
+		foreach (Gee.Map.Entry<string, string> entry in arguments.entries) {
+			real_arguments.set (entry.key, entry.value);
+		}
+		var url = api_url + "?" + Soup.Form.encode_hash (real_arguments);
+		return url;
+	}
+
+	public Gee.Map<string, string> build_arguments (ConnectionInfo connection_info) {
+		var arguments = new Gee.HashMap<string, string> ();
+		arguments.set_all (this.arguments);
+		if (connection_info.requires_authentication) {
+			arguments["ma_username"] = connection_info.username;
+			arguments["ma_password"] = connection_info.password;
+		}
+		if (connection_info.api_key != null) {
+			arguments["apikey"] = connection_info.api_key;
+		}
+		return arguments;
+	}
+
 	public R get_response () {
 		return _response;
 	}
@@ -66,7 +96,7 @@ public abstract class Lottanzb.QueryImpl<R> : Object, Query<R> {
 			parser.load_from_data (raw_response, -1);
 			var root_object = parser.get_root ().get_object ();
 			_response = get_response_from_json_object (root_object);
-			has_succeeded = get_status_from_json_object (root_object);	
+			has_succeeded = get_status_from_json_object (root_object);
 		} finally {
 			has_completed = true;	
 		}

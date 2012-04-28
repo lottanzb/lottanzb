@@ -37,9 +37,8 @@ public class Lottanzb.QueryProcessorImpl : Object, QueryNotifier<Query>, QueryPr
 	
 	public void run_query (QueryImpl query) {
 		query_started (query);
-		var url = build_url (query);
 		var session = new Soup.SessionSync ();
-		var message = new Soup.Message ("GET", url);
+		var message = query.build_message (connection_info);
 		session.send_message (message);
 		try {
 			var raw_response = (string) message.response_body.flatten ().data;
@@ -48,23 +47,6 @@ public class Lottanzb.QueryProcessorImpl : Object, QueryNotifier<Query>, QueryPr
 			stderr.printf ("Query failed: %s", e.message);
 		}
 		query_completed (query);
-	}
-	
-	private string build_url (QueryImpl query) {
-		var api_url = connection_info.api_url;
-		var arguments = new HashTable<string, string> (str_hash, str_equal);
-		foreach (var entry in query.arguments.entries) {
-			arguments.set (entry.key, entry.value);
-		}
-		if (connection_info.requires_authentication) {
-			arguments.set ("ma_username", connection_info.username);
-			arguments.set ("ma_password", connection_info.password);
-		}
-		if (connection_info.api_key != null) {
-			arguments.set ("apikey", connection_info.api_key);
-		}
-		var url = api_url + "?" + Soup.Form.encode_hash (arguments);
-		return url;
 	}
 
 	public SetConfigQuery make_set_config_query (Gee.List<string> path, Gee.Map<string, string> entries) {
