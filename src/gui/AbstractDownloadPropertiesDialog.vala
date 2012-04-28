@@ -8,18 +8,12 @@ public abstract class Lottanzb.AbstractDownloadPropertiesDialog : Object {
 		public Gtk.Dialog properties_dialog { get; set; }
 		public Gtk.Box dialog_vbox1 { get; set; }
 		public Gtk.VBox vbox4 { get; set; }
-		public Gtk.VBox vbox5 { get; set; }
-		public Gtk.Label label11 { get; set; }
-		public Gtk.Alignment alignment1 { get; set; }
-		public Gtk.Grid grid2 { get; set; }
+		public Gtk.Grid settings_grid { get; set; }
 		public Gtk.Label name_label { get; set; }
 		public Gtk.Entry name { get; set; }
 		public Gtk.Label priority_label { get; set; }
 		public Gtk.ComboBox priority { get; set; }
 		public Gtk.CellRendererText cellrenderertext2 { get; set; }
-		public Gtk.VBox vbox6 { get; set; }
-		public Gtk.Label label30 { get; set; }
-		public Gtk.Alignment alignment2 { get; set; }
 		public Gtk.Grid activity_grid { get; set; }
 		public Gtk.ButtonBox dialog_action_area1 { get; set; }
 		public Gtk.VBox vbox1 { get; set; }

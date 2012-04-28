@@ -196,8 +196,8 @@ public abstract class Lottanzb.ActivityField : Object {
 		string[] required_download_properties,
 		int visibility_status_group = DownloadStatusGroup.ANY_STATUS) {
 		this.download = download;
-		this.label = new Label (@"$(label_text):");
-		this.label.set_alignment (0.0f, 0.0f);
+		this.label = new Label (label_text);
+		this.label.set_alignment (1.0f, 0.0f);
 		this.content = content;
 		this.required_download_properties = required_download_properties;
 		this.visibility_status_group = visibility_status_group;
