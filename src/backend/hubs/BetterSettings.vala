@@ -53,12 +53,10 @@ public class Lottanzb.BetterSettings : Settings {
 				stdout.printf (@"source object has no member with key $(source_key)\n");
 				continue;
 			}
-			stdout.printf (source_key + "\t");
 			var source_node = source_object.get_member (source_key);
 			Variant target_variant;
 			VariantType target_variant_type = get_value (target_key).get_type();
 			var is_valid = json_node_to_variant (source_node, target_variant_type, out target_variant);
-			stdout.printf ("\n");
 			if (is_valid) {
 				set_value (target_key, target_variant);
 			}
