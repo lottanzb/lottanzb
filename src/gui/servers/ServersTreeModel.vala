@@ -119,8 +119,8 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 	}
 
 	public bool iter_nth_child (out Gtk.TreeIter iter, Gtk.TreeIter? parent, int index) {
+		iter = Gtk.TreeIter ();
 		if (parent == null && 0 <= index && index < server_count) {
-			iter = Gtk.TreeIter ();
 			iter.user_data = (void *) index;
 			return true;
 		} else {
