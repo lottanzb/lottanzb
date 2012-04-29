@@ -17,6 +17,7 @@
 
 
 extern SettingsBackend g_memory_settings_backend_new ();
+extern SettingsBackend g_settings_backend_get_default ();
 
 public class Lottanzb.ConfigHub : Object {
 
@@ -61,6 +62,7 @@ public class Lottanzb.ConfigHub : Object {
 
 	public ConfigHub (QueryProcessor query_processor) {
 		this.query_processor = query_processor;
+		var default_settings_backend = g_settings_backend_get_default ();
 		settings_backend = g_memory_settings_backend_new ();
 		root = new SABnzbdRootSettings (settings_backend);
 		misc = root.get_child_for_same_backend_cached ("misc");
