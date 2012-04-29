@@ -16,9 +16,6 @@
  */
 
 
-extern SettingsBackend g_memory_settings_backend_new ();
-extern SettingsBackend g_settings_backend_get_default ();
-
 public class Lottanzb.ConfigHub : Object {
 
 	public static const int MAX_SERVER_COUNT = 10;
@@ -62,10 +59,7 @@ public class Lottanzb.ConfigHub : Object {
 
 	public ConfigHub (QueryProcessor query_processor) {
 		this.query_processor = query_processor;
-		// Ensure that the Gio modules extension points have been registered,
-		// such that the memory settings backend can be instantiated.
-		var default_settings_backend = g_settings_backend_get_default ();
-		settings_backend = g_memory_settings_backend_new ();
+		settings_backend = BetterSettings.build_memory_settings_backend ();
 		root = new SABnzbdRootSettings (settings_backend);
 		misc = root.get_child_for_same_backend_cached ("misc");
 		servers = root.get_child_for_same_backend_cached ("servers");

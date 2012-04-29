@@ -15,12 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+extern SettingsBackend g_memory_settings_backend_new ();
+extern SettingsBackend g_settings_backend_get_default ();
+
 public class Lottanzb.BetterSettings : Settings {
 
 	private Gee.Map<string, BetterSettings> children;
 
 	public BetterSettings (string schema_id) {
 		Object (schema_id: schema_id);
+		this.children = new Gee.HashMap<string, BetterSettings> ();
+	}
+
+	public BetterSettings.with_backend (string schema_id, SettingsBackend backend) {
+		Object (schema_id: schema_id, backend: backend);
 		this.children = new Gee.HashMap<string, BetterSettings> ();
 	}
 
@@ -167,6 +175,14 @@ public class Lottanzb.BetterSettings : Settings {
 			var child_settings = get_child_for_same_backend_cached (key);
 			child_settings.revert ();
 		}
+	}
+
+	public static SettingsBackend build_memory_settings_backend () {
+		// Ensure that the Gio modules extension points have been registered,
+		// such that the memory settings backend can be instantiated.
+		var default_settings_backend = g_settings_backend_get_default ();
+		var settings_backend = g_memory_settings_backend_new ();
+		return settings_backend;
 	}
 
 }
