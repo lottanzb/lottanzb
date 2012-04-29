@@ -62,6 +62,8 @@ public class Lottanzb.ConfigHub : Object {
 
 	public ConfigHub (QueryProcessor query_processor) {
 		this.query_processor = query_processor;
+		// Ensure that the Gio modules extension points have been registered,
+		// such that the memory settings backend can be instantiated.
 		var default_settings_backend = g_settings_backend_get_default ();
 		settings_backend = g_memory_settings_backend_new ();
 		root = new SABnzbdRootSettings (settings_backend);
