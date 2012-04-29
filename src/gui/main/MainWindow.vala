@@ -124,7 +124,7 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 		LaunchpadIntegration.add_ui(widgets.ui_manager, LAUNCHPAD_ITEMS_PATH);
 
 		widgets.backend_action_group.set_sensitive(false);
-		widgets.main_window.show_all ();
+		widgets.main_window.show ();
 	}
 	
 	public void save_window_settings () {
