@@ -18,6 +18,6 @@
 
 public interface Lottanzb.ConfigProvider : Object {
 	
-	public abstract BetterSettings lottanzb_config { get; }
+	public abstract BetterSettings lottanzb_config { get; construct set; }
 	
 }

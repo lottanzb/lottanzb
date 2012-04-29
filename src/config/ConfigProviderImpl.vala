@@ -18,16 +18,17 @@
 
 public class Lottanzb.ConfigProviderImpl : Object, ConfigProvider {
 	
-	public BetterSettings _lottanzb_config;
-	
-	public BetterSettings lottanzb_config {
-		get {
-			return _lottanzb_config;
-		}
-	}
+	private static string SCHEMA_ID = "apps.lottanzb";
+
+	public BetterSettings lottanzb_config { get; construct set; }
 	
 	public ConfigProviderImpl () {
-		_lottanzb_config = new BetterSettings ("apps.lottanzb");
+		lottanzb_config = new BetterSettings (SCHEMA_ID);
+	}
+
+	public ConfigProviderImpl.with_memory_backend () {
+		var settings_backend = BetterSettings.build_memory_settings_backend ();
+		lottanzb_config = new BetterSettings.with_backend (SCHEMA_ID, settings_backend);
 	}
 	
 }
