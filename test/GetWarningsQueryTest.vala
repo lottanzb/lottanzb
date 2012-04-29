@@ -18,7 +18,7 @@
 using Lottanzb;
 
 public void test_get_warnings_query () {
-	var raw_response = "{\"warnings\":[\"2012-03-14 20:44:52,122\nERROR\nFailed login for server example.com:563\",\"2012-03-14 20:54:57,675\nERROR\nFailed login for server example.com:563\"]}";
+	var raw_response = get_fixture ("get_warnings_query_response.json");
 	var query = new GetWarningsQueryImpl ();
 	query.set_raw_response (raw_response);
 	var warnings = query.get_response ();

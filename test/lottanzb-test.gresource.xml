@@ -4,5 +4,6 @@
     <file>fixtures/get_config_query_response.json</file>
     <file>fixtures/get_history_query_response.json</file>
     <file>fixtures/get_queue_query_response.json</file>
+    <file>fixtures/get_warnings_query_response.json</file>
   </gresource>
 </gresources>
