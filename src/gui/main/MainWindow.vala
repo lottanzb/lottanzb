@@ -17,26 +17,26 @@
 
 public class Lottanzb.MainWindow : AbstractMainWindow {
 
-	private static string SETTINGS_KEY = "main";
-	private static string SETTINGS_SIZE_KEY = "size";
-	private static string SETTINGS_POSITION_KEY = "position";
-	private static string SETTINGS_STATE_KEY = "state";
-	private static string SETTINGS_SHOW_INFOBAR = "show-infobar";
-	private static string SETTINGS_SHOW_REORDERING_PANE = "show-reordering-pane";
-	private static string SETTINGS_SHOW_TOOLBAR = "show-toolbar";
+	public static string SETTINGS_KEY = "main";
+	public static string SETTINGS_SIZE_KEY = "size";
+	public static string SETTINGS_POSITION_KEY = "position";
+	public static string SETTINGS_STATE_KEY = "state";
+	public static string SETTINGS_SHOW_INFOBAR = "show-infobar";
+	public static string SETTINGS_SHOW_REORDERING_PANE = "show-reordering-pane";
+	public static string SETTINGS_SHOW_TOOLBAR = "show-toolbar";
 	
 	private static string LAUNCHPAD_ITEMS_PATH = "/menu_bar/help/launchpad_items";
 	private static string DOWNLOAD_LIST_ITEMS_PATH = "/toolbar/download_list_actions";
 	
+	public BetterSettings settings { get; construct set; }
+	public BetterSettings gui_settings { get; construct set; }
+	public BetterSettings window_settings { get; construct set; }
+	
 	private Backend? _backend;
-	private BetterSettings settings;
-	private BetterSettings gui_settings;
-	private BetterSettings window_settings;
 	private Gdk.WindowState window_state;
 	private DownloadList? _download_list;
 	private InfoBar? _info_bar;
 	private uint ui_manager_merge_id;
-
 	private Binding? _pause_general_hub_action_binding;
 
 	public DownloadList? download_list {
