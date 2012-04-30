@@ -2,19 +2,19 @@
 
 public abstract class Lottanzb.AbstractPreferencesWindow : Object {
 
-	protected class WindowWidgets : Object {
+	public class WindowWidgets : Object {
 
-		public Gtk.Dialog prefs_window { get; set; }
-		public Gtk.Box dialog1_vbox { get; set; }
-		public Gtk.ButtonBox dialog1_action_area { get; set; }
-		public Gtk.Button close { get; set; }
-		public Gtk.Button help { get; set; }
-		public Gtk.Notebook notebook { get; set; }
+		public Gtk.Dialog prefs_window { get; protected set; }
+		public Gtk.Box dialog1_vbox { get; protected set; }
+		public Gtk.ButtonBox dialog1_action_area { get; protected set; }
+		public Gtk.Button close { get; protected set; }
+		public Gtk.Button help { get; protected set; }
+		public Gtk.Notebook notebook { get; protected set; }
 
 	}
 
 	protected Gtk.Builder builder;
-	protected WindowWidgets widgets;
+	public WindowWidgets widgets;
 
 	construct {
 		builder = new Gtk.Builder ();

@@ -2,31 +2,31 @@
 
 public abstract class Lottanzb.AbstractDownloadPropertiesDialog : Object {
 
-	protected class WindowWidgets : Object {
+	public class WindowWidgets : Object {
 
-		public Gtk.Action open_download_folder { get; set; }
-		public Gtk.Dialog properties_dialog { get; set; }
-		public Gtk.Box dialog_vbox1 { get; set; }
-		public Gtk.VBox vbox4 { get; set; }
-		public Gtk.Grid settings_grid { get; set; }
-		public Gtk.Label name_label { get; set; }
-		public Gtk.Entry name { get; set; }
-		public Gtk.Label priority_label { get; set; }
-		public Gtk.ComboBox priority { get; set; }
-		public Gtk.CellRendererText cellrenderertext2 { get; set; }
-		public Gtk.Grid activity_grid { get; set; }
-		public Gtk.ButtonBox dialog_action_area1 { get; set; }
-		public Gtk.VBox vbox1 { get; set; }
-		public Gtk.Button open_button { get; set; }
-		public Gtk.Button button2 { get; set; }
-		public Gtk.SizeGroup label_size_group { get; set; }
-		public Gtk.ListStore priority_store { get; set; }
-		public Gtk.SizeGroup sizegroup { get; set; }
+		public Gtk.Action open_download_folder { get; protected set; }
+		public Gtk.Dialog properties_dialog { get; protected set; }
+		public Gtk.Box dialog_vbox1 { get; protected set; }
+		public Gtk.VBox vbox4 { get; protected set; }
+		public Gtk.Grid settings_grid { get; protected set; }
+		public Gtk.Label name_label { get; protected set; }
+		public Gtk.Entry name { get; protected set; }
+		public Gtk.Label priority_label { get; protected set; }
+		public Gtk.ComboBox priority { get; protected set; }
+		public Gtk.CellRendererText cellrenderertext2 { get; protected set; }
+		public Gtk.Grid activity_grid { get; protected set; }
+		public Gtk.ButtonBox dialog_action_area1 { get; protected set; }
+		public Gtk.VBox vbox1 { get; protected set; }
+		public Gtk.Button open_button { get; protected set; }
+		public Gtk.Button button2 { get; protected set; }
+		public Gtk.SizeGroup label_size_group { get; protected set; }
+		public Gtk.ListStore priority_store { get; protected set; }
+		public Gtk.SizeGroup sizegroup { get; protected set; }
 
 	}
 
 	protected Gtk.Builder builder;
-	protected WindowWidgets widgets;
+	public WindowWidgets widgets;
 
 	construct {
 		builder = new Gtk.Builder ();

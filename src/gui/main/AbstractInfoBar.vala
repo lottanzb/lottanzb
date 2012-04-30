@@ -2,22 +2,22 @@
 
 public abstract class Lottanzb.AbstractInfoBar : Object {
 
-	protected class WindowWidgets : Object {
+	public class WindowWidgets : Object {
 
-		public Gtk.Window window { get; set; }
-		public Gtk.Alignment info_bar { get; set; }
-		public Gtk.HBox hbox1 { get; set; }
-		public Gtk.Label total_remaining { get; set; }
-		public Gtk.HBox free_space_container { get; set; }
-		public Gtk.Image free_space_icon { get; set; }
-		public Gtk.Label free_space { get; set; }
-		public Gtk.HBox speed_container { get; set; }
-		public Gtk.Label speed { get; set; }
+		public Gtk.Window window { get; protected set; }
+		public Gtk.Alignment info_bar { get; protected set; }
+		public Gtk.HBox hbox1 { get; protected set; }
+		public Gtk.Label total_remaining { get; protected set; }
+		public Gtk.HBox free_space_container { get; protected set; }
+		public Gtk.Image free_space_icon { get; protected set; }
+		public Gtk.Label free_space { get; protected set; }
+		public Gtk.HBox speed_container { get; protected set; }
+		public Gtk.Label speed { get; protected set; }
 
 	}
 
 	protected Gtk.Builder builder;
-	protected WindowWidgets widgets;
+	public WindowWidgets widgets;
 
 	construct {
 		builder = new Gtk.Builder ();

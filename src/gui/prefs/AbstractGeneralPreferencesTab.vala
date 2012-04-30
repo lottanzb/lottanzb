@@ -2,40 +2,40 @@
 
 public abstract class Lottanzb.AbstractGeneralPreferencesTab : Object {
 
-	protected class WindowWidgets : Object {
+	public class WindowWidgets : Object {
 
-		public Gtk.Adjustment speed { get; set; }
-		public Gtk.Window prefs_tab_general { get; set; }
-		public Gtk.VBox vbox1 { get; set; }
-		public Gtk.VBox vbox2 { get; set; }
-		public Gtk.Label download_label { get; set; }
-		public Gtk.Alignment alignment2 { get; set; }
-		public Gtk.Table table2 { get; set; }
-		public Gtk.HBox hbox2 { get; set; }
-		public Gtk.FileChooserButton observed_folder_button { get; set; }
-		public Gtk.Entry observed_folder_entry { get; set; }
-		public Gtk.CheckButton enforce_max_rate { get; set; }
-		public Gtk.CheckButton dirscan { get; set; }
-		public Gtk.HBox hbox1 { get; set; }
-		public Gtk.SpinButton max_rate { get; set; }
-		public Gtk.Label max_rate_scale { get; set; }
-		public Gtk.VBox vbox5 { get; set; }
-		public Gtk.Label download_label1 { get; set; }
-		public Gtk.Alignment alignment1 { get; set; }
-		public Gtk.VBox vbox3 { get; set; }
-		public Gtk.EventBox eventbox1 { get; set; }
-		public Gtk.ComboBox post_processing { get; set; }
-		public Gtk.HBox hbox4 { get; set; }
-		public Gtk.Label download_dir_label { get; set; }
-		public Gtk.HBox hbox3 { get; set; }
-		public Gtk.FileChooserButton download_folder_button { get; set; }
-		public Gtk.Entry download_folder_entry { get; set; }
-		public Gtk.SizeGroup sizegroup { get; set; }
+		public Gtk.Adjustment speed { get; protected set; }
+		public Gtk.Window prefs_tab_general { get; protected set; }
+		public Gtk.VBox vbox1 { get; protected set; }
+		public Gtk.VBox vbox2 { get; protected set; }
+		public Gtk.Label download_label { get; protected set; }
+		public Gtk.Alignment alignment2 { get; protected set; }
+		public Gtk.Table table2 { get; protected set; }
+		public Gtk.HBox hbox2 { get; protected set; }
+		public Gtk.FileChooserButton observed_folder_button { get; protected set; }
+		public Gtk.Entry observed_folder_entry { get; protected set; }
+		public Gtk.CheckButton enforce_max_rate { get; protected set; }
+		public Gtk.CheckButton dirscan { get; protected set; }
+		public Gtk.HBox hbox1 { get; protected set; }
+		public Gtk.SpinButton max_rate { get; protected set; }
+		public Gtk.Label max_rate_scale { get; protected set; }
+		public Gtk.VBox vbox5 { get; protected set; }
+		public Gtk.Label download_label1 { get; protected set; }
+		public Gtk.Alignment alignment1 { get; protected set; }
+		public Gtk.VBox vbox3 { get; protected set; }
+		public Gtk.EventBox eventbox1 { get; protected set; }
+		public Gtk.ComboBox post_processing { get; protected set; }
+		public Gtk.HBox hbox4 { get; protected set; }
+		public Gtk.Label download_dir_label { get; protected set; }
+		public Gtk.HBox hbox3 { get; protected set; }
+		public Gtk.FileChooserButton download_folder_button { get; protected set; }
+		public Gtk.Entry download_folder_entry { get; protected set; }
+		public Gtk.SizeGroup sizegroup { get; protected set; }
 
 	}
 
 	protected Gtk.Builder builder;
-	protected WindowWidgets widgets;
+	public WindowWidgets widgets;
 
 	construct {
 		builder = new Gtk.Builder ();

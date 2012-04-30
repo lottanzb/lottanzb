@@ -2,40 +2,40 @@
 
 public abstract class Lottanzb.AbstractServerEditorPane : Object {
 
-	protected class WindowWidgets : Object {
+	public class WindowWidgets : Object {
 
-		public Gtk.Adjustment connection_adjustment { get; set; }
-		public Gtk.Adjustment port_adjustment { get; set; }
-		public Gtk.Window window { get; set; }
-		public Gtk.Box server_editor_pane { get; set; }
-		public Gtk.Box box1 { get; set; }
-		public Gtk.Label header_label { get; set; }
-		public Gtk.Switch enable { get; set; }
-		public Gtk.Alignment alignment1 { get; set; }
-		public Gtk.Table table1 { get; set; }
-		public Gtk.Label label2 { get; set; }
-		public Gtk.Entry host { get; set; }
-		public Gtk.Label label4 { get; set; }
-		public Gtk.Entry username { get; set; }
-		public Gtk.Label label5 { get; set; }
-		public Gtk.Entry password { get; set; }
-		public Gtk.Label label8 { get; set; }
-		public Gtk.Label ssl_label { get; set; }
-		public Gtk.Box box2 { get; set; }
-		public Gtk.Switch ssl { get; set; }
-		public Gtk.Alignment alignment2 { get; set; }
-		public Gtk.Label label1 { get; set; }
-		public Gtk.Label connections_label { get; set; }
-		public Gtk.Box box3 { get; set; }
-		public Gtk.SpinButton port { get; set; }
-		public Gtk.Box box4 { get; set; }
-		public Gtk.SpinButton connections { get; set; }
-		public Gtk.SizeGroup sizegroup1 { get; set; }
+		public Gtk.Adjustment connection_adjustment { get; protected set; }
+		public Gtk.Adjustment port_adjustment { get; protected set; }
+		public Gtk.Window window { get; protected set; }
+		public Gtk.Box server_editor_pane { get; protected set; }
+		public Gtk.Box box1 { get; protected set; }
+		public Gtk.Label header_label { get; protected set; }
+		public Gtk.Switch enable { get; protected set; }
+		public Gtk.Alignment alignment1 { get; protected set; }
+		public Gtk.Table table1 { get; protected set; }
+		public Gtk.Label label2 { get; protected set; }
+		public Gtk.Entry host { get; protected set; }
+		public Gtk.Label label4 { get; protected set; }
+		public Gtk.Entry username { get; protected set; }
+		public Gtk.Label label5 { get; protected set; }
+		public Gtk.Entry password { get; protected set; }
+		public Gtk.Label label8 { get; protected set; }
+		public Gtk.Label ssl_label { get; protected set; }
+		public Gtk.Box box2 { get; protected set; }
+		public Gtk.Switch ssl { get; protected set; }
+		public Gtk.Alignment alignment2 { get; protected set; }
+		public Gtk.Label label1 { get; protected set; }
+		public Gtk.Label connections_label { get; protected set; }
+		public Gtk.Box box3 { get; protected set; }
+		public Gtk.SpinButton port { get; protected set; }
+		public Gtk.Box box4 { get; protected set; }
+		public Gtk.SpinButton connections { get; protected set; }
+		public Gtk.SizeGroup sizegroup1 { get; protected set; }
 
 	}
 
 	protected Gtk.Builder builder;
-	protected WindowWidgets widgets;
+	public WindowWidgets widgets;
 
 	construct {
 		builder = new Gtk.Builder ();

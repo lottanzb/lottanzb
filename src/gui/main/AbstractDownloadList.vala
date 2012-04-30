@@ -2,31 +2,31 @@
 
 public abstract class Lottanzb.AbstractDownloadList : Object {
 
-	protected class WindowWidgets : Object {
+	public class WindowWidgets : Object {
 
-		public Gtk.UIManager ui_manager { get; set; }
-		public Gtk.ActionGroup important_action_group { get; set; }
-		public Gtk.Action remove { get; set; }
-		public Gtk.ActionGroup action_group { get; set; }
-		public Gtk.Action move_down { get; set; }
-		public Gtk.Action move_up { get; set; }
-		public Gtk.Action move_up_to_top { get; set; }
-		public Gtk.Action move_down_to_bottom { get; set; }
-		public Gtk.Action show_properties_dialog { get; set; }
-		public Gtk.ToggleAction pause { get; set; }
-		public Gtk.Action open_folder { get; set; }
-		public Gtk.Menu context_menu { get; set; }
-		public Gtk.Window window1 { get; set; }
-		public Gtk.HBox download_list { get; set; }
-		public Gtk.Toolbar reordering_pane { get; set; }
-		public Gtk.ScrolledWindow download_list_container { get; set; }
-		public Gtk.TreeView treeview { get; set; }
-		public Gtk.TreeSelection treeview_selection1 { get; set; }
+		public Gtk.UIManager ui_manager { get; protected set; }
+		public Gtk.ActionGroup important_action_group { get; protected set; }
+		public Gtk.Action remove { get; protected set; }
+		public Gtk.ActionGroup action_group { get; protected set; }
+		public Gtk.Action move_down { get; protected set; }
+		public Gtk.Action move_up { get; protected set; }
+		public Gtk.Action move_up_to_top { get; protected set; }
+		public Gtk.Action move_down_to_bottom { get; protected set; }
+		public Gtk.Action show_properties_dialog { get; protected set; }
+		public Gtk.ToggleAction pause { get; protected set; }
+		public Gtk.Action open_folder { get; protected set; }
+		public Gtk.Menu context_menu { get; protected set; }
+		public Gtk.Window window1 { get; protected set; }
+		public Gtk.HBox download_list { get; protected set; }
+		public Gtk.Toolbar reordering_pane { get; protected set; }
+		public Gtk.ScrolledWindow download_list_container { get; protected set; }
+		public Gtk.TreeView treeview { get; protected set; }
+		public Gtk.TreeSelection treeview_selection1 { get; protected set; }
 
 	}
 
 	protected Gtk.Builder builder;
-	protected WindowWidgets widgets;
+	public WindowWidgets widgets;
 
 	construct {
 		builder = new Gtk.Builder ();

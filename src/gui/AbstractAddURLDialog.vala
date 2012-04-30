@@ -2,22 +2,22 @@
 
 public abstract class Lottanzb.AbstractAddURLDialog : Object {
 
-	protected class WindowWidgets : Object {
+	public class WindowWidgets : Object {
 
-		public Gtk.Dialog add_url_dialog { get; set; }
-		public Gtk.Box dialog_vbox1 { get; set; }
-		public Gtk.ButtonBox dialog_action_area1 { get; set; }
-		public Gtk.Button cancel { get; set; }
-		public Gtk.Button add { get; set; }
-		public Gtk.Button help { get; set; }
-		public Gtk.VBox vbox1 { get; set; }
-		public Gtk.Label label1 { get; set; }
-		public Gtk.Entry url { get; set; }
+		public Gtk.Dialog add_url_dialog { get; protected set; }
+		public Gtk.Box dialog_vbox1 { get; protected set; }
+		public Gtk.ButtonBox dialog_action_area1 { get; protected set; }
+		public Gtk.Button cancel { get; protected set; }
+		public Gtk.Button add { get; protected set; }
+		public Gtk.Button help { get; protected set; }
+		public Gtk.VBox vbox1 { get; protected set; }
+		public Gtk.Label label1 { get; protected set; }
+		public Gtk.Entry url { get; protected set; }
 
 	}
 
 	protected Gtk.Builder builder;
-	protected WindowWidgets widgets;
+	public WindowWidgets widgets;
 
 	construct {
 		builder = new Gtk.Builder ();

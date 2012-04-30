@@ -2,28 +2,28 @@
 
 public abstract class Lottanzb.AbstractServersDialog : Object {
 
-	protected class WindowWidgets : Object {
+	public class WindowWidgets : Object {
 
-		public Gtk.Dialog servers_dialog { get; set; }
-		public Gtk.Box dialog1_vbox { get; set; }
-		public Gtk.ButtonBox dialog1_action_area { get; set; }
-		public Gtk.Button close { get; set; }
-		public Gtk.Button help { get; set; }
-		public Gtk.Button apply { get; set; }
-		public Gtk.Box box1 { get; set; }
-		public Gtk.Box box2 { get; set; }
-		public Gtk.ScrolledWindow scrolled_window { get; set; }
-		public Gtk.TreeView tree_view { get; set; }
-		public Gtk.TreeSelection tree_selection { get; set; }
-		public Gtk.Toolbar add_remove_toolbar { get; set; }
-		public Gtk.ToolButton button_add { get; set; }
-		public Gtk.ToolButton button_remove { get; set; }
-		public Gtk.EventBox server_editor_pane_container { get; set; }
+		public Gtk.Dialog servers_dialog { get; protected set; }
+		public Gtk.Box dialog1_vbox { get; protected set; }
+		public Gtk.ButtonBox dialog1_action_area { get; protected set; }
+		public Gtk.Button close { get; protected set; }
+		public Gtk.Button help { get; protected set; }
+		public Gtk.Button apply { get; protected set; }
+		public Gtk.Box box1 { get; protected set; }
+		public Gtk.Box box2 { get; protected set; }
+		public Gtk.ScrolledWindow scrolled_window { get; protected set; }
+		public Gtk.TreeView tree_view { get; protected set; }
+		public Gtk.TreeSelection tree_selection { get; protected set; }
+		public Gtk.Toolbar add_remove_toolbar { get; protected set; }
+		public Gtk.ToolButton button_add { get; protected set; }
+		public Gtk.ToolButton button_remove { get; protected set; }
+		public Gtk.EventBox server_editor_pane_container { get; protected set; }
 
 	}
 
 	protected Gtk.Builder builder;
-	protected WindowWidgets widgets;
+	public WindowWidgets widgets;
 
 	construct {
 		builder = new Gtk.Builder ();

@@ -2,16 +2,16 @@
 
 public abstract class Lottanzb.AbstractAboutDialog : Object {
 
-	protected class WindowWidgets : Object {
+	public class WindowWidgets : Object {
 
-		public Gtk.AboutDialog about_dialog { get; set; }
-		public Gtk.Box vbox { get; set; }
-		public Gtk.ButtonBox action_area { get; set; }
+		public Gtk.AboutDialog about_dialog { get; protected set; }
+		public Gtk.Box vbox { get; protected set; }
+		public Gtk.ButtonBox action_area { get; protected set; }
 
 	}
 
 	protected Gtk.Builder builder;
-	protected WindowWidgets widgets;
+	public WindowWidgets widgets;
 
 	construct {
 		builder = new Gtk.Builder ();
