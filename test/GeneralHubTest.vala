@@ -86,6 +86,8 @@ public void test_general_hub_download_name_binding () {
 	var list_store = general_hub.download_list_store;
 	var download = list_store.get_download_by_id ("foo");
 	assert (download.name == "foo");
+	// Assert that changing the name of a Download triggers a RenameDownloadQuery
+	// and emits the 'row-changed' signal of the DownloadListStore.
 	bool has_row_changed = false;
 	list_store.row_changed.connect ((model, path, iter) => {
 		has_row_changed = true;
@@ -98,8 +100,19 @@ public void test_general_hub_download_name_binding () {
 	assert (has_row_changed);
 	has_row_changed = false;
 	query_processor.rename_download (download.id, "baz");
+	// Assert that running a RenameDownloadQuery changes the download name,
+	// but does not trigger a subsequent (useless) RenameDownloadQuery.
+	rename_download_queries = query_processor.get_queries<RenameDownloadQuery> ();
+	assert (rename_download_queries.size == 2);
 	assert (has_row_changed);
 	assert (download.name == "baz");
+	stdout.printf ("Before\n");
+	// Assert that during a subsequent DownloadListStore update using remote data,
+	// no accidental RenameDownloadQueries are run.
+	query_processor.get_queue ();
+	query_processor.get_history ();
+	rename_download_queries = query_processor.get_queries<RenameDownloadQuery> ();
+	assert (rename_download_queries.size == 2);
 }
 
 public void test_general_hub_download_priority_binding () {
@@ -109,7 +122,10 @@ public void test_general_hub_download_priority_binding () {
 	Gtk.TreeIter iter;
 	list_store.get_iter_first (out iter);
 	var download = list_store.get_download (iter);
-	assert (download.priority == DownloadPriority.NORMAL); 
+	assert (download.priority == DownloadPriority.NORMAL);
+	// Assert that changing the priority of a Download triggers a
+	// SetDownloadPriorityQuery and emits the 'row-changed' signal of the
+	// DownloadListStore.
 	bool has_row_changed = false;
 	list_store.row_changed.connect ((model, path, iter) => {
 		has_row_changed = true;
@@ -122,6 +138,17 @@ public void test_general_hub_download_priority_binding () {
 	assert (has_row_changed);
 	has_row_changed = false;
 	query_processor.set_single_download_priority (download.id, DownloadPriority.HIGH);
+	// Assert that running a SetDownloadPriorityQuery changes the download name,
+	// but does not trigger a subsequent (useless) SetDownloadPriorityQuery.
+	set_download_priority_queries = query_processor.get_queries<SetDownloadPriorityQuery> ();
+	assert (set_download_priority_queries.size == 2);
 	assert (has_row_changed);
 	assert (download.priority == DownloadPriority.HIGH);
+	// Assert that during a subsequent DownloadListStore update using remote data,
+	// no accidental SetDownloadPriorityQueries are run.
+	query_processor.get_queue ();
+	query_processor.get_history ();
+	set_download_priority_queries = query_processor.get_queries<SetDownloadPriorityQuery> ();
+	assert (set_download_priority_queries.size == 2);
+
 }
