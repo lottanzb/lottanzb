@@ -24,9 +24,11 @@ public class Lottanzb.DownloadNameBinding : DownloadPropertyBinding {
 	}
 	
 	public override void handle_download_property_change (Download download) {
-		base.handle_download_property_change (download);
-		var new_name = download.name;
-		query_processor.rename_download (download.id, new_name);
+		if (!download_list_store.is_updating) {
+			base.handle_download_property_change (download);
+			var new_name = download.name;
+			query_processor.rename_download (download.id, new_name);
+		}
 	}
 
 	public void on_download_rename_query_started (QueryNotifier query_notifier,
@@ -35,7 +37,9 @@ public class Lottanzb.DownloadNameBinding : DownloadPropertyBinding {
 		var new_name = rename_download_query.new_name;
 		var download = download_list_store.get_download_by_id (download_id);
 		if (download != null && download.name != new_name) {
+			ignore_property_changes = true;
 			download.name = new_name;
+			ignore_property_changes = false;
 			download_list_store.register_download_change (download);
 		}
 	}

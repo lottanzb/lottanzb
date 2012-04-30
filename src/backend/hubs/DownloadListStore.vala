@@ -21,7 +21,11 @@ public class Lottanzb.DownloadListStore : Gtk.ListStore, IterableTreeModel, Down
 	public static int COLUMN = 0;
 	
 	private Gee.HashMap<int, DownloadListStoreFilter> filters;
-	
+
+	// Updating as well as accessing this variable must only happen
+	// from the main thread.
+	public bool is_updating { get; set; }
+
 	public DownloadListStore () {
 		set_column_types(new Type[] { typeof(Download) });
 		this.filters = new Gee.HashMap<int, DownloadListStoreFilter>();
@@ -39,7 +43,7 @@ public class Lottanzb.DownloadListStore : Gtk.ListStore, IterableTreeModel, Down
 		}
 		return filter;
 	}
-	
+
 	public DownloadListStoreFilter get_filter_complete () {
 		return get_filter_by_status (DownloadStatusGroup.COMPLETE);
 	}

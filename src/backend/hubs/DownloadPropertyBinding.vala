@@ -21,6 +21,9 @@ public abstract class Lottanzb.DownloadPropertyBinding : Object {
 	public DownloadListStore download_list_store { get; construct set; }
 	public string property { get; construct set; }
 
+	// The class is currently only suited for single-thread usage	
+	protected bool ignore_property_changes { get; set; }
+
 	public DownloadPropertyBinding (DownloadListStore download_list_store, QueryProcessor query_processor, string property) {
 		this.query_processor = query_processor;
 		this.download_list_store = download_list_store;
@@ -41,7 +44,9 @@ public abstract class Lottanzb.DownloadPropertyBinding : Object {
 
 	private void handle_download_insertion (Download download) {
 		download.notify[property].connect ((object, param) => {
-			handle_download_property_change (download);
+			if (!ignore_property_changes) {
+				handle_download_property_change (download);
+			}
 		});
 	}
 

@@ -24,9 +24,11 @@ public class Lottanzb.DownloadPriorityBinding : DownloadPropertyBinding {
 	}
 
 	public override void handle_download_property_change (Download download) {
-		base.handle_download_property_change (download);
-		var new_priority = download.priority;
-		query_processor.set_single_download_priority (download.id, new_priority);
+		if (!download_list_store.is_updating) {
+			base.handle_download_property_change (download);
+			var new_priority = download.priority;
+			query_processor.set_single_download_priority (download.id, new_priority);
+		}
 	}
 
 	public void on_set_download_priority_query_started (QueryNotifier query_notifier,
@@ -35,7 +37,9 @@ public class Lottanzb.DownloadPriorityBinding : DownloadPropertyBinding {
 			var new_priority = query.new_priority;
 			var download = download_list_store.get_download_by_id (download_id);
 			if (download != null && download.priority != new_priority) {
+				ignore_property_changes = true;
 				download.priority = new_priority;
+				ignore_property_changes = false;
 				download_list_store.register_download_change (download);
 			}
 		}

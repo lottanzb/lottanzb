@@ -37,21 +37,19 @@ public class Lottanzb.DownloadListStoreUpdater : Object {
 			_status_group = value;	
 		}
 	}
-	public bool is_updating { get; private set; }
 	
 	public DownloadListStoreUpdater (DownloadListStore list_store, int status_group) {
 		this.list_store = list_store;
 		this.status_group = status_group;
 		this.list_store_filter = list_store.get_filter_by_status (status_group);
-		this.is_updating = false;
 	}
 
 	public void update (Gee.List<Download> remote_downloads) {
-		assert (!is_updating);
-		is_updating = true;
+		assert (!list_store.is_updating);
+		list_store.is_updating = true;
 		update_content (remote_downloads);
 		update_order (remote_downloads);
-		is_updating = false;
+		list_store.is_updating = false;
 	}
 
 	private void update_content (Gee.List<Download> remote_downloads) {
