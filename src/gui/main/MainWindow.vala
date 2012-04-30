@@ -79,8 +79,6 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 			_info_bar = value;
 			if (_info_bar != null) {
 				widgets.infobar.add(_info_bar.widget);
-				window_settings.bind (SETTINGS_SHOW_INFOBAR,
-					widgets.infobar, "visible", SettingsBindFlags.GET);
 			}
 		}
 	}
@@ -118,6 +116,9 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 			widgets.show_toolbar, "active", SettingsBindFlags.DEFAULT);
 		window_settings.bind (SETTINGS_SHOW_TOOLBAR,
 			widgets.toolbar, "visible", SettingsBindFlags.GET);
+		window_settings.bind (SETTINGS_SHOW_INFOBAR,
+			widgets.infobar, "visible", SettingsBindFlags.GET);
+
 		restore_window_settings ();
 		
 		LaunchpadIntegration.set_sourcepackagename("lottanzb");
