@@ -204,12 +204,7 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 				Gtk.show_uri (null, "file://" + download_folder, Gdk.CURRENT_TIME);
 			} catch (Error e) {
 				var title = _("Could not open download folder");
-				var dialog = new Gtk.MessageDialog (widgets.main_window,
-					Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
-					Gtk.ButtonsType.OK, title);
-				dialog.secondary_text = e.message;
-				dialog.run ();
-				dialog.destroy ();
+				run_error_message_dialog (title, e.message);
 			}
 		}
 	}
@@ -221,12 +216,7 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 			Gtk.show_uri (null, url, Gdk.CURRENT_TIME);
 		} catch (Error e) {
 			var title = _("Could not open web interface");
-			var dialog = new Gtk.MessageDialog (widgets.main_window,
-				Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
-				Gtk.ButtonsType.OK, title);
-			dialog.secondary_text = e.message;
-			dialog.run ();
-			dialog.destroy ();
+			run_error_message_dialog (title, e.message);
 		}
 	}
 
@@ -276,6 +266,15 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	public bool on_delete_event (Gtk.Window window, Gdk.EventAny event) {
 		Gtk.main_quit ();
 		return false;
+	}
+
+	private void run_error_message_dialog (string title, string secondary_text) {
+		var dialog = new Gtk.MessageDialog (widgets.main_window,
+			Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR,
+			Gtk.ButtonsType.OK, title);
+		dialog.secondary_text = secondary_text;
+		dialog.run ();
+		dialog.destroy ();
 	}
 
 }
