@@ -68,8 +68,6 @@ private static int main (string[] args) {
 		test_queue_query);
 	Test.add_data_func ("/lottanzb/backend/queries/get_history_query",
 		test_get_history_query);
-	Test.add_data_func ("/lottanzb/gui/main_window/view_settings",
-		test_main_window_view_settings);
 
 	return Test.run ();
 }
