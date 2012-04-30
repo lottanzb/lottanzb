@@ -119,7 +119,7 @@ public abstract class Lottanzb.QueryImpl<R> : Object, Query<R> {
 		}
 		var query_type_name = get_type ().name ();
 		var arguments_string = string.joinv (", ", arguments_strings);
-		return @"$(get_type ().name ()) ($(arguments_string))";
+		return @"$(query_type_name) ($(arguments_string))";
 	}
 	
 	public abstract R get_response_from_json_object(Json.Object json_object)
