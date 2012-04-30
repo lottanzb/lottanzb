@@ -37,6 +37,7 @@ public class Lottanzb.QueryProcessorImpl : Object, QueryNotifier<Query>, QueryPr
 	
 	public void run_query (QueryImpl query) {
 		query_started (query);
+		debug ("Started %s", query.to_string ());
 		var session = new Soup.SessionSync ();
 		var message = query.build_message (connection_info);
 		session.send_message (message);
@@ -46,6 +47,7 @@ public class Lottanzb.QueryProcessorImpl : Object, QueryNotifier<Query>, QueryPr
 		} catch (Error e) {
 			stderr.printf ("Query failed: %s", e.message);
 		}
+		debug ("Completed %s", query.to_string ());
 		query_completed (query);
 	}
 
