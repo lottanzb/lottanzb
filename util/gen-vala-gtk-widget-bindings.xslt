@@ -90,7 +90,7 @@ public abstract class </xsl:text>
 		<xsl:text disable-output-escaping="yes">{</xsl:text>
 		<xsl:text>
 
-	protected class WindowWidgets : Object {
+	public class WindowWidgets : Object {
 
 </xsl:text>
 		<xsl:for-each select="//object[@id]">
@@ -98,7 +98,7 @@ public abstract class </xsl:text>
 			<xsl:value-of select="valax:glade-to-vala-identifier(@class)" />
 			<xsl:text> </xsl:text>
 			<xsl:value-of select="valax:vala-identifier(@id)" />
-			<xsl:text> { get; set; }
+			<xsl:text> { get; protected set; }
 </xsl:text>
 		</xsl:for-each>
 		<xsl:text>
@@ -107,7 +107,7 @@ public abstract class </xsl:text>
 
 		<xsl:text disable-output-escaping="yes">
 	protected Gtk.Builder builder;
-	protected WindowWidgets widgets;
+	public WindowWidgets widgets;
 
 	construct {
 		builder = new Gtk.Builder ();
