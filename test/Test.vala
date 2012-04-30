@@ -16,6 +16,7 @@
 */
 
 private static int main (string[] args) {
+	Environment.set_variable ("GSETTINGS_BACKEND", "memory", true);
 	Gtk.init_check (ref args);
 	Test.init (ref args);
 	Test.add_data_func ("/lottanzb/backend/datasize/constructors",
