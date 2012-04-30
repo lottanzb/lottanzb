@@ -180,7 +180,7 @@ public class Lottanzb.BetterSettings : Settings {
 	public static SettingsBackend build_memory_settings_backend () {
 		// Ensure that the Gio modules extension points have been registered,
 		// such that the memory settings backend can be instantiated.
-		var default_settings_backend = g_settings_backend_get_default ();
+		g_settings_backend_get_default ();
 		var settings_backend = g_memory_settings_backend_new ();
 		return settings_backend;
 	}

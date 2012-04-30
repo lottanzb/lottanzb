@@ -129,6 +129,7 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 	}
 
 	public bool iter_parent (out Gtk.TreeIter iter, Gtk.TreeIter child) {
+		iter = Gtk.TreeIter ();
 		return false;
 	}
 
