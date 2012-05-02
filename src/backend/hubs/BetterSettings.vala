@@ -53,22 +53,72 @@ public class Lottanzb.BetterSettings : Settings {
 		}
 		return child;
 	}
-	
-	public void set_from_json_object (Json.Object source_object) {
-		foreach (var target_key in list_keys ()) {
-			var source_key = target_key.replace ("-", "_");
-			if (!source_object.has_member (source_key)) {
-				stdout.printf (@"source object has no member with key $(source_key)\n");
-				continue;
-			}
-			var source_node = source_object.get_member (source_key);
-			Variant target_variant;
-			VariantType target_variant_type = get_value (target_key).get_type();
-			var is_valid = json_node_to_variant (source_node, target_variant_type, out target_variant);
-			if (is_valid) {
-				set_value (target_key, target_variant);
+
+	public void set_recursively_from_json_node (Json.Node node) {
+		if (node.get_node_type () == Json.NodeType.OBJECT) {
+			var object = node.get_object ();
+			set_recursively_from_json_object (object);
+		} else {
+			warning ("json node for '%s' is of type %s rather than %s", path,
+				node.get_node_type ().to_string (), Json.NodeType.OBJECT.to_string ());
+		}
+	}
+
+	public void set_recursively_from_json_object (Json.Object object) {
+		set_all_from_json_object (object);	
+		foreach (var child_name in list_children ()) {
+			var child_settings = get_child_for_same_backend_cached (child_name);
+			var json_key = child_name_to_json_key (child_name);
+			if (object.has_member (json_key)) {
+				var child_node = object.get_member (json_key); 
+				child_settings.set_recursively_from_json_node (child_node);
+			} else {
+				warning ("no json object for '%s'", child_settings.path);
 			}
 		}
+	}
+	
+	public void set_all_from_json_node (Json.Node node) {
+		if (node.get_node_type () == Json.NodeType.OBJECT) {
+			var object = node.get_object ();
+			set_all_from_json_object (object);
+		} else {
+			warning ("json node for '%s' is of type %s rather than %s", path,
+				node.get_node_type ().to_string (), Json.NodeType.OBJECT.to_string ());
+		}
+	}
+
+	public void set_all_from_json_object (Json.Object object) {
+		foreach (var key in list_keys ()) {
+			var json_key = key_to_json_key (key);
+			if (object.has_member (json_key)) {
+				var child_node = object.get_member (json_key);
+				set_from_json_node (key, child_node);
+			} else {
+				warning ("no json member for key '%s' in '%s'", key, path);
+			}
+		}
+	}
+
+	public void set_from_json_node (string key, Json.Node node) {
+		Variant variant;
+		VariantType variant_type = get_value (key).get_type();
+		var is_valid = json_node_to_variant (node, variant_type, out variant);
+		if (is_valid) {
+			set_value (key, variant);
+		} else {
+			warning ("invalid json value for key '%s' in '%s'", key, path);
+		}
+	}
+
+	protected string key_to_json_key (string key) {
+		var json_key = key.replace ("-", "_");	
+		return json_key;
+	}
+
+	protected string child_name_to_json_key (string child_name) {
+		var json_key = child_name.replace ("-", "_");	
+		return json_key;
 	}
 
 	private bool json_node_to_variant (Json.Node source_node, VariantType target_type, out Variant target_variant) {
@@ -190,10 +240,15 @@ public class Lottanzb.BetterSettings : Settings {
 public class Lottanzb.SABnzbdRootSettings : BetterSettings {
 
 	private static const string SCHEMA_ID = "apps.lottanzb.backend.sabnzbdplus";
-	private static const string PATH = "/apps/lottanzb/backend/sabnzbdplus";
+	private static const string PATH = "/apps/lottanzb/backend/sabnzbdplus/";
+	
+	public BetterSettings misc { get; construct set; }
+	public BetterSettings servers { get; construct set; }
 
 	public SABnzbdRootSettings (SettingsBackend backend) {
 		base.with_backend_and_path (SCHEMA_ID, backend, PATH);	
+		misc = get_child_for_same_backend_cached ("misc");
+		servers = get_child_for_same_backend_cached ("servers");
 	}
 
 }

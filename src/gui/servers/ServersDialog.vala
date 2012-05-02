@@ -25,7 +25,7 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 		base ();
 		
 		this.config_hub = config_hub;
-		this.model = new ServersTreeModel (config_hub.servers);
+		this.model = new ServersTreeModel (config_hub.root.servers);
 		widgets.tree_view.set_model (model);
 		widgets.tree_view.append_column (new ServerColumn ());
 		widgets.tree_view.get_selection ().set_mode (Gtk.SelectionMode.BROWSE);

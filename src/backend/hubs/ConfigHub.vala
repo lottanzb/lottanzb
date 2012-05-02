@@ -24,22 +24,19 @@ public class Lottanzb.ConfigHub : Object {
 
 	public QueryProcessor query_processor { get; construct set; }
 	public SABnzbdRootSettings root { get; construct set; }
-	public BetterSettings misc { get; construct set; }
-	public BetterSettings servers { get; construct set; }
-	public SABnzbdRootSettings internal_root { get; construct set; }
 	
 	public DataSpeed speed_limit {
 		get {
-			return DataSpeed (misc.get_int ("bandwidth-limit"));
+			return DataSpeed (root.misc.get_int ("bandwidth-limit"));
 		}
 		set {
-			misc.set_int ("bandwidth-limit", (int) value.bytes_per_second);
+			root.misc.set_int ("bandwidth-limit", (int) value.bytes_per_second);
 		}
 	}
 
 	public string download_folder {
 		owned get {
-			var result = misc.get_string ("complete-dir");
+			var result = root.misc.get_string ("complete-dir");
 			var is_local = query_processor.connection_info.is_local;
 			if (is_local) {
 				var result_file = File.new_for_path (result);
@@ -53,7 +50,7 @@ public class Lottanzb.ConfigHub : Object {
 			return result;
 		}
 		set {
-			misc.set_string ("complete-dir", value);
+			root.misc.set_string ("complete-dir", value);
 		}
 	}
 
@@ -61,21 +58,44 @@ public class Lottanzb.ConfigHub : Object {
 		this.query_processor = query_processor;
 		settings_backend = BetterSettings.build_memory_settings_backend ();
 		root = new SABnzbdRootSettings (settings_backend);
-		misc = root.get_child_for_same_backend_cached ("misc");
-		servers = root.get_child_for_same_backend_cached ("servers");
-		internal_root = new SABnzbdRootSettings (settings_backend);
-		var internal_misc = internal_root.get_child_for_same_backend_cached ("misc");
 		var query = query_processor.get_config ();
-		var misc_member = query.get_response ().get_object_member ("misc");
-		internal_misc.set_from_json_object (misc_member);
-		var internal_servers = internal_root.get_child_for_same_backend_cached ("servers");
+		root.set_recursively_from_json_object (query.get_response ());
 		var servers_member = query.get_response ().get_array_member ("servers");
+		var servers = root.get_child_for_same_backend_cached ("servers");
 		for (var index = 0; index < servers_member.get_length (); index++) {
 			var server_member = servers_member.get_object_element (index);
 			var server_key = @"server$(index)";
-			var internal_server = internal_servers.get_child_for_same_backend_cached (server_key);
-			internal_server.set_from_json_object (server_member);
+			var server = servers.get_child_for_same_backend_cached (server_key);
+			server.set_all_from_json_object (server_member);
 		}
+		root.misc.changed.connect ((settings, key) => {
+			var path = new Gee.LinkedList<string> ();
+			path.add ("misc");
+			var entries = new Gee.HashMap<string, string> ();
+			var variant = settings.get_value (key);
+			entries[key.replace ("_", "-")] = get_string_from_variant (variant);
+			query_processor.set_config (path, entries);
+		});
+		servers.get_child_for_same_backend_cached ("server0").changed.connect ((settings, key) => {
+			stdout.printf (key + "\n");		
+		});
 	}
-	
+
+	private string get_string_from_variant (Variant variant) {
+		var variant_type = variant.get_type ();
+		if (variant_type.equal (VariantType.STRING)) {
+			return variant.get_string ();
+		} else if (variant_type.equal (VariantType.INT32)) {
+			return variant.get_int32 ().to_string ();
+		} else if (variant_type.equal (VariantType.BOOLEAN)) {
+			var value = variant.get_boolean ();
+			if (value) {
+				return "1";
+			} else {
+				return "0";
+			}
+		}
+		assert_not_reached ();
+	}
+
 }
