@@ -17,7 +17,30 @@
 
 public class Lottanzb.Main {
 
+	private static bool debug = false;
+	private static bool show_version = false;
+
+	private static const OptionEntry[] option_entries = {
+		{ "debug", 'd', 0, OptionArg.NONE, ref debug, "Show debug messages", null },
+		{ "version", 0, 0, OptionArg.NONE, ref show_version, "Show the version of the program", null },
+		{ null }
+	};
+
 	public static int main (string[] args) {
+		var option_context = new OptionContext ("- usenet client");
+		option_context.set_help_enabled (true);
+		option_context.add_main_entries (option_entries, null);
+		try {
+			option_context.parse (ref args);
+		} catch (OptionError error) {
+			return -1;
+		}
+
+		if (show_version) {
+			stdout.printf ("LottaNZB %s\n", LottanzbConfig.VERSION);
+			return 0;
+		}
+		
 		Gtk.init(ref args);
 
 		var config_provider = new ConfigProviderImpl ();
