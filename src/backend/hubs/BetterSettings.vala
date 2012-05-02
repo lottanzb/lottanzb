@@ -169,7 +169,7 @@ public class Lottanzb.BetterSettings : Settings {
 	private bool json_array_node_to_variant (Json.Node source_node, VariantType target_type, out Variant target_variant)
 		requires (source_node.get_node_type () == Json.NodeType.ARRAY) {
 		var is_valid = true;
-		if (target_type.is_array () && target_type.element () == VariantType.STRING) {
+		if (target_type.is_array () && target_type.element ().equal (VariantType.STRING)) {
 			var source_array = source_node.get_array ();
 			var target_value = new string [source_array.get_length ()];
 			for (var index = 0; index < source_array.get_length (); index++) {
