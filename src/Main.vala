@@ -33,12 +33,16 @@ public class Lottanzb.Main {
 		try {
 			option_context.parse (ref args);
 		} catch (OptionError error) {
+			stderr.printf ("option parsing failed: %s\n", error.message);
 			return -1;
 		}
 
 		if (show_version) {
 			stdout.printf ("LottaNZB %s\n", LottanzbConfig.VERSION);
 			return 0;
+		}
+		if (debug) {
+			Environment.set_variable ("G_MESSAGES_DEBUG", "all", true);
 		}
 		
 		Gtk.init(ref args);
