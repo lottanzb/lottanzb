@@ -192,16 +192,16 @@ public class Lottanzb.BetterSettings : Settings {
 
 	public void apply_recursively () {
 		apply ();
-		foreach (var key in list_children ()) {
-			var child_settings = get_child_for_same_backend_cached (key);
+		foreach (var child_name in list_children ()) {
+			var child_settings = get_child_for_same_backend_cached (child_name);
 			child_settings.apply_recursively ();
 		}
 	}
 
 	public void delay_recursively () {
 		delay ();
-		foreach (var key in list_children ()) {
-			var child_settings = get_child_for_same_backend_cached (key);
+		foreach (var child_name in list_children ()) {
+			var child_settings = get_child_for_same_backend_cached (child_name);
 			child_settings.delay_recursively ();
 		}
 	}
@@ -210,8 +210,8 @@ public class Lottanzb.BetterSettings : Settings {
 		if (get_has_unapplied ()) {
 			return true;
 		}
-		foreach (var key in list_children ()) {
-			var child_settings = get_child_for_same_backend_cached (key);
+		foreach (var child_name in list_children ()) {
+			var child_settings = get_child_for_same_backend_cached (child_name);
 			if (child_settings.get_has_unapplied_recursively ()) {
 				return true;
 			}
@@ -221,8 +221,8 @@ public class Lottanzb.BetterSettings : Settings {
 
 	public void revert_recursively () {
 		revert ();
-		foreach (var key in list_children ()) {
-			var child_settings = get_child_for_same_backend_cached (key);
+		foreach (var child_name in list_children ()) {
+			var child_settings = get_child_for_same_backend_cached (child_name);
 			child_settings.revert ();
 		}
 	}
