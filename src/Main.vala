@@ -23,7 +23,6 @@ public class Lottanzb.Main {
 		var config_provider = new ConfigProviderImpl ();
 		var session_provider = new SessionProviderImpl (config_provider);
 		var backend = new Backend (config_provider, session_provider);
-		backend.query_processor.get_warnings ();		
 		var main_window = new MainWindow(config_provider);
 		main_window.backend = backend;
 
