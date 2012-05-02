@@ -37,8 +37,8 @@ public class Lottanzb.BetterSettings : Settings {
 		this.shared_children = new Gee.HashMap<string, BetterSettings> ();
 	}
 
-	public BetterSettings get_child_for_same_backend (string name) {
-		var child_for_default_backend = get_child (name);
+	public new BetterSettings get_child (string name) {
+		var child_for_default_backend = ((Settings) this).get_child (name);
 		var child_schema_id = child_for_default_backend.schema_id;
 		var child_path = child_for_default_backend.path;
 		var child = new BetterSettings.with_backend_and_path (child_schema_id, backend, child_path);
@@ -48,7 +48,7 @@ public class Lottanzb.BetterSettings : Settings {
 	public BetterSettings get_shared_child (string name) {
 		var child = shared_children [name];
 		if (child == null) {
-			child = get_child_for_same_backend (name);
+			child = get_child (name);
 			shared_children[name] = child;
 		}
 		return child;
