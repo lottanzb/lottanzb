@@ -20,21 +20,21 @@ extern SettingsBackend g_settings_backend_get_default ();
 
 public class Lottanzb.BetterSettings : Settings {
 
-	private Gee.Map<string, BetterSettings> children;
+	private Gee.Map<string, BetterSettings> shared_children;
 
 	public BetterSettings (string schema_id) {
 		Object (schema_id: schema_id);
-		this.children = new Gee.HashMap<string, BetterSettings> ();
+		this.shared_children = new Gee.HashMap<string, BetterSettings> ();
 	}
 
 	public BetterSettings.with_backend (string schema_id, SettingsBackend backend) {
 		Object (schema_id: schema_id, backend: backend);
-		this.children = new Gee.HashMap<string, BetterSettings> ();
+		this.shared_children = new Gee.HashMap<string, BetterSettings> ();
 	}
 
 	public BetterSettings.with_backend_and_path (string schema_id, SettingsBackend backend, string path) {
 		Object (schema_id: schema_id, backend: backend, path: path);
-		this.children = new Gee.HashMap<string, BetterSettings> ();
+		this.shared_children = new Gee.HashMap<string, BetterSettings> ();
 	}
 
 	public BetterSettings get_child_for_same_backend (string name) {
@@ -45,11 +45,11 @@ public class Lottanzb.BetterSettings : Settings {
 		return child;
 	}
 
-	public BetterSettings get_child_for_same_backend_cached (string name) {
-		var child = children [name];
+	public BetterSettings get_shared_child (string name) {
+		var child = shared_children [name];
 		if (child == null) {
 			child = get_child_for_same_backend (name);
-			children[name] = child;
+			shared_children[name] = child;
 		}
 		return child;
 	}
@@ -67,7 +67,7 @@ public class Lottanzb.BetterSettings : Settings {
 	public void set_recursively_from_json_object (Json.Object object) {
 		set_all_from_json_object (object);	
 		foreach (var child_name in list_children ()) {
-			var child_settings = get_child_for_same_backend_cached (child_name);
+			var child_settings = get_shared_child (child_name);
 			var json_key = child_name_to_json_key (child_name);
 			if (object.has_member (json_key)) {
 				var child_node = object.get_member (json_key); 
@@ -193,7 +193,7 @@ public class Lottanzb.BetterSettings : Settings {
 	public void apply_recursively () {
 		apply ();
 		foreach (var child_name in list_children ()) {
-			var child_settings = get_child_for_same_backend_cached (child_name);
+			var child_settings = get_shared_child (child_name);
 			child_settings.apply_recursively ();
 		}
 	}
@@ -201,7 +201,7 @@ public class Lottanzb.BetterSettings : Settings {
 	public void delay_recursively () {
 		delay ();
 		foreach (var child_name in list_children ()) {
-			var child_settings = get_child_for_same_backend_cached (child_name);
+			var child_settings = get_shared_child (child_name);
 			child_settings.delay_recursively ();
 		}
 	}
@@ -211,7 +211,7 @@ public class Lottanzb.BetterSettings : Settings {
 			return true;
 		}
 		foreach (var child_name in list_children ()) {
-			var child_settings = get_child_for_same_backend_cached (child_name);
+			var child_settings = get_shared_child (child_name);
 			if (child_settings.get_has_unapplied_recursively ()) {
 				return true;
 			}
@@ -222,7 +222,7 @@ public class Lottanzb.BetterSettings : Settings {
 	public void revert_recursively () {
 		revert ();
 		foreach (var child_name in list_children ()) {
-			var child_settings = get_child_for_same_backend_cached (child_name);
+			var child_settings = get_shared_child (child_name);
 			child_settings.revert ();
 		}
 	}
@@ -247,14 +247,8 @@ public class Lottanzb.SABnzbdRootSettings : BetterSettings {
 
 	public SABnzbdRootSettings (SettingsBackend backend) {
 		base.with_backend_and_path (SCHEMA_ID, backend, PATH);	
-		misc = get_child_for_same_backend_cached ("misc");
-		servers = get_child_for_same_backend_cached ("servers");
+		misc = get_shared_child ("misc");
+		servers = get_shared_child ("servers");
 	}
-
-}
-
-public class Lottanzb.SABnzbdServersSettings : BetterSettings {
-
-	
 
 }

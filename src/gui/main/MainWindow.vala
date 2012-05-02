@@ -106,8 +106,8 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 
 	public MainWindow (ConfigProvider config_provider) {
 		settings = config_provider.lottanzb_config;
-		gui_settings = settings.get_child_for_same_backend_cached ("gui");
-		window_settings = gui_settings.get_child_for_same_backend_cached (SETTINGS_KEY);
+		gui_settings = settings.get_shared_child ("gui");
+		window_settings = gui_settings.get_shared_child (SETTINGS_KEY);
 		window_settings.bind (SETTINGS_SHOW_INFOBAR,
 			widgets.show_infobar, "active", SettingsBindFlags.DEFAULT);
 		window_settings.bind (SETTINGS_SHOW_REORDERING_PANE,

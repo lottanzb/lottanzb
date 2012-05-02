@@ -28,7 +28,7 @@ public class Lottanzb.GeneralPreferencesTab : AbstractGeneralPreferencesTab, Pre
 		widgets.post_processing.add_attribute (cell_renderer, "markup",
 			PostProcessingComboBoxModel.Column.DESCRIPTION);
 
-		var misc_settings = sabnzbd_settings.get_child_for_same_backend_cached ("misc");
+		var misc_settings = sabnzbd_settings.get_shared_child ("misc");
 		LottanzbResource.bind_with_mapping (
 			misc_settings, "dirscan-opts",
 			widgets.post_processing, "active",

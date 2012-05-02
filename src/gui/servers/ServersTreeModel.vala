@@ -23,7 +23,7 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 	public ServersTreeModel (BetterSettings servers) {
 		this.servers = servers;
 		for (var index = 0; index < ConfigHub.MAX_SERVER_COUNT; index++) {
-			var server = servers.get_child_for_same_backend_cached (@"server$(index)");
+			var server = servers.get_shared_child (@"server$(index)");
 			if (server.get_string ("host") != null && server.get_string ("host").length > 0) {
 				server_count++;
 				connect_to_change (server, index);
@@ -80,7 +80,7 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 		if (column == 0) {
 			var index = (int) iter.user_data;
 			if (0 <= index && index < server_count) {
-				var server = servers.get_child_for_same_backend_cached (@"server$(index)");
+				var server = servers.get_shared_child (@"server$(index)");
 				value.set_object (server);
 			}
 		}
