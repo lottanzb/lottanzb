@@ -106,7 +106,6 @@ public void test_general_hub_download_name_binding () {
 	assert (rename_download_queries.size == 2);
 	assert (has_row_changed);
 	assert (download.name == "baz");
-	stdout.printf ("Before\n");
 	// Assert that during a subsequent DownloadListStore update using remote data,
 	// no accidental RenameDownloadQueries are run.
 	query_processor.get_queue ();
