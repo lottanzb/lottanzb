@@ -20,27 +20,23 @@ extern SettingsBackend g_settings_backend_get_default ();
 
 public class Lottanzb.BetterSettings : Settings {
 
-	private Gee.Map<string, BetterSettings> shared_children;
+	private Gee.Map<string, BetterSettings> shared_children = new Gee.HashMap<string, BetterSettings> ();
 
 	public BetterSettings (string schema_id) {
 		Object (schema_id: schema_id);
-		this.shared_children = new Gee.HashMap<string, BetterSettings> ();
 	}
 
 	public BetterSettings.with_backend (string schema_id, SettingsBackend backend) {
 		Object (schema_id: schema_id, backend: backend);
-		this.shared_children = new Gee.HashMap<string, BetterSettings> ();
 	}
 
 	public BetterSettings.with_backend_and_path (string schema_id, SettingsBackend backend, string path) {
 		Object (schema_id: schema_id, backend: backend, path: path);
-		this.shared_children = new Gee.HashMap<string, BetterSettings> ();
 	}
 
 	public new BetterSettings get_child (string name) {
-		var child_for_default_backend = ((Settings) this).get_child (name);
-		var child_schema_id = child_for_default_backend.schema_id;
-		var child_path = child_for_default_backend.path;
+		string child_schema_id, child_path;
+		get_child_schema_id_and_path (name, out child_schema_id, out child_path);
 		var child = new BetterSettings.with_backend_and_path (child_schema_id, backend, child_path);
 		return child;
 	}
@@ -54,13 +50,39 @@ public class Lottanzb.BetterSettings : Settings {
 		return child;
 	}
 
-	public void set_recursively_from_json_node (Json.Node node) {
+	public void set_shared_child (string name, BetterSettings child_settings)
+		requires (!(shared_children.has_key (name)) && is_valid_child_settings (name, child_settings))
+		ensures (shared_children.has_key (name) && shared_children[name] == child_settings) {
+		shared_children[name] = child_settings;	
+	}
+
+	protected void get_child_schema_id_and_path (string name, out string child_schema_id, out string child_path) {
+		var child_for_default_backend = ((Settings) this).get_child (name);
+		child_schema_id = child_for_default_backend.schema_id;
+		child_path = child_for_default_backend.path;
+	}
+
+	protected bool is_valid_child_settings (string name, BetterSettings child_settings) {
+		string child_schema_id, child_path;
+		get_child_schema_id_and_path (name, out child_schema_id, out child_path);
+		var result =
+			child_settings.schema_id == child_schema_id &&
+			child_settings.path == child_path &&
+			child_settings.backend == backend;
+		return result;	
+	}
+
+	public virtual void set_recursively_from_json_node (Json.Node node) {
 		if (node.get_node_type () == Json.NodeType.OBJECT) {
 			var object = node.get_object ();
 			set_recursively_from_json_object (object);
+		} else if (node.get_node_type () == Json.NodeType.ARRAY) {
+			var array = node.get_array ();
+			set_recursively_from_json_array (array);
 		} else {
-			warning ("json node for '%s' is of type %s rather than %s", path,
-				node.get_node_type ().to_string (), Json.NodeType.OBJECT.to_string ());
+			stdout.printf (get_type ().name () + "\n");
+			warning ("cannot use json node of type %s for '%s'",
+				node.get_node_type ().to_string (), path);
 		}
 	}
 
@@ -78,6 +100,10 @@ public class Lottanzb.BetterSettings : Settings {
 		}
 	}
 	
+	public virtual void set_recursively_from_json_array (Json.Array array) {
+		warning ("cannot use json array for '%s'", path);	
+	}
+
 	public void set_all_from_json_node (Json.Node node) {
 		if (node.get_node_type () == Json.NodeType.OBJECT) {
 			var object = node.get_object ();
@@ -233,22 +259,6 @@ public class Lottanzb.BetterSettings : Settings {
 		g_settings_backend_get_default ();
 		var settings_backend = g_memory_settings_backend_new ();
 		return settings_backend;
-	}
-
-}
-
-public class Lottanzb.SABnzbdRootSettings : BetterSettings {
-
-	private static const string SCHEMA_ID = "apps.lottanzb.backend.sabnzbdplus";
-	private static const string PATH = "/apps/lottanzb/backend/sabnzbdplus/";
-	
-	public BetterSettings misc { get; construct set; }
-	public BetterSettings servers { get; construct set; }
-
-	public SABnzbdRootSettings (SettingsBackend backend) {
-		base.with_backend_and_path (SCHEMA_ID, backend, PATH);	
-		misc = get_shared_child ("misc");
-		servers = get_shared_child ("servers");
 	}
 
 }

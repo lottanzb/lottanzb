@@ -18,12 +18,10 @@
 
 public class Lottanzb.ConfigHub : Object {
 
-	public static const int MAX_SERVER_COUNT = 10;
-
 	private SettingsBackend settings_backend;
 
 	public QueryProcessor query_processor { get; construct set; }
-	public SABnzbdRootSettings root { get; construct set; }
+	public SabnzbdRootSettings root { get; construct set; }
 	
 	public DataSpeed speed_limit {
 		get {
@@ -57,17 +55,9 @@ public class Lottanzb.ConfigHub : Object {
 	public ConfigHub (QueryProcessor query_processor) {
 		this.query_processor = query_processor;
 		settings_backend = BetterSettings.build_memory_settings_backend ();
-		root = new SABnzbdRootSettings (settings_backend);
+		root = new SabnzbdRootSettings (settings_backend);
 		var query = query_processor.get_config ();
 		root.set_recursively_from_json_object (query.get_response ());
-		var servers_member = query.get_response ().get_array_member ("servers");
-		var servers = root.get_shared_child ("servers");
-		for (var index = 0; index < servers_member.get_length (); index++) {
-			var server_member = servers_member.get_object_element (index);
-			var server_key = @"server$(index)";
-			var server = servers.get_shared_child (server_key);
-			server.set_all_from_json_object (server_member);
-		}
 		root.misc.changed.connect ((settings, key) => {
 			var path = new Gee.LinkedList<string> ();
 			path.add ("misc");
@@ -75,9 +65,6 @@ public class Lottanzb.ConfigHub : Object {
 			var variant = settings.get_value (key);
 			entries[key.replace ("_", "-")] = get_string_from_variant (variant);
 			query_processor.set_config (path, entries);
-		});
-		servers.get_shared_child ("server0").changed.connect ((settings, key) => {
-			stdout.printf (key + "\n");		
 		});
 	}
 
