@@ -25,16 +25,16 @@ public class Lottanzb.ConfigHub : Object {
 	
 	public DataSpeed speed_limit {
 		get {
-			return DataSpeed (root.misc.get_int ("bandwidth-limit"));
+			return DataSpeed (root.get_misc ().get_int ("bandwidth-limit"));
 		}
 		set {
-			root.misc.set_int ("bandwidth-limit", (int) value.bytes_per_second);
+			root.get_misc ().set_int ("bandwidth-limit", (int) value.bytes_per_second);
 		}
 	}
 
 	public string download_folder {
 		owned get {
-			var result = root.misc.get_string ("complete-dir");
+			var result = root.get_misc ().get_string ("complete-dir");
 			var is_local = query_processor.connection_info.is_local;
 			if (is_local) {
 				var result_file = File.new_for_path (result);
@@ -48,7 +48,7 @@ public class Lottanzb.ConfigHub : Object {
 			return result;
 		}
 		set {
-			root.misc.set_string ("complete-dir", value);
+			root.get_misc ().set_string ("complete-dir", value);
 		}
 	}
 
@@ -58,7 +58,7 @@ public class Lottanzb.ConfigHub : Object {
 		root = new SabnzbdRootSettings (settings_backend);
 		var query = query_processor.get_config ();
 		root.set_recursively_from_json_object (query.get_response ());
-		root.misc.changed.connect ((settings, key) => {
+		root.get_misc ().changed.connect ((settings, key) => {
 			var path = new Gee.LinkedList<string> ();
 			path.add ("misc");
 			var entries = new Gee.HashMap<string, string> ();

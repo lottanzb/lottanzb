@@ -17,7 +17,7 @@
 
 public class Lottanzb.GeneralPreferencesTab : AbstractGeneralPreferencesTab, PreferencesTab {
 
-	public GeneralPreferencesTab (Backend backend, BetterSettings lottanzb_settings, BetterSettings sabnzbd_settings) {
+	public GeneralPreferencesTab (Backend backend, BetterSettings lottanzb_settings, SabnzbdRootSettings sabnzbd_settings) {
 		base ();
 		widgets.prefs_tab_general.remove (widgets.prefs_tab_general.get_child ());
 
@@ -28,7 +28,7 @@ public class Lottanzb.GeneralPreferencesTab : AbstractGeneralPreferencesTab, Pre
 		widgets.post_processing.add_attribute (cell_renderer, "markup",
 			PostProcessingComboBoxModel.Column.DESCRIPTION);
 
-		var misc_settings = sabnzbd_settings.get_shared_child ("misc");
+		var misc_settings = sabnzbd_settings.get_misc ();
 		LottanzbResource.bind_with_mapping (
 			misc_settings, "dirscan-opts",
 			widgets.post_processing, "active",

@@ -23,7 +23,7 @@ public class Lottanzb.SessionProviderImpl : Object, SessionProvider {
 	
 	public SessionProviderImpl (ConfigProvider config_provider) {
 		this.config_provider = config_provider;
-		this.backend_settings = config_provider.lottanzb_config.get_shared_child (Backend.SETTINGS_KEY);
+		this.backend_settings = config_provider.lottanzb_config.get_child (Backend.SETTINGS_KEY);
 	}
 
 	public Session? build_session () {

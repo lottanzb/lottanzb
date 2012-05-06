@@ -18,9 +18,15 @@
 extern SettingsBackend g_memory_settings_backend_new ();
 extern SettingsBackend g_settings_backend_get_default ();
 
-public class Lottanzb.BetterSettings : Settings {
+public interface Copyable<T> {
 
-	private Gee.Map<string, BetterSettings> shared_children = new Gee.HashMap<string, BetterSettings> ();
+	public abstract T get_copy ();
+
+}
+
+public class Lottanzb.BetterSettings : Settings, Copyable<BetterSettings> {
+
+	private Gee.Map<string, BetterSettings> children = new Gee.HashMap<string, BetterSettings> ();
 
 	public BetterSettings (string schema_id) {
 		Object (schema_id: schema_id);
@@ -34,26 +40,21 @@ public class Lottanzb.BetterSettings : Settings {
 		Object (schema_id: schema_id, backend: backend, path: path);
 	}
 
-	public new BetterSettings get_child (string name) {
-		string child_schema_id, child_path;
-		get_child_schema_id_and_path (name, out child_schema_id, out child_path);
-		var child = new BetterSettings.with_backend_and_path (child_schema_id, backend, child_path);
-		return child;
-	}
-
-	public BetterSettings get_shared_child (string name) {
-		var child = shared_children [name];
+	public new virtual BetterSettings get_child (string name) {
+		var child = children [name];
 		if (child == null) {
-			child = get_child (name);
-			shared_children[name] = child;
+			string child_schema_id, child_path;
+			get_child_schema_id_and_path (name, out child_schema_id, out child_path);
+			child = new BetterSettings.with_backend_and_path (child_schema_id, backend, child_path);
+			children [name] = child;
 		}
 		return child;
 	}
 
-	public void set_shared_child (string name, BetterSettings child_settings)
-		requires (!(shared_children.has_key (name)) && is_valid_child_settings (name, child_settings))
-		ensures (shared_children.has_key (name) && shared_children[name] == child_settings) {
-		shared_children[name] = child_settings;	
+	public void set_child (string name, BetterSettings child_settings)
+		requires (!(children.has_key (name)) && is_valid_child_settings (name, child_settings))
+		ensures (children.has_key (name) && children[name] == child_settings) {
+		children[name] = child_settings;	
 	}
 
 	protected void get_child_schema_id_and_path (string name, out string child_schema_id, out string child_path) {
@@ -70,6 +71,10 @@ public class Lottanzb.BetterSettings : Settings {
 			child_settings.path == child_path &&
 			child_settings.backend == backend;
 		return result;	
+	}
+
+	public BetterSettings get_copy () {
+		return new BetterSettings.with_backend_and_path (schema_id, backend, path);
 	}
 
 	public virtual void set_recursively_from_json_node (Json.Node node) {
@@ -89,7 +94,7 @@ public class Lottanzb.BetterSettings : Settings {
 	public void set_recursively_from_json_object (Json.Object object) {
 		set_all_from_json_object (object);	
 		foreach (var child_name in list_children ()) {
-			var child_settings = get_shared_child (child_name);
+			var child_settings = get_child (child_name);
 			var json_key = child_name_to_json_key (child_name);
 			if (object.has_member (json_key)) {
 				var child_node = object.get_member (json_key); 
@@ -148,6 +153,7 @@ public class Lottanzb.BetterSettings : Settings {
 	}
 
 	private bool json_node_to_variant (Json.Node source_node, VariantType target_type, out Variant target_variant) {
+		target_variant = null;
 		var source_node_type = source_node.get_node_type ();
 		var is_valid = false;
 		switch (source_node_type) {
@@ -165,6 +171,7 @@ public class Lottanzb.BetterSettings : Settings {
 
 	private bool json_value_node_to_variant (Json.Node source_node, VariantType target_type, out Variant target_variant)
 		requires (source_node.get_node_type () == Json.NodeType.VALUE) {
+		target_variant = null;
 		var source_value_type = source_node.get_value_type ();
 		var is_valid = false;
 		if (target_type.equal (VariantType.STRING)) {
@@ -194,6 +201,7 @@ public class Lottanzb.BetterSettings : Settings {
 
 	private bool json_array_node_to_variant (Json.Node source_node, VariantType target_type, out Variant target_variant)
 		requires (source_node.get_node_type () == Json.NodeType.ARRAY) {
+		target_variant = null;
 		var is_valid = true;
 		if (target_type.is_array () && target_type.element ().equal (VariantType.STRING)) {
 			var source_array = source_node.get_array ();
@@ -216,10 +224,16 @@ public class Lottanzb.BetterSettings : Settings {
 		return is_valid;
 	}
 
+	public void reset_all () {
+		foreach (var key in list_keys ()) {
+			reset (key);
+		}
+	}
+
 	public void apply_recursively () {
 		apply ();
 		foreach (var child_name in list_children ()) {
-			var child_settings = get_shared_child (child_name);
+			var child_settings = get_child (child_name);
 			child_settings.apply_recursively ();
 		}
 	}
@@ -227,7 +241,7 @@ public class Lottanzb.BetterSettings : Settings {
 	public void delay_recursively () {
 		delay ();
 		foreach (var child_name in list_children ()) {
-			var child_settings = get_shared_child (child_name);
+			var child_settings = get_child (child_name);
 			child_settings.delay_recursively ();
 		}
 	}
@@ -237,7 +251,7 @@ public class Lottanzb.BetterSettings : Settings {
 			return true;
 		}
 		foreach (var child_name in list_children ()) {
-			var child_settings = get_shared_child (child_name);
+			var child_settings = get_child (child_name);
 			if (child_settings.get_has_unapplied_recursively ()) {
 				return true;
 			}
@@ -248,7 +262,7 @@ public class Lottanzb.BetterSettings : Settings {
 	public void revert_recursively () {
 		revert ();
 		foreach (var child_name in list_children ()) {
-			var child_settings = get_shared_child (child_name);
+			var child_settings = get_child (child_name);
 			child_settings.revert ();
 		}
 	}

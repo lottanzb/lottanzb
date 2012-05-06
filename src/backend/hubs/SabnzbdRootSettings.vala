@@ -15,21 +15,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public class Lottanzb.SabnzbdRootSettings : BetterSettings {
+public class Lottanzb.SabnzbdRootSettings : BetterSettings, Copyable<SabnzbdRootSettings> {
 
 	private static const string SCHEMA_ID = "apps.lottanzb.backend.sabnzbdplus";
 	private static const string PATH = "/apps/lottanzb/backend/sabnzbdplus/";
-	
-	public BetterSettings misc { get; construct set; }
-	public SabnzbdServersSettings servers { get; construct set; }
+	private static const string MISC_CHILD_NAME = "misc";
+	private static const string SERVERS_CHILD_NAME = "servers";
 
 	public SabnzbdRootSettings (SettingsBackend backend) {
-		base.with_backend_and_path (SCHEMA_ID, backend, PATH);	
-		misc = get_shared_child ("misc");
+		base.with_backend_and_path (SCHEMA_ID, backend, PATH);
 		string child_schema_id, child_path;
-		get_child_schema_id_and_path ("servers", out child_schema_id, out child_path);
-		servers = new SabnzbdServersSettings.with_backend_and_path (child_schema_id, backend, child_path);
-		set_shared_child ("servers", servers);
+		get_child_schema_id_and_path (SERVERS_CHILD_NAME, out child_schema_id, out child_path);
+		var servers = new SabnzbdServersSettings.with_backend_and_path (child_schema_id, backend, child_path);
+		set_child (SERVERS_CHILD_NAME, servers);
+	}
+	
+	public BetterSettings get_misc () {
+		return get_child (MISC_CHILD_NAME);
+	}
+
+	public SabnzbdServersSettings get_servers () {
+		return get_child (SERVERS_CHILD_NAME) as SabnzbdServersSettings;
+	}
+
+	public new SabnzbdRootSettings get_copy () {
+		return new SabnzbdRootSettings (backend);
 	}
 
 }

@@ -15,37 +15,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public class Lottanzb.SabnzbdServersSettings : BetterSettings {
+public class Lottanzb.SabnzbdServersSettings : BetterSettings, Copyable<SabnzbdServersSettings> {
 	
 	public static const int MAX_SERVER_COUNT = 10;
 
-	public int size { get; private set; }
+	private int _size = 0;
+	public int size {
+		get {
+			return _size;
+		}
+		set {
+			assert (0 <= value && value <= MAX_SERVER_COUNT);
+			_size = value;
+			for (var invalid_index = _size; invalid_index < MAX_SERVER_COUNT; invalid_index++) {
+				var invalid_server = get_server (invalid_index);
+				invalid_server.reset_all ();
+			}
+		}
+	}
 
 	public SabnzbdServersSettings (string schema_id) {
 		Object (schema_id: schema_id);
-		initialize_size_computation ();
 	}
 
 	public SabnzbdServersSettings.with_backend (string schema_id, SettingsBackend backend) {
 		Object (schema_id: schema_id, backend: backend);
-		initialize_size_computation ();
 	}
 
 	public SabnzbdServersSettings.with_backend_and_path (string schema_id, SettingsBackend backend, string path) {
 		Object (schema_id: schema_id, backend: backend, path: path);
-		initialize_size_computation ();
-	}
-
-	private void initialize_size_computation () {
-		size = compute_size ();
-		for (var index = 0; index < MAX_SERVER_COUNT; index++) {
-			var shared_server = get_shared_server (index);
-			shared_server.changed.connect ((key) => {
-				if (key == "host") {
-					size = compute_size ();
-				}	
-			});
-		}
 	}
 
 	public BetterSettings get_server (int index) {
@@ -53,20 +51,15 @@ public class Lottanzb.SabnzbdServersSettings : BetterSettings {
 		return server;
 	}
 
-	public BetterSettings get_shared_server (int index) {
-		var server = get_shared_child (index_to_key (index));
-		return server;
-	}
-
-	public new BetterSettings get (int index) {
-		return get_shared_server (index);
-	}
-
 	public override void set_recursively_from_json_array (Json.Array array) {
-		for (var index = 0; index < array.get_length (); index++) {
-			if (index < MAX_SERVER_COUNT) {
+		size = int.min (MAX_SERVER_COUNT, (int) array.get_length ());
+		if (MAX_SERVER_COUNT < array.get_length ()) {
+			warning ("support for at most %d servers", MAX_SERVER_COUNT);
+		}
+		for (var index = 0; index < size; index++) {
+			var server = get_server (index);
+			if (index < array.get_length ()) {
 				var object = array.get_object_element (index);
-				var server = get_shared_server (index);
 				server.set_all_from_json_object (object);
 			}
 		}
@@ -76,19 +69,8 @@ public class Lottanzb.SabnzbdServersSettings : BetterSettings {
 		return @"server$(index)";
 	}
 
-	private int compute_size () {
-		var size = 0;
-		for (var index = 0; index < MAX_SERVER_COUNT; index++) {
-			var server = get_shared_server (index);
-			if (is_valid_server (server)) {
-				size++;
-			}
-		}
-		return size;
-	}
-
-	private bool is_valid_server (BetterSettings server) {
-		return server.get_string ("host") != null && server.get_string ("host").length > 0;
+	public new SabnzbdServersSettings get_copy () {
+		return new SabnzbdServersSettings.with_backend_and_path (schema_id, backend, path);
 	}
 
 }

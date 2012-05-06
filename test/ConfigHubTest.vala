@@ -31,7 +31,7 @@ private class ConfigHubTestMockQueryProcessor : MockQueryProcessor {
 public void test_config_hub () {
 	var query_processor = new ConfigHubTestMockQueryProcessor ();
 	var config_hub = new ConfigHub (query_processor);
-	var misc_settings = config_hub.root.get_shared_child ("misc");
+	var misc_settings = config_hub.root.get_misc ();
 	assert (misc_settings.get_boolean ("quick-check"));
 	assert (misc_settings.get_int ("https-port") == 9090);
 	assert (misc_settings.get_int ("folder-max-length") == 256);

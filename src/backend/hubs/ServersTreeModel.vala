@@ -21,8 +21,8 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 
 	public ServersTreeModel (SabnzbdServersSettings servers) {
 		this.servers = servers;
-		for (var index = 0; index < servers.size; index++) {
-			var server = servers.get_shared_server (index);
+		for (var index = 0; index < SabnzbdServersSettings.MAX_SERVER_COUNT; index++) {
+			var server = servers.get_server (index);
 			connect_to_change (server, index);
 		}
 	}
@@ -49,7 +49,7 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 	public bool get_iter (out Gtk.TreeIter iter, Gtk.TreePath path) {
 		iter = Gtk.TreeIter ();
 		var index = path.get_indices ()[0];
-		if (0 <= index && index < servers.size) {
+		if (0 <= index && index < iter_n_children (null)) {
 			iter.user_data = (void *) index;
 			return true;
 		} else {
@@ -63,7 +63,7 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 
 	public Gtk.TreePath? get_path (Gtk.TreeIter iter) {
 		var index = (int) iter.user_data;
-		if (0 <= index && index < servers.size) {
+		if (0 <= index && index < iter_n_children (null)) {
 			var path = new Gtk.TreePath.from_indices (index);
 			return path;
 		} else {
@@ -75,8 +75,8 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 		value = Value (typeof (BetterSettings));
 		if (column == 0) {
 			var index = (int) iter.user_data;
-			if (0 <= index && index < servers.size) {
-				var server = servers [index];
+			if (0 <= index && index < iter_n_children (null)) {
+				var server = servers.get_server (index);
 				value.set_object (server);
 			}
 		}
@@ -106,7 +106,7 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 
 	public bool iter_next (ref Gtk.TreeIter iter) {
 		var index = (int) iter.user_data;
-		if (index < servers.size - 1) {
+		if (index < iter_n_children (null) - 1) {
 			iter.user_data = (void *) (((int) iter.user_data) + 1);
 			return true;
 		} else {
@@ -116,7 +116,7 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 
 	public bool iter_nth_child (out Gtk.TreeIter iter, Gtk.TreeIter? parent, int index) {
 		iter = Gtk.TreeIter ();
-		if (parent == null && 0 <= index && index < servers.size) {
+		if (parent == null && 0 <= index && index < iter_n_children (null)) {
 			iter.user_data = (void *) index;
 			return true;
 		} else {

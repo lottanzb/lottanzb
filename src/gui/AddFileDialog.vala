@@ -26,7 +26,7 @@ public class Lottanzb.AddFileDialog : AbstractAddFileDialog {
 
 	public AddFileDialog (QueryProcessor query_processor, BetterSettings gui_settings) {
 		this.query_processor = query_processor;
-		this.add_file_settings = gui_settings.get_shared_child (SETTINGS_KEY);
+		this.add_file_settings = gui_settings.get_child (SETTINGS_KEY);
 		var last_folder_uri = add_file_settings.get_string (SETTINGS_LAST_FOLDER_URI);
 		widgets.add_file_dialog.set_current_folder (last_folder_uri);
 	}
