@@ -239,11 +239,11 @@ public class Lottanzb.BetterSettings : Settings, Copyable<BetterSettings> {
 	}
 
 	public void delay_recursively () {
-		delay ();
 		foreach (var child_name in list_children ()) {
 			var child_settings = get_child (child_name);
 			child_settings.delay_recursively ();
 		}
+		delay ();
 	}
 
 	public bool get_has_unapplied_recursively () {
@@ -260,11 +260,11 @@ public class Lottanzb.BetterSettings : Settings, Copyable<BetterSettings> {
 	}
 
 	public void revert_recursively () {
-		revert ();
 		foreach (var child_name in list_children ()) {
 			var child_settings = get_child (child_name);
 			child_settings.revert ();
 		}
+		revert ();
 	}
 
 	public static SettingsBackend build_memory_settings_backend () {

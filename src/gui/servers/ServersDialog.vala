@@ -18,6 +18,7 @@
 public class Lottanzb.ServersDialog : AbstractServersDialog {
 
 	private ConfigHub config_hub;
+	private SabnzbdServersSettings servers;
 	private ServersTreeModel model;
 	private ServerEditorPane? server_editor_pane;
 
@@ -25,7 +26,9 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 		base ();
 		
 		this.config_hub = config_hub;
-		this.model = new ServersTreeModel (config_hub.root.get_servers ());
+		this.servers = config_hub.root.get_servers ().get_copy ();
+		this.servers.delay_recursively ();
+		this.model = new ServersTreeModel (servers);
 		widgets.tree_view.set_model (model);
 		widgets.tree_view.append_column (new ServerColumn ());
 		widgets.tree_view.get_selection ().set_mode (Gtk.SelectionMode.BROWSE);
@@ -82,6 +85,19 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 			}
 		}
 		return null;
+	}
+
+	[CCode (instance_pos = -1)]
+	public void on_response (Gtk.Dialog dialog, Gtk.ResponseType response) {
+		switch (response) {
+			case Gtk.ResponseType.APPLY:
+				servers.apply_recursively ();
+				break;
+			case Gtk.ResponseType.HELP:
+				break;
+			default:
+				break;
+		}
 	}
  
 }

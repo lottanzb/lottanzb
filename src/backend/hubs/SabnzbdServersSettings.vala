@@ -70,7 +70,9 @@ public class Lottanzb.SabnzbdServersSettings : BetterSettings, Copyable<SabnzbdS
 	}
 
 	public new SabnzbdServersSettings get_copy () {
-		return new SabnzbdServersSettings.with_backend_and_path (schema_id, backend, path);
+		var servers = new SabnzbdServersSettings.with_backend_and_path (schema_id, backend, path);
+		servers._size = _size;
+		return servers;
 	}
 
 }
