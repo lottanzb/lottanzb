@@ -51,6 +51,8 @@ private static int main (string[] args) {
 		test_config_hub);
 	Test.add_data_func ("/lottanzb/backend/hubs/config/servers_settings",
 		test_config_hub_servers_settings);
+	Test.add_data_func ("/lottanzb/backend/hubs/config/servers_tree_model",
+		test_servers_tree_model);
 	Test.add_data_func ("/lottanzb/backend/hubs/general/moving_downloads",
 		test_general_hub_moving_downloads);
 	Test.add_data_func ("/lottanzb/backend/hubs/general/download_name_binding",
