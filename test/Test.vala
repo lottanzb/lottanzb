@@ -49,6 +49,8 @@ private static int main (string[] args) {
 		test_resume_query);
 	Test.add_data_func ("/lottanzb/backend/hubs/config",
 		test_config_hub);
+	Test.add_data_func ("/lottanzb/backend/hubs/config/servers_settings",
+		test_config_hub_servers_settings);
 	Test.add_data_func ("/lottanzb/backend/hubs/general/moving_downloads",
 		test_general_hub_moving_downloads);
 	Test.add_data_func ("/lottanzb/backend/hubs/general/download_name_binding",

@@ -37,3 +37,56 @@ public void test_config_hub () {
 	assert (misc_settings.get_int ("folder-max-length") == 256);
 	assert (misc_settings.get_string ("complete-dir") == "Downloads/complete");
 }
+
+public void assert_first_fixture_server (BetterSettings server) {
+	assert (server.get_string ("username") == "me@example.com");
+	assert (server.get_boolean ("enable"));
+	assert (server.get_string ("name") == "news.example.com");
+	assert (!server.get_boolean ("fillserver"));
+	assert (server.get_int ("connections") == 12);
+	assert (!server.get_boolean ("ssl"));
+	assert (server.get_string ("host") == "news.example.com");
+	assert (server.get_int ("timeout") == 30);
+	assert (server.get_string ("password") == "********");
+	assert (!server.get_boolean ("optional"));
+	assert (server.get_int ("port") == 119);
+	assert (server.get_int ("retention") == 0);
+}
+
+public void assert_second_fixture_server (BetterSettings server) {
+	assert (server.get_string ("username") == "me");
+	assert (!server.get_boolean ("enable"));
+	assert (server.get_string ("name") == "ssl.example.com");
+	assert (!server.get_boolean ("fillserver"));
+	assert (server.get_int ("connections") == 6);
+	assert (server.get_boolean ("ssl"));
+	assert (server.get_string ("host") == "ssl.example.com");
+	assert (server.get_int ("timeout") == 120);
+	assert (server.get_string ("password") == "********");
+	assert (!server.get_boolean ("optional"));
+	assert (server.get_int ("port") == 563);
+	assert (server.get_int ("retention") == 0);
+}
+
+public void test_config_hub_servers_settings () {
+	var query_processor = new ConfigHubTestMockQueryProcessor ();
+	var config_hub = new ConfigHub (query_processor);
+	var servers_settings = config_hub.root.get_servers ();
+	assert (servers_settings.size == 2);
+	assert_first_fixture_server (servers_settings.get_server (0));
+	assert_second_fixture_server (servers_settings.get_server (1));
+	assert (!servers_settings.has_reached_max_server_count);
+
+	servers_settings.add_server ();
+	assert (servers_settings.size == 3);
+	var new_server = servers_settings.get_server (2);
+	assert (new_server.get_string ("host") == "");
+	new_server.set_string ("host", "example.com");
+	servers_settings.remove_server (2);
+	assert (servers_settings.size == 2);
+	assert (new_server.get_string ("host") == "");
+
+	servers_settings.remove_server (0);
+	assert_second_fixture_server (servers_settings.get_server (0));
+
+}
