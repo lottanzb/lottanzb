@@ -34,7 +34,6 @@ public class Lottanzb.ServerColumn : Gtk.TreeViewColumn {
 		if (server != null) {
 			var host = server.get_string ("host");
 			var username = server.get_string ("username");
-			var password = server.get_string ("password");
 			var fillserver = server.get_boolean ("fillserver");
 			var enable = server.get_boolean ("enable");
 			var first_line = host;
