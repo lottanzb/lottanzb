@@ -45,9 +45,14 @@ public class Lottanzb.BetterSettings : Settings, Copyable<BetterSettings> {
 		if (child == null) {
 			string child_schema_id, child_path;
 			get_child_schema_id_and_path (name, out child_schema_id, out child_path);
-			child = new BetterSettings.with_backend_and_path (child_schema_id, backend, child_path);
+			child = make_child (name, child_schema_id, child_path);
 			children [name] = child;
 		}
+		return child;
+	}
+
+	protected virtual BetterSettings make_child (string name, string child_schema_id, string child_path) {
+		var child = new BetterSettings.with_backend_and_path (child_schema_id, backend, child_path);
 		return child;
 	}
 

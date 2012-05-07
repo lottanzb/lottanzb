@@ -49,7 +49,7 @@ public class Lottanzb.ConfigHubTest : Object {
 		assert (misc_settings.get_string ("complete-dir") == "Downloads/complete");
 	}
 
-	public void assert_first_fixture_server (BetterSettings server) {
+	public void assert_first_fixture_server (SabnzbdServerSettings server) {
 		assert (server.get_string ("username") == "me@example.com");
 		assert (server.get_boolean ("enable"));
 		assert (server.get_string ("name") == "news.example.com");
@@ -64,7 +64,7 @@ public class Lottanzb.ConfigHubTest : Object {
 		assert (server.get_int ("retention") == 0);
 	}
 
-	public void assert_second_fixture_server (BetterSettings server) {
+	public void assert_second_fixture_server (SabnzbdServerSettings server) {
 		assert (server.get_string ("username") == "me");
 		assert (!server.get_boolean ("enable"));
 		assert (server.get_string ("name") == "ssl.example.com");
@@ -106,7 +106,7 @@ public class Lottanzb.ConfigHubTest : Object {
 		var config_hub = new ConfigHub (query_processor);
 		var servers_settings = config_hub.root.get_servers ();
 		var servers_tree_model = new ServersTreeModel (servers_settings);
-		assert (servers_tree_model.get_column_type (0) == typeof (BetterSettings));
+		assert (servers_tree_model.get_column_type (0) == typeof (SabnzbdServerSettings));
 		assert (servers_tree_model.get_n_columns () == 1);
 		servers_tree_model.row_changed.connect (on_servers_tree_model_row_changed);
 		servers_tree_model.row_inserted.connect (on_servers_tree_model_row_inserted);

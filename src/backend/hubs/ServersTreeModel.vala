@@ -45,7 +45,7 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 		});
 	}
 
-	private void connect_to_change (BetterSettings server, int index) {
+	private void connect_to_change (SabnzbdServerSettings server, int index) {
 		server.change_event.connect ((server, keys) => {
 			var path = new Gtk.TreePath.from_indices (index);
 			Gtk.TreeIter iter;
@@ -57,7 +57,7 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 	}
 
 	public Type get_column_type (int index) {
-		return typeof (BetterSettings);
+		return typeof (SabnzbdServerSettings);
 	}
 
 	public Gtk.TreeModelFlags get_flags () {
@@ -90,7 +90,7 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 	}
 
 	public void get_value (Gtk.TreeIter iter, int column, out Value value) {
-		value = Value (typeof (BetterSettings));
+		value = Value (typeof (SabnzbdServerSettings));
 		if (column == 0) {
 			var index = (int) iter.user_data;
 			if (0 <= index && index < iter_n_children (null)) {
@@ -147,8 +147,8 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 		return false;
 	}
 
-	public BetterSettings? get_server (Gtk.TreeIter iter) {
-		BetterSettings? server = null;
+	public SabnzbdServerSettings? get_server (Gtk.TreeIter iter) {
+		SabnzbdServerSettings? server = null;
 		get (iter, 0, out server);
 		return server;
 	}

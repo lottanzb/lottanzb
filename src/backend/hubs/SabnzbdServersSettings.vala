@@ -46,9 +46,14 @@ public class Lottanzb.SabnzbdServersSettings : BetterSettings, Copyable<SabnzbdS
 		Object (schema_id: schema_id, backend: backend, path: path);
 	}
 
-	public BetterSettings get_server (int index) {
-		var server = get_child (index_to_key (index));
+	public SabnzbdServerSettings get_server (int index) {
+		var server = get_child (index_to_key (index)) as SabnzbdServerSettings;
 		return server;
+	}
+
+	protected override BetterSettings make_child (string name, string child_schema_id, string child_path) {
+		var child = new SabnzbdServerSettings.with_backend_and_path (child_schema_id, backend, child_path);
+		return child;
 	}
 
 	public bool has_reached_max_server_count {

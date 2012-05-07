@@ -30,7 +30,7 @@ public class Lottanzb.ServerColumn : Gtk.TreeViewColumn {
 	private void cell_data_func (Gtk.CellLayout cell_layout, Gtk.CellRenderer cell,
 		Gtk.TreeModel model, Gtk.TreeIter iter) {
 		ServersTreeModel servers_model = (ServersTreeModel) model;
-		BetterSettings server = servers_model.get_server (iter);
+		SabnzbdServerSettings server = servers_model.get_server (iter);
 		if (server != null) {
 			var host = server.get_string ("host");
 			var username = server.get_string ("username");
@@ -42,10 +42,8 @@ public class Lottanzb.ServerColumn : Gtk.TreeViewColumn {
 				first_line = "<i>%s</i>".printf (_("New Server"));
 			}
 			cell_renderer.markup = first_line;
-
-			var requires_authentication = username.length > 0 && password.length > 0;
 			var secondary_line = "";
-			if (requires_authentication) {
+			if (server.requires_authentication) {
 				secondary_line = username;
 			} else {
 				secondary_line = _("No authentication required");
