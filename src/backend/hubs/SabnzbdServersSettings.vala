@@ -24,7 +24,7 @@ public class Lottanzb.SabnzbdServersSettings : BetterSettings, Copyable<SabnzbdS
 		get {
 			return _size;
 		}
-		set {
+		private set {
 			assert (0 <= value && value <= MAX_SERVER_COUNT);
 			_size = value;
 			for (var invalid_index = _size; invalid_index < MAX_SERVER_COUNT; invalid_index++) {
@@ -82,6 +82,11 @@ public class Lottanzb.SabnzbdServersSettings : BetterSettings, Copyable<SabnzbdS
 			}
 		}
 		size--;
+	}
+
+	public void add_server ()
+		requires (!has_reached_max_server_count) {
+		size++;
 	}
 
 	private string index_to_key (int index) {

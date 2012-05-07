@@ -128,7 +128,7 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 
 	[CCode (instance_pos = -1)]
 	public void on_add_server_activate (Gtk.Action action) {
-		servers.size++;
+		servers.add_server ();
 		set_selected_server_index (servers.size - 1);
 		server_editor_pane.widgets.host.grab_focus ();
 	}
