@@ -38,6 +38,14 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 
 		update_server_editor_pane ();
 
+		this.model.row_inserted.connect ((model, iter, path) => {
+			update_add_server_sensitivity ();
+		});
+		this.model.row_deleted.connect ((model, path) => {
+			update_add_server_sensitivity ();
+		});
+		update_add_server_sensitivity ();
+
 		// Join the add/remove toolbar to the treeview
 		Gtk.StyleContext context;
 		context = widgets.scrolled_window.get_style_context ();
@@ -76,15 +84,33 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 	}
 
 	private BetterSettings? get_selected_server () {
+		var index = get_selected_server_index ();
+		if (index >= 0) {
+			return servers.get_server (index);
+		}
+		return null;
+	}
+	
+	private int get_selected_server_index () {
 		var selection = widgets.tree_view.get_selection ();
 		if (selection != null) {
 			Gtk.TreeIter? iter;
 			bool has_selected_server = selection.get_selected (null, out iter);
 			if (has_selected_server) {
-				return model.get_server (iter);
+				var path = model.get_path (iter);
+				var index = path.get_indices ()[0];
+				return index;
 			}
 		}
-		return null;
+		return -1;
+	}
+
+	private void set_selected_server_index (int index) {
+		var selection = widgets.tree_view.get_selection ();
+		if (selection != null) {
+			var path = new Gtk.TreePath.from_indices (index);
+			selection.select_path (path);
+		}
 	}
 
 	[CCode (instance_pos = -1)]
@@ -99,5 +125,35 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 				break;
 		}
 	}
+
+	[CCode (instance_pos = -1)]
+	public void on_add_server_activate (Gtk.Action action) {
+		servers.size++;
+		set_selected_server_index (servers.size - 1);
+		server_editor_pane.widgets.host.grab_focus ();
+	}
  
+	[CCode (instance_pos = -1)]
+	public void on_remove_server_activate (Gtk.Action action) {
+		var index = get_selected_server_index ();
+		if (index >= 0) {
+			servers.remove_server (index);
+			var new_selected_server_index = int.min (servers.size - 1, index);
+			if (0 <= new_selected_server_index) {
+				set_selected_server_index (new_selected_server_index);
+			}
+		}
+	}
+
+	[CCode (instance_pos = -1)]
+	public void on_tree_selection_changed (Gtk.TreeSelection selection) {
+		var has_selected_server = 0 <= get_selected_server_index ();
+		widgets.remove_server.sensitive = has_selected_server;
+	}
+
+	public void update_add_server_sensitivity () {
+		widgets.add_server.sensitive = !servers.has_reached_max_server_count;
+	}
+
 }
+

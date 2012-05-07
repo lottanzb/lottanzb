@@ -25,6 +25,24 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 			var server = servers.get_server (index);
 			connect_to_change (server, index);
 		}
+		var old_size = servers.size;
+		servers.notify ["size"].connect ((object, prop) => {
+			var new_size = servers.size;
+			if (old_size < new_size) {
+				for (var index = old_size; index < new_size; index++) {
+					var iter = Gtk.TreeIter ();
+					iter.user_data = (void *) index;
+					var path = new Gtk.TreePath.from_indices (index);
+					row_inserted (path, iter);
+				}
+			} else if (old_size > new_size) {
+				for (var index = new_size; index < old_size; index++) {
+					var path = new Gtk.TreePath.from_indices (index);
+					row_deleted (path);
+				}
+			}
+			old_size = new_size;
+		});
 	}
 
 	private void connect_to_change (BetterSettings server, int index) {

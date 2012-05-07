@@ -4,6 +4,8 @@ public abstract class Lottanzb.AbstractServersDialog : Object {
 
 	public class WindowWidgets : Object {
 
+		public Gtk.Action add_server { get; protected set; }
+		public Gtk.Action remove_server { get; protected set; }
 		public Gtk.Dialog servers_dialog { get; protected set; }
 		public Gtk.Box dialog1_vbox { get; protected set; }
 		public Gtk.ButtonBox dialog1_action_area { get; protected set; }

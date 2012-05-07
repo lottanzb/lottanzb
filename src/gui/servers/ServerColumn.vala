@@ -37,7 +37,11 @@ public class Lottanzb.ServerColumn : Gtk.TreeViewColumn {
 			var password = server.get_string ("password");
 			var fillserver = server.get_boolean ("fillserver");
 			var enable = server.get_boolean ("enable");
-			cell_renderer.markup = host;
+			var first_line = host;
+			if (first_line.length == 0) {
+				first_line = "<i>%s</i>".printf (_("New Server"));
+			}
+			cell_renderer.markup = first_line;
 
 			var requires_authentication = username.length > 0 && password.length > 0;
 			var secondary_line = "";
@@ -47,12 +51,8 @@ public class Lottanzb.ServerColumn : Gtk.TreeViewColumn {
 				secondary_line = _("No authentication required");
 				secondary_line = @"<i>$(secondary_line)</i>";
 			}
-
-			var first_line = host;
 			if (fillserver) {
-				first_line = _(@"$(host) (Backup server)");
-			} else {
-				first_line = host;
+				first_line = _(@"$(first_line) (Backup server)");
 			}
 			var text = @"<b>$(first_line)</b>\n<small>$(secondary_line)</small>";
 			cell_renderer.markup = text;

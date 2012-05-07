@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.0 -->
+  <object class="GtkAction" id="add_server">
+    <signal name="activate" handler="lottanzb_servers_dialog_on_add_server_activate" swapped="no"/>
+  </object>
+  <object class="GtkAction" id="remove_server">
+    <signal name="activate" handler="lottanzb_servers_dialog_on_remove_server_activate" swapped="no"/>
+  </object>
   <object class="GtkDialog" id="servers_dialog">
     <property name="width_request">600</property>
     <property name="can_focus">False</property>
@@ -105,7 +111,9 @@
                         <property name="headers_visible">False</property>
                         <property name="headers_clickable">False</property>
                         <child internal-child="selection">
-                          <object class="GtkTreeSelection" id="tree_selection"/>
+                          <object class="GtkTreeSelection" id="tree_selection">
+                            <signal name="changed" handler="lottanzb_servers_dialog_on_tree_selection_changed" swapped="no"/>
+                          </object>
                         </child>
                       </object>
                     </child>
@@ -125,8 +133,10 @@
                     <child>
                       <object class="GtkToolButton" id="button_add">
                         <property name="use_action_appearance">False</property>
+                        <property name="related_action">add_server</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="related_action">add_server</property>
                         <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="icon_name">list-add-symbolic</property>
@@ -139,8 +149,10 @@
                     <child>
                       <object class="GtkToolButton" id="button_remove">
                         <property name="use_action_appearance">False</property>
+                        <property name="related_action">remove_server</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="related_action">remove_server</property>
                         <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="icon_name">list-remove-symbolic</property>

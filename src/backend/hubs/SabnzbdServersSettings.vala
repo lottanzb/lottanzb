@@ -17,7 +17,7 @@
 
 public class Lottanzb.SabnzbdServersSettings : BetterSettings, Copyable<SabnzbdServersSettings> {
 	
-	public static const int MAX_SERVER_COUNT = 10;
+	public static const int MAX_SERVER_COUNT = 20;
 
 	private int _size = 0;
 	public int size {
@@ -51,6 +51,12 @@ public class Lottanzb.SabnzbdServersSettings : BetterSettings, Copyable<SabnzbdS
 		return server;
 	}
 
+	public bool has_reached_max_server_count {
+		get {
+			return size == MAX_SERVER_COUNT;
+		}
+	}
+
 	public override void set_recursively_from_json_array (Json.Array array) {
 		size = int.min (MAX_SERVER_COUNT, (int) array.get_length ());
 		if (MAX_SERVER_COUNT < array.get_length ()) {
@@ -63,6 +69,19 @@ public class Lottanzb.SabnzbdServersSettings : BetterSettings, Copyable<SabnzbdS
 				server.set_all_from_json_object (object);
 			}
 		}
+	}
+
+	public void remove_server (int index)
+		requires (0 <= index && index < size) {
+		for (; index < size - 1; index++) {
+			var target_server = get_server (index);
+			var source_server = get_server (index + 1);
+			foreach (var key in target_server.list_keys ()) {
+				var source_value = source_server.get_value (key);
+				target_server.set_value (key, source_value);
+			}
+		}
+		size--;
 	}
 
 	private string index_to_key (int index) {
