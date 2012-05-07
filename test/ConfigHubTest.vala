@@ -88,5 +88,4 @@ public void test_config_hub_servers_settings () {
 
 	servers_settings.remove_server (0);
 	assert_second_fixture_server (servers_settings.get_server (0));
-
 }
