@@ -117,6 +117,7 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 	public void on_response (Gtk.Dialog dialog, Gtk.ResponseType response) {
 		switch (response) {
 			case Gtk.ResponseType.APPLY:
+				servers.remove_empty_servers ();
 				servers.apply_recursively ();
 				break;
 			case Gtk.ResponseType.HELP:

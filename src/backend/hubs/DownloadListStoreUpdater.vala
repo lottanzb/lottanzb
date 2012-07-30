@@ -34,7 +34,7 @@ public class Lottanzb.DownloadListStoreUpdater : Object {
 				bool is_fully_contained = (some_status_group & value) == some_status_group;
 				assert (!has_intersection || is_fully_contained);
 			}
-			_status_group = value;	
+			_status_group = value;
 		}
 	}
 	
