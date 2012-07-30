@@ -12,7 +12,7 @@ APPNAME = 'lottanzb'
 PACKAGE = 'lottanzb'
 VERSION = '0.7'
 WEBSITE = 'http://www.lottanzb.org/'
-COPYRIGHT = 'Copyright \xc2\xa9 2007-2011 Severin Heiniger'
+COPYRIGHT = 'Copyright \xc2\xa9 2007-2012 Severin Heiniger'
 
 def options(opt):
     opt.load('compiler_c gnu_dirs glib2 vala intltool')
@@ -33,7 +33,7 @@ def options(opt):
     
 
 def configure(conf):
-    conf.check_tool('compiler_c gnu_dirs glib2 vala intltool')
+    conf.load('compiler_c gnu_dirs glib2 vala intltool')
     
     conf.check_vala(min_version=(0, 15))
     conf.check_cfg(package='glib-2.0', uselib_store='GLIB',
@@ -74,7 +74,9 @@ def configure(conf):
     conf.define('COPYRIGHT', COPYRIGHT)
     conf.define('WEBSITE', WEBSITE)
     conf.define('GETTEXT_PACKAGE', APPNAME);
-    conf.env['VALAFLAGS'] = ['-g', '--save-temps'] # '--enable-experimental-non-null'
+    conf.env.append_value('VALAFLAGS', '-g')
+    conf.env.append_value('VALAFLAGS', '--save-temps')
+    # conf.env.append_value('VALAFLAGS', '--enable-experimental-non-null')
  
     conf.write_config_header ('config.h')
 
@@ -212,7 +214,6 @@ class compile_resource_bundle(Task):
         bld = input_node.__class__.ctx
         get = self.env.get_flat
         source_node = input_node.parent
-        print ("INPUT NODE: " + input_node.abspath())
         for output_node in self.outputs:
             output_node.delete()
             output_file = output_node.abspath()
