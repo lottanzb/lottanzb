@@ -78,6 +78,7 @@ def configure(conf):
     conf.define('COPYRIGHT', COPYRIGHT)
     conf.define('WEBSITE', WEBSITE)
     conf.define('GETTEXT_PACKAGE', APPNAME);
+    conf.env.append_value('CFLAGS', '-w')
     conf.env.append_value('VALAFLAGS', '-g')
     conf.env.append_value('VALAFLAGS', '--save-temps')
     # conf.env.append_value('VALAFLAGS', '--enable-experimental-non-null')
