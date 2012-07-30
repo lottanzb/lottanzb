@@ -59,7 +59,7 @@ public class Lottanzb.BetterSettings : Settings, Copyable<BetterSettings> {
 	public void set_child (string name, BetterSettings child_settings)
 		requires (!(children.has_key (name)) && is_valid_child_settings (name, child_settings))
 		ensures (children.has_key (name) && children[name] == child_settings) {
-		children[name] = child_settings;	
+		children[name] = child_settings;
 	}
 
 	protected void get_child_schema_id_and_path (string name, out string child_schema_id, out string child_path) {
@@ -148,12 +148,12 @@ public class Lottanzb.BetterSettings : Settings, Copyable<BetterSettings> {
 	}
 
 	protected string key_to_json_key (string key) {
-		var json_key = key.replace ("-", "_");	
+		var json_key = key.replace ("-", "_");
 		return json_key;
 	}
 
 	protected string child_name_to_json_key (string child_name) {
-		var json_key = child_name.replace ("-", "_");	
+		var json_key = child_name.replace ("-", "_");
 		return json_key;
 	}
 
