@@ -19,21 +19,6 @@ public class Lottanzb.SabnzbdServersSettings : BetterSettings, Copyable<SabnzbdS
 	
 	public static const int MAX_SERVER_COUNT = 20;
 
-	private int _size = 0;
-	public int size {
-		get {
-			return _size;
-		}
-		private set {
-			assert (0 <= value && value <= MAX_SERVER_COUNT);
-			_size = value;
-			for (var invalid_index = _size; invalid_index < MAX_SERVER_COUNT; invalid_index++) {
-				var invalid_server = get_server (invalid_index);
-				invalid_server.reset_all ();
-			}
-		}
-	}
-
 	public SabnzbdServersSettings (string schema_id) {
 		Object (schema_id: schema_id);
 	}
@@ -44,6 +29,15 @@ public class Lottanzb.SabnzbdServersSettings : BetterSettings, Copyable<SabnzbdS
 
 	public SabnzbdServersSettings.with_backend_and_path (string schema_id, SettingsBackend backend, string path) {
 		Object (schema_id: schema_id, backend: backend, path: path);
+	}
+
+	public int size {
+		get {
+			return get_int ("size");
+		}
+		set {
+			set_int ("size", value);
+		}
 	}
 
 	public SabnzbdServerSettings get_server (int index) {
@@ -74,6 +68,10 @@ public class Lottanzb.SabnzbdServersSettings : BetterSettings, Copyable<SabnzbdS
 				server.set_all_from_json_object (object);
 			}
 		}
+		for (var invalid_index = size; invalid_index < MAX_SERVER_COUNT; invalid_index++) {
+			var invalid_server = get_server (invalid_index);
+			invalid_server.reset_all ();
+		}
 	}
 
 	public void remove_server (int index)
@@ -86,7 +84,18 @@ public class Lottanzb.SabnzbdServersSettings : BetterSettings, Copyable<SabnzbdS
 				target_server.set_value (key, source_value);
 			}
 		}
+		var last_server = get_server (size - 1);
+		last_server.reset_all ();
 		size--;
+	}
+
+	public void remove_empty_servers () {
+		for (var index = 0; index < size; index++) {
+			var server = get_server (index);
+			if (server.get_string ("host").length == 0) {
+				remove_server (index);
+			}
+		}
 	}
 
 	public void add_server ()
@@ -100,7 +109,6 @@ public class Lottanzb.SabnzbdServersSettings : BetterSettings, Copyable<SabnzbdS
 
 	public new SabnzbdServersSettings get_copy () {
 		var servers = new SabnzbdServersSettings.with_backend_and_path (schema_id, backend, path);
-		servers._size = _size;
 		return servers;
 	}
 

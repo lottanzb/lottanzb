@@ -313,6 +313,9 @@
     </key>
   </schema>
   <schema id="apps.lottanzb.backend.sabnzbdplus.servers">
+    <key type="i" name="size">
+      <default>0</default>
+    </key>
     <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server0" />
     <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server1" />
     <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server2" />
