@@ -101,6 +101,20 @@ public class Lottanzb.ConfigHubTest : Object {
 		assert_second_fixture_server (servers_settings.get_server (0));
 	}
 
+	public void test_config_hub_servers_settings_delay_application () {
+		var query_processor = new ConfigHubTestMockQueryProcessor ();
+		var config_hub = new ConfigHub (query_processor);
+		var servers_settings = config_hub.root.get_servers ();
+		var servers_settings_delayed = servers_settings.get_copy ();
+		servers_settings_delayed.delay_recursively ();
+		servers_settings_delayed.remove_server (1);
+		assert (servers_settings.size == 2);
+		assert_second_fixture_server (servers_settings.get_server (1));
+		assert (servers_settings_delayed.size == 1);
+		servers_settings_delayed.apply_recursively ();
+		assert (servers_settings.size == 1);
+	}
+
 	public void test_servers_tree_model () {
 		var query_processor = new ConfigHubTestMockQueryProcessor ();
 		var config_hub = new ConfigHub (query_processor);
@@ -145,7 +159,7 @@ public class Lottanzb.ConfigHubTest : Object {
 	}
 
 	private void on_servers_tree_model_row_inserted (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
-		row_inserted_count++;		
+		row_inserted_count++;
 		last_row_inserted_index = path.get_indices ()[0];
 	}
 
@@ -164,6 +178,11 @@ public void test_config_hub () {
 public void test_config_hub_servers_settings () {
 	var config_hub_test = new ConfigHubTest ();
 	config_hub_test.test_config_hub_servers_settings ();
+}
+
+public void test_config_hub_servers_settings_delay_application () {
+	var config_hub_test = new ConfigHubTest ();
+	config_hub_test.test_config_hub_servers_settings_delay_application ();
 }
 
 public void test_servers_tree_model () {
