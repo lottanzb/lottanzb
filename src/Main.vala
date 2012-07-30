@@ -34,7 +34,7 @@ public class Lottanzb.Main {
 			option_context.parse (ref args);
 		} catch (OptionError error) {
 			stderr.printf ("option parsing failed: %s\n", error.message);
-			return -1;
+			return 1;
 		}
 
 		if (show_version) {
@@ -44,8 +44,13 @@ public class Lottanzb.Main {
 		if (debug) {
 			Environment.set_variable ("G_MESSAGES_DEBUG", "all", true);
 		}
-		
+
 		Gtk.init(ref args);
+		var app = new Unique.App (LottanzbConfig.DBUS_NAME, null);
+		if (app.is_running) {
+			critical ("LottaNZB is already running.");
+			return 1;
+		}
 
 		var config_provider = new ConfigProviderImpl ();
 		var session_provider = new SessionProviderImpl (config_provider);

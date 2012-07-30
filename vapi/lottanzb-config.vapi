@@ -20,6 +20,7 @@ namespace LottanzbConfig {
 
 	public const bool DEBUG;
 	public const string PACKAGE;
+	public const string DBUS_NAME;
 	public const string VERSION;
 	public const string COPYRIGHT;
 	public const string WEBSITE;

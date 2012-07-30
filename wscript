@@ -10,6 +10,7 @@ from waflib import Context
 
 APPNAME = 'lottanzb'
 PACKAGE = 'lottanzb'
+DBUS_NAME = 'org.' + APPNAME
 VERSION = '0.7'
 WEBSITE = 'http://www.lottanzb.org/'
 COPYRIGHT = 'Copyright \xc2\xa9 2007-2012 Severin Heiniger'
@@ -54,6 +55,8 @@ def configure(conf):
         atleast_version='0.6', args='--cflags --libs')
     conf.check_cfg(package='launchpad-integration-3.0', uselib_store='LP',
         atleast_version='0.1', args='--cflags --libs')
+    conf.check_cfg(package='unique-3.0', uselib_store='UNIQUE',
+        atleast_version='0.1', args='--cflags --libs')
     # conf.check_cfg(package='valadate-1.0', uselib_store='VALADATE',
     #     atleast_versoin='0.1.1', args='--cflags --libs', mandatory=False)
 
@@ -70,6 +73,7 @@ def configure(conf):
     # conf.find_program('valadate', var='VALADATE', mandatory=False)
     
     conf.define('PACKAGE', APPNAME)
+    conf.define('DBUS_NAME', DBUS_NAME);
     conf.define('VERSION', VERSION)
     conf.define('COPYRIGHT', COPYRIGHT)
     conf.define('WEBSITE', WEBSITE)
@@ -110,10 +114,10 @@ def build(bld):
         cflags=['-g'] + ['-include' + bld.path.find_or_declare(header_file).abspath() \
                 for header_file in ['config.h', 'data/lottanzb.gresource.h']],
         packages='glib-2.0 gio-2.0 gtk+-3.0 gmodule-2.0 json-glib-1.0 ' + \
-            'libsoup-2.4 libvala-0.16 gee-1.0 launchpad-integration-3.0 ' + \
+            'libsoup-2.4 libvala-0.16 gee-1.0 launchpad-integration-3.0 unique-3.0 ' + \
             'lottanzb-config lottanzb-resource lottanzb-test-resource ' + \
             'lottanzb-gsettings-workaround',
-        uselib='GLIB GIO GTK+ GMODULE LIBSOUP JSON VALA GEE LP',
+        uselib='GLIB GIO GTK+ GMODULE LIBSOUP JSON VALA GEE LP UNIQUE',
         vala_defines=['DEBUG'])
     app.add_settings_schemas(['data/apps.lottanzb.gschema.xml',
         'data/apps.lottanzb.backend.sabnzbdplus.gschema.xml'])
