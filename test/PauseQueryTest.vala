@@ -13,12 +13,22 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 using Lottanzb;
 
-public void test_pause_query () {
-	var query = new SimpleQuery ("pause");
-	query.set_raw_response ("{\"status\":true}");
-	assert (query.has_succeeded);
+public class Lottanzb.PauseQueryTest : Lottanzb.TestSuiteBuilder {
+
+	public PauseQueryTest () {
+		base ("pause_query");
+		add_test ("simple", test_simple);
+	}
+
+
+	public void test_simple () {
+		var query = new SimpleQuery ("pause");
+		query.set_raw_response ("{\"status\":true}");
+		assert (query.has_succeeded);
+	}
+
 }

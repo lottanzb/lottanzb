@@ -13,38 +13,48 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 using Lottanzb;
 
-public void test_download_list_store_updater_initial_update () {
-	var list_store = new DownloadListStore ();
-	var updater = new DownloadListStoreUpdater (list_store, DownloadStatusGroup.NOT_FULLY_LOADED);
-	var ids = new string[] { "a", "b", "c" };
-	var remote_downloads = make_downloads (ids);
-	updater.update (remote_downloads);
-	assert_download_list_store_download_order (list_store, ids);
-}
+public class Lottanzb.DownloadListStoreUpdaterTest : Lottanzb.TestSuiteBuilder {
 
-public void test_download_list_store_updater_idempotence () {
-	var list_store = new DownloadListStore ();
-	var updater = new DownloadListStoreUpdater (list_store, DownloadStatusGroup.NOT_FULLY_LOADED);
-	var ids = new string[] { "a", "b", "c" };
-	var remote_downloads = make_downloads (ids);
-	updater.update (remote_downloads);
-	updater.update (remote_downloads);
-	assert_download_list_store_download_order (list_store, ids);
-}
+	public DownloadListStoreUpdaterTest () {
+		base ("download_list_store_updater");
+		add_test ("initial_update", test_initial_update);
+		add_test ("idempotence", test_idempotence);
+		add_test ("simple_reordering", test_simple_reordering);
+	}
 
-public void test_download_list_store_updater_simple_reordering () {
-	var list_store = new DownloadListStore ();
-	var updater = new DownloadListStoreUpdater (list_store, DownloadStatusGroup.NOT_FULLY_LOADED);
-	var old_ids = new string[] { "a", "b", "c" };
-	var old_remote_downloads = make_downloads (old_ids);
-	updater.update (old_remote_downloads);
-	var new_ids = new string[] { "b", "c", "a" };
-	var new_remote_downloads = make_downloads (new_ids);
-	updater.update (new_remote_downloads);
-	assert_download_list_store_download_order (list_store, new_ids);
-}
+	public void test_initial_update () {
+		var list_store = new DownloadListStore ();
+		var updater = new DownloadListStoreUpdater (list_store, DownloadStatusGroup.NOT_FULLY_LOADED);
+		var ids = new string[] { "a", "b", "c" };
+		var remote_downloads = make_downloads (ids);
+		updater.update (remote_downloads);
+		assert_download_list_store_download_order (list_store, ids);
+	}
 
+	public void test_idempotence () {
+		var list_store = new DownloadListStore ();
+		var updater = new DownloadListStoreUpdater (list_store, DownloadStatusGroup.NOT_FULLY_LOADED);
+		var ids = new string[] { "a", "b", "c" };
+		var remote_downloads = make_downloads (ids);
+		updater.update (remote_downloads);
+		updater.update (remote_downloads);
+		assert_download_list_store_download_order (list_store, ids);
+	}
+
+	public void test_simple_reordering () {
+		var list_store = new DownloadListStore ();
+		var updater = new DownloadListStoreUpdater (list_store, DownloadStatusGroup.NOT_FULLY_LOADED);
+		var old_ids = new string[] { "a", "b", "c" };
+		var old_remote_downloads = make_downloads (old_ids);
+		updater.update (old_remote_downloads);
+		var new_ids = new string[] { "b", "c", "a" };
+		var new_remote_downloads = make_downloads (new_ids);
+		updater.update (new_remote_downloads);
+		assert_download_list_store_download_order (list_store, new_ids);
+	}
+
+}

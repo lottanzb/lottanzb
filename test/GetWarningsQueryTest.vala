@@ -13,20 +13,30 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 using Lottanzb;
 
-public void test_get_warnings_query () {
-	var raw_response = get_fixture ("get_warnings_query_response.json");
-	var query = new GetWarningsQueryImpl ();
-	query.set_raw_response (raw_response);
-	var warnings = query.get_response ();
-	assert (warnings.size == 2);
-	assert (query.method == "warnings");
-	var warning = warnings[0];
-	var expected_date_time = new DateTime.local (2012, 3, 14, 20, 44, 52.122);
-	assert (warning.date_time.equal (expected_date_time));
-	assert (warning.log_level == LogLevelFlags.LEVEL_ERROR);
-	assert (warning.content == "Failed login for server example.com:563");
+public class Lottanzb.GetWarningsQueryTest : Lottanzb.TestSuiteBuilder {
+
+	public GetWarningsQueryTest () {
+		base ("get_warnings_query");
+		add_test ("set_raw_response", test_set_raw_response);
+	}
+
+
+	public void test_set_raw_response () {
+		var raw_response = get_fixture ("get_warnings_query_response.json");
+		var query = new GetWarningsQueryImpl ();
+		query.set_raw_response (raw_response);
+		var warnings = query.get_response ();
+		assert (warnings.size == 2);
+		assert (query.method == "warnings");
+		var warning = warnings[0];
+		var expected_date_time = new DateTime.local (2012, 3, 14, 20, 44, 52.122);
+		assert (warning.date_time.equal (expected_date_time));
+		assert (warning.log_level == LogLevelFlags.LEVEL_ERROR);
+		assert (warning.content == "Failed login for server example.com:563");
+	}
+
 }

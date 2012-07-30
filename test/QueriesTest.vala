@@ -13,21 +13,20 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 using Lottanzb;
 
-public class Lottanzb.ResumeQueryTest : Lottanzb.TestSuiteBuilder {
+public class Lottanzb.QueriesTest : TestSuite {
 
-	public ResumeQueryTest () {
-		base ("resume_query");
-		add_test ("simple", test_simple);
-	}
-
-	public void test_simple () {
-		var query = new SimpleQuery ("resume");
-		query.set_raw_response ("{\"status\":true}");
-		assert (query.has_succeeded);
+	public QueriesTest () {
+		base ("queries");
+		add_suite (new ResumeQueryTest ().get_suite ());
+		add_suite (new GetAuthenticationTypeQueryTest ().get_suite ());
+		add_suite (new GetWarningsQueryTest ().get_suite ());
+		add_suite (new PauseQueryTest ().get_suite ());
+		add_suite (new GetQueueQueryTest ().get_suite ());
+		add_suite (new GetHistoryQueryTest ().get_suite ());
 	}
 
 }

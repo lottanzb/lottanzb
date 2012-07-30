@@ -28,9 +28,7 @@ private class Lottanzb.ConfigHubTestMockQueryProcessor : MockQueryProcessor {
 
 }
 
-// TODO: Recording signal emissions using lambda expressions is not possible in functions,
-// which is why the auxiliary ConfigHubTest class is used.
-public class Lottanzb.ConfigHubTest : Object {
+public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 
 	private int row_changed_count = 0;
 	private int last_row_changed_index = -1;
@@ -39,7 +37,24 @@ public class Lottanzb.ConfigHubTest : Object {
 	private int row_deleted_count = 0;
 	private int last_row_deleted_index = -1;
 
-	public void test_config_hub () {
+	public ConfigHubTest () {
+		base ("config");
+		add_test ("basic", test_basic);
+		add_test ("servers_settings", test_servers_settings);
+		add_test ("servers_settings_delay_application", test_servers_settings_delay_application);
+		add_test ("servers_tree_model", test_servers_tree_model);
+	}
+
+	public override void set_up () {
+		row_changed_count = 0;
+		last_row_changed_index = -1;
+		row_inserted_count = 0;
+		last_row_inserted_index = -1;
+		row_deleted_count = 0;
+		last_row_deleted_index = -1;
+	}
+
+	public void test_basic () {
 		var query_processor = new ConfigHubTestMockQueryProcessor ();
 		var config_hub = new ConfigHub (query_processor);
 		var misc_settings = config_hub.root.get_misc ();
@@ -79,7 +94,7 @@ public class Lottanzb.ConfigHubTest : Object {
 		assert (server.get_int ("retention") == 0);
 	}
 
-	public void test_config_hub_servers_settings () {
+	public void test_servers_settings () {
 		var query_processor = new ConfigHubTestMockQueryProcessor ();
 		var config_hub = new ConfigHub (query_processor);
 		var servers_settings = config_hub.root.get_servers ();
@@ -101,7 +116,7 @@ public class Lottanzb.ConfigHubTest : Object {
 		assert_second_fixture_server (servers_settings.get_server (0));
 	}
 
-	public void test_config_hub_servers_settings_delay_application () {
+	public void test_servers_settings_delay_application () {
 		var query_processor = new ConfigHubTestMockQueryProcessor ();
 		var config_hub = new ConfigHub (query_processor);
 		var servers_settings = config_hub.root.get_servers ();
@@ -168,24 +183,4 @@ public class Lottanzb.ConfigHubTest : Object {
 		last_row_deleted_index = path.get_indices ()[0];
 	}
 
-}
-
-public void test_config_hub () {
-	var config_hub_test = new ConfigHubTest ();
-	config_hub_test.test_config_hub ();
-}
-
-public void test_config_hub_servers_settings () {
-	var config_hub_test = new ConfigHubTest ();
-	config_hub_test.test_config_hub_servers_settings ();
-}
-
-public void test_config_hub_servers_settings_delay_application () {
-	var config_hub_test = new ConfigHubTest ();
-	config_hub_test.test_config_hub_servers_settings_delay_application ();
-}
-
-public void test_servers_tree_model () {
-	var config_hub_test = new ConfigHubTest ();
-	config_hub_test.test_servers_tree_model ();
 }

@@ -13,20 +13,29 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http:www.gnu.org/licenses/>.
-*/
+ */
 
 using Lottanzb;
 
-public void test_get_authentication_type_query () {
-	GetAuthenticationTypeQueryImpl query;
-	query = new GetAuthenticationTypeQueryImpl ();
-	assert (query.method == "auth");
-	query.set_raw_response ("{\"auth\":\"apikey\"}");
-	assert (query.get_response () == AuthenticationType.API_KEY);
-	query = new GetAuthenticationTypeQueryImpl ();
-	query.set_raw_response ("{\"auth\":\"login\"}");
-	assert (query.get_response () == AuthenticationType.USERNAME_AND_PASSWORD);
-	query = new GetAuthenticationTypeQueryImpl ();
-	query.set_raw_response ("{\"auth\":\"None\"}");
-	assert (query.get_response () == AuthenticationType.NOTHING);
+public class Lottanzb.GetAuthenticationTypeQueryTest : Lottanzb.TestSuiteBuilder {
+
+	public GetAuthenticationTypeQueryTest () {
+		base ("get_authentication_type_query");
+		add_test ("simple", test_simple);
+	}
+
+	public void test_simple () {
+		GetAuthenticationTypeQueryImpl query;
+		query = new GetAuthenticationTypeQueryImpl ();
+		assert (query.method == "auth");
+		query.set_raw_response ("{\"auth\":\"apikey\"}");
+		assert (query.get_response () == AuthenticationType.API_KEY);
+		query = new GetAuthenticationTypeQueryImpl ();
+		query.set_raw_response ("{\"auth\":\"login\"}");
+		assert (query.get_response () == AuthenticationType.USERNAME_AND_PASSWORD);
+		query = new GetAuthenticationTypeQueryImpl ();
+		query.set_raw_response ("{\"auth\":\"None\"}");
+		assert (query.get_response () == AuthenticationType.NOTHING);
+	}
+
 }
