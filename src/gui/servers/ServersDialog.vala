@@ -18,13 +18,13 @@
 public class Lottanzb.ServersDialog : AbstractServersDialog {
 
 	private ConfigHub config_hub;
-	private SabnzbdServersSettings servers;
+	private SabnzbdServerList servers;
 	private ServersTreeModel model;
 	private ServerEditorPane? server_editor_pane;
 
 	public ServersDialog (ConfigHub config_hub) {
 		base ();
-		
+
 		this.config_hub = config_hub;
 		this.servers = config_hub.root.get_servers ().get_copy ();
 		this.servers.delay_recursively ();
@@ -80,17 +80,17 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 		if (selected_server != null) {
 			server_editor_pane = new ServerEditorPane (selected_server);
 			widgets.server_editor_pane_container.child = server_editor_pane.widget;
-		}	
+		}
 	}
 
 	private BetterSettings? get_selected_server () {
 		var index = get_selected_server_index ();
 		if (index >= 0) {
-			return servers.get_server (index);
+			return servers.get_child_by_index (index);
 		}
 		return null;
 	}
-	
+
 	private int get_selected_server_index () {
 		var selection = widgets.tree_view.get_selection ();
 		if (selection != null) {
@@ -117,7 +117,7 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 	public void on_response (Gtk.Dialog dialog, Gtk.ResponseType response) {
 		switch (response) {
 			case Gtk.ResponseType.APPLY:
-				servers.remove_empty_servers ();
+				servers.remove_empty_children ();
 				servers.apply_recursively ();
 				break;
 			case Gtk.ResponseType.HELP:
@@ -129,16 +129,16 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 
 	[CCode (instance_pos = -1)]
 	public void on_add_server_activate (Gtk.Action action) {
-		servers.add_server ();
+		servers.add_child ();
 		set_selected_server_index (servers.size - 1);
 		server_editor_pane.widgets.host.grab_focus ();
 	}
- 
+
 	[CCode (instance_pos = -1)]
 	public void on_remove_server_activate (Gtk.Action action) {
 		var index = get_selected_server_index ();
 		if (index >= 0) {
-			servers.remove_server (index);
+			servers.remove_child (index);
 			var new_selected_server_index = int.min (servers.size - 1, index);
 			if (0 <= new_selected_server_index) {
 				set_selected_server_index (new_selected_server_index);
@@ -153,7 +153,7 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 	}
 
 	public void update_add_server_sensitivity () {
-		widgets.add_server.sensitive = !servers.has_reached_max_server_count;
+		widgets.add_server.sensitive = !servers.is_full;
 	}
 
 }

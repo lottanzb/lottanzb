@@ -26,16 +26,16 @@ public class Lottanzb.SabnzbdRootSettings : BetterSettings, Copyable<SabnzbdRoot
 		base.with_backend_and_path (SCHEMA_ID, backend, PATH);
 		string child_schema_id, child_path;
 		get_child_schema_id_and_path (SERVERS_CHILD_NAME, out child_schema_id, out child_path);
-		var servers = new SabnzbdServersSettings.with_backend_and_path (child_schema_id, backend, child_path);
+		var servers = new SabnzbdServerList.with_backend_and_path (child_schema_id, backend, child_path);
 		set_child (SERVERS_CHILD_NAME, servers);
 	}
-	
+
 	public BetterSettings get_misc () {
 		return get_child (MISC_CHILD_NAME);
 	}
 
-	public SabnzbdServersSettings get_servers () {
-		return get_child (SERVERS_CHILD_NAME) as SabnzbdServersSettings;
+	public SabnzbdServerList get_servers () {
+		return get_child (SERVERS_CHILD_NAME) as SabnzbdServerList;
 	}
 
 	public new SabnzbdRootSettings get_copy () {

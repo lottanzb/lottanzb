@@ -19,7 +19,7 @@ public enum Lottanzb.DefaultServerPort {
 
 	WITHOUT_SSL = 119,
 	WITH_SSL = 563;
-	
+
 	public bool to_ssl () {
 		switch (this) {
 			case WITHOUT_SSL:
@@ -30,7 +30,7 @@ public enum Lottanzb.DefaultServerPort {
 				assert_not_reached ();
 		}
 	}
-	
+
 	public static DefaultServerPort from_ssl (bool ssl) {
 		if (ssl) {
 			return DefaultServerPort.WITH_SSL;
@@ -44,24 +44,24 @@ public enum Lottanzb.DefaultServerPort {
 			is_in_default_ports (port) &&
 			((DefaultServerPort) port).to_ssl () == ssl;
 	}
-	
+
 	public static bool is_in_default_ports (int port) {
 		return port == WITHOUT_SSL || port == WITH_SSL;
 	}
 
 }
 
-public class Lottanzb.SabnzbdServerSettings : BetterSettings {
+public class Lottanzb.SabnzbdServer : BetterSettings {
 
-	public SabnzbdServerSettings (string schema_id) {
+	public SabnzbdServer (string schema_id) {
 		Object (schema_id: schema_id);
 	}
 
-	public SabnzbdServerSettings.with_backend (string schema_id, SettingsBackend backend) {
+	public SabnzbdServer.with_backend (string schema_id, SettingsBackend backend) {
 		Object (schema_id: schema_id, backend: backend);
 	}
 
-	public SabnzbdServerSettings.with_backend_and_path (string schema_id, SettingsBackend backend, string path) {
+	public SabnzbdServer.with_backend_and_path (string schema_id, SettingsBackend backend, string path) {
 		Object (schema_id: schema_id, backend: backend, path: path);
 	}
 
@@ -70,9 +70,9 @@ public class Lottanzb.SabnzbdServerSettings : BetterSettings {
 			return get_string ("username").length > 0 && get_string ("password").length > 0;
 		}
 	}
-	
-	public new SabnzbdServerSettings get_copy () {
-		var server = new SabnzbdServerSettings.with_backend_and_path (schema_id, backend, path);
+
+	public new SabnzbdServer get_copy () {
+		var server = new SabnzbdServer.with_backend_and_path (schema_id, backend, path);
 		return server;
 	}
 

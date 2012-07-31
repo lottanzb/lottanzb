@@ -17,12 +17,12 @@
 
 public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 
-	private SabnzbdServersSettings servers;
+	private SabnzbdServerList servers;
 
-	public ServersTreeModel (SabnzbdServersSettings servers) {
+	public ServersTreeModel (SabnzbdServerList servers) {
 		this.servers = servers;
-		for (var index = 0; index < SabnzbdServersSettings.MAX_SERVER_COUNT; index++) {
-			var server = servers.get_server (index);
+		for (var index = 0; index < servers.max_size; index++) {
+			var server = servers.get_child_by_index (index);
 			connect_to_change (server, index);
 		}
 		var old_size = servers.size;
@@ -45,19 +45,19 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 		});
 	}
 
-	private void connect_to_change (SabnzbdServerSettings server, int index) {
+	private void connect_to_change (BetterSettings server, int index) {
 		server.change_event.connect ((server, keys) => {
 			var path = new Gtk.TreePath.from_indices (index);
 			Gtk.TreeIter iter;
 			bool is_valid_iter = get_iter (out iter, path);
 			assert (is_valid_iter);
-			row_changed	(path, iter);
+			row_changed (path, iter);
 			return false;
 		});
 	}
 
 	public Type get_column_type (int index) {
-		return typeof (SabnzbdServerSettings);
+		return typeof (SabnzbdServer);
 	}
 
 	public Gtk.TreeModelFlags get_flags () {
@@ -90,11 +90,11 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 	}
 
 	public void get_value (Gtk.TreeIter iter, int column, out Value value) {
-		value = Value (typeof (SabnzbdServerSettings));
+		value = Value (typeof (SabnzbdServer));
 		if (column == 0) {
 			var index = (int) iter.user_data;
 			if (0 <= index && index < iter_n_children (null)) {
-				var server = servers.get_server (index);
+				var server = servers.get_child_by_index (index);
 				value.set_object (server);
 			}
 		}
@@ -147,8 +147,8 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 		return false;
 	}
 
-	public SabnzbdServerSettings? get_server (Gtk.TreeIter iter) {
-		SabnzbdServerSettings? server = null;
+	public SabnzbdServer? get_server (Gtk.TreeIter iter) {
+		SabnzbdServer? server = null;
 		get (iter, 0, out server);
 		return server;
 	}

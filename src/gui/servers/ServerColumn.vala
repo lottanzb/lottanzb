@@ -30,7 +30,7 @@ public class Lottanzb.ServerColumn : Gtk.TreeViewColumn {
 	private void cell_data_func (Gtk.CellLayout cell_layout, Gtk.CellRenderer cell,
 		Gtk.TreeModel model, Gtk.TreeIter iter) {
 		ServersTreeModel servers_model = (ServersTreeModel) model;
-		SabnzbdServerSettings server = servers_model.get_server (iter);
+		SabnzbdServer server = servers_model.get_server (iter);
 		if (server != null) {
 			var host = server.get_string ("host");
 			var username = server.get_string ("username");
@@ -53,7 +53,7 @@ public class Lottanzb.ServerColumn : Gtk.TreeViewColumn {
 			}
 			var text = @"<b>$(first_line)</b>\n<small>$(secondary_line)</small>";
 			cell_renderer.markup = text;
-			cell_renderer.sensitive = enable; 
+			cell_renderer.sensitive = enable;
 		}
 	}
 

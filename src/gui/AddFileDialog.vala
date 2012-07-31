@@ -48,7 +48,7 @@ public class Lottanzb.AddFileDialog : AbstractAddFileDialog {
 	public void on_response (Gtk.FileChooserDialog dialog, int response_id) {
 		if (response_id == Gtk.ResponseType.OK) {
 			query_processor.add_download ("file://" + get_selected_filename (),
-				new AddDownloadQueryOptionalArguments ());	
+				new AddDownloadQueryOptionalArguments ());
 		} else if (response_id == Gtk.ResponseType.HELP) {
 
 		}
