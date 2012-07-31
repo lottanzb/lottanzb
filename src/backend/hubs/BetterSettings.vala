@@ -75,7 +75,7 @@ public class Lottanzb.BetterSettings : Settings, Copyable<BetterSettings> {
 			child_settings.schema_id == child_schema_id &&
 			child_settings.path == child_path &&
 			child_settings.backend == backend;
-		return result;	
+		return result;
 	}
 
 	public BetterSettings get_copy () {
@@ -90,28 +90,27 @@ public class Lottanzb.BetterSettings : Settings, Copyable<BetterSettings> {
 			var array = node.get_array ();
 			set_recursively_from_json_array (array);
 		} else {
-			stdout.printf (get_type ().name () + "\n");
 			warning ("cannot use json node of type %s for '%s'",
 				node.get_node_type ().to_string (), path);
 		}
 	}
 
 	public void set_recursively_from_json_object (Json.Object object) {
-		set_all_from_json_object (object);	
+		set_all_from_json_object (object);
 		foreach (var child_name in list_children ()) {
 			var child_settings = get_child (child_name);
 			var json_key = child_name_to_json_key (child_name);
 			if (object.has_member (json_key)) {
-				var child_node = object.get_member (json_key); 
+				var child_node = object.get_member (json_key);
 				child_settings.set_recursively_from_json_node (child_node);
 			} else {
 				warning ("no json object for '%s'", child_settings.path);
 			}
 		}
 	}
-	
+
 	public virtual void set_recursively_from_json_array (Json.Array array) {
-		warning ("cannot use json array for '%s'", path);	
+		warning ("cannot use json array for '%s'", path);
 	}
 
 	public void set_all_from_json_node (Json.Node node) {
