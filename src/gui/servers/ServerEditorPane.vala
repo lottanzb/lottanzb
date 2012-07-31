@@ -35,21 +35,39 @@ public class Lottanzb.ServerEditorPane : AbstractServerEditorPane {
 		server.bind ("ssl", widgets.ssl, "active", bind_flags);
 		server.bind ("connections", widgets.connections, "value", bind_flags);
 		server.bind ("enable", widgets.enable, "active", bind_flags);
+		
+		widgets.port.bind_property ("value", widgets.ssl, "active", BindingFlags.BIDIRECTIONAL,
+			(binding, source_value, ref target_value) => {
+				// When the port changes
+				var port = (int) source_value.get_double ();
+				var is_default_port = DefaultServerPort.is_in_default_ports (port);
+				if (is_default_port) {
+					var ssl = ((DefaultServerPort) port).to_ssl ();
+					target_value.set_boolean (ssl);
+					return true;
+				} else {
+					return false;
+				}
+			},
+			(binding, source_value, ref target_value) => {
+				// When the SSL switch changes
+				var ssl = source_value.get_boolean ();
+				var old_port = (int) widgets.port.get_value ();
+				var is_old_port_default = DefaultServerPort.is_default_port (old_port, !ssl);
+				if (is_old_port_default) {
+					var new_port = DefaultServerPort.from_ssl (ssl);
+					target_value.set_double ((double) new_port);
+					return true;
+				} else {
+					return false;
+				}
+			}
+		);
 	}
 
 	public Gtk.Widget widget {
 		get {
 			return widgets.server_editor_pane;
-		}
-	}
-
-	[CCode (instance_pos = -1)]
-	public void on_ssl_toggled (Gtk.ToggleButton widget) {
-		if (widget.active && server.get_int ("port") == 119) {
-			server.set_int ("port", 563);
-		}
-		if (!widget.active && server.get_int ("port") == 563) {
-			server.set_int ("port", 119);
 		}
 	}
 

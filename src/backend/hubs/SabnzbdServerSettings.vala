@@ -15,6 +15,42 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+public enum Lottanzb.DefaultServerPort {
+
+	WITHOUT_SSL = 119,
+	WITH_SSL = 563;
+	
+	public bool to_ssl () {
+		switch (this) {
+			case WITHOUT_SSL:
+				return false;
+			case WITH_SSL:
+				return true;
+			default:
+				assert_not_reached ();
+		}
+	}
+	
+	public static DefaultServerPort from_ssl (bool ssl) {
+		if (ssl) {
+			return DefaultServerPort.WITH_SSL;
+		} else {
+			return DefaultServerPort.WITHOUT_SSL;
+		}
+	}
+
+	public static bool is_default_port (int port, bool ssl) {
+		return
+			is_in_default_ports (port) &&
+			((DefaultServerPort) port).to_ssl () == ssl;
+	}
+	
+	public static bool is_in_default_ports (int port) {
+		return port == WITHOUT_SSL || port == WITH_SSL;
+	}
+
+}
+
 public class Lottanzb.SabnzbdServerSettings : BetterSettings {
 
 	public SabnzbdServerSettings (string schema_id) {
