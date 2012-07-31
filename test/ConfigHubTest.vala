@@ -40,8 +40,8 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 	public ConfigHubTest () {
 		base ("config");
 		add_test ("basic", test_basic);
-		add_test ("servers_settings", test_servers_settings);
-		add_test ("servers_settings_delay_application", test_servers_settings_delay_application);
+		add_test ("servers", test_servers);
+		add_test ("servers_delay_application", test_servers_delay_application);
 		add_test ("servers_tree_model", test_servers_tree_model);
 	}
 
@@ -57,14 +57,14 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 	public void test_basic () {
 		var query_processor = new ConfigHubTestMockQueryProcessor ();
 		var config_hub = new ConfigHub (query_processor);
-		var misc_settings = config_hub.root.get_misc ();
-		assert (misc_settings.get_boolean ("quick-check"));
-		assert (misc_settings.get_int ("https-port") == 9090);
-		assert (misc_settings.get_int ("folder-max-length") == 256);
-		assert (misc_settings.get_string ("complete-dir") == "Downloads/complete");
+		var misc = config_hub.root.get_misc ();
+		assert (misc.get_boolean ("quick-check"));
+		assert (misc.get_int ("https-port") == 9090);
+		assert (misc.get_int ("folder-max-length") == 256);
+		assert (misc.get_string ("complete-dir") == "Downloads/complete");
 	}
 
-	public void assert_first_fixture_server (SabnzbdServerSettings server) {
+	public void assert_first_fixture_server (SabnzbdServer server) {
 		assert (server.get_string ("username") == "me@example.com");
 		assert (server.get_boolean ("enable"));
 		assert (server.get_string ("name") == "news.example.com");
@@ -79,7 +79,7 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		assert (server.get_int ("retention") == 0);
 	}
 
-	public void assert_second_fixture_server (SabnzbdServerSettings server) {
+	public void assert_second_fixture_server (SabnzbdServer server) {
 		assert (server.get_string ("username") == "me");
 		assert (!server.get_boolean ("enable"));
 		assert (server.get_string ("name") == "ssl.example.com");
@@ -94,72 +94,72 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		assert (server.get_int ("retention") == 0);
 	}
 
-	public void test_servers_settings () {
+	public void test_servers () {
 		var query_processor = new ConfigHubTestMockQueryProcessor ();
 		var config_hub = new ConfigHub (query_processor);
-		var servers_settings = config_hub.root.get_servers ();
-		assert (servers_settings.size == 2);
-		assert_first_fixture_server (servers_settings.get_server (0));
-		assert_second_fixture_server (servers_settings.get_server (1));
-		assert (!servers_settings.has_reached_max_server_count);
+		var servers = config_hub.root.get_servers ();
+		assert (servers.size == 2);
+		assert_first_fixture_server (servers.get_child_by_index (0) as SabnzbdServer);
+		assert_second_fixture_server (servers.get_child_by_index (1) as SabnzbdServer);
+		assert (!servers.is_full);
 
-		servers_settings.add_server ();
-		assert (servers_settings.size == 3);
-		var new_server = servers_settings.get_server (2);
+		servers.add_child ();
+		assert (servers.size == 3);
+		var new_server = servers.get_child_by_index (2) as SabnzbdServer;
 		assert (new_server.get_string ("host") == "");
 		new_server.set_string ("host", "example.com");
-		servers_settings.remove_server (2);
-		assert (servers_settings.size == 2);
+		servers.remove_child (2);
+		assert (servers.size == 2);
 		assert (new_server.get_string ("host") == "");
 
-		servers_settings.remove_server (0);
-		assert_second_fixture_server (servers_settings.get_server (0));
+		servers.remove_child (0);
+		assert_second_fixture_server (servers.get_child_by_index (0) as SabnzbdServer);
 	}
 
-	public void test_servers_settings_delay_application () {
+	public void test_servers_delay_application () {
 		var query_processor = new ConfigHubTestMockQueryProcessor ();
 		var config_hub = new ConfigHub (query_processor);
-		var servers_settings = config_hub.root.get_servers ();
-		var servers_settings_delayed = servers_settings.get_copy ();
-		servers_settings_delayed.delay_recursively ();
-		servers_settings_delayed.remove_server (1);
-		assert (servers_settings.size == 2);
-		assert_second_fixture_server (servers_settings.get_server (1));
-		assert (servers_settings_delayed.size == 1);
-		servers_settings_delayed.apply_recursively ();
-		assert (servers_settings.size == 1);
+		var servers = config_hub.root.get_servers ();
+		var servers_delayed = servers.get_copy ();
+		servers_delayed.delay_recursively ();
+		servers_delayed.remove_child (1);
+		assert (servers.size == 2);
+		assert_second_fixture_server (servers.get_child_by_index (1) as SabnzbdServer);
+		assert (servers_delayed.size == 1);
+		servers_delayed.apply_recursively ();
+		assert (servers.size == 1);
 	}
 
 	public void test_servers_tree_model () {
 		var query_processor = new ConfigHubTestMockQueryProcessor ();
 		var config_hub = new ConfigHub (query_processor);
-		var servers_settings = config_hub.root.get_servers ();
-		var servers_tree_model = new ServersTreeModel (servers_settings);
-		assert (servers_tree_model.get_column_type (0) == typeof (SabnzbdServerSettings));
+		var servers = config_hub.root.get_servers ();
+		var servers_tree_model = new ServersTreeModel (servers);
+		assert (servers_tree_model.get_column_type (0) == typeof (SabnzbdServer));
 		assert (servers_tree_model.get_n_columns () == 1);
 		servers_tree_model.row_changed.connect (on_servers_tree_model_row_changed);
 		servers_tree_model.row_inserted.connect (on_servers_tree_model_row_inserted);
 		servers_tree_model.row_deleted.connect (on_servers_tree_model_row_deleted);
-		var first_server = servers_settings.get_server (0);
-		var second_server = servers_settings.get_server (1);
+		var first_server = servers.get_child_by_index (0) as SabnzbdServer;
+		var second_server = servers.get_child_by_index (1) as SabnzbdServer;
 		second_server.set_boolean ("fillserver", true);
 		assert (row_changed_count == 1);
 		assert (last_row_changed_index == 1);
 		assert (servers_tree_model.iter_n_children (null) == 2);
-		servers_settings.add_server ();
+		servers.add_child ();
 		assert (row_changed_count == 1);
 		assert (row_inserted_count == 1);
 		assert (last_row_inserted_index == 2);
 		assert (row_deleted_count == 0);
 		assert (servers_tree_model.iter_n_children (null) == 3);
-		servers_settings.add_server ();
+		servers.add_child ();
 		assert (row_changed_count == 1);
 		assert (row_inserted_count == 2);
 		assert (last_row_inserted_index == 3);
 		assert (row_deleted_count == 0);
 		assert (servers_tree_model.iter_n_children (null) == 4);
-		servers_settings.add_server ();
-		servers_settings.remove_server (2);
+		servers.add_child ();
+		servers.remove_child (2);
 		assert (row_changed_count > 2);
 		assert (row_inserted_count == 3);
 		assert (last_row_inserted_index == 4);
