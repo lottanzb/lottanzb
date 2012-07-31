@@ -28,7 +28,7 @@ public class Lottanzb.PreferencesWindow : AbstractPreferencesWindow {
 		GeneralPreferencesTab general_tab = new GeneralPreferencesTab (
 			backend, lottanzb_settings, sabnzbd_settings);
 		add_tab (general_tab);
-		widgets.prefs_window.show_all ();
+		widgets.prefs_window.show ();
 	}
 
 	private void add_tab (PreferencesTab tab) {
