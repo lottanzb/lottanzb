@@ -51,17 +51,17 @@ public enum Lottanzb.DefaultServerPort {
 
 }
 
-public class Lottanzb.SabnzbdServer : BetterSettings {
+public class Lottanzb.Server : BetterSettings {
 
-	public SabnzbdServer (string schema_id) {
+	public Server (string schema_id) {
 		Object (schema_id: schema_id);
 	}
 
-	public SabnzbdServer.with_backend (string schema_id, SettingsBackend backend) {
+	public Server.with_backend (string schema_id, SettingsBackend backend) {
 		Object (schema_id: schema_id, backend: backend);
 	}
 
-	public SabnzbdServer.with_backend_and_path (string schema_id, SettingsBackend backend, string path) {
+	public Server.with_backend_and_path (string schema_id, SettingsBackend backend, string path) {
 		Object (schema_id: schema_id, backend: backend, path: path);
 	}
 
@@ -71,8 +71,8 @@ public class Lottanzb.SabnzbdServer : BetterSettings {
 		}
 	}
 
-	public new SabnzbdServer get_copy () {
-		var server = new SabnzbdServer.with_backend_and_path (schema_id, backend, path);
+	public new Server get_copy () {
+		var server = new Server.with_backend_and_path (schema_id, backend, path);
 		return server;
 	}
 

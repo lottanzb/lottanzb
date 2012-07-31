@@ -15,22 +15,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public class Lottanzb.SabnzbdServerList : SettingsList, Copyable<SabnzbdServerList> {
+public class Lottanzb.ServerList : SettingsList, Copyable<ServerList> {
 
-	public SabnzbdServerList (string schema_id) {
+	public ServerList (string schema_id) {
 		Object (schema_id: schema_id);
 	}
 
-	public SabnzbdServerList.with_backend (string schema_id, SettingsBackend backend) {
+	public ServerList.with_backend (string schema_id, SettingsBackend backend) {
 		Object (schema_id: schema_id, backend: backend);
 	}
 
-	public SabnzbdServerList.with_backend_and_path (string schema_id, SettingsBackend backend, string path) {
+	public ServerList.with_backend_and_path (string schema_id, SettingsBackend backend, string path) {
 		Object (schema_id: schema_id, backend: backend, path: path);
 	}
 
 	protected override BetterSettings make_child (string name, string child_schema_id, string child_path) {
-		var child = new SabnzbdServer.with_backend_and_path (child_schema_id, backend, child_path);
+		var child = new Server.with_backend_and_path (child_schema_id, backend, child_path);
 		return child;
 	}
 
@@ -42,8 +42,8 @@ public class Lottanzb.SabnzbdServerList : SettingsList, Copyable<SabnzbdServerLi
 		return @"server$(index)";
 	}
 
-	public new SabnzbdServerList get_copy () {
-		var servers = new SabnzbdServerList.with_backend_and_path (schema_id, backend, path);
+	public new ServerList get_copy () {
+		var servers = new ServerList.with_backend_and_path (schema_id, backend, path);
 		return servers;
 	}
 

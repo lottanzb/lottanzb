@@ -15,11 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
+public class Lottanzb.ServerTreeModel : Gtk.TreeModel, Object {
 
-	private SabnzbdServerList servers;
+	private ServerList servers;
 
-	public ServersTreeModel (SabnzbdServerList servers) {
+	public ServerTreeModel (ServerList servers) {
 		this.servers = servers;
 		for (var index = 0; index < servers.max_size; index++) {
 			var server = servers.get_child_by_index (index);
@@ -57,7 +57,7 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 	}
 
 	public Type get_column_type (int index) {
-		return typeof (SabnzbdServer);
+		return typeof (Server);
 	}
 
 	public Gtk.TreeModelFlags get_flags () {
@@ -90,7 +90,7 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 	}
 
 	public void get_value (Gtk.TreeIter iter, int column, out Value value) {
-		value = Value (typeof (SabnzbdServer));
+		value = Value (typeof (Server));
 		if (column == 0) {
 			var index = (int) iter.user_data;
 			if (0 <= index && index < iter_n_children (null)) {
@@ -147,8 +147,8 @@ public class Lottanzb.ServersTreeModel : Gtk.TreeModel, Object {
 		return false;
 	}
 
-	public SabnzbdServer? get_server (Gtk.TreeIter iter) {
-		SabnzbdServer? server = null;
+	public Server? get_server (Gtk.TreeIter iter) {
+		Server? server = null;
 		get (iter, 0, out server);
 		return server;
 	}

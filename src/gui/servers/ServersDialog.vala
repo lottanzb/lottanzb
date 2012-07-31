@@ -18,8 +18,8 @@
 public class Lottanzb.ServersDialog : AbstractServersDialog {
 
 	private ConfigHub config_hub;
-	private SabnzbdServerList servers;
-	private ServersTreeModel model;
+	private ServerList servers;
+	private ServerTreeModel model;
 	private ServerEditorPane? server_editor_pane;
 
 	public ServersDialog (ConfigHub config_hub) {
@@ -28,7 +28,7 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 		this.config_hub = config_hub;
 		this.servers = config_hub.root.get_servers ().get_copy ();
 		this.servers.delay_recursively ();
-		this.model = new ServersTreeModel (servers);
+		this.model = new ServerTreeModel (servers);
 		widgets.tree_view.set_model (model);
 		widgets.tree_view.append_column (new ServerColumn ());
 		widgets.tree_view.get_selection ().set_mode (Gtk.SelectionMode.BROWSE);

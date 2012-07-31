@@ -42,7 +42,7 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		add_test ("basic", test_basic);
 		add_test ("servers", test_servers);
 		add_test ("servers_delay_application", test_servers_delay_application);
-		add_test ("servers_tree_model", test_servers_tree_model);
+		add_test ("server_tree_model", test_server_tree_model);
 	}
 
 	public override void set_up () {
@@ -64,7 +64,7 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		assert (misc.get_string ("complete-dir") == "Downloads/complete");
 	}
 
-	public void assert_first_fixture_server (SabnzbdServer server) {
+	public void assert_first_fixture_server (Server server) {
 		assert (server.get_string ("username") == "me@example.com");
 		assert (server.get_boolean ("enable"));
 		assert (server.get_string ("name") == "news.example.com");
@@ -79,7 +79,7 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		assert (server.get_int ("retention") == 0);
 	}
 
-	public void assert_second_fixture_server (SabnzbdServer server) {
+	public void assert_second_fixture_server (Server server) {
 		assert (server.get_string ("username") == "me");
 		assert (!server.get_boolean ("enable"));
 		assert (server.get_string ("name") == "ssl.example.com");
@@ -99,13 +99,13 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		var config_hub = new ConfigHub (query_processor);
 		var servers = config_hub.root.get_servers ();
 		assert (servers.size == 2);
-		assert_first_fixture_server (servers.get_child_by_index (0) as SabnzbdServer);
-		assert_second_fixture_server (servers.get_child_by_index (1) as SabnzbdServer);
+		assert_first_fixture_server (servers.get_child_by_index (0) as Server);
+		assert_second_fixture_server (servers.get_child_by_index (1) as Server);
 		assert (!servers.is_full);
 
 		servers.add_child ();
 		assert (servers.size == 3);
-		var new_server = servers.get_child_by_index (2) as SabnzbdServer;
+		var new_server = servers.get_child_by_index (2) as Server;
 		assert (new_server.get_string ("host") == "");
 		new_server.set_string ("host", "example.com");
 		servers.remove_child (2);
@@ -113,7 +113,7 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		assert (new_server.get_string ("host") == "");
 
 		servers.remove_child (0);
-		assert_second_fixture_server (servers.get_child_by_index (0) as SabnzbdServer);
+		assert_second_fixture_server (servers.get_child_by_index (0) as Server);
 	}
 
 	public void test_servers_delay_application () {
@@ -124,40 +124,40 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		servers_delayed.delay_recursively ();
 		servers_delayed.remove_child (1);
 		assert (servers.size == 2);
-		assert_second_fixture_server (servers.get_child_by_index (1) as SabnzbdServer);
+		assert_second_fixture_server (servers.get_child_by_index (1) as Server);
 		assert (servers_delayed.size == 1);
 		servers_delayed.apply_recursively ();
 		assert (servers.size == 1);
 	}
 
-	public void test_servers_tree_model () {
+	public void test_server_tree_model () {
 		var query_processor = new ConfigHubTestMockQueryProcessor ();
 		var config_hub = new ConfigHub (query_processor);
 		var servers = config_hub.root.get_servers ();
-		var servers_tree_model = new ServersTreeModel (servers);
-		assert (servers_tree_model.get_column_type (0) == typeof (SabnzbdServer));
-		assert (servers_tree_model.get_n_columns () == 1);
-		servers_tree_model.row_changed.connect (on_servers_tree_model_row_changed);
-		servers_tree_model.row_inserted.connect (on_servers_tree_model_row_inserted);
-		servers_tree_model.row_deleted.connect (on_servers_tree_model_row_deleted);
-		var first_server = servers.get_child_by_index (0) as SabnzbdServer;
-		var second_server = servers.get_child_by_index (1) as SabnzbdServer;
+		var server_tree_model = new ServerTreeModel (servers);
+		assert (server_tree_model.get_column_type (0) == typeof (Server));
+		assert (server_tree_model.get_n_columns () == 1);
+		server_tree_model.row_changed.connect (on_server_tree_model_row_changed);
+		server_tree_model.row_inserted.connect (on_server_tree_model_row_inserted);
+		server_tree_model.row_deleted.connect (on_server_tree_model_row_deleted);
+		var first_server = servers.get_child_by_index (0) as Server;
+		var second_server = servers.get_child_by_index (1) as Server;
 		second_server.set_boolean ("fillserver", true);
 		assert (row_changed_count == 1);
 		assert (last_row_changed_index == 1);
-		assert (servers_tree_model.iter_n_children (null) == 2);
+		assert (server_tree_model.iter_n_children (null) == 2);
 		servers.add_child ();
 		assert (row_changed_count == 1);
 		assert (row_inserted_count == 1);
 		assert (last_row_inserted_index == 2);
 		assert (row_deleted_count == 0);
-		assert (servers_tree_model.iter_n_children (null) == 3);
+		assert (server_tree_model.iter_n_children (null) == 3);
 		servers.add_child ();
 		assert (row_changed_count == 1);
 		assert (row_inserted_count == 2);
 		assert (last_row_inserted_index == 3);
 		assert (row_deleted_count == 0);
-		assert (servers_tree_model.iter_n_children (null) == 4);
+		assert (server_tree_model.iter_n_children (null) == 4);
 		servers.add_child ();
 		servers.remove_child (2);
 		assert (row_changed_count > 2);
@@ -165,20 +165,20 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		assert (last_row_inserted_index == 4);
 		assert (row_deleted_count == 1);
 		assert (last_row_deleted_index == 4);
-		assert (servers_tree_model.iter_n_children (null) == 4);
+		assert (server_tree_model.iter_n_children (null) == 4);
 	}
 
-	private void on_servers_tree_model_row_changed (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
+	private void on_server_tree_model_row_changed (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
 		row_changed_count++;
 		last_row_changed_index = path.get_indices ()[0];
 	}
 
-	private void on_servers_tree_model_row_inserted (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
+	private void on_server_tree_model_row_inserted (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
 		row_inserted_count++;
 		last_row_inserted_index = path.get_indices ()[0];
 	}
 
-	private void on_servers_tree_model_row_deleted (Gtk.TreeModel model, Gtk.TreePath path) {
+	private void on_server_tree_model_row_deleted (Gtk.TreeModel model, Gtk.TreePath path) {
 		row_deleted_count++;
 		last_row_deleted_index = path.get_indices ()[0];
 	}
