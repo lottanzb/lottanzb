@@ -51,6 +51,17 @@ public abstract class Lottanzb.SettingsList : BetterSettings, Copyable<SettingsL
 		}
 	}
 
+	public BetterSettings get_child_by_identifier (string identifier) {
+		for (var index = 0; index < size; index++) {
+			var child = get_child_by_index (index);
+			var child_identifier = get_child_identifier (child);
+			if (identifier == child_identifier) {
+				return child;
+			}
+		}
+		assert_not_reached ();
+	}
+
 	public override void set_recursively_from_json_array (Json.Array array) {
 		size = int.min (max_size, (int) array.get_length ());
 		if (max_size < array.get_length ()) {
