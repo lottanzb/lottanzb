@@ -37,7 +37,7 @@ public class Lottanzb.DownloadListStoreUpdater : Object {
 			_status_group = value;
 		}
 	}
-	
+
 	public DownloadListStoreUpdater (DownloadListStore list_store, int status_group) {
 		this.list_store = list_store;
 		this.status_group = status_group;
@@ -126,7 +126,13 @@ public class Lottanzb.DownloadListStoreUpdater : Object {
 				}
 			}
 		}
-		LottanzbResource.reorder (list_store, new_order.to_array ());
+		var new_order_array = new_order.to_array ();
+		// When an empty array is passed to 'reorder', GTK throws an exception
+		// claiming that the 'new_order' argument is null.
+		// Thus, avoid such a call without changing this method's semantics.
+		if (new_order.size > 0) {
+			LottanzbResource.reorder (list_store, new_order_array);
+		}
 	}
 
 	private Gee.List<string> get_downloads_ids (Gee.List<Download> downloads) {
@@ -136,7 +142,7 @@ public class Lottanzb.DownloadListStoreUpdater : Object {
 		}
 		return download_ids;
 	}
-	
+
 	protected virtual void handle_disappeared_download (Gtk.TreeIter iter) {
 		list_store.remove (iter);
 	}

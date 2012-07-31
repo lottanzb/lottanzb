@@ -24,6 +24,7 @@ public class Lottanzb.DownloadListStoreUpdaterTest : Lottanzb.TestSuiteBuilder {
 		add_test ("initial_update", test_initial_update);
 		add_test ("idempotence", test_idempotence);
 		add_test ("simple_reordering", test_simple_reordering);
+		add_test ("empty_update", test_empty_update);
 	}
 
 	public void test_initial_update () {
@@ -55,6 +56,14 @@ public class Lottanzb.DownloadListStoreUpdaterTest : Lottanzb.TestSuiteBuilder {
 		var new_remote_downloads = make_downloads (new_ids);
 		updater.update (new_remote_downloads);
 		assert_download_list_store_download_order (list_store, new_ids);
+	}
+
+	public void test_empty_update () {
+		var list_store = new DownloadListStore ();
+		var updater = new DownloadListStoreUpdater (list_store, DownloadStatusGroup.NOT_FULLY_LOADED);
+		var remote_downloads = new Gee.ArrayList<Download> ();
+		updater.update (remote_downloads);
+		assert_download_list_store_download_order (list_store, new string[] {});
 	}
 
 }
