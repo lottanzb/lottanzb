@@ -29,7 +29,7 @@ public class Lottanzb.GeneralPreferencesTab : AbstractGeneralPreferencesTab, Pre
 			PostProcessingComboBoxModel.Column.DESCRIPTION);
 
 		var misc_settings = sabnzbd_settings.get_misc ();
-		LottanzbResource.bind_with_mapping (
+		/* LottanzbResource.bind_with_mapping (
 			misc_settings, "dirscan-opts",
 			widgets.post_processing, "active",
 			SettingsBindFlags.DEFAULT,
@@ -52,7 +52,7 @@ public class Lottanzb.GeneralPreferencesTab : AbstractGeneralPreferencesTab, Pre
 			},
 			post_processing_combox_box_model,
 			unref
-		);
+		); */
 
 		var is_local = backend.query_processor.connection_info.is_local;
 		widgets.download_folder_button.visible = is_local;
@@ -62,7 +62,7 @@ public class Lottanzb.GeneralPreferencesTab : AbstractGeneralPreferencesTab, Pre
 		widgets.observed_folder_entry.visible = !is_local;
 		/* LottanzbResource.bind_with_mapping (
 			misc_settings, "complete-dir",
-			widgets.download_folder_button, 
+			widgets.download_folder_button,
 		); */
 	}
 
@@ -83,7 +83,7 @@ public class Lottanzb.GeneralPreferencesTab : AbstractGeneralPreferencesTab, Pre
 public class Lottanzb.PostProcessingComboBoxModel : Gtk.ListStore, IterableTreeModel {
 
 	public enum Column {
-	
+
 		ID,
 		DESCRIPTION
 
