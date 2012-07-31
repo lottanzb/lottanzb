@@ -3,6 +3,7 @@
   <schema id="apps.lottanzb.backend.sabnzbdplus" gettext-domain="lottanzb">
     <child schema="apps.lottanzb.backend.sabnzbdplus.misc" name="misc" />
     <child schema="apps.lottanzb.backend.sabnzbdplus.servers" name="servers" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.categories" name="categories" />
   </schema>
   <schema id="apps.lottanzb.backend.sabnzbdplus.misc">
     <key type="b" name="quick-check">
@@ -336,5 +337,53 @@
     <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server17" />
     <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server18" />
     <child schema="apps.lottanzb.backend.sabnzbdplus.server" name="server19" />
+  </schema>
+  <schema id="apps.lottanzb.backend.sabnzbdplus.category">
+    <key type="s" name="name">
+      <default>''</default>
+    </key>
+    <key type="i" name="priority">
+      <default>0</default>
+    </key>
+    <key type="i" name="port">
+      <default>0</default>
+    </key>
+    <key type="i" name="pp">
+      <default>3</default>
+    </key>
+    <key type="s" name="script">
+      <default>''</default>
+    </key>
+    <key type="s" name="newzbin">
+      <default>''</default>
+    </key>
+    <key type="s" name="dir">
+      <default>''</default>
+    </key>
+  </schema>
+  <schema id="apps.lottanzb.backend.sabnzbdplus.categories">
+    <key type="i" name="size">
+      <default>0</default>
+    </key>
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category0" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category1" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category2" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category3" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category4" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category5" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category6" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category7" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category8" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category9" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category10" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category11" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category12" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category13" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category14" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category15" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category16" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category17" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category18" />
+    <child schema="apps.lottanzb.backend.sabnzbdplus.category" name="category19" />
   </schema>
 </schemalist>
