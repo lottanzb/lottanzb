@@ -93,38 +93,38 @@ public enum Lottanzb.DownloadStatus {
 	
 }
 
-namespace Lottanzb.DownloadStatusGroup {
+public enum Lottanzb.DownloadStatusGroup {
 
-	const int NOT_FULLY_LOADED =
+	NOT_FULLY_LOADED =
 		DownloadStatus.GRABBING |
 		DownloadStatus.QUEUED |
 		DownloadStatus.DOWNLOADING |
 		DownloadStatus.PAUSED |
-		DownloadStatus.DOWNLOADING_RECOVERY_DATA;
+		DownloadStatus.DOWNLOADING_RECOVERY_DATA,
 
-	const int PROCESSING =
+	PROCESSING =
 		DownloadStatus.QUICKCHECK |
 		DownloadStatus.VERIFYING |
 		DownloadStatus.REPAIRING |
 		DownloadStatus.EXTRACTING |
 		DownloadStatus.JOINING |
 		DownloadStatus.MOVING |
-		DownloadStatus.SCRIPT;
+		DownloadStatus.SCRIPT,
 
-	const int MOVABLE = 
+	MOVABLE = 
 		DownloadStatus.QUEUED |
 		DownloadStatus.DOWNLOADING |
-		DownloadStatus.PAUSED;
+		DownloadStatus.PAUSED,
 
-	const int COMPLETE =
+	COMPLETE =
 		DownloadStatus.SUCCEEDED |
-		DownloadStatus.FAILED;
+		DownloadStatus.FAILED,
 
-	const int INCOMPLETE = NOT_FULLY_LOADED | PROCESSING;
+	INCOMPLETE = NOT_FULLY_LOADED | PROCESSING,
 	
-	const int FULLY_LOADED = PROCESSING | COMPLETE;
+	FULLY_LOADED = PROCESSING | COMPLETE,
 	
-	const int ANY_STATUS = NOT_FULLY_LOADED | FULLY_LOADED;
+	ANY_STATUS = NOT_FULLY_LOADED | FULLY_LOADED;
 	
 }
 

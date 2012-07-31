@@ -16,7 +16,7 @@
 */
 
 
-public errordomain QueryError {
+public errordomain Lottanzb.QueryError {
     INVALID_RESPONSE
 }
 

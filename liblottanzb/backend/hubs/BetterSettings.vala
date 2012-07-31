@@ -18,7 +18,7 @@
 extern SettingsBackend g_memory_settings_backend_new ();
 extern SettingsBackend g_settings_backend_get_default ();
 
-public interface Copyable<T> {
+public interface Lottanzb.Copyable<T> {
 
 	public abstract T get_copy ();
 
