@@ -4,10 +4,11 @@
 import os.path
 import subprocess
 
-from waflib import Context
+from waflib import Context, Options
 from waflib.Task import Task, update_outputs
 from waflib.Configure import conf
 from waflib.Build import BuildContext
+from waflib.Tools import waf_unit_test
 
 APPNAME = 'lottanzb'
 PACKAGE = 'lottanzb'
@@ -17,7 +18,7 @@ WEBSITE = 'http://www.lottanzb.org/'
 COPYRIGHT = 'Copyright \xc2\xa9 2007-2012 Severin Heiniger'
 
 def options(opt):
-    opt.load('compiler_c gnu_dirs glib2 vala intltool')
+    opt.load('compiler_c gnu_dirs glib2 vala intltool waf_unit_test')
     grp = opt.add_option_group('test options')
     grp.add_option('--gdb', action='store_true', help='run tests under gdb')
     grp.add_option('--gir', action='store_true', help='run gir tests')
@@ -33,9 +34,12 @@ def options(opt):
             '(use this option at test time, not in configure)'),
         action="store_true", default=False, dest='lcov_report')
     
+    opt.add_option('--skiptests',
+        help='Skip unit tests',
+        action='store_true', default=False, dest='skiptests')
 
 def configure(conf):
-    conf.load('compiler_c gnu_dirs glib2 vala intltool')
+    conf.load('compiler_c gnu_dirs glib2 vala intltool waf_unit_test')
     
     conf.check_vala(min_version=(0, 15))
     conf.check_cfg(package='glib-2.0', uselib_store='GLIB',
@@ -88,14 +92,23 @@ def configure(conf):
 
 def build(bld):
     bld.recurse('data liblottanzb lottanzb')
-    # bld.recurse('test')
+    if not Options.options.skiptests:
+        bld.recurse('test')
     
     bld(features='intltool_po', appname=APPNAME, podir='po',
         install_path='${LOCALEDIR}')
-    
     bld.add_post_fun(post)
+    
+    bld.options.all_tests = True
 
 def post(ctx):
+    waf_unit_test.summary(ctx)
+    results = getattr(ctx, 'utest_results', [])
+    if results:
+        failure_count = len([result for result in results if result[1]])
+        if failure_count:
+            ctx.fatal("Some test failed.")
+
     if ctx.cmd == 'install':
         ctx.exec_command('/sbin/ldconfig')
 
