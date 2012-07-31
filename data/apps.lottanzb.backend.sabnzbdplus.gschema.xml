@@ -345,9 +345,6 @@
     <key type="i" name="priority">
       <default>0</default>
     </key>
-    <key type="i" name="port">
-      <default>0</default>
-    </key>
     <key type="i" name="pp">
       <default>3</default>
     </key>
