@@ -29,8 +29,9 @@ public class Lottanzb.GeneralPreferencesTab : AbstractGeneralPreferencesTab, Pre
 			PostProcessingComboBoxModel.Column.DESCRIPTION);
 
 		var misc_settings = sabnzbd_settings.get_misc ();
-		/* LottanzbResource.bind_with_mapping (
-			misc_settings, "dirscan-opts",
+		var any_category = sabnzbd_settings.get_categories ().get_any_category ();
+		LottanzbResource.bind_with_mapping (
+			any_category, "pp",
 			widgets.post_processing, "active",
 			SettingsBindFlags.DEFAULT,
 			(value, variant, user_data) => {
@@ -52,7 +53,7 @@ public class Lottanzb.GeneralPreferencesTab : AbstractGeneralPreferencesTab, Pre
 			},
 			post_processing_combox_box_model,
 			unref
-		); */
+		);
 
 		var is_local = backend.query_processor.connection_info.is_local;
 		widgets.download_folder_button.visible = is_local;
