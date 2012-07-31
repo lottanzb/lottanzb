@@ -21,6 +21,7 @@ public class Lottanzb.SabnzbdRootSettings : BetterSettings, Copyable<SabnzbdRoot
 	private static const string PATH = "/apps/lottanzb/backend/sabnzbdplus/";
 	private static const string MISC_CHILD_NAME = "misc";
 	private static const string SERVERS_CHILD_NAME = "servers";
+	private static const string CATEGORIES_CHILD_NAME = "categories";
 
 	public SabnzbdRootSettings (SettingsBackend backend) {
 		base.with_backend_and_path (SCHEMA_ID, backend, PATH);
@@ -28,6 +29,9 @@ public class Lottanzb.SabnzbdRootSettings : BetterSettings, Copyable<SabnzbdRoot
 		get_child_schema_id_and_path (SERVERS_CHILD_NAME, out child_schema_id, out child_path);
 		var servers = new SabnzbdServerList.with_backend_and_path (child_schema_id, backend, child_path);
 		set_child (SERVERS_CHILD_NAME, servers);
+		get_child_schema_id_and_path (CATEGORIES_CHILD_NAME, out child_schema_id, out child_path);
+		var categories = new CategoryList.with_backend_and_path (child_schema_id, backend, child_path);
+		set_child (CATEGORIES_CHILD_NAME, categories);
 	}
 
 	public BetterSettings get_misc () {
@@ -36,6 +40,10 @@ public class Lottanzb.SabnzbdRootSettings : BetterSettings, Copyable<SabnzbdRoot
 
 	public SabnzbdServerList get_servers () {
 		return get_child (SERVERS_CHILD_NAME) as SabnzbdServerList;
+	}
+
+	public CategoryList get_categories () {
+		return get_child (CATEGORIES_CHILD_NAME) as CategoryList;
 	}
 
 	public new SabnzbdRootSettings get_copy () {
