@@ -197,7 +197,7 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 				preferences_window = new PreferencesWindow (backend, settings, sabnzbd_settings);
 				preferences_window.dialog.delete_event.connect (preferences_window.dialog.hide_on_delete);
 			} else {
-				preferences_window.dialog.show ();
+				preferences_window.dialog.present ();
 			}
 		}
 	}
