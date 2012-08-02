@@ -51,7 +51,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <child>
-                          <object class="GtkFileChooserButton" id="observed_folder_button">
+                          <object class="GtkFileChooserButton" id="watched_folder_button">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="action">select-folder</property>
@@ -64,7 +64,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="observed_folder_entry">
+                          <object class="GtkEntry" id="watched_folder_entry">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">●</property>

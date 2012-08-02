@@ -12,8 +12,8 @@ public abstract class Lottanzb.AbstractGeneralPreferencesTab : Object {
 		public Gtk.Alignment alignment2 { get; protected set; }
 		public Gtk.Table table2 { get; protected set; }
 		public Gtk.HBox hbox2 { get; protected set; }
-		public Gtk.FileChooserButton observed_folder_button { get; protected set; }
-		public Gtk.Entry observed_folder_entry { get; protected set; }
+		public Gtk.FileChooserButton watched_folder_button { get; protected set; }
+		public Gtk.Entry watched_folder_entry { get; protected set; }
 		public Gtk.CheckButton enforce_max_rate { get; protected set; }
 		public Gtk.CheckButton dirscan { get; protected set; }
 		public Gtk.HBox hbox1 { get; protected set; }
