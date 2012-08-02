@@ -180,28 +180,10 @@ public class Lottanzb.FolderSettingController : Object {
 
 	private void on_settings_changed () {
 		var new_folder = settings.get_string (key);
-		if (is_local) {
-			new_folder = get_absolute_local_folder (new_folder);
-		}
 		var current_folder = file_chooser_button.get_current_folder ();
 		if (current_folder != new_folder) {
 			file_chooser_button.set_current_folder (new_folder);
 		}
-	}
-
-	// TODO: Move to ConfigHub and make the conversion to absolute paths
-	// completely transparent to the rest of the application.
-	private string get_absolute_local_folder (string relative_folder)
-		requires (is_local) {
-		var result = relative_folder;
-		var file = File.new_for_path (result);
-		if (!file.query_exists ()) {
-			var home_folder_path = Environment.get_home_dir ();
-			var home_folder = File.new_for_path (home_folder_path);
-			file = home_folder.get_child (result);
-			result = file.get_path ();
-		}
-		return result;
 	}
 
 	private void on_selection_changed () {

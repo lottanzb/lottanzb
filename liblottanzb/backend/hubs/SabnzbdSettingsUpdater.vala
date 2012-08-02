@@ -17,12 +17,14 @@
 
 public class Lottanzb.SabnzbdSettingsUpdater : Object {
 
-	public SabnzbdRootSettings root { get; set construct; }
-	private BetterSettings active;
+	public SabnzbdRootSettings root { get; construct set; }
+	public BetterSettings active { get; private set; }
+	public Gee.List<SabnzbdSettingsTransformation> transformations { get; construct set; }
 
 	public SabnzbdSettingsUpdater (SabnzbdRootSettings root) {
 		this.root = root;
 		this.active = root;
+		this.transformations = new Gee.ArrayList<SabnzbdSettingsTransformation> ();
 	}
 
 	public void update (Json.Object object)
@@ -92,6 +94,9 @@ public class Lottanzb.SabnzbdSettingsUpdater : Object {
 		VariantType variant_type = active.get_value (key).get_type();
 		var is_valid = json_node_to_variant (node, variant_type, out variant);
 		if (is_valid) {
+			foreach (var transformation in transformations) {
+				transformation.transform (active, key, variant, out variant);
+			}
 			active.set_value (key, variant);
 		} else {
 			warning ("invalid json value for key '%s' in '%s'", key, active.path);
@@ -186,5 +191,12 @@ public class Lottanzb.SabnzbdSettingsUpdater : Object {
 		}
 		return is_valid;
 	}
+
+}
+
+public interface Lottanzb.SabnzbdSettingsTransformation : Object {
+
+	public abstract void transform (BetterSettings active, string key,
+			Variant variant, out Variant transformed_variant);
 
 }

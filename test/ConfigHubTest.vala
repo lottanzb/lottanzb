@@ -61,7 +61,7 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		assert (misc.get_boolean ("quick-check"));
 		assert (misc.get_int ("https-port") == 9090);
 		assert (misc.get_int ("folder-max-length") == 256);
-		assert (misc.get_string ("complete-dir") == "Downloads/complete");
+		assert (misc.get_string ("complete-dir").has_suffix ("Downloads/complete"));
 	}
 
 	public void assert_first_fixture_server (Server server) {

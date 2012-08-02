@@ -206,7 +206,8 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	public void on_open_download_folder_activate (Gtk.Window window) {
 		if (backend != null) {
 			try {
-				var download_folder = backend.config_hub.download_folder;
+				var misc_settings = backend.config_hub.root.get_misc ();
+				var download_folder = misc_settings.get_string ("complete-dir");
 				Gtk.show_uri (null, "file://" + download_folder, Gdk.CURRENT_TIME);
 			} catch (Error e) {
 				var title = _("Could not open download folder");
