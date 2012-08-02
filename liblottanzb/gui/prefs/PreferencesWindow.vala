@@ -19,13 +19,13 @@ public class Lottanzb.PreferencesWindow : AbstractPreferencesWindow {
 
 	private BetterSettings lottanzb_settings;
 	private SabnzbdRootSettings sabnzbd_settings;
+	private GeneralPreferencesTab general_tab;
 
 	public PreferencesWindow (Backend backend, BetterSettings lottanzb_settings, SabnzbdRootSettings sabnzbd_settings) {
 		base ();
 		this.lottanzb_settings = lottanzb_settings;
 		this.sabnzbd_settings = sabnzbd_settings;
-
-		GeneralPreferencesTab general_tab = new GeneralPreferencesTab (
+		this.general_tab = new GeneralPreferencesTab (
 			backend, lottanzb_settings, sabnzbd_settings);
 		add_tab (general_tab);
 		widgets.prefs_window.show ();

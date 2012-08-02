@@ -38,6 +38,7 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	private InfoBar? _info_bar;
 	private uint ui_manager_merge_id;
 	private Binding? _pause_general_hub_action_binding;
+	private PreferencesWindow preferences_window;
 
 	public DownloadList? download_list {
 		get {
@@ -192,8 +193,8 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	public void on_edit_preferences_activate (Gtk.Window window) {
 		if (backend != null) {
 			var sabnzbd_settings = backend.config_hub.root;
-			new PreferencesWindow (backend, settings, sabnzbd_settings);
-		}	
+			preferences_window = new PreferencesWindow (backend, settings, sabnzbd_settings);
+		}
 	}
 
 	[CCode (instance_pos = -1)]
