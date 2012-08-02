@@ -19,7 +19,8 @@ public class Lottanzb.SabnzbdSettingsUpdater : Object {
 
 	public SabnzbdRootSettings root { get; construct set; }
 	public BetterSettings active { get; private set; }
-	public Gee.List<SabnzbdSettingsTransformation> transformations { get; construct set; }
+
+	private Gee.List<SabnzbdSettingsTransformation> transformations;
 
 	public SabnzbdSettingsUpdater (SabnzbdRootSettings root) {
 		this.root = root;
@@ -31,6 +32,10 @@ public class Lottanzb.SabnzbdSettingsUpdater : Object {
 		requires (root == active)
 		ensures (root == active) {
 		visit_json_object (object);
+	}
+
+	public void add_transformation (SabnzbdSettingsTransformation transformation) {
+		transformations.add (transformation);
 	}
 
 	private void visit_json_node (Json.Node node) {

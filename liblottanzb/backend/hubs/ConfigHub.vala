@@ -43,7 +43,7 @@ public class Lottanzb.ConfigHub : Object {
 		if (is_local) {
 			var download_folder_transformation = new LocalFolderAbsolutePathTransformation (
 					root.get_misc ().path, "complete-dir");
-			settings_updater.transformations.add (download_folder_transformation);
+			settings_updater.add_transformation (download_folder_transformation);
 		}
 
 		var query = query_processor.get_config ();
