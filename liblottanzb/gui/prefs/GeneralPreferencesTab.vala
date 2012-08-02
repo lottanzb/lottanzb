@@ -189,6 +189,8 @@ public class Lottanzb.FolderSettingController : Object {
 		}
 	}
 
+	// TODO: Move to ConfigHub and make the conversion to absolute paths
+	// completely transparent to the rest of the application.
 	private string get_absolute_local_folder (string relative_folder)
 		requires (is_local) {
 		var result = relative_folder;
