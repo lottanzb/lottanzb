@@ -17,26 +17,44 @@
 
 public abstract class Lottanzb.SettingsList : BetterSettings, Copyable<SettingsList> {
 
+	private static string SIZE_KEY = "size";
+
 	public int max_size { get; private construct set; default = 20; }
 
 	public SettingsList (string schema_id) {
 		Object (schema_id: schema_id);
+		changed [SIZE_KEY].connect (on_size_changed);
 	}
 
 	public SettingsList.with_backend (string schema_id, SettingsBackend backend) {
 		Object (schema_id: schema_id, backend: backend);
+		changed [SIZE_KEY].connect (on_size_changed);
 	}
 
 	public SettingsList.with_backend_and_path (string schema_id, SettingsBackend backend, string path) {
 		Object (schema_id: schema_id, backend: backend, path: path);
+		changed [SIZE_KEY].connect (on_size_changed);
 	}
 
 	public int size {
 		get {
-			return get_int ("size");
+			return get_int (SIZE_KEY);
 		}
 		set {
-			set_int ("size", value);
+			set_int (SIZE_KEY, value);
+		}
+	}
+
+	private void on_size_changed (Settings settings, string key) {
+		var size = get_int (SIZE_KEY);
+		if (max_size < size) {
+			warning ("support for at most %d children", max_size);
+			size = max_size;
+		} else {
+			for (var invalid_index = size; invalid_index < max_size; invalid_index++) {
+				var invalid_child = get_child_by_index (invalid_index);
+				invalid_child.reset_all ();
+			}
 		}
 	}
 
@@ -60,24 +78,6 @@ public abstract class Lottanzb.SettingsList : BetterSettings, Copyable<SettingsL
 			}
 		}
 		assert_not_reached ();
-	}
-
-	public override void set_recursively_from_json_array (Json.Array array) {
-		size = int.min (max_size, (int) array.get_length ());
-		if (max_size < array.get_length ()) {
-			warning ("support for at most %d children", max_size);
-		}
-		for (var index = 0; index < size; index++) {
-			var child = get_child_by_index (index);
-			if (index < array.get_length ()) {
-				var object = array.get_object_element (index);
-				child.set_all_from_json_object (object);
-			}
-		}
-		for (var invalid_index = size; invalid_index < max_size; invalid_index++) {
-			var invalid_child = get_child_by_index (invalid_index);
-			invalid_child.reset_all ();
-		}
 	}
 
 	public void remove_child (int index)

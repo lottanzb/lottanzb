@@ -22,7 +22,8 @@ public class Lottanzb.ConfigHub : Object {
 
 	public QueryProcessor query_processor { get; construct set; }
 	public SabnzbdRootSettings root { get; construct set; }
-	
+	public SabnzbdSettingsUpdater settings_updater { get; construct set; }
+
 	public DataSpeed speed_limit {
 		get {
 			return DataSpeed (root.get_misc ().get_int ("bandwidth-limit"));
@@ -54,10 +55,12 @@ public class Lottanzb.ConfigHub : Object {
 
 	public ConfigHub (QueryProcessor query_processor) {
 		this.query_processor = query_processor;
-		settings_backend = BetterSettings.build_memory_settings_backend ();
-		root = new SabnzbdRootSettings (settings_backend);
+		this.settings_backend = BetterSettings.build_memory_settings_backend ();
+		this.root = new SabnzbdRootSettings (settings_backend);
+		this.settings_updater = new SabnzbdSettingsUpdater (root);
+
 		var query = query_processor.get_config ();
-		root.set_recursively_from_json_object (query.get_response ());
+		settings_updater.update (query.get_response ());
 		root.get_misc ().changed.connect ((settings, key) => {
 			var path = new Gee.LinkedList<string> ();
 			path.add ("misc");
