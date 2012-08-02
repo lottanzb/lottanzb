@@ -31,6 +31,8 @@ public class Lottanzb.PreferencesWindow : AbstractPreferencesWindow {
 		widgets.prefs_window.show ();
 	}
 
+	public Gtk.Dialog dialog { get { return widgets.prefs_window; } }
+
 	private void add_tab (PreferencesTab tab) {
 		var event_box = new Gtk.EventBox ();
 		var label = new Gtk.Label (tab.label);
@@ -38,6 +40,13 @@ public class Lottanzb.PreferencesWindow : AbstractPreferencesWindow {
 		widgets.notebook.insert_page (event_box, label, count);
 		event_box.add (tab.widget);
 		event_box.show ();
+	}
+
+	[CCode (instance_pos = -1)]
+	public void on_response (Gtk.Dialog dialog, Gtk.ResponseType response) {
+		if (response == Gtk.ResponseType.CLOSE) {
+			dialog.hide ();
+		}
 	}
 
 }

@@ -24,14 +24,14 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	public static string SETTINGS_SHOW_INFOBAR = "show-infobar";
 	public static string SETTINGS_SHOW_REORDERING_PANE = "show-reordering-pane";
 	public static string SETTINGS_SHOW_TOOLBAR = "show-toolbar";
-	
+
 	private static string LAUNCHPAD_ITEMS_PATH = "/menu_bar/help/launchpad_items";
 	private static string DOWNLOAD_LIST_ITEMS_PATH = "/toolbar/download_list_actions";
-	
+
 	public BetterSettings settings { get; construct set; }
 	public BetterSettings gui_settings { get; construct set; }
 	public BetterSettings window_settings { get; construct set; }
-	
+
 	private Backend? _backend;
 	private Gdk.WindowState window_state;
 	private DownloadList? _download_list;
@@ -101,7 +101,7 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 				info_bar = null;
 				widgets.backend_action_group.sensitive = false;
 				_pause_general_hub_action_binding = null;
-			}	
+			}
 		}
 	}
 
@@ -121,14 +121,14 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 			widgets.infobar, "visible", SettingsBindFlags.GET);
 
 		restore_window_settings ();
-		
+
 		LaunchpadIntegration.set_sourcepackagename("lottanzb");
 		LaunchpadIntegration.add_ui(widgets.ui_manager, LAUNCHPAD_ITEMS_PATH);
 
 		widgets.backend_action_group.set_sensitive(false);
 		widgets.main_window.show ();
 	}
-	
+
 	public void save_window_settings () {
 		window_settings.set_int (SETTINGS_STATE_KEY, window_state);
 		if ((window_state & Gdk.WindowState.MAXIMIZED) == 0) {
@@ -140,7 +140,7 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 			window_settings.set (SETTINGS_POSITION_KEY, "(ii)", position[0], position[1]);
 		}
 	}
-	
+
 	public void restore_window_settings () {
 		var size = new int[2];
 		window_settings.get (SETTINGS_SIZE_KEY, "(ii)", out size[0], out size[1]);
@@ -148,7 +148,7 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 		var position = new int[2];
 		window_settings.get (SETTINGS_POSITION_KEY, "(ii)", out position[0], out position[1]);
 		widgets.main_window.move (position[0], position[1]);
-		
+
 		var window_state = window_settings.get_int (SETTINGS_STATE_KEY);
 		if ((window_state & Gdk.WindowState.MAXIMIZED) != 0) {
 			widgets.main_window.maximize ();
@@ -161,39 +161,44 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 			widgets.main_window.unstick ();
 		}
 	}
-	
+
 	[CCode (instance_pos = -1)]
 	public void on_add_activate (Gtk.Window window) {
 		var dialog = new AddFileDialog (backend.query_processor, gui_settings);
 		dialog.run (widgets.main_window);
 	}
-	
+
 	[CCode (instance_pos = -1)]
 	public void on_add_url_activate (Gtk.Window window) {
 		var dialog = new AddURLDialog ();
 		dialog.run (widgets.main_window);
 	}
-	
+
 	[CCode (instance_pos = -1)]
 	public void on_clear_activate (Gtk.Window window) {
 		if (backend != null) {
 			// backend.general_hub.delete_all_history ();
-		}	
+		}
 	}
-	
+
 	[CCode (instance_pos = -1)]
 	public void on_manage_servers_activate (Gtk.Window window) {
 		if (backend != null) {
 			var dialog = new ServersDialog (backend.config_hub);
 			dialog.run (widgets.main_window);
 		}
-	} 
-	
+	}
+
 	[CCode (instance_pos = -1)]
 	public void on_edit_preferences_activate (Gtk.Window window) {
 		if (backend != null) {
 			var sabnzbd_settings = backend.config_hub.root;
-			preferences_window = new PreferencesWindow (backend, settings, sabnzbd_settings);
+			if (preferences_window == null) {
+				preferences_window = new PreferencesWindow (backend, settings, sabnzbd_settings);
+				preferences_window.dialog.delete_event.connect (preferences_window.dialog.hide_on_delete);
+			} else {
+				preferences_window.dialog.show ();
+			}
 		}
 	}
 
@@ -212,7 +217,7 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 
 	[CCode (instance_pos = -1)]
 	public void on_open_web_interface_activate (Gtk.Window window) {
-		var url = backend.query_processor.connection_info.url;	
+		var url = backend.query_processor.connection_info.url;
 		try {
 			Gtk.show_uri (null, url, Gdk.CURRENT_TIME);
 		} catch (Error e) {
@@ -225,17 +230,17 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	public void on_quit_activate (Gtk.Window window) {
 		Gtk.main_quit();
 	}
-	
+
 	[CCode (instance_pos = -1)]
 	public void on_select_local_session_activate (Gtk.Window window) {
-		
+
 	}
-	
+
 	[CCode (instance_pos = -1)]
 	public void on_select_remote_session_activate (Gtk.Window window) {
-		
+
 	}
-	
+
 	[CCode (instance_pos = -1)]
 	public void on_show_about_dialog_activate (Gtk.Window window) {
 		var about_dialog = new AboutDialog();
@@ -244,25 +249,25 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 
 	[CCode (instance_pos = -1)]
 	public void on_show_help_content_activate (Gtk.Window window) {
-		
+
 	}
-	
+
 	[CCode (instance_pos = -1)]
 	public void on_show_message_log_activate (Gtk.Window window) {
-		
+
 	}
 
 	[CCode (instance_pos = -1)]
 	public void on_destroy (Gtk.Window window) {
 		save_window_settings ();
 	}
-	
+
 	[CCode (instance_pos = -1)]
 	public bool on_window_state_event (Gtk.Window window, Gdk.EventWindowState event) {
 		window_state = event.new_window_state;
 		return false;
 	}
-	
+
 	[CCode (instance_pos = -1)]
 	public bool on_delete_event (Gtk.Window window, Gdk.EventAny event) {
 		Gtk.main_quit ();
