@@ -14,11 +14,11 @@ public abstract class Lottanzb.AbstractGeneralPreferencesTab : Object {
 		public Gtk.HBox hbox2 { get; protected set; }
 		public Gtk.FileChooserButton watched_folder_button { get; protected set; }
 		public Gtk.Entry watched_folder_entry { get; protected set; }
-		public Gtk.CheckButton enforce_max_rate { get; protected set; }
-		public Gtk.CheckButton dirscan { get; protected set; }
+		public Gtk.CheckButton use_bandwidth_limit { get; protected set; }
+		public Gtk.CheckButton watched_folder_checkbutton { get; protected set; }
 		public Gtk.HBox hbox1 { get; protected set; }
-		public Gtk.SpinButton max_rate { get; protected set; }
-		public Gtk.Label max_rate_scale { get; protected set; }
+		public Gtk.SpinButton bandwidth_limit { get; protected set; }
+		public Gtk.Label bandwidth_limit_scale { get; protected set; }
 		public Gtk.VBox vbox5 { get; protected set; }
 		public Gtk.Label download_label1 { get; protected set; }
 		public Gtk.Alignment alignment1 { get; protected set; }

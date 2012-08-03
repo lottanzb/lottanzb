@@ -35,8 +35,9 @@ public class Lottanzb.GeneralPreferencesTab : AbstractGeneralPreferencesTab, Pre
 		var is_local = backend.query_processor.connection_info.is_local;
 
 		watched_folder_controller = new TogglableFolderSettingController (
-				misc_settings, "dirscan-dir", is_local,
-				widgets.watched_folder_button, widgets.watched_folder_entry, widgets.dirscan);
+				misc_settings, "dirscan-dir", is_local, "/home/severinh/Downloads",
+				widgets.watched_folder_button, widgets.watched_folder_entry,
+				widgets.watched_folder_checkbutton);
 		download_folder_controller = new FolderSettingController (
 				misc_settings, "complete-dir", is_local,
 				widgets.download_folder_button, widgets.download_folder_entry);
@@ -44,7 +45,8 @@ public class Lottanzb.GeneralPreferencesTab : AbstractGeneralPreferencesTab, Pre
 				any_category, widgets.post_processing);
 		bandwidth_limit_controller = new BandwidthLimitController (
 				misc_settings, "bandwidth-limit",
-				widgets.enforce_max_rate, widgets.max_rate, widgets.max_rate_scale);
+				widgets.use_bandwidth_limit, widgets.bandwidth_limit,
+				widgets.bandwidth_limit_scale);
 
 		widgets.prefs_tab_general.remove (widgets.prefs_tab_general.get_child ());
 	}
@@ -181,7 +183,7 @@ public class Lottanzb.FolderSettingController : Object {
 	private void on_settings_changed () {
 		var new_folder = settings.get_string (key);
 		var current_folder = file_chooser_button.get_current_folder ();
-		if (current_folder != new_folder) {
+		if (current_folder != new_folder && new_folder.length > 0) {
 			file_chooser_button.set_current_folder (new_folder);
 		}
 	}
@@ -198,9 +200,11 @@ public class Lottanzb.FolderSettingController : Object {
 
 public class Lottanzb.TogglableFolderSettingController : FolderSettingController {
 
-	public TogglableFolderSettingController (BetterSettings settings, string key, bool is_local,
+	public TogglableFolderSettingController (BetterSettings settings, string key, bool is_local, string default_folder,
 			Gtk.FileChooserButton file_chooser_button, Gtk.Entry entry, Gtk.ToggleButton toggle_button) {
 		base (settings, key, is_local, file_chooser_button, entry);
+
+		file_chooser_button.set_current_folder (default_folder);
 		LottanzbResource.bind_with_mapping (
 			settings, key,
 			toggle_button, "active",
@@ -211,12 +215,13 @@ public class Lottanzb.TogglableFolderSettingController : FolderSettingController
 				return true;
 			},
 			(value, expected_type, user_data) => {
+				var _this = (TogglableFolderSettingController) user_data;
 				var has_folder = value.get_boolean ();
-				var folder = (has_folder) ? "Downloads" : "";
+				var folder = (has_folder) ? _this.file_chooser_button.get_current_folder () : "";
 				var variant = new Variant.string (folder);
 				return variant;
 			},
-			null,
+			this,
 			unref
 		);
 		settings.changed [key].connect ((settings, key) => { update_sensitivity (); });

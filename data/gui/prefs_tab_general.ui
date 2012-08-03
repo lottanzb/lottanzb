@@ -82,7 +82,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="enforce_max_rate">
+                      <object class="GtkCheckButton" id="use_bandwidth_limit">
                         <property name="label" translatable="yes">_Limit download speed:</property>
                         <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
@@ -99,7 +99,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton" id="dirscan">
+                      <object class="GtkCheckButton" id="watched_folder_checkbutton">
                         <property name="label" translatable="yes">_Automatically add NZB files from:</property>
                         <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
@@ -117,7 +117,7 @@
                         <property name="can_focus">False</property>
                         <property name="spacing">6</property>
                         <child>
-                          <object class="GtkSpinButton" id="max_rate">
+                          <object class="GtkSpinButton" id="bandwidth_limit">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">●</property>
@@ -130,7 +130,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="max_rate_scale">
+                          <object class="GtkLabel" id="bandwidth_limit_scale">
                             <property name="visible">True</property>
                             <property name="sensitive">False</property>
                             <property name="can_focus">False</property>
@@ -301,7 +301,7 @@
   <object class="GtkSizeGroup" id="sizegroup">
     <widgets>
       <widget name="download_dir_label"/>
-      <widget name="dirscan"/>
+      <widget name="watched_folder_checkbutton"/>
     </widgets>
   </object>
 </interface>
