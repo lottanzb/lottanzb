@@ -72,7 +72,7 @@ public class Lottanzb.ConfigHub : Object {
 		var entries = new Gee.HashMap<string, string> ();
 		var variant = settings.get_value (key);
 		entries[key.replace ("-", "_")] = get_string_from_variant (variant);
-		var query = query_processor.set_config (path_elements, entries);
+		query_processor.set_config (path_elements, entries);
 	}
 
 	private string get_string_from_variant (Variant variant) {
