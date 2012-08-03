@@ -27,7 +27,9 @@ public interface Lottanzb.Query<R> : Object {
 	// See https://bugzilla.gnome.org/show_bug.cgi?id=672099.
 	public abstract R get_response();
 
+	public abstract string to_string ();
+
 	public abstract bool has_completed { get; set; }
 	public abstract bool has_succeeded { get; set; }
-	
+
 }
