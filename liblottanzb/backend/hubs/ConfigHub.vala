@@ -48,14 +48,31 @@ public class Lottanzb.ConfigHub : Object {
 
 		var query = query_processor.get_config ();
 		settings_updater.update (query.get_response ());
-		root.get_misc ().changed.connect ((settings, key) => {
-			var path = new Gee.LinkedList<string> ();
-			path.add ("misc");
-			var entries = new Gee.HashMap<string, string> ();
-			var variant = settings.get_value (key);
-			entries[key.replace ("_", "-")] = get_string_from_variant (variant);
-			query_processor.set_config (path, entries);
-		});
+		connect_to_changed_signal (root);
+	}
+
+	private void connect_to_changed_signal (BetterSettings settings) {
+		settings.changed.connect (on_settings_changed);
+		foreach (var child_name in settings.list_children ()) {
+			var child_settings = settings.get_child (child_name);
+			connect_to_changed_signal (child_settings);
+		}
+	}
+
+	private void on_settings_changed (Settings settings, string key) {
+		var root_path = root.path;
+		var path = settings.path;
+		var relative_path = path.substring (root_path.length);
+		var path_elements = new Gee.LinkedList<string> ();
+		foreach (var path_element in relative_path.split ("/")) {
+			if (path_element.length > 0) {
+				path_elements.add (path_element);
+			}
+		}
+		var entries = new Gee.HashMap<string, string> ();
+		var variant = settings.get_value (key);
+		entries[key.replace ("-", "_")] = get_string_from_variant (variant);
+		var query = query_processor.set_config (path_elements, entries);
 	}
 
 	private string get_string_from_variant (Variant variant) {
