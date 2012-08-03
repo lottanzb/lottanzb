@@ -15,13 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Lottanzb;
+public class Lottanzb.GeneralPreferencesTabTest : TestSuiteBuilder {
 
-private static int main (string[] args) {
-	Environment.set_variable ("GSETTINGS_BACKEND", "memory", true);
-	Gtk.init_check (ref args);
-	Test.init (ref args);
-	TestSuite.get_root ().add_suite (new BackendTest ());
-	TestSuite.get_root ().add_suite (new GeneralPreferencesTabTest ().get_suite ());
-	return Test.run ();
+	public GeneralPreferencesTabTest () {
+		base ("general_preferences_tab");
+		add_test ("post_processing_model", test_post_processing_model);
+	}
+
+	public void test_post_processing_model () {
+		var model = new PostProcessingModel ();
+		foreach (var post_processing in DownloadPostProcessing.all ()) {
+			var index = model.index_of (post_processing);
+			assert (post_processing == model.get_download_post_processing (index));
+		}
+	}
+
 }
