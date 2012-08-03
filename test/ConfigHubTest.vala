@@ -136,7 +136,6 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		server_tree_model.row_changed.connect (on_server_tree_model_row_changed);
 		server_tree_model.row_inserted.connect (on_server_tree_model_row_inserted);
 		server_tree_model.row_deleted.connect (on_server_tree_model_row_deleted);
-		var first_server = servers.get_child_by_index (0) as Server;
 		var second_server = servers.get_child_by_index (1) as Server;
 		second_server.set_boolean ("fillserver", true);
 		assert (row_changed_count == 1);
