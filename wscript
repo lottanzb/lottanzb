@@ -107,7 +107,7 @@ def post(ctx):
     if results:
         failure_count = len([result for result in results if result[1]])
         if failure_count:
-            ctx.fatal("Some test failed.")
+            ctx.to_log("Some test failed.\n")
 
     if ctx.cmd == 'install':
         ctx.exec_command('/sbin/ldconfig')
