@@ -30,6 +30,10 @@ public class Lottanzb.MockQuery<R> : Object, Query<R> {
 		return _response;
 	}
 
+	public string to_string () {
+		return "MockQuery";
+	}
+
 	public bool has_completed { get; set; }
 	public bool has_succeeded { get; set; }
 
@@ -217,6 +221,10 @@ public class Lottanzb.MockGetAuthenticationTypeQuery : GetAuthenticationTypeQuer
 	
 	public AuthenticationType get_response () {
 		return response;
+	}
+
+	public string to_string () {
+		return "MockGetAuthenticationTypeQuery";
 	}
 
 }
