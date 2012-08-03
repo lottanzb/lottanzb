@@ -36,6 +36,7 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 	private int last_row_inserted_index = -1;
 	private int row_deleted_count = 0;
 	private int last_row_deleted_index = -1;
+	private ConfigHub config_hub;
 
 	public ConfigHubTest () {
 		base ("config");
@@ -52,11 +53,12 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		last_row_inserted_index = -1;
 		row_deleted_count = 0;
 		last_row_deleted_index = -1;
+
+		var query_processor = new ConfigHubTestMockQueryProcessor ();
+		config_hub = new ConfigHub (query_processor);
 	}
 
 	public void test_basic () {
-		var query_processor = new ConfigHubTestMockQueryProcessor ();
-		var config_hub = new ConfigHub (query_processor);
 		var misc = config_hub.root.get_misc ();
 		assert (misc.get_boolean ("quick-check"));
 		assert (misc.get_int ("https-port") == 9090);
@@ -95,8 +97,6 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 	}
 
 	public void test_servers () {
-		var query_processor = new ConfigHubTestMockQueryProcessor ();
-		var config_hub = new ConfigHub (query_processor);
 		var servers = config_hub.root.get_servers ();
 		assert (servers.size == 2);
 		assert_first_fixture_server (servers.get_child_by_index (0) as Server);
@@ -117,8 +117,6 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 	}
 
 	public void test_servers_delay_application () {
-		var query_processor = new ConfigHubTestMockQueryProcessor ();
-		var config_hub = new ConfigHub (query_processor);
 		var servers = config_hub.root.get_servers ();
 		var servers_delayed = servers.get_copy ();
 		servers_delayed.delay_recursively ();
@@ -131,8 +129,6 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 	}
 
 	public void test_server_tree_model () {
-		var query_processor = new ConfigHubTestMockQueryProcessor ();
-		var config_hub = new ConfigHub (query_processor);
 		var servers = config_hub.root.get_servers ();
 		var server_tree_model = new ServerTreeModel (servers);
 		assert (server_tree_model.get_column_type (0) == typeof (Server));
