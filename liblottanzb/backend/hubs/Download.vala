@@ -67,7 +67,7 @@ public enum Lottanzb.DownloadStatus {
 				assert_not_reached();
 		}
 	}
-	
+
 	public bool is_in_group (int status_group) {
 		return (status_group & this) > 0;
 	}
@@ -90,7 +90,7 @@ public enum Lottanzb.DownloadStatus {
 			SUCCEEDED
 		};
 	}
-	
+
 }
 
 public enum Lottanzb.DownloadStatusGroup {
@@ -111,7 +111,7 @@ public enum Lottanzb.DownloadStatusGroup {
 		DownloadStatus.MOVING |
 		DownloadStatus.SCRIPT,
 
-	MOVABLE = 
+	MOVABLE =
 		DownloadStatus.QUEUED |
 		DownloadStatus.DOWNLOADING |
 		DownloadStatus.PAUSED,
@@ -121,11 +121,11 @@ public enum Lottanzb.DownloadStatusGroup {
 		DownloadStatus.FAILED,
 
 	INCOMPLETE = NOT_FULLY_LOADED | PROCESSING,
-	
+
 	FULLY_LOADED = PROCESSING | COMPLETE,
-	
+
 	ANY_STATUS = NOT_FULLY_LOADED | FULLY_LOADED;
-	
+
 }
 
 public enum Lottanzb.DownloadPriority {
@@ -134,7 +134,7 @@ public enum Lottanzb.DownloadPriority {
 	HIGH = 1,
 	NORMAL = 0,
 	LOW = -1;
-	
+
 	public string to_string () {
 		switch (this) {
 			case FORCE:
@@ -181,7 +181,16 @@ public enum Lottanzb.DownloadPostProcessing {
 	NOTHING,
 	REPAIR,
 	UNPACK,
-	DELETE
+	DELETE;
+
+	public static DownloadPostProcessing[] all () {
+		return {
+			NOTHING,
+			REPAIR,
+			UNPACK,
+			DELETE
+		};
+	}
 
 }
 
@@ -226,7 +235,7 @@ public interface Lottanzb.Download : Object {
 }
 
 public class Lottanzb.DownloadImpl : Object, Download {
-	
+
 	private string _id;
 	private DownloadStatus _status = DownloadStatus.QUEUED;
 	private DownloadPriority _priority = DownloadPriority.NORMAL;
@@ -251,7 +260,7 @@ public class Lottanzb.DownloadImpl : Object, Download {
 	private int _repair_percentage;
 	private int _unpack_percentage;
 	private int _recovery_block_count;
-	
+
 	public string id {
 		get { return _id; }
 		internal set { _id = value; }
@@ -367,7 +376,7 @@ public class Lottanzb.DownloadImpl : Object, Download {
 			_recovery_block_count = value;
 		}
 	}
-	
+
 	public void update (Download download) {
 		id = download.id;
 		status = download.status;
