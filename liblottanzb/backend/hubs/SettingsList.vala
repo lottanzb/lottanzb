@@ -111,6 +111,14 @@ public abstract class Lottanzb.SettingsList : BetterSettings, Copyable<SettingsL
 		size++;
 	}
 
+	/**
+	 * Whether a particular setting only exists in the context of LottaNZB.
+	 * @return true in the case of the 'size' key
+	*/
+	public override bool is_internal (string key) {
+		return key == SIZE_KEY;
+	}
+
 	protected abstract string get_child_identifier (BetterSettings child);
 
 	protected abstract string index_to_key (int index);

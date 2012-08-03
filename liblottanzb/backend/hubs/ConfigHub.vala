@@ -52,14 +52,20 @@ public class Lottanzb.ConfigHub : Object {
 	}
 
 	private void connect_to_changed_signal (BetterSettings settings) {
-		settings.changed.connect (on_settings_changed);
+		settings.changed.connect ((settings, key) => {
+			on_settings_changed (settings as BetterSettings, key);
+		});
 		foreach (var child_name in settings.list_children ()) {
 			var child_settings = settings.get_child (child_name);
 			connect_to_changed_signal (child_settings);
 		}
 	}
 
-	private void on_settings_changed (Settings settings, string key) {
+	private void on_settings_changed (BetterSettings settings, string key) {
+		// Do not write-back settings that are internal to LottaNZB
+		if (settings.is_internal (key)) {
+			return;
+		}
 		var root_path = root.path;
 		var path = settings.path;
 		var relative_path = path.substring (root_path.length);

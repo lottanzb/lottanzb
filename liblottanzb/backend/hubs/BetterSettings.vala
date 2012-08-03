@@ -125,6 +125,14 @@ public class Lottanzb.BetterSettings : Settings, Copyable<BetterSettings> {
 		revert ();
 	}
 
+	/**
+	 * Whether a particular setting only exists in the context of LottaNZB.
+	 * @return false by default, though subclasses can override this behavior
+	*/
+	public virtual bool is_internal (string key) {
+		return false;
+	}
+
 	public static SettingsBackend build_memory_settings_backend () {
 		// Ensure that the Gio modules extension points have been registered,
 		// such that the memory settings backend can be instantiated.
