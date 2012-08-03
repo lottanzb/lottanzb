@@ -189,7 +189,7 @@ public class Lottanzb.FolderSettingController : Object {
 	private void on_selection_changed () {
 		var new_folder = file_chooser_button.get_uri ().replace ("file://", "");
 		var current_folder = settings.get_string (key);
-		if (current_folder != new_folder) {
+		if (current_folder != new_folder && file_chooser_button.sensitive) {
 			settings.set_string (key, new_folder);
 		}
 	}
