@@ -36,6 +36,7 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 	private int last_row_inserted_index = -1;
 	private int row_deleted_count = 0;
 	private int last_row_deleted_index = -1;
+	private QueryProcessor query_processor;
 	private ConfigHub config_hub;
 
 	public ConfigHubTest () {
@@ -44,6 +45,7 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		add_test ("servers", test_servers);
 		add_test ("servers_delay_application", test_servers_delay_application);
 		add_test ("server_tree_model", test_server_tree_model);
+		add_test ("server_write_back", test_server_write_back);
 	}
 
 	public override void set_up () {
@@ -54,7 +56,7 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		row_deleted_count = 0;
 		last_row_deleted_index = -1;
 
-		var query_processor = new ConfigHubTestMockQueryProcessor ();
+		query_processor = new ConfigHubTestMockQueryProcessor ();
 		config_hub = new ConfigHub (query_processor);
 	}
 
@@ -161,6 +163,24 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		assert (row_deleted_count == 1);
 		assert (last_row_deleted_index == 4);
 		assert (server_tree_model.iter_n_children (null) == 4);
+	}
+
+	public void test_server_write_back () {
+		var set_config_query_count = 0;
+		var query_notifier = query_processor.get_query_notifier<SetConfigQuery> ();
+		query_notifier.query_started.connect ((query_notifier, query) => {
+			set_config_query_count++;
+		});
+		var servers = config_hub.root.get_servers ();
+		// Does not change any of the server settings, but just the 'size'
+		// setting that is internal to the application.
+		// Thus, the following statement should not cause a 'SetConfigQuery'.
+		servers.add_child ();
+		assert (set_config_query_count == 0);
+
+		var last_server = servers.get_child_by_index (servers.size - 1);
+		last_server.set_string ("host", "news.example.com");
+		assert (set_config_query_count == 1);
 	}
 
 	private void on_server_tree_model_row_changed (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
