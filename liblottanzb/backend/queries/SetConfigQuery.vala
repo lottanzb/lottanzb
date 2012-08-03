@@ -28,24 +28,29 @@ public class Lottanzb.SetConfigQueryImpl : SetConfigQuery, SimpleQuery {
 	public Gee.Map<string, string> entries { get; construct set; }
 
 	public SetConfigQueryImpl (Gee.List<string> path, Gee.Map<string, string> entries) {
+		// TODO: Making these values static fields yields a segmentation fault
+		// at run-time, possibly because they are initialized too late.
+		var SECTION_ARGUMENT = "section";
+		var KEY_ARGUMENT = "keyword";
+		var VALUE_ARGUMENT = "value";
 		var arguments = new Gee.HashMap<string, string> ();
 		switch (path.size) {
 			case 1:
 				var section = path[0];
 				var key = entries.keys.to_array ()[0];
 				var value = entries[key];
-				arguments["section"] = section;
-				arguments["key"] = key;
-				arguments["value"] = value;
+				arguments[SECTION_ARGUMENT] = section;
+				arguments[KEY_ARGUMENT] = key;
+				arguments[VALUE_ARGUMENT] = value;
 				break;
 			case 2:
 				var section = path[0];
 				var key = path[1];
-				arguments["section"] = section;
-				arguments["key"] = key;
+				arguments[SECTION_ARGUMENT] = section;
+				arguments[KEY_ARGUMENT] = key;
 				arguments.set_all (entries);
 				foreach (var some_key in entries.keys) {
-					assert (some_key != "section" && some_key != "key");
+					assert (some_key != SECTION_ARGUMENT && some_key != KEY_ARGUMENT);
 				}
 				break;
 			default:
