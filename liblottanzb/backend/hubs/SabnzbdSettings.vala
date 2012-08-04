@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public class Lottanzb.SabnzbdRootSettings : BetterSettings, Copyable<SabnzbdRootSettings> {
+public class Lottanzb.SabnzbdSettings : BetterSettings, Copyable<SabnzbdSettings> {
 
 	private static const string SCHEMA_ID = "apps.lottanzb.backend.sabnzbdplus";
 	private static const string PATH = "/apps/lottanzb/backend/sabnzbdplus/";
@@ -23,7 +23,7 @@ public class Lottanzb.SabnzbdRootSettings : BetterSettings, Copyable<SabnzbdRoot
 	private static const string SERVERS_CHILD_NAME = "servers";
 	private static const string CATEGORIES_CHILD_NAME = "categories";
 
-	public SabnzbdRootSettings (SettingsBackend backend) {
+	public SabnzbdSettings (SettingsBackend backend) {
 		base.with_backend_and_path (SCHEMA_ID, backend, PATH);
 		string child_schema_id, child_path;
 		get_child_schema_id_and_path (SERVERS_CHILD_NAME, out child_schema_id, out child_path);
@@ -34,7 +34,7 @@ public class Lottanzb.SabnzbdRootSettings : BetterSettings, Copyable<SabnzbdRoot
 		set_child (CATEGORIES_CHILD_NAME, categories);
 	}
 
-	public SabnzbdRootSettings.with_memory_backend () {
+	public SabnzbdSettings.with_memory_backend () {
 		var settings_backend = BetterSettings.build_memory_settings_backend ();
 		this (settings_backend);
 	}
@@ -51,8 +51,8 @@ public class Lottanzb.SabnzbdRootSettings : BetterSettings, Copyable<SabnzbdRoot
 		return get_child (CATEGORIES_CHILD_NAME) as CategoryList;
 	}
 
-	public new SabnzbdRootSettings get_copy () {
-		return new SabnzbdRootSettings (backend);
+	public new SabnzbdSettings get_copy () {
+		return new SabnzbdSettings (backend);
 	}
 
 }

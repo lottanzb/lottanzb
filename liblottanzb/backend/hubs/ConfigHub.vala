@@ -21,7 +21,7 @@ public class Lottanzb.ConfigHub : Object {
 	private SettingsBackend settings_backend;
 
 	public QueryProcessor query_processor { get; construct set; }
-	public SabnzbdRootSettings root { get; construct set; }
+	public SabnzbdSettings root { get; construct set; }
 	public SabnzbdSettingsUpdater settings_updater { get; construct set; }
 
 	public DataSpeed speed_limit {
@@ -36,7 +36,7 @@ public class Lottanzb.ConfigHub : Object {
 	public ConfigHub (QueryProcessor query_processor) {
 		this.query_processor = query_processor;
 		this.settings_backend = BetterSettings.build_memory_settings_backend ();
-		this.root = new SabnzbdRootSettings (settings_backend);
+		this.root = new SabnzbdSettings (settings_backend);
 		this.settings_updater = new SabnzbdSettingsUpdater (root);
 
 		var is_local = query_processor.connection_info.is_local;

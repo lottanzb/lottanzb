@@ -18,13 +18,13 @@
 public class Lottanzb.GeneralPreferencesTab : AbstractGeneralPreferencesTab, PreferencesTab {
 
 	private BetterSettings lottanzb_settings;
-	private SabnzbdRootSettings sabnzbd_settings;
+	private SabnzbdSettings sabnzbd_settings;
 	private TogglableFolderSettingController watched_folder_controller;
 	private FolderSettingController download_folder_controller;
 	private PostProcessingController post_processing_controller;
 	private BandwidthLimitController bandwidth_limit_controller;
 
-	public GeneralPreferencesTab (Backend backend, BetterSettings lottanzb_settings, SabnzbdRootSettings sabnzbd_settings) {
+	public GeneralPreferencesTab (Backend backend, BetterSettings lottanzb_settings, SabnzbdSettings sabnzbd_settings) {
 		base ();
 
 		this.lottanzb_settings = lottanzb_settings;

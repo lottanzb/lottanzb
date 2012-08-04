@@ -18,10 +18,10 @@
 public class Lottanzb.PreferencesWindow : AbstractPreferencesWindow {
 
 	private BetterSettings lottanzb_settings;
-	private SabnzbdRootSettings sabnzbd_settings;
+	private SabnzbdSettings sabnzbd_settings;
 	private GeneralPreferencesTab general_tab;
 
-	public PreferencesWindow (Backend backend, BetterSettings lottanzb_settings, SabnzbdRootSettings sabnzbd_settings) {
+	public PreferencesWindow (Backend backend, BetterSettings lottanzb_settings, SabnzbdSettings sabnzbd_settings) {
 		base ();
 		this.lottanzb_settings = lottanzb_settings;
 		this.sabnzbd_settings = sabnzbd_settings;

@@ -17,12 +17,12 @@
 
 public class Lottanzb.SabnzbdSettingsUpdater : Object {
 
-	public SabnzbdRootSettings root { get; construct set; }
+	public SabnzbdSettings root { get; construct set; }
 	public BetterSettings active { get; private set; }
 
 	private Gee.List<SabnzbdSettingsTransformation> transformations;
 
-	public SabnzbdSettingsUpdater (SabnzbdRootSettings root) {
+	public SabnzbdSettingsUpdater (SabnzbdSettings root) {
 		this.root = root;
 		this.active = root;
 		this.transformations = new Gee.ArrayList<SabnzbdSettingsTransformation> ();
