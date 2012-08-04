@@ -26,7 +26,29 @@
         Whether to delete NZB files manually added to the download queue.
       </description>
     </key>
+    <child schema="apps.lottanzb.backend.local" name="local"/>
     <child schema="apps.lottanzb.backend.remote" name="remote"/>
+  </schema>
+  <schema id="apps.lottanzb.backend.local" path="/apps/lottanzb/backend/local/"
+      gettext-domain="lottanzb">
+    <key type="s" name="sabnzbd-executable">
+      <default>'/usr/bin/sabnzbdplus'</default>
+      <summary>Path to the SABnzbd executable</summary>
+      <description>
+        By default, LottaNZB uses the system-wide SABnzbd installation.
+        If the installation is user-local or in a non-standard location,
+        the path to the SABnzbd executable needs to be provided manually.
+      </description>
+    </key>
+    <key type="s" name="sabnzbd-config-file">
+      <default>'~/.sabnzbd/sabnzbd.ini'</default>
+      <summary>Path to the SABnzbd configuration file</summary>
+      <description>
+        This configuration file is supplied to the specified SABnzbd executable.
+        It specifies various aspects of the way SABnzbd behaves.
+        LottaNZB creates the file with default values if it does not exist.
+      </description>
+    </key>
   </schema>
   <schema id="apps.lottanzb.backend.remote" path="/apps/lottanzb/backend/remote/"
       gettext-domain="lottanzb">
