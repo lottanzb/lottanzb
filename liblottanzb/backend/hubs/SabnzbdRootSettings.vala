@@ -34,6 +34,11 @@ public class Lottanzb.SabnzbdRootSettings : BetterSettings, Copyable<SabnzbdRoot
 		set_child (CATEGORIES_CHILD_NAME, categories);
 	}
 
+	public SabnzbdRootSettings.with_memory_backend () {
+		var settings_backend = BetterSettings.build_memory_settings_backend ();
+		this (settings_backend);
+	}
+
 	public BetterSettings get_misc () {
 		return get_child (MISC_CHILD_NAME);
 	}
