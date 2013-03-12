@@ -26,7 +26,7 @@ public abstract class Lottanzb.QueryImpl<R> : Object, Query<R> {
 	private bool _has_completed;
 	private bool _has_succeeded;
 
-	public QueryImpl (string method, ...) {
+	public QueryImpl (string method) {
 		_method = method;
 		_arguments = new Gee.HashMap<string, string> ();
 		_arguments.set ("output", OUTPUT_FORMAT);
@@ -35,7 +35,7 @@ public abstract class Lottanzb.QueryImpl<R> : Object, Query<R> {
 
 	public QueryImpl.with_argument (string method, string key, string value) {
 		this (method);
-		_arguments.set (key, value);	
+		_arguments.set (key, value);
 	}
 
 	public QueryImpl.with_arguments (string method, Gee.Map<string, string> arguments) {
