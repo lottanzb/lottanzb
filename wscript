@@ -41,7 +41,7 @@ def options(opt):
 def configure(conf):
     conf.load('compiler_c gnu_dirs glib2 vala intltool waf_unit_test')
     
-    conf.check_vala(min_version=(0, 15))
+    conf.check_vala(min_version=(0, 17))
     conf.check_cfg(package='glib-2.0', uselib_store='GLIB',
         atleast_version='2.28', args='--cflags --libs')
     conf.check_cfg(package='gio-2.0', uselib_store='GIO',
@@ -54,8 +54,8 @@ def configure(conf):
         atleast_version='0.13', args='--cflags --libs')
     conf.check_cfg(package='libsoup-2.4', uselib_store='LIBSOUP',
         atleast_version='2.28', args='--cflags --libs')
-    conf.check_cfg(package='libvala-0.16', uselib_store='VALA',
-        atleast_version='0.15.2', args='--cflags --libs')
+    conf.check_cfg(package='libvala-0.18', uselib_store='VALA',
+        atleast_version='0.18', args='--cflags --libs')
     conf.check_cfg(package='gee-1.0', uselib_store='GEE',
         atleast_version='0.6', args='--cflags --libs')
     conf.check_cfg(package='launchpad-integration-3.0', uselib_store='LP',

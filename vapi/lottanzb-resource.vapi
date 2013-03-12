@@ -21,21 +21,6 @@ namespace LottanzbResource {
 	[CCode (cname = "lottanzb_get_resource")]
 	public static GLib.Resource get_resource ();
 	
-	[CCode (cname = "g_settings_bind_with_mapping")]
-	public void bind_with_mapping (GLib.Settings settings, string key,
-		void* object, string property, GLib.SettingsBindFlags flags,
-		SettingsBindGetMapping get_mapping,
-		SettingsBindSetMapping set_mapping,
-		void* user_data, GLib.DestroyNotify destroy);
-
-	[CCode (cname = "GSettingsBindGetMapping", has_target = false)]
-	public delegate bool SettingsBindGetMapping (GLib.Value value,
-		GLib.Variant variant, void* user_data);
-
-	[CCode (cname = "GSettingsBindSetMapping", has_target = false)]
-	public delegate GLib.Variant SettingsBindSetMapping (
-		GLib.Value value, GLib.VariantType expected_type, void* user_data);
-
 	[CCode (cname = "gtk_list_store_reorder")]
 	public void reorder (Gtk.ListStore list_store,
 		[CCode (array_length = false)] int[] new_order);
