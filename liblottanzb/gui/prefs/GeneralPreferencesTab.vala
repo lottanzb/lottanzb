@@ -82,8 +82,7 @@ public class Lottanzb.PostProcessingController : Object {
 		combo_box.add_attribute (cell_renderer, "markup",
 			PostProcessingModel.Column.DESCRIPTION);
 
-		LottanzbResource.bind_with_mapping (
-			category, "pp",
+		category.bind_with_mapping ("pp",
 			combo_box, "active",
 			SettingsBindFlags.DEFAULT,
 			(value, variant, user_data) => {
@@ -205,8 +204,7 @@ public class Lottanzb.TogglableFolderSettingController : FolderSettingController
 		base (settings, key, is_local, file_chooser_button, entry);
 
 		file_chooser_button.set_current_folder (default_folder);
-		LottanzbResource.bind_with_mapping (
-			settings, key,
+		settings.bind_with_mapping (key,
 			toggle_button, "active",
 			SettingsBindFlags.DEFAULT,
 			(value, variant, user_data) => {
@@ -254,8 +252,7 @@ public class Lottanzb.BandwidthLimitController : Object {
 		this.spin_button = spin_button;
 		this.scale_label = scale_label;
 
-		LottanzbResource.bind_with_mapping (
-			settings, key,
+		settings.bind_with_mapping (key,
 			check_button, "active",
 			SettingsBindFlags.DEFAULT,
 			(value, variant, user_data) => {

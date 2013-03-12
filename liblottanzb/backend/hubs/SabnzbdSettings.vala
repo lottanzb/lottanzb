@@ -25,10 +25,13 @@ public class Lottanzb.SabnzbdSettings : BetterSettings, Copyable<SabnzbdSettings
 
 	public SabnzbdSettings (SettingsBackend backend) {
 		base.with_backend_and_path (SCHEMA_ID, backend, PATH);
+
 		string child_schema_id, child_path;
+
 		get_child_schema_id_and_path (SERVERS_CHILD_NAME, out child_schema_id, out child_path);
 		var servers = new ServerList.with_backend_and_path (child_schema_id, backend, child_path);
 		set_child (SERVERS_CHILD_NAME, servers);
+
 		get_child_schema_id_and_path (CATEGORIES_CHILD_NAME, out child_schema_id, out child_path);
 		var categories = new CategoryList.with_backend_and_path (child_schema_id, backend, child_path);
 		set_child (CATEGORIES_CHILD_NAME, categories);
