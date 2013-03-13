@@ -139,9 +139,14 @@ def test(ctx):
         lcov_command += " --base-directory " + os.getcwd()
         if subprocess.Popen(lcov_command, shell=True).wait():
             raise SystemExit(1)
-        lcov_extract_command = "lcov --extract " + info_file + " " + "*/lottanzb/src/* --directory . --output-file " + info_file + " --base-directory " + os.getcwd()
-        if subprocess.Popen(lcov_extract_command, shell=True).wait():
-            raise SystemExit(1)
+
+        blacklisted_patterns = ["*/build/*", "*/vapi/*", "*/test/*"]
+        for pattern in blacklisted_patterns:
+            lcov_extract_command = "lcov --remove " + info_file + " " + \
+                pattern + " --directory . --output-file " + info_file + \
+                " --base-directory " + os.getcwd()
+            if subprocess.Popen(lcov_extract_command, shell=True).wait():
+                raise SystemExit(1)
 
         genhtml_command = "genhtml -o " + lcov_report_dir
         genhtml_command += " " + info_file
