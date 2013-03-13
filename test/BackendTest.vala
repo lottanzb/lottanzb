@@ -23,6 +23,7 @@ public class Lottanzb.BackendTest : TestSuite {
 		base ("backend");
 		add_suite (new DataSizeTest ().get_suite ());
 		add_suite (new DataSpeedTest ().get_suite ());
+		add_suite (new TimeDeltaTest ().get_suite ());
 		add_suite (new ConnectionInfoTest ().get_suite ());
 		add_suite (new DownloadListStoreTest ().get_suite ());
 		add_suite (new QueriesTest ());
