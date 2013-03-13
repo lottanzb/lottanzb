@@ -171,7 +171,7 @@ public struct Lottanzb.TimeDelta {
 				string_format = ngettext("%i day", "%i days", time_value);
 				break;
 			case TimeDeltaUnit.HOURS:
-				string_format = ngettext("%i hours", "%i hours", time_value);
+				string_format = ngettext("%i hour", "%i hours", time_value);
 				break;
 			case TimeDeltaUnit.MINUTES:
 				string_format = ngettext("%i minute", "%i minutes", time_value);
@@ -187,11 +187,11 @@ public struct Lottanzb.TimeDelta {
 	
 	public TimeDeltaUnit major_unit {
 		get {
-			if (TimeDeltaUnit.DAYS.get_seconds() < total_seconds) {
+			if (TimeDeltaUnit.DAYS.get_seconds() <= total_seconds) {
 				return TimeDeltaUnit.DAYS;
-			} else if (TimeDeltaUnit.HOURS.get_seconds() < total_seconds) {
+			} else if (TimeDeltaUnit.HOURS.get_seconds() <= total_seconds) {
 				return TimeDeltaUnit.HOURS;
-			} else if (TimeDeltaUnit.MINUTES.get_seconds() < total_seconds) {
+			} else if (TimeDeltaUnit.MINUTES.get_seconds() <= total_seconds) {
 				return TimeDeltaUnit.MINUTES;
 			}
 			return TimeDeltaUnit.SECONDS;

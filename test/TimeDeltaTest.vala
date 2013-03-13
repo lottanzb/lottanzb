@@ -53,6 +53,14 @@ public class Lottanzb.TimeDeltaTest : Lottanzb.TestSuiteBuilder {
 		assert (delta.to_string() == "2 days");
 		delta = TimeDelta.with_units (2, TimeDeltaUnit.DAYS, 18, TimeDeltaUnit.HOURS);
 		assert (delta.to_string() == "2 days and 18 hours");
+		delta = TimeDelta.with_unit (1, TimeDeltaUnit.SECONDS);
+		assert (delta.to_string() == "1 second");
+		delta = TimeDelta.with_unit (1, TimeDeltaUnit.MINUTES);
+		assert (delta.to_string() == "1 minute");
+		delta = TimeDelta.with_unit (1, TimeDeltaUnit.HOURS);
+		assert (delta.to_string() == "1 hour");
+		delta = TimeDelta.with_unit (1, TimeDeltaUnit.DAYS);
+		assert (delta.to_string() == "1 day");
 	}
 
 }
