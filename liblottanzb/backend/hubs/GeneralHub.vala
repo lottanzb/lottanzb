@@ -40,19 +40,11 @@ public class Lottanzb.GeneralHub : Object {
 		this.download_list_store = new DownloadListStore();
 		this.query_processor.get_query_notifier<GetQueueQuery> ()
 			.query_completed.connect ((query_processor, queue_query) => {
-			// Update the download list store in the main thread
-			Idle.add(() => {
-				handle_queue_query (queue_query);
-				return false;
-			});
+			handle_queue_query (queue_query);
 		});
 		this.query_processor.get_query_notifier<GetHistoryQuery> ()
 			.query_completed.connect ((query_processor, history_query) => {
-			// Update the download list store in the main thread
-			Idle.add(() => {
-				handle_history_query (history_query);
-				return false;
-			});
+			handle_history_query (history_query);
 		});
 
 		this.download_name_binding = new DownloadNameBinding (download_list_store, query_processor);
