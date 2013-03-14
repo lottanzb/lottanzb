@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012 Severin Heiniger <severinheiniger@gmail.com>
+ * Copyright (c) 2013 Severin Heiniger <severinheiniger@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,17 +13,25 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 using Lottanzb;
 
-private static int main (string[] args) {
-	Environment.set_variable ("GSETTINGS_BACKEND", "memory", true);
-	Gtk.init_check (ref args);
-	Test.init (ref args);
-	TestSuite.get_root ().add_suite (new BackendTest ());
-	TestSuite.get_root ().add_suite (new GeneralPreferencesTabTest ().get_suite ());
-	TestSuite.get_root ().add_suite (new SpeedLimitMenuTest ().get_suite ());
-	TestSuite.get_root ().add_suite (new InfoBarTest ().get_suite ());
-	return Test.run ();
+public class Lottanzb.SpeedLimitMenuTest : Lottanzb.TestSuiteBuilder {
+
+	public SpeedLimitMenuTest () {
+		base ("speed_limit_menu");
+		add_test("provider", test_provider);
+	}
+
+	public void test_provider () {
+		var config_hub = new MockConfigHub ();
+		config_hub.speed_limit =  SpeedLimitMenuProvider.UNLIMITED_SPEED;
+		var menu_provider = new SpeedLimitMenuProvider (config_hub);
+		var menu = (SpeedLimitMenu) menu_provider.make_menu ();
+		var new_speed_limit = DataSpeed(42);
+		menu.speed_limit_changed (new_speed_limit);
+		assert (config_hub.speed_limit == new_speed_limit);
+	}
+
 }

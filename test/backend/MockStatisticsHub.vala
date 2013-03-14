@@ -15,15 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-using Lottanzb;
+public class Lottanzb.MockStatisticsHub : Object, StatisticsHub {
 
-private static int main (string[] args) {
-	Environment.set_variable ("GSETTINGS_BACKEND", "memory", true);
-	Gtk.init_check (ref args);
-	Test.init (ref args);
-	TestSuite.get_root ().add_suite (new BackendTest ());
-	TestSuite.get_root ().add_suite (new GeneralPreferencesTabTest ().get_suite ());
-	TestSuite.get_root ().add_suite (new SpeedLimitMenuTest ().get_suite ());
-	TestSuite.get_root ().add_suite (new InfoBarTest ().get_suite ());
-	return Test.run ();
+	public DataSize history_total_size { get; protected set; }
+	public DataSize history_month_size { get; protected set; }
+	public DataSize history_week_size { get; protected set; }
+	public DataSize? total_download_folder_space { get; protected set; }
+	public DataSize? total_temp_folder_space { get; protected set; }
+	public DataSize? free_download_folder_space { get; protected set; }
+	public DataSize? free_temp_folder_space { get; protected set; }
+
+	public MockStatisticsHub () {
+		history_total_size = DataSize(0);
+		history_month_size = DataSize(0);
+		history_week_size = DataSize(0);
+	}
+
 }

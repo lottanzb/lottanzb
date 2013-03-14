@@ -13,17 +13,16 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
-using Lottanzb;
+public class Lottanzb.MockConfigHub : Object, ConfigHub {
 
-private static int main (string[] args) {
-	Environment.set_variable ("GSETTINGS_BACKEND", "memory", true);
-	Gtk.init_check (ref args);
-	Test.init (ref args);
-	TestSuite.get_root ().add_suite (new BackendTest ());
-	TestSuite.get_root ().add_suite (new GeneralPreferencesTabTest ().get_suite ());
-	TestSuite.get_root ().add_suite (new SpeedLimitMenuTest ().get_suite ());
-	TestSuite.get_root ().add_suite (new InfoBarTest ().get_suite ());
-	return Test.run ();
+	public SabnzbdSettings root { get; construct set; }
+	public DataSpeed speed_limit { get; set; }
+
+	public MockConfigHub () {
+		root = new SabnzbdSettings.with_memory_backend ();
+		speed_limit = new DataSpeed (0);
+	}
+
 }
