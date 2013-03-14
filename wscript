@@ -102,16 +102,29 @@ def build(bld):
     bld.options.all_tests = True
 
 def post(ctx):
+    flatten_utest_results(ctx)
     waf_unit_test.summary(ctx)
-    results = getattr(ctx, 'utest_results', [])
-    if results:
-        failure_count = len([result for result in results if result[1]])
-        if failure_count:
-            ctx.to_log("Some test failed.\n")
 
-    if ctx.cmd == 'install':
-        ctx.exec_command('/sbin/ldconfig')
+def flatten_utest_results(ctx):
+    original_results = getattr(ctx, 'utest_results', [])
+    results = []
+    for original_result in original_results:
+        filename, returncode, stdout, stderr = original_result
+        lines = stdout.split('\n')
+        for line in lines:
+            if not line:
+                continue
+            parts = line.split(' ')
+            suite_name = parts[0].rstrip(':')
+            outcome = parts[1]
+            if outcome == 'OK':
+                result = (suite_name, 0, outcome, None)
+            else:
+                result = (suite_name, returncode, None, outcome)
+            results.append(result)
 
+    ctx.utest_results = results
+                
 @conf
 def test_conf(ctx):
     conf.find_program('lcov', var='LCOV')
