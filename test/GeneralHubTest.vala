@@ -37,7 +37,7 @@ private class GeneralHubTestMockQueryProcessor : MockQueryProcessor {
 
 public GeneralHub make_general_hub () {
 	var query_processor = new GeneralHubTestMockQueryProcessor ();
-	var general_hub = new GeneralHub (query_processor);
+	var general_hub = new GeneralHubImpl (query_processor);
 	return general_hub;
 }
 

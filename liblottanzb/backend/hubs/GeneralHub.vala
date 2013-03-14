@@ -17,7 +17,31 @@
 
 using Gtk;
 
-public class Lottanzb.GeneralHub : Object {
+public interface Lottanzb.GeneralHub : Object {
+
+	public abstract QueryProcessor query_processor { get; construct set; }
+	public abstract DownloadListStore download_list_store { get; construct set; }
+
+	public abstract DataSpeed speed { get; protected set; }
+	public abstract TimeDelta time_left { get; protected set; }
+	public abstract DataSize size_left { get; protected set; }
+	public abstract DateTime eta { get; protected set; }
+
+	public abstract void pause_downloads (Gee.List<Download> downloads);
+	public abstract void resume_downloads (Gee.List<Download> downloads);
+	public abstract void move_download (Download download, int index);
+	public abstract void move_download_relative (Download download, int shift);
+	public abstract void force_download (Download download);
+	public abstract void move_download_up (Download download, int shift = 1);
+	public abstract void move_download_down (Download download, int shift = 1);
+	public abstract void move_download_down_to_bottom (Download download);
+	public abstract void rename_download (Download download, string new_name);
+	public abstract void set_download_priority (Download download, DownloadPriority new_priority);
+	public abstract void delete_download (Download download);
+
+}
+
+public class Lottanzb.GeneralHubImpl : Object, GeneralHub {
 
 	public QueryProcessor query_processor { get; construct set; }
 	public DownloadListStore download_list_store { get; construct set; }
@@ -25,17 +49,17 @@ public class Lottanzb.GeneralHub : Object {
 	private bool _paused;
 	private GetQueueQueryResponse? last_queue_query_response;
 
-	public DataSpeed speed { get; private set; }
-	public TimeDelta time_left { get; private set; }
-	public DataSize size_left { get; private set; }
-	public DateTime eta { get; private set; }
+	public DataSpeed speed { get; protected set; }
+	public TimeDelta time_left { get; protected set; }
+	public DataSize size_left { get; protected set; }
+	public DateTime eta { get; protected set; }
 
 	private DownloadNameBinding download_name_binding;
 	private DownloadPriorityBinding download_priority_binding;
 	private DownloadListStoreUpdater queue_updater;
 	private DownloadListStoreUpdater history_updater;
 
-	public GeneralHub (QueryProcessor query_processor) {
+	public GeneralHubImpl (QueryProcessor query_processor) {
 		this.query_processor = query_processor;
 		this.download_list_store = new DownloadListStore();
 		this.query_processor.get_query_notifier<GetQueueQuery> ()
