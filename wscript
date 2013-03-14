@@ -27,16 +27,11 @@ def options(opt):
         help=('Enable code coverage analysis. '
             'WARNING: this option only has effect '
             'with the configure command.'),
-            action="store_true", default=False, dest='enable_gcov')
+        action="store_true", default=False, dest='enable_gcov')
 
     opt.add_option('--lcov-report',
-        help=('Generate a code coverage report '
-            '(use this option at test time, not in configure)'),
+        help=('Generate a code coverage report'),
         action="store_true", default=False, dest='lcov_report')
-    
-    opt.add_option('--skiptests',
-        help='Skip unit tests',
-        action='store_true', default=False, dest='skiptests')
 
 def configure(conf):
     conf.load('compiler_c gnu_dirs glib2 vala intltool waf_unit_test')
@@ -92,7 +87,7 @@ def configure(conf):
 
 def build(bld):
     bld.recurse('data liblottanzb lottanzb')
-    if not Options.options.skiptests:
+    if not getattr(Options.options, 'no_tests', False):
         bld.recurse('test')
     
     bld(features='intltool_po', appname=APPNAME, podir='po',
