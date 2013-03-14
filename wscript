@@ -4,7 +4,7 @@
 import os.path
 import subprocess
 
-from waflib import Context, Options, Errors
+from waflib import Context, Options, Errors, Logs
 from waflib.Task import Task, update_outputs
 from waflib.Configure import conf
 from waflib.Build import BuildContext
@@ -90,7 +90,7 @@ def build(bld):
 
 def post(ctx):
     flatten_utest_results(ctx)
-    waf_unit_test.summary(ctx)
+    show_unit_test_summary(ctx)
 
 def flatten_utest_results(ctx):
     original_results = getattr(ctx, 'utest_results', [])
@@ -107,11 +107,29 @@ def flatten_utest_results(ctx):
             if outcome == 'OK':
                 result = (suite_name, 0, outcome, None)
             else:
-                result = (suite_name, returncode, None, outcome)
+                result = (suite_name, returncode, None, stderr.strip('\n'))
             results.append(result)
 
     ctx.utest_results = results
-                
+
+def show_unit_test_summary(bld):
+    results = getattr(bld, 'utest_results', [])
+    if results:
+        Logs.pprint('CYAN', 'execution summary')
+        total = len(results)
+        total_failed = len([x for x in results if x[1]])
+        total_passed = total - total_failed
+        if total_passed: 
+            Logs.pprint('CYAN', '  tests that pass %d/%d' % (total_passed, total))
+            for (f, code, out, err) in results:
+                if not code:
+                    Logs.pprint('CYAN','    %s' % f)
+        if total_failed:
+            Logs.pprint('RED', '  tests that fail %d/%d' % (total_failed, total))
+            for (f, code, out, err) in results:
+                if code:
+                    Logs.pprint('RED', '    %s' % f)
+                    Logs.pprint('RED', '    %s' % err)
 @conf
 def coverage_conf(ctx):
     conf.find_program('lcov', var='LCOV')
