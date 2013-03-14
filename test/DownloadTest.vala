@@ -33,9 +33,13 @@ public class Lottanzb.DownloadTest : Lottanzb.TestSuiteBuilder {
 	}
 
 	public void test_priority () {
-		foreach (var priority in DownloadPriority.all ()) {
+		var priorities = DownloadPriority.all ();
+		for (int i = 0; i < priorities.length; i++) {
+			var priority = priorities[i];
 			var priority_string = priority.to_string ();
 			assert (priority_string.length > 0);
+			assert (priority.to_index () == i);
+			assert (DownloadPriority.from_index (i) == priority);
 		}
 	}
 
