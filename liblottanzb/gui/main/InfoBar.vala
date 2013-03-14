@@ -38,7 +38,7 @@ public class Lottanzb.InfoBar : AbstractInfoBar {
 		widgets.speed_container.pack_start(_speed_button, false);
 
 		_general_hub.notify["speed"].connect((o, p) => {
-			on_remaining_changed ();
+			on_speed_changed ();
 		});
 		_general_hub.notify["size-left"].connect((o, p) => {
 			on_remaining_changed ();
