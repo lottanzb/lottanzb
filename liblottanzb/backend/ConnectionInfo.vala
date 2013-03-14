@@ -35,7 +35,7 @@ public class Lottanzb.ConnectionInfo : Object {
 		get { return username.length > 0 && password.length > 0; }
 	}
 	
-	public string schema {
+	public string scheme {
 		get { return (https) ? "https" : "http"; }
 	}
 	
@@ -58,12 +58,19 @@ public class Lottanzb.ConnectionInfo : Object {
 		owned get { return @"$(host):$(port)"; }
 	}
 	
-	public string url {
-		owned get { return @"$(schema)://$(host_and_port)/"; }
+	public Soup.URI build_uri () {
+		var uri = new Soup.URI (null);
+		uri.set_scheme (scheme);
+		uri.set_host (host);
+		uri.set_port (port);
+		uri.set_path ("/");
+		return uri;
 	}
 	
-	public string api_url {
-		owned get { return @"$(url)api"; }
+	public Soup.URI build_api_uri () {
+		var uri = build_uri ();
+		uri.set_path ("/api");
+		return uri;
 	}
-	
+
 }

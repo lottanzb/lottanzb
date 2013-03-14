@@ -34,12 +34,12 @@ public class Lottanzb.ConnectionInfoTest : Lottanzb.TestSuiteBuilder {
 		assert (connection_info.api_key == "0123456789abcdef");
 		assert (!connection_info.https);
 		assert (connection_info.requires_authentication);
-		assert (connection_info.schema == "http");
+		assert (connection_info.scheme == "http");
 		assert (connection_info.is_local);
 		assert (!connection_info.is_remote);
 		assert (connection_info.host_and_port == "localhost:8080");
-		assert (connection_info.url == "http://localhost:8080/");
-		assert (connection_info.api_url == "http://localhost:8080/api");
+		assert (connection_info.build_uri ().to_string (false) == "http://localhost:8080/");
+		assert (connection_info.build_api_uri ().to_string (false) == "http://localhost:8080/api");
 		connection_info = new ConnectionInfo ("192.168.1.33", 9090, "", "", "0123456789abcdef", true);
 		assert (!connection_info.is_local);
 		assert (connection_info.is_remote);

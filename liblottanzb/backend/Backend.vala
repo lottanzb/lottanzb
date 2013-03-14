@@ -31,7 +31,7 @@ public class Lottanzb.Backend : Object {
 		query_processor = session.query_processor;
 		general_hub = new GeneralHub (query_processor);
 		statistics_hub = new StatisticsHub (query_processor);
-		config_hub = new ConfigHub (query_processor);
+		config_hub = new ConfigHubImpl (query_processor);
 
 		Timeout.add_seconds (1, () => {
 			query_processor.get_queue ();

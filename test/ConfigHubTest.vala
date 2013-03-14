@@ -57,7 +57,7 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		last_row_deleted_index = -1;
 
 		query_processor = new ConfigHubTestMockQueryProcessor ();
-		config_hub = new ConfigHub (query_processor);
+		config_hub = new ConfigHubImpl (query_processor);
 	}
 
 	public void test_basic () {

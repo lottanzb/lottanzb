@@ -13,21 +13,12 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+*/
 
-using Lottanzb;
+public class Lottanzb.SabnzbdSettingsIniFileReader : Object {
 
-public class Lottanzb.QueriesTest : TestSuite {
-
-	public QueriesTest () {
-		base ("queries");
-		add_suite (new SimpleQueryTest ().get_suite ());
-		add_suite (new ResumeQueryTest ().get_suite ());
-		add_suite (new GetAuthenticationTypeQueryTest ().get_suite ());
-		add_suite (new GetWarningsQueryTest ().get_suite ());
-		add_suite (new PauseQueryTest ().get_suite ());
-		add_suite (new GetQueueQueryTest ().get_suite ());
-		add_suite (new GetHistoryQueryTest ().get_suite ());
+	public SabnzbdSettingsIniFileReader () {
+	
 	}
 
 }

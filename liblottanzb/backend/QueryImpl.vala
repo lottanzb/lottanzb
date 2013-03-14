@@ -52,20 +52,20 @@ public abstract class Lottanzb.QueryImpl<R> : Object, Query<R> {
 	}
 
 	public virtual Soup.Message build_message (ConnectionInfo connection_info) {
-		var url = build_url (connection_info);
-		var message = new Soup.Message ("GET", url);
+		var uri = build_uri (connection_info);
+		var message = new Soup.Message.from_uri ("GET", uri);
 		return message;
 	}
 	
-	public virtual string build_url (ConnectionInfo connection_info) {
-		var api_url = connection_info.api_url;
+	public virtual Soup.URI build_uri (ConnectionInfo connection_info) {
+		var uri = connection_info.build_api_uri ();
 		var arguments = build_arguments (connection_info);
 		var real_arguments = new HashTable<string, string> (str_hash, str_equal);
 		foreach (Gee.Map.Entry<string, string> entry in arguments.entries) {
 			real_arguments.set (entry.key, entry.value);
 		}
-		var url = api_url + "?" + Soup.Form.encode_hash (real_arguments);
-		return url;
+		uri.set_query_from_form (real_arguments);
+		return uri;
 	}
 
 	public Gee.Map<string, string> build_arguments (ConnectionInfo connection_info) {

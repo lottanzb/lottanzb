@@ -15,12 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+public interface Lottanzb.ConfigHub : Object {
 
-public class Lottanzb.ConfigHub : Object {
+	public abstract SabnzbdSettings root { get; construct set; }
+	public abstract DataSpeed speed_limit { get; set; }
 
-	public QueryProcessor query_processor { get; construct set; }
+}
+
+public class Lottanzb.ConfigHubImpl : Object, ConfigHub {
+
+	private QueryProcessor query_processor;
+	private SabnzbdSettingsUpdater settings_updater; 
+
 	public SabnzbdSettings root { get; construct set; }
-	public SabnzbdSettingsUpdater settings_updater { get; construct set; }
 
 	public DataSpeed speed_limit {
 		get {
@@ -31,7 +38,7 @@ public class Lottanzb.ConfigHub : Object {
 		}
 	}
 
-	public ConfigHub (QueryProcessor query_processor) {
+	public ConfigHubImpl (QueryProcessor query_processor) {
 		this.query_processor = query_processor;
 		this.root = new SabnzbdSettings.with_memory_backend ();
 		this.settings_updater = new SabnzbdSettingsUpdater (root);
