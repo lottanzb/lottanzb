@@ -80,7 +80,7 @@ public class Lottanzb.GetQueueQueryResponseImpl : Object, GetQueueQueryResponse 
 				var time_left_string = _object.get_string_member ("timeleft");
 				return TimeDelta.parse (time_left_string);
 			} else {
-				return TimeDelta (0);
+				return 0;
 			}
 		}
 	}
@@ -231,24 +231,24 @@ public class Lottanzb.DynamicDownload : Object, Download {
 		set { assert_not_reached (); }
 	}
 
-	public TimeDelta? average_age { 
+	public TimeDelta average_age { 
 		get {
 			if (_slot.has_member("avg_age")) {
 				var average_age_string = _slot.get_string_member("avg_age");
 				return TimeDelta.parse(average_age_string);
 			}
-			return null;
+			return TimeDelta.UNKNOWN;
 		}
 		internal set { assert_not_reached (); }
 	}
 
-	public TimeDelta? time_left { 
+	public TimeDelta time_left { 
 		get {
 			if (_slot.has_member("timeleft") && !is_eta_unknown) {
 				var time_left_string = _slot.get_string_member("timeleft");
 				return TimeDelta.parse(time_left_string);
 			}
-			return null;
+			return TimeDelta.UNKNOWN;
 		}
 		internal set { assert_not_reached (); }
 	}
@@ -282,7 +282,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 
 	public DateTime? eta { 
 		get {
-			if (_eta == null && !is_eta_unknown && time_left != null) {
+			if (_eta == null && !is_eta_unknown && time_left.is_known()) {
 				var now = new DateTime.now_local ();
 				_eta = now.add_seconds (time_left.seconds);
 			}
@@ -385,24 +385,22 @@ public class Lottanzb.DynamicDownload : Object, Download {
 		internal set { assert_not_reached (); }
 	}
 
-	public TimeDelta? post_processing_time { 
+	public TimeDelta post_processing_time { 
 		get {
 			if (_slot.has_member("postproc_time")) {
-				var post_processing_seconds = _slot.get_int_member("postproc_time");
-				return TimeDelta ((int) post_processing_seconds);
+				return (int) _slot.get_int_member("postproc_time");
 			}
-			return null;
+			return 0;
 		}
 		internal set { assert_not_reached (); }
 	}
 
-	public TimeDelta? download_time { 
+	public TimeDelta download_time { 
 		get {
 			if (_slot.has_member("download_time")) {
-				var seconds = _slot.get_int_member ("download_time");
-				return TimeDelta ((int) seconds);
+				return (int) _slot.get_int_member ("download_time");
 			}
-			return null;
+			return TimeDelta.UNKNOWN;
 		}
 		internal set { assert_not_reached (); }
 	}

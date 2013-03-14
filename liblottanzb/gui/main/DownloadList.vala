@@ -434,10 +434,10 @@ public class Lottanzb.DownloadPrimaryColumn : DownloadListColumn {
 				}
 				return error_message;
 			case DownloadStatus.DOWNLOADING:
-				if (download.time_left == null) {
-					return _("Downloading - Remaining time unknown");
-				} else {
+				if (download.time_left.is_known ()) {
 					return _(@"Downloading - $(download.time_left) left");
+				} else {
+					return _("Downloading - Remaining time unknown");
 				}
 			case DownloadStatus.GRABBING:
 				return _("Downloading NZB file...");

@@ -27,7 +27,7 @@ public class Lottanzb.TimeDeltaTest : Lottanzb.TestSuiteBuilder {
 
 	public void test_constructors () {
 		TimeDelta delta;
-		delta = TimeDelta (1000);
+		delta = 1000;
 		assert (delta.total_seconds == 1000);
 		delta = TimeDelta.with_unit (2, TimeDeltaUnit.DAYS);
 		assert (delta.total_seconds == 2 * 24 * 60 * 60);
@@ -39,7 +39,7 @@ public class Lottanzb.TimeDeltaTest : Lottanzb.TestSuiteBuilder {
 
 	public void test_string_conversion () {
 		TimeDelta delta;
-		delta = TimeDelta (46);
+		delta = 46;
 		assert (delta.to_string() == "46 seconds");
 		delta = TimeDelta.with_units (2, TimeDeltaUnit.MINUTES, 3, TimeDeltaUnit.SECONDS);
 		assert (delta.to_string() == "2 minutes");

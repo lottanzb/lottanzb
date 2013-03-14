@@ -201,8 +201,8 @@ public interface Lottanzb.Download : Object {
 	public abstract DownloadPriority priority { get; internal set; }
 	public abstract string file_name { get; internal set; }
 	public abstract string name { get; set; }
-	public abstract TimeDelta? average_age { get; internal set; }
-	public abstract TimeDelta? time_left { get; internal set; }
+	public abstract TimeDelta average_age { get; internal set; }
+	public abstract TimeDelta time_left { get; internal set; }
 	public abstract DataSize? size { get; internal set; }
 	public abstract DataSize? size_left { get; internal set; }
 	public abstract DateTime? eta { get; internal set; }
@@ -211,8 +211,8 @@ public interface Lottanzb.Download : Object {
 	public abstract string category { get; internal set; }
 	public abstract DownloadPostProcessing post_processing { get; internal set; }
 	public abstract int message_id { get; internal set; }
-	public abstract TimeDelta? post_processing_time { get; internal set; }
-	public abstract TimeDelta? download_time { get; internal set; }
+	public abstract TimeDelta post_processing_time { get; internal set; }
+	public abstract TimeDelta download_time { get; internal set; }
 	public abstract DateTime? completed { get; internal set; }
 	public abstract string? storage_path { get; internal set; }
 	public abstract string error_message { get; internal set; }
@@ -241,8 +241,8 @@ public class Lottanzb.DownloadImpl : Object, Download {
 	private DownloadPriority _priority = DownloadPriority.NORMAL;
 	private string _file_name;
 	private string _name;
-	private TimeDelta? _average_age;
-	private TimeDelta? _time_left;
+	private TimeDelta _average_age;
+	private TimeDelta _time_left;
 	private DataSize? _size;
 	private DataSize? _size_left;
 	private DateTime? _eta;
@@ -251,8 +251,8 @@ public class Lottanzb.DownloadImpl : Object, Download {
 	private string _category;
 	private DownloadPostProcessing _post_processing = DownloadPostProcessing.DELETE;
 	private int _message_id;
-	private TimeDelta? _post_processing_time;
-	private TimeDelta? _download_time;
+	private TimeDelta _post_processing_time;
+	private TimeDelta _download_time;
 	private DateTime? _completed;
 	private string? _storage_path;
 	private string _error_message;
@@ -281,11 +281,11 @@ public class Lottanzb.DownloadImpl : Object, Download {
 		get { return _name; }
 		set { _name = value; }
 	}
-	public TimeDelta? average_age {
+	public TimeDelta average_age {
 		get { return _average_age; }
 		internal set { _average_age = value; }
 	}
-	public TimeDelta? time_left {
+	public TimeDelta time_left {
 		get { return _time_left; }
 		internal set { _time_left = value; }
 	}
@@ -325,11 +325,11 @@ public class Lottanzb.DownloadImpl : Object, Download {
 		get { return _message_id; }
 		internal set { _message_id = value; }
 	}
-	public TimeDelta? post_processing_time {
+	public TimeDelta post_processing_time {
 		get { return _post_processing_time; }
 		internal set { _post_processing_time = value; }
 	}
-	public TimeDelta? download_time {
+	public TimeDelta download_time {
 		get { return _download_time; }
 		internal set { _download_time = value; }
 	}

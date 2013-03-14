@@ -15,32 +15,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+[CCode (type_id = "G_TYPE_INT")]
+[IntegerType (rank = 6)]
+public struct Lottanzb.TimeDelta : int {
 
-[Immutable]
-public struct Lottanzb.TimeDelta {
+	public static const TimeDelta UNKNOWN = -1;
 
-	public long total_seconds;
-	
-	public TimeDelta (long total_seconds) {
-		this.total_seconds = total_seconds;
+	public static TimeDelta with_unit (int time_value, TimeDeltaUnit unit) {
+		return unit.get_seconds() * time_value;
 	}
 	
-	public TimeDelta.with_unit (long time_value, TimeDeltaUnit unit) {
-		this.total_seconds = unit.get_seconds() * time_value;
-	}
-	
-	public TimeDelta.with_units (long first_time_value, TimeDeltaUnit first_unit,
-		long second_time_value, TimeDeltaUnit second_unit) {
+	public static TimeDelta with_units (int first_time_value, TimeDeltaUnit first_unit,
+		int second_time_value, TimeDeltaUnit second_unit) {
 		var first_seconds = first_time_value * first_unit.get_seconds();
 		var second_seconds = second_time_value * second_unit.get_seconds();
-		this.total_seconds = first_seconds + second_seconds;
+		return first_seconds + second_seconds;
 	}
 	
-	public TimeDelta.with_parts (long days, long hours, long minutes, long seconds) {
-		this.total_seconds= seconds + 60 * (minutes + 60 * (hours + 24 * days));
+	public static TimeDelta with_parts (int days, int hours, int minutes, int seconds) {
+		return seconds + 60 * (minutes + 60 * (hours + 24 * days));
 	}
 	
-	public TimeDelta.parse (string time_delta_string) {
+	public static new TimeDelta parse (string time_delta_string) {
 		try {
 			Regex PATTERN = new Regex("^(?P<hours>\\d+):(?P<minutes>\\d{2}):(?P<seconds>\\d{2})$");
 			Regex PATTERN_2 = new Regex("^(?P<time_delta>\\d+)(?P<unit>[mhd])$");
@@ -53,24 +49,30 @@ public struct Lottanzb.TimeDelta {
 				var hours = int.parse(hours_string);
 				var minutes = int.parse(minutes_string);
 				var seconds = int.parse(seconds_string);
-				total_seconds= seconds + 60 * (minutes + 60 * (hours + 24 * days));
+				return seconds + 60 * (minutes + 60 * hours);
 			} else {
 				match = PATTERN_2.match(time_delta_string, 0, out match_info);
 				if (match) {
-					var time_delta = long.parse(match_info.fetch_named("time_delta"));
+					var time_delta = int.parse(match_info.fetch_named("time_delta"));
 					var time_delta_unit_char = match_info.fetch_named("unit")[0];
 					TimeDeltaUnit time_delta_unit = TimeDeltaUnit.from_char(time_delta_unit_char);
-					this.with_unit(time_delta, time_delta_unit);
-					this.total_seconds = time_delta_unit.get_seconds() * time_delta;
+					return with_unit(time_delta, time_delta_unit);
 				} else {
-					this.total_seconds = 0;
 					if (time_delta_string.length > 0) {
 						warning ("could not parse time delta: %s", time_delta_string);
 					}
+					return UNKNOWN;
 				}
 			}
 		} catch (RegexError e) {
 			warning ("%s", e.message);
+		}
+		return UNKNOWN;
+	}
+
+	public int total_seconds {
+		get {
+			return this;
 		}
 	}
 	
@@ -232,7 +234,7 @@ public struct Lottanzb.TimeDelta {
 		>>> TimeDelta(days=1, hours=18)
 		"1 day and 18 hours"
 	*/
-	public string to_string () {
+	public new string to_string () {
 		var major_unit = major_unit;
 		var major_unit_value = get(major_unit);
 		if (major_unit == TimeDeltaUnit.SECONDS ||
@@ -261,6 +263,18 @@ public struct Lottanzb.TimeDelta {
 			}
 		}
 	}
+
+	public TimeDelta dup () {
+		return this;
+	}
+
+	public void free () {
+	
+	}
+
+	public bool is_known () {
+		return this != UNKNOWN;
+	}
 	
 }
 
@@ -271,7 +285,7 @@ public enum Lottanzb.TimeDeltaUnit {
 	MINUTES,
 	SECONDS;
 	
-	public long get_seconds () {
+	public int get_seconds () {
 		switch (this) {
 			case DAYS:
 				return 60 * 60 * 24;

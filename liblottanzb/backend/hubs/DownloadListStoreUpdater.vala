@@ -181,7 +181,7 @@ public class Lottanzb.DownloadListStoreQueueUpdater : DownloadListStoreUpdater {
 	}
 
 	private bool is_download_nearly_finished (Download download) {
-		return download.time_left != null && download.time_left.seconds <= 5;
+		return download.time_left.is_known () && download.time_left.seconds <= 5;
 	}
 
 }

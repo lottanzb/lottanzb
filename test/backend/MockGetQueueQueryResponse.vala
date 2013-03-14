@@ -27,7 +27,7 @@ public class Lottanzb.MockGetQueueQueryResponse : GetQueueQueryResponse, Object 
 	public MockGetQueueQueryResponse.empty () {
 		_downloads = new Gee.ArrayList<Download> ();
 		_is_paused = false;
-		_time_left = TimeDelta (0);
+		_time_left = 0;
 		_size_left = DataSize (0);
 		_speed = DataSpeed (0);
 	}

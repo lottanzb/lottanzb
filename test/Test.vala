@@ -25,5 +25,6 @@ private static int main (string[] args) {
 	TestSuite.get_root ().add_suite (new GeneralPreferencesTabTest ().get_suite ());
 	TestSuite.get_root ().add_suite (new SpeedLimitMenuTest ().get_suite ());
 	TestSuite.get_root ().add_suite (new InfoBarTest ().get_suite ());
+	TestSuite.get_root ().add_suite (new DownloadListTest ().get_suite ());
 	return Test.run ();
 }

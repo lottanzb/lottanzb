@@ -37,7 +37,7 @@ public class Lottanzb.InfoBarTest : Lottanzb.TestSuiteBuilder {
 
 	public InfoBarTest () {
 		base ("info_bar");
-		add_test("updates", test_updates);
+		add_test ("updates", test_updates);
 	}
 
 	public void test_updates () {
