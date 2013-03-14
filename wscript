@@ -4,7 +4,7 @@
 import os.path
 import subprocess
 
-from waflib import Context, Options
+from waflib import Context, Options, Errors
 from waflib.Task import Task, update_outputs
 from waflib.Configure import conf
 from waflib.Build import BuildContext
@@ -148,7 +148,7 @@ def coverage(ctx):
             if subprocess.Popen(lcov_extract_command, shell=True).wait():
                 raise SystemExit(1)
 
-        genhtml_command = "genhtml -o " + lcov_report_dir
+        genhtml_command = "genhtml --no-function-coverage --no-branch-coverage -o " + lcov_report_dir
         genhtml_command += " " + info_file
         if subprocess.Popen(genhtml_command, shell=True).wait():
             raise SystemExit(1)
