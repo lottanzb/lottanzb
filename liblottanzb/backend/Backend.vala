@@ -15,18 +15,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-public class Lottanzb.Backend : Object {
+public interface Lottanzb.Backend : Object {
 	
 	public static string SETTINGS_KEY { get { return "backend"; } }
 	
-	public Session session { get; private set; }
-	public QueryProcessor query_processor { get; private set; }
-	public GeneralHub general_hub { get; private set; }
-	public StatisticsHub statistics_hub { get; private set; }
-	public ConfigHub config_hub { get; private set; }
+	public abstract QueryProcessor query_processor { get; protected set; }
+	public abstract GeneralHub general_hub { get; protected set; }
+	public abstract StatisticsHub statistics_hub { get; protected set; }
+	public abstract ConfigHub config_hub { get; protected set; }
+
+}
+
+public class Lottanzb.BackendImpl : Object, Backend {
 	
-	public Backend (ConfigProvider config_provider, SessionProvider session_provider) {
+	public Session session { get; protected set; }
+	public QueryProcessor query_processor { get; protected set; }
+	public GeneralHub general_hub { get; protected set; }
+	public StatisticsHub statistics_hub { get; protected set; }
+	public ConfigHub config_hub { get; protected set; }
+	
+	public BackendImpl (ConfigProvider config_provider, SessionProvider session_provider) {
 		session = session_provider.build_session ();
 		query_processor = session.query_processor;
 		general_hub = new GeneralHubImpl (query_processor);
