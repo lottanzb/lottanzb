@@ -29,10 +29,6 @@ def options(opt):
             'with the configure command.'),
         action="store_true", default=False, dest='enable_gcov')
 
-    opt.add_option('--lcov-report',
-        help=('Generate a code coverage report'),
-        action="store_true", default=False, dest='lcov_report')
-
 def configure(conf):
     conf.load('compiler_c gnu_dirs glib2 vala intltool waf_unit_test')
     
@@ -57,8 +53,6 @@ def configure(conf):
         atleast_version='0.1', args='--cflags --libs')
     conf.check_cfg(package='unique-3.0', uselib_store='UNIQUE',
         atleast_version='0.1', args='--cflags --libs')
-    # conf.check_cfg(package='valadate-1.0', uselib_store='VALADATE',
-    #     atleast_versoin='0.1.1', args='--cflags --libs', mandatory=False)
 
     env = conf.env
     if conf.options.enable_gcov:
@@ -70,7 +64,6 @@ def configure(conf):
 
     conf.find_program('xsltproc', var='XSLTPROC')
     conf.find_program('glib-compile-resources', var='GLIB_COMPILE_RESOURCES')
-    # conf.find_program('valadate', var='VALADATE', mandatory=False)
     
     conf.define('PACKAGE', APPNAME)
     conf.define('DBUS_NAME', DBUS_NAME);
@@ -81,7 +74,6 @@ def configure(conf):
     conf.env.append_value('CFLAGS', '-w')
     conf.env.append_value('VALAFLAGS', '-g')
     conf.env.append_value('VALAFLAGS', '--save-temps')
-    # conf.env.append_value('VALAFLAGS', '--enable-experimental-non-null')
  
     conf.write_config_header ('config.h')
 
@@ -121,11 +113,11 @@ def flatten_utest_results(ctx):
     ctx.utest_results = results
                 
 @conf
-def test_conf(ctx):
+def coverage_conf(ctx):
     conf.find_program('lcov', var='LCOV')
     conf.find_program('genhtml', var='GENHTML')
 
-def test(ctx):
+def coverage(ctx):
     env = ctx.env
 
     if not env['GCOV_ENABLED']:
@@ -134,7 +126,7 @@ def test(ctx):
 
     os.chdir('build')
     try:
-        ctx.exec_command('test/lottanzb-test')
+        # ctx.exec_command('test/lottanzb-test')
         lcov_report_dir = 'lcov-report'
         create_dir_command = "rm -rf " + lcov_report_dir
         create_dir_command += " && mkdir " + lcov_report_dir + ";"
@@ -163,6 +155,7 @@ def test(ctx):
     finally:
         os.chdir("..")
 
-class test_context(BuildContext):
-    cmd = 'test'
-    fun = 'test'
+class coverage_context(BuildContext):
+    '''generates a code coverage report for the project'''
+    cmd = 'coverage'
+    fun = 'coverage'
