@@ -405,7 +405,7 @@ public class Lottanzb.DownloadTimeField : FormattedActivityField {
 public class Lottanzb.PostProcessingField : FormattedActivityField {
 
 	public PostProcessingField (Download download) {
-		base (download, _("Post-processing"), { "post-porocessing-time" },
+		base (download, _("Post-processing"), { "post-processing-time" },
 			DownloadStatusGroup.FULLY_LOADED);
 	}
 
@@ -427,7 +427,7 @@ public class Lottanzb.CompletedField : FormattedActivityField {
 
 	protected override string get_text () {
 		if (download.completed != null) {
-			return download.completed.to_string ();
+			return download.completed.format ("%c");
 		}
 		return LABEL_TEXT_UNKNOWN_VALUE;
 	}
