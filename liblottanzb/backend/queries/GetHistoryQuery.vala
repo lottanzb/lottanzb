@@ -36,6 +36,9 @@ public class Lottanzb.GetHistoryQueryImpl : QueryImpl<GetHistoryQueryResponse>, 
 public interface Lottanzb.GetHistoryQueryResponse : Object {
 
 	public abstract Gee.List<Download> downloads { get; }
+	public abstract DataSize history_total_size { get; }
+	public abstract DataSize history_month_size { get; }
+	public abstract DataSize history_week_size { get; }
 
 }
 
@@ -60,6 +63,36 @@ public class Lottanzb.GetHistoryQueryResponseImpl : GetHistoryQueryResponse, Obj
 				}
 			}
 			return _downloads;
+		}
+	}
+
+	public DataSize history_total_size {
+		get {
+			if (_object.has_member ("total_size")) {
+				var size = _object.get_string_member ("total_size");
+				return DataSize.parse (size);
+			}
+			return DataSize.UNKNOWN;
+		}
+	}
+
+	public DataSize history_month_size {
+		get {
+			if (_object.has_member ("month_size")) {
+				var size = _object.get_string_member ("month_size");
+				return DataSize.parse (size);
+			}
+			return DataSize.UNKNOWN;
+		}
+	}
+
+	public DataSize history_week_size {
+		get {
+			if (_object.has_member ("week_size")) {
+				var size = _object.get_string_member ("week_size");
+				return DataSize.parse (size);
+			}
+			return DataSize.UNKNOWN;
 		}
 	}
 

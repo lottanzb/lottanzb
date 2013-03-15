@@ -66,7 +66,9 @@ public class Lottanzb.StatisticsHubImpl : Object, StatisticsHub {
 	}
 
 	private void handle_history_query (GetHistoryQuery query) {
-		
+		history_total_size = query.get_response ().history_total_size;
+		history_month_size = query.get_response ().history_month_size;
+		history_week_size = query.get_response ().history_week_size;
 	}
 
 }
