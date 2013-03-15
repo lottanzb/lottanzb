@@ -77,7 +77,7 @@ public class Lottanzb.GetQueueQueryTest : Lottanzb.TestSuiteBuilder {
 		assert (paused_download.post_processing == DownloadPostProcessing.DELETE);
 		assert (paused_download.message_id == 0);
 		assert (!paused_download.post_processing_time.is_known ());
-		assert (paused_download.download_time == 0);
+		assert (!paused_download.download_time.is_known ());
 		assert (paused_download.completed == null);
 		assert (paused_download.storage_path == null);
 		assert (paused_download.error_message == "");

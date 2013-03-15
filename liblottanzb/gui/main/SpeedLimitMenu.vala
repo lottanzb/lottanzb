@@ -19,7 +19,7 @@ using Gtk;
 
 public class Lottanzb.SpeedLimitMenuProvider : MenuProvider, Object {
 
-	public static DataSpeed UNLIMITED_SPEED = DataSpeed (0);
+	public static DataSpeed UNLIMITED_SPEED = 0;
 	public static DataSpeed[] DEFAULT_SPEED_LIMITS = {
 		DataSpeed.with_unit (2000, DataSizeUnit.KILOBYTES),
 		DataSpeed.with_unit (1000, DataSizeUnit.KILOBYTES),
@@ -97,7 +97,7 @@ public class Lottanzb.SpeedLimitMenu : Gtk.Menu {
 	}
 
 	private string speed_limit_string (DataSpeed data_speed) {
-		if (data_speed.bytes_per_second == 0) {
+		if (data_speed == 0) {
 			return _("Unlimited");
 		} else {
 			return data_speed.to_string ();

@@ -15,21 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+[CCode (type_id = "G_TYPE_LONG")]
+[LongType (rank = 6)]
+public struct Lottanzb.DataSize : long {
 
-[Immutable]
-public struct Lottanzb.DataSize {
+	public static const DataSize UNKNOWN = -1;
 
-	public long bytes;
-	
-	public DataSize (long total_bytes) {
-		this.bytes = total_bytes;
+	public static DataSize with_unit (double size, DataSizeUnit unit) {
+		return (long) (size * unit.get_bytes());
 	}
 	
-	public DataSize.with_unit (double size, DataSizeUnit unit) {
-		this.bytes = (long) (size * unit.get_bytes());
-	}
-	
-	public DataSize.parse (string data_size_string) {
+	public static new DataSize parse (string data_size_string) {
 		try {
 			Regex pattern = new Regex ("^(?P<size>-?[0-9]+(\\.[0-9]+)?)\\s*(?P<unit>[KMGTP]?B?)$");
 			MatchInfo match_info;
@@ -42,16 +38,22 @@ public struct Lottanzb.DataSize {
 				}
 				DataSizeUnit unit = DataSizeUnit.from_char(unit_char);
 				var size = double.parse(match_info.fetch_named("size"));
-				this.bytes = (long) (size * unit.get_bytes());
-				// NOTE: Calling this.with_unit (size, unit) does not work.
+				return with_unit (size, unit);
 			} else {
-				this.bytes = 0;
 				if (data_size_string.length > 0) {
 					warning ("could not parse data size: %s", data_size_string);
 				}
+				return UNKNOWN;
 			}
 		} catch (RegexError e) {
 			warning ("%s", e.message);
+		}
+		return UNKNOWN;
+	}
+
+	public long bytes {
+		get {
+			return this;
 		}
 	}
 	
@@ -111,7 +113,7 @@ public struct Lottanzb.DataSize {
 		}
 	}
 	
-	public string to_string () {
+	public new string to_string () {
 		var unit = major_unit;
 		var size = get(major_unit);
 		if (unit == DataSizeUnit.BYTES) {
@@ -124,59 +126,81 @@ public struct Lottanzb.DataSize {
 		}
 	}
 
+	public DataSize dup () {
+		return this;
+	}
+
+	public void free () {
+	}
+
+	public bool is_known {
+		get {
+			return (long) this != UNKNOWN;
+		}
+	}
+
 }
 
-[Immutable]
-public struct Lottanzb.DataSpeed {
+[CCode (type_id = "G_TYPE_LONG")]
+[LongType (rank = 6)]
+public struct Lottanzb.DataSpeed : long {
 
-	private DataSize data_size;
+	public static const DataSpeed UNKNOWN = -1;
 
-	public DataSpeed (int bytes_per_second) {
-		data_size = DataSize (bytes_per_second);
+	public static DataSpeed with_unit (double speed, DataSizeUnit unit) {
+		return DataSize.with_unit (speed, unit);
 	}
 
-	public DataSpeed.with_unit (double speed, DataSizeUnit unit) {
-		data_size = DataSize.with_unit (speed, unit);
-	}
-
-	public DataSpeed.parse (string data_size_string) {
-		data_size = DataSize.parse (data_size_string);
+	public new static DataSpeed parse (string data_size_string) {
+		return DataSize.parse (data_size_string);
 	}
 
 	public long bytes_per_second {
 		get {
-			return data_size.bytes;
+			return this;
 		}
 	}
 
 	public double kilobytes_per_second {
 		get {
-			return data_size.kilobytes;
+			return ((DataSize) this).kilobytes;
 		}
 	}
 
 	public double megabytes_per_second {
 		get {
-			return data_size.megabytes;
+			return ((DataSize) this).megabytes;
 		}
 	}
 
 	public double gigabytes_per_second {
 		get {
-			return data_size.gigabytes;
+			return ((DataSize) this).gigabytes;
 		}
 	}
 
 	public double terabytes_per_second {
 		get {
-			return data_size.terabytes;
+			return ((DataSize) this).terabytes;
 		}
 	}
 
-	public string to_string () {
-		return @"$(data_size)/s";
+	public new string to_string () {
+		return ((DataSize) this).to_string() + "/s";
 	} 
 
+	public DataSpeed dup () {
+		return this;
+	}
+
+	public void free () {
+	}
+
+	public bool is_known {
+		get {
+			return (long) this != UNKNOWN;
+		}
+	}
 
 }
 

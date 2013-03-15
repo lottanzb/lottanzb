@@ -84,7 +84,7 @@ public class Lottanzb.InfoBar : AbstractInfoBar {
 	private void on_free_space_changed () {
 		var free_download_space = _statistics_hub.free_download_folder_space;
 		var free_temp_space = _statistics_hub.free_temp_folder_space;
-		if (free_download_space == null || free_temp_space == null) {
+		if (!free_download_space.is_known || !free_temp_space.is_known) {
 			return;
 		}
 		var new_label = _(@"$(free_download_space) free");
@@ -92,14 +92,14 @@ public class Lottanzb.InfoBar : AbstractInfoBar {
 
 		// Use red color to indicate that the size of the queue exceeds the
 		// available space in the download folder
-		if (free_download_space.bytes < size_left.bytes) {
+		if (free_download_space < size_left) {
 			new_label = @"<span color=\"red\">$(new_label)</span>";
 		}
 
 		// Only show the free space in the temporary folder if it is on a
 		// different partition.
 		// TODO: Could also use red color to indicate potential problems.
-		if (free_download_space.bytes != free_temp_space.bytes) {
+		if (free_download_space != free_temp_space) {
 			new_label += "\n" + _(@"$(free_temp_space) free (temp)");
 			new_label += @"<span size=\"7200\">$(new_label)</span>";
 		}

@@ -29,7 +29,7 @@ public class Lottanzb.SpeedLimitMenuTest : Lottanzb.TestSuiteBuilder {
 		config_hub.speed_limit =  SpeedLimitMenuProvider.UNLIMITED_SPEED;
 		var menu_provider = new SpeedLimitMenuProvider (config_hub);
 		var menu = (SpeedLimitMenu) menu_provider.make_menu ();
-		var new_speed_limit = DataSpeed(42);
+		var new_speed_limit = 42;
 		menu.speed_limit_changed (new_speed_limit);
 		assert (config_hub.speed_limit == new_speed_limit);
 	}

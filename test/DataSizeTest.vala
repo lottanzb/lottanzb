@@ -29,7 +29,7 @@ public class Lottanzb.DataSizeTest : Lottanzb.TestSuiteBuilder {
 
 	public void test_constructors () {
 		DataSize data_size;
-		data_size = DataSize (1000);
+		data_size = 1000;
 		assert (data_size.bytes == 1000);
 		data_size = DataSize.with_unit (2.0, DataSizeUnit.BYTES);
 		assert (data_size.bytes == 2);
@@ -42,20 +42,21 @@ public class Lottanzb.DataSizeTest : Lottanzb.TestSuiteBuilder {
 		data_size = DataSize.parse ("10B");
 		assert (data_size.bytes == 10);
 		data_size = DataSize.parse ("2.25 GB");
-		assert (data_size.bytes == 2250l * 1000l * 1000l );
+		assert (data_size.bytes == 2250l * 1000l * 1000l);
 		data_size = DataSize.parse ("2.0 B");
 		assert (data_size.bytes == 2);
 		data_size = DataSize.parse ("");
-		assert (data_size.bytes == 0);
+		assert (!data_size.is_known);
+		assert (!DataSize.UNKNOWN.is_known);
 	}
 
 	public void test_getters () {
 		DataSize data_size;
-		data_size = DataSize (500);
+		data_size = 500;
 		assert (data_size.bytes == 500);
 		assert (data_size.kilobytes == 0.5);
 		assert (data_size.major_unit == DataSizeUnit.BYTES);
-		data_size = DataSize (500000);
+		data_size = 500000;
 		assert (data_size.kilobytes == 500.0);
 		assert (data_size.major_unit == DataSizeUnit.KILOBYTES);
 		data_size = DataSize.with_unit (1.0, DataSizeUnit.MEGABYTES);
@@ -71,17 +72,17 @@ public class Lottanzb.DataSizeTest : Lottanzb.TestSuiteBuilder {
 
 	public void test_string_conversion () {
 		DataSize data_size;
-		data_size = DataSize (0);
+		data_size = 0;
 		assert (data_size.to_string () == "0 bytes");
-		data_size = DataSize (1);
+		data_size = 1;
 		assert (data_size.to_string () == "1 byte");
-		data_size = DataSize (2);
+		data_size = 2;
 		assert (data_size.to_string () == "2 bytes");
-		data_size = DataSize (999);
+		data_size = 999;
 		assert (data_size.to_string () == "999 bytes");
-		data_size = DataSize (1000);
+		data_size = 1000;
 		assert (data_size.to_string () == "1.0 kB");
-		data_size = DataSize (999000);
+		data_size = 999000;
 		assert (data_size.to_string () == "999.0 kB");
 		data_size = DataSize.with_unit (1, DataSizeUnit.MEGABYTES);
 		assert (data_size.to_string () == "1.0 MB");
@@ -108,7 +109,7 @@ public class Lottanzb.DataSpeedTest : Lottanzb.TestSuiteBuilder {
 
 	public void test_constructors () {
 		DataSpeed data_speed;
-		data_speed = DataSpeed (10);
+		data_speed = 10;
 		assert (data_speed.bytes_per_second == 10);
 		data_speed = DataSpeed.with_unit (10, DataSizeUnit.BYTES);
 		assert (data_speed.bytes_per_second == 10);
@@ -138,17 +139,17 @@ public class Lottanzb.DataSpeedTest : Lottanzb.TestSuiteBuilder {
 
 	public void test_string_conversion () {
 		DataSpeed data_speed;
-		data_speed = DataSpeed (0);
+		data_speed = 0;
 		assert (data_speed.to_string () == "0 bytes/s");
-		data_speed = DataSpeed (1);
+		data_speed = 1;
 		assert (data_speed.to_string () == "1 byte/s");
-		data_speed = DataSpeed (2);
+		data_speed = 2;
 		assert (data_speed.to_string () == "2 bytes/s");
-		data_speed = DataSpeed (999);
+		data_speed = 999;
 		assert (data_speed.to_string () == "999 bytes/s");
-		data_speed = DataSpeed (1000);
+		data_speed = 1000;
 		assert (data_speed.to_string () == "1.0 kB/s");
-		data_speed = DataSpeed (999000);
+		data_speed = 999000;
 		assert (data_speed.to_string () == "999.0 kB/s");
 		data_speed = DataSpeed.with_unit (1, DataSizeUnit.MEGABYTES);
 		assert (data_speed.to_string () == "1.0 MB/s");

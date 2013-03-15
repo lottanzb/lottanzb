@@ -20,10 +20,10 @@ public interface Lottanzb.StatisticsHub : Object {
 	public abstract DataSize history_total_size { get; protected set; }
 	public abstract DataSize history_month_size { get; protected set; }
 	public abstract DataSize history_week_size { get; protected set; }
-	public abstract DataSize? total_download_folder_space { get; protected set; }
-	public abstract DataSize? total_temp_folder_space { get; protected set; }
-	public abstract DataSize? free_download_folder_space { get; protected set; }
-	public abstract DataSize? free_temp_folder_space { get; protected set; }
+	public abstract DataSize total_download_folder_space { get; protected set; }
+	public abstract DataSize total_temp_folder_space { get; protected set; }
+	public abstract DataSize free_download_folder_space { get; protected set; }
+	public abstract DataSize free_temp_folder_space { get; protected set; }
 
 }
 
@@ -32,15 +32,15 @@ public class Lottanzb.StatisticsHubImpl : Object, StatisticsHub {
 	public DataSize history_total_size { get; protected set; }
 	public DataSize history_month_size { get; protected set; }
 	public DataSize history_week_size { get; protected set; }
-	public DataSize? total_download_folder_space { get; protected set; }
-	public DataSize? total_temp_folder_space { get; protected set; }
-	public DataSize? free_download_folder_space { get; protected set; }
-	public DataSize? free_temp_folder_space { get; protected set; }
+	public DataSize total_download_folder_space { get; protected set; }
+	public DataSize total_temp_folder_space { get; protected set; }
+	public DataSize free_download_folder_space { get; protected set; }
+	public DataSize free_temp_folder_space { get; protected set; }
 
 	public StatisticsHubImpl (QueryProcessor query_processor) {
-		history_total_size = DataSize(0);
-		history_month_size = DataSize(0);
-		history_week_size = DataSize(0);
+		history_total_size = DataSize.UNKNOWN;
+		history_month_size = DataSize.UNKNOWN;
+		history_week_size = DataSize.UNKNOWN;
 	}
 
 }

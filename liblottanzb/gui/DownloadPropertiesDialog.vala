@@ -314,7 +314,7 @@ public class Lottanzb.DownloadedField : FormattedActivityField {
 	}
 
 	protected override string get_text () {
-		if (download.size_downloaded != null) {
+		if (download.size_downloaded.is_known) {
 			return @"$(download.size_downloaded) ($(download.percentage)%)";
 		}
 		return LABEL_TEXT_UNKNOWN_VALUE;
@@ -330,7 +330,7 @@ public class Lottanzb.SizeField : FormattedActivityField {
 	}
 
 	protected override string get_text () {
-		if (download.size != null) {
+		if (download.size.is_known) {
 			return download.size.to_string ();
 		}
 		return LABEL_TEXT_UNKNOWN_VALUE;

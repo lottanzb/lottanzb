@@ -22,7 +22,7 @@ public class Lottanzb.MockConfigHub : Object, ConfigHub {
 
 	public MockConfigHub () {
 		root = new SabnzbdSettings.with_memory_backend ();
-		speed_limit = new DataSpeed (0);
+		speed_limit = DataSpeed.UNKNOWN;
 	}
 
 }

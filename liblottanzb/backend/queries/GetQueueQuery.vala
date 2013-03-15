@@ -253,29 +253,29 @@ public class Lottanzb.DynamicDownload : Object, Download {
 		internal set { assert_not_reached (); }
 	}
 
-	public DataSize? size { 
+	public DataSize size { 
 		get {
 			if (_slot.has_member("mb")) {
-				var size_string = _slot.get_string_member("mb");
-				var size = double.parse(size_string);
-				return DataSize.with_unit(size, DataSizeUnit.MEGABYTES);
-			} else if (_slot.has_member("bytes")) {
+				var size_string = _slot.get_string_member ("mb");
+				var size = double.parse (size_string);
+				return DataSize.with_unit (size, DataSizeUnit.MEGABYTES);
+			} else if (_slot.has_member ("bytes")) {
 				var bytes = _slot.get_int_member ("bytes");
-				return DataSize((long) bytes);
+				return (int) bytes;
 			}
-			return null;
+			return DataSize.UNKNOWN;
 		}
 		internal set { assert_not_reached (); }
 	}
 
-	public DataSize? size_left { 
+	public DataSize size_left { 
 		get {
 			if (_slot.has_member("mbleft")) {
 				var size_left_string = _slot.get_string_member("mbleft");
 				var size_left = double.parse(size_left_string);
 				return DataSize.with_unit(size_left, DataSizeUnit.MEGABYTES);
 			}
-			return null;
+			return DataSize.UNKNOWN;
 		}
 		internal set { assert_not_reached (); }
 	}

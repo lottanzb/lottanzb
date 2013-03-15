@@ -28,8 +28,8 @@ public class Lottanzb.MockGetQueueQueryResponse : GetQueueQueryResponse, Object 
 		_downloads = new Gee.ArrayList<Download> ();
 		_is_paused = false;
 		_time_left = 0;
-		_size_left = DataSize (0);
-		_speed = DataSpeed (0);
+		_size_left = DataSize.UNKNOWN;
+		_speed = DataSpeed.UNKNOWN;
 	}
 
 	public Gee.List<Download> downloads { get { return _downloads; } } 

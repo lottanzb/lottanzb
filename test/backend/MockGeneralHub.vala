@@ -27,9 +27,9 @@ public class Lottanzb.MockGeneralHub : Object, GeneralHub {
 
 	public MockGeneralHub () {
 		download_list_store = new DownloadListStore ();
-		speed = new DataSpeed (500);
+		speed = 500;
 		time_left = 42;
-		size_left = new DataSize.with_unit (2, DataSizeUnit.MEGABYTES);
+		size_left = DataSize.with_unit (2, DataSizeUnit.MEGABYTES);
 		eta = new DateTime.now_local ();
 	}
 

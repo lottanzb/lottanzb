@@ -203,8 +203,8 @@ public interface Lottanzb.Download : Object {
 	public abstract string name { get; set; }
 	public abstract TimeDelta average_age { get; internal set; }
 	public abstract TimeDelta time_left { get; internal set; }
-	public abstract DataSize? size { get; internal set; }
-	public abstract DataSize? size_left { get; internal set; }
+	public abstract DataSize size { get; internal set; }
+	public abstract DataSize size_left { get; internal set; }
 	public abstract DateTime? eta { get; internal set; }
 	public abstract int percentage { get; internal set; }
 	public abstract string script { get; internal set; }
@@ -223,12 +223,12 @@ public interface Lottanzb.Download : Object {
 
 	internal abstract void update (Download download);
 
-	public DataSize? size_downloaded {
+	public DataSize size_downloaded {
 		get {
-			if (size != null && size_left != null) {
-				return DataSize (size.bytes - size_left.bytes);
+			if (size.is_known && size_left.is_known) {
+				return size - size_left;
 			}
-			return null;
+			return DataSize.UNKNOWN;
 		}
 	}
 
@@ -243,8 +243,8 @@ public class Lottanzb.DownloadImpl : Object, Download {
 	private string _name;
 	private TimeDelta _average_age;
 	private TimeDelta _time_left;
-	private DataSize? _size;
-	private DataSize? _size_left;
+	private DataSize _size;
+	private DataSize _size_left;
 	private DateTime? _eta;
 	private int _percentage;
 	private string _script;
@@ -289,11 +289,11 @@ public class Lottanzb.DownloadImpl : Object, Download {
 		get { return _time_left; }
 		internal set { _time_left = value; }
 	}
-	public DataSize? size {
+	public DataSize size {
 		get { return _size; }
 		internal set { _size = value; }
 	}
-	public DataSize? size_left {
+	public DataSize size_left {
 		get { return _size_left; }
 		internal set { _size_left = value; }
 	}

@@ -491,7 +491,7 @@ public class Lottanzb.DownloadSizeColumn : DownloadListColumn {
 		if (download != null) {
 			var is_paused = download.status != DownloadStatus.PAUSED;
 			var size_string = "";
-			if (download.size != null && download.size.bytes > 0) {
+			if (download.size.is_known && download.size > 0) {
 				size_string = download.size.to_string();
 			}
 			_cell_renderer.text = size_string;

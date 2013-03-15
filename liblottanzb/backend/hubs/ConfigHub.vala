@@ -31,10 +31,10 @@ public class Lottanzb.ConfigHubImpl : Object, ConfigHub {
 
 	public DataSpeed speed_limit {
 		get {
-			return DataSpeed (root.get_misc ().get_int ("bandwidth-limit"));
+			return root.get_misc ().get_int ("bandwidth-limit");
 		}
 		set {
-			root.get_misc ().set_int ("bandwidth-limit", (int) value.bytes_per_second);
+			root.get_misc ().set_int ("bandwidth-limit", (int) value);
 		}
 	}
 
