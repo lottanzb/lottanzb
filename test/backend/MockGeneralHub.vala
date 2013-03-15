@@ -20,9 +20,9 @@ public class Lottanzb.MockGeneralHub : Object, GeneralHub {
 	public QueryProcessor query_processor { get; construct set; }
 	public DownloadListStore download_list_store { get; construct set; }
 
-	public DataSpeed speed { get; protected set; }
-	public TimeDelta time_left { get; protected set; }
-	public DataSize size_left { get; protected set; }
+	public DataSpeed speed { get; protected set; default = DataSpeed.UNKNOWN; }
+	public TimeDelta time_left { get; protected set; default = TimeDelta.UNKNOWN; }
+	public DataSize size_left { get; protected set; default = DataSize.UNKNOWN; }
 	public DateTime eta { get; protected set; }
 
 	public MockGeneralHub () {

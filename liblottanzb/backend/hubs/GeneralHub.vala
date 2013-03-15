@@ -22,9 +22,9 @@ public interface Lottanzb.GeneralHub : Object {
 	public abstract QueryProcessor query_processor { get; construct set; }
 	public abstract DownloadListStore download_list_store { get; construct set; }
 
-	public abstract DataSpeed speed { get; protected set; }
-	public abstract TimeDelta time_left { get; protected set; }
-	public abstract DataSize size_left { get; protected set; }
+	public abstract DataSpeed speed { get; protected set; default = DataSpeed.UNKNOWN; }
+	public abstract TimeDelta time_left { get; protected set; default = TimeDelta.UNKNOWN; }
+	public abstract DataSize size_left { get; protected set; default = DataSize.UNKNOWN; }
 	public abstract DateTime eta { get; protected set; }
 
 	public abstract void pause_downloads (Gee.List<Download> downloads);
@@ -49,9 +49,9 @@ public class Lottanzb.GeneralHubImpl : Object, GeneralHub {
 	private bool _paused;
 	private GetQueueQueryResponse? last_queue_query_response;
 
-	public DataSpeed speed { get; protected set; }
-	public TimeDelta time_left { get; protected set; }
-	public DataSize size_left { get; protected set; }
+	public DataSpeed speed { get; protected set; default = DataSpeed.UNKNOWN; }
+	public TimeDelta time_left { get; protected set; default = TimeDelta.UNKNOWN; }
+	public DataSize size_left { get; protected set; default = DataSize.UNKNOWN; }
 	public DateTime eta { get; protected set; }
 
 	private DownloadNameBinding download_name_binding;
