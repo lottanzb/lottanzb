@@ -52,8 +52,12 @@ public class Lottanzb.ConfigHubImpl : Object, ConfigHub {
 			settings_updater.add_transformation (download_folder_transformation);
 		}
 
-		var query = query_processor.get_config ();
-		settings_updater.update (query.get_response ());
+		this.query_processor.get_query_notifier<GetConfigQuery> ()
+			.query_completed.connect ((query_processor, query) => {
+			settings_updater.update (query.get_response ());
+		});
+
+		query_processor.get_config ();
 		connect_to_changed_signal (root);
 	}
 
