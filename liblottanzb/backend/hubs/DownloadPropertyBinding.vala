@@ -21,7 +21,7 @@ public abstract class Lottanzb.DownloadPropertyBinding : Object {
 	public DownloadListStore download_list_store { get; construct set; }
 	public string property { get; construct set; }
 
-	// The class is currently only suited for single-thread usage	
+	// TODO: The class is currently only suited for single-thread usage	
 	protected bool ignore_property_changes { get; set; }
 
 	public DownloadPropertyBinding (DownloadListStore download_list_store, QueryProcessor query_processor, string property) {

@@ -74,7 +74,8 @@ public class Lottanzb.GetQueueQueryResponseImpl : Object, GetQueueQueryResponse 
 
 	public bool is_paused {
 		get {
-			return _object.get_boolean_member("paused_all");
+			return _object.has_member ("status") &&
+				_object.get_string_member ("status") == "Paused";
 		}
 	}
 
