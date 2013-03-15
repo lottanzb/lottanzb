@@ -17,6 +17,8 @@
 
 public interface Lottanzb.ConfigHub : Object {
 
+	public static DataSpeed UNLIMITED_SPEED = 0;
+
 	public abstract SabnzbdSettings root { get; construct set; }
 	public abstract DataSpeed speed_limit { get; set; }
 

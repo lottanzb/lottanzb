@@ -26,7 +26,7 @@ public class Lottanzb.SpeedLimitMenuTest : Lottanzb.TestSuiteBuilder {
 
 	public void test_provider () {
 		var config_hub = new MockConfigHub ();
-		config_hub.speed_limit =  SpeedLimitMenuProvider.UNLIMITED_SPEED;
+		config_hub.speed_limit =  ConfigHub.UNLIMITED_SPEED;
 		var menu_provider = new SpeedLimitMenuProvider (config_hub);
 		var menu = (SpeedLimitMenu) menu_provider.make_menu ();
 		var new_speed_limit = 42;
