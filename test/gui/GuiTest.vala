@@ -25,6 +25,7 @@ public class Lottanzb.GuiTest : TestSuite {
 		add_suite (new SpeedLimitMenuTest ().get_suite ());
 		add_suite (new InfoBarTest ().get_suite ());
 		add_suite (new DownloadListTest ().get_suite ());
+		add_suite (new DownloadPropertiesDialogTest ().get_suite ());
 	}
 
 }

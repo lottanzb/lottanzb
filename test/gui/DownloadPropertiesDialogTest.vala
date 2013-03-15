@@ -25,6 +25,7 @@ public class Lottanzb.DownloadPropertiesDialogTest : Lottanzb.TestSuiteBuilder {
 	public void test_construction () {
 		var general_hub = new MockGeneralHub ();
 		var download = new DownloadImpl ();
+		download.name = "Foobar";
 		var dialog = new DownloadPropertiesDialog (general_hub, download);
 	}
 

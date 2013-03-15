@@ -26,6 +26,7 @@ public class Lottanzb.MockGeneralHub : Object, GeneralHub {
 	public DateTime eta { get; protected set; }
 
 	public MockGeneralHub () {
+		query_processor = new MockQueryProcessor ();
 		download_list_store = new DownloadListStore ();
 		speed = 500;
 		time_left = 42;
