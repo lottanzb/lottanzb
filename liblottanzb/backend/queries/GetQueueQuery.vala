@@ -260,7 +260,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 				return DataSize.with_unit (size, DataSizeUnit.MEGABYTES);
 			} else if (_slot.has_member ("bytes")) {
 				var bytes = _slot.get_int_member ("bytes");
-				return (int) bytes;
+				return (DataSize) bytes;
 			}
 			return DataSize.UNKNOWN;
 		}
