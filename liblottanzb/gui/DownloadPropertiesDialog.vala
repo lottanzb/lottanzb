@@ -346,7 +346,7 @@ public class Lottanzb.TimeLeftField : FormattedActivityField {
 	}
 
 	protected override string get_text () {
-		if (download.time_left.is_known()) {
+		if (download.time_left.is_known) {
 			return download.time_left.to_string ();
 		}
 		return LABEL_TEXT_UNKNOWN_VALUE;
@@ -378,7 +378,7 @@ public class Lottanzb.AgeField : FormattedActivityField {
 	}
 
 	protected override string get_text () {
-		if (download.average_age.is_known ()) {
+		if (download.average_age.is_known) {
 			return download.average_age.to_string ();
 		}
 		return LABEL_TEXT_UNKNOWN_VALUE;
@@ -394,7 +394,7 @@ public class Lottanzb.DownloadTimeField : FormattedActivityField {
 	}
 
 	protected override string get_text () {
-		if (download.download_time.is_known ()) {
+		if (download.download_time.is_known) {
 			return download.download_time.to_string ();
 		}
 		return LABEL_TEXT_UNKNOWN_VALUE;
@@ -410,7 +410,7 @@ public class Lottanzb.PostProcessingField : FormattedActivityField {
 	}
 
 	protected override string get_text () {
-		if (download.post_processing_time.is_known ()) {
+		if (download.post_processing_time.is_known) {
 			return download.post_processing_time.to_string ();
 		}
 		return LABEL_TEXT_UNKNOWN_VALUE;

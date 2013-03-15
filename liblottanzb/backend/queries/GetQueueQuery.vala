@@ -281,7 +281,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 
 	public DateTime? eta { 
 		get {
-			if (_eta == null && !is_eta_unknown && time_left.is_known()) {
+			if (_eta == null && !is_eta_unknown && time_left.is_known) {
 				var now = new DateTime.now_local ();
 				_eta = now.add_seconds (time_left.seconds);
 			}

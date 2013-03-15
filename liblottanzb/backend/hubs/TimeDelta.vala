@@ -271,8 +271,10 @@ public struct Lottanzb.TimeDelta : int {
 	public void free () {
 	}
 
-	public bool is_known () {
-		return this != UNKNOWN;
+	public bool is_known {
+		get {
+			return this != UNKNOWN;
+		}
 	}
 	
 }

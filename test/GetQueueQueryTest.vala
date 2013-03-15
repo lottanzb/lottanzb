@@ -50,8 +50,8 @@ public class Lottanzb.GetQueueQueryTest : Lottanzb.TestSuiteBuilder {
 		assert (active_download.category == "*");
 		assert (active_download.post_processing == DownloadPostProcessing.REPAIR);
 		assert (active_download.message_id == 0);
-		assert (!active_download.post_processing_time.is_known ());
-		assert (!active_download.download_time.is_known ());
+		assert (!active_download.post_processing_time.is_known);
+		assert (!active_download.download_time.is_known);
 		assert (active_download.completed == null);
 		assert (active_download.storage_path == null);
 		assert (active_download.error_message == "");
@@ -67,7 +67,7 @@ public class Lottanzb.GetQueueQueryTest : Lottanzb.TestSuiteBuilder {
 		assert (paused_download.file_name == "bar");
 		assert (paused_download.name == "bar");
 		assert (paused_download.average_age.days == 62.0);
-		assert (!paused_download.time_left.is_known ());
+		assert (!paused_download.time_left.is_known);
 		assert (paused_download.size.megabytes == 671.98);
 		assert (paused_download.size_left.megabytes == 564.69);
 		assert (paused_download.eta == null);
@@ -76,8 +76,8 @@ public class Lottanzb.GetQueueQueryTest : Lottanzb.TestSuiteBuilder {
 		assert (paused_download.category == "*");
 		assert (paused_download.post_processing == DownloadPostProcessing.DELETE);
 		assert (paused_download.message_id == 0);
-		assert (!paused_download.post_processing_time.is_known ());
-		assert (!paused_download.download_time.is_known ());
+		assert (!paused_download.post_processing_time.is_known);
+		assert (!paused_download.download_time.is_known);
 		assert (paused_download.completed == null);
 		assert (paused_download.storage_path == null);
 		assert (paused_download.error_message == "");
@@ -92,7 +92,7 @@ public class Lottanzb.GetQueueQueryTest : Lottanzb.TestSuiteBuilder {
 		assert (queued_download.priority == DownloadPriority.LOW);
 		assert (queued_download.file_name == "baz");
 		assert (queued_download.name == "baz");
-		assert (queued_download.time_left.is_known ());
+		assert (queued_download.time_left.is_known);
 		assert (queued_download.eta != null);
 		assert (queued_download.post_processing == DownloadPostProcessing.UNPACK);
 	}

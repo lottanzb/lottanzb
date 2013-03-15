@@ -35,8 +35,8 @@ public class Lottanzb.GetHistoryQueryTest : Lottanzb.TestSuiteBuilder {
 		assert (succeeded_download.status == DownloadStatus.SUCCEEDED);
 		assert (succeeded_download.file_name == "spam.nzb");
 		assert (succeeded_download.name == "spam");
-		assert (!succeeded_download.average_age.is_known ());
-		assert (!succeeded_download.time_left.is_known ());
+		assert (!succeeded_download.average_age.is_known);
+		assert (!succeeded_download.time_left.is_known);
 		assert (succeeded_download.size.bytes == 603355611);
 		assert (!succeeded_download.size_left.is_known);
 		// TODO: Should be size_left.bytes == 0
@@ -61,9 +61,9 @@ public class Lottanzb.GetHistoryQueryTest : Lottanzb.TestSuiteBuilder {
 		assert (failed_download.status == DownloadStatus.FAILED);
 		assert (failed_download.file_name == "ham.nzb");
 		assert (failed_download.name == "ham");
-		assert (!failed_download.average_age.is_known ());
+		assert (!failed_download.average_age.is_known);
 		// TODO: Should be size_left.bytes == 0
-		assert (!failed_download.time_left.is_known ());
+		assert (!failed_download.time_left.is_known);
 		assert (failed_download.size.bytes == 109325686);
 		assert (!failed_download.size_left.is_known);
 		assert (failed_download.eta == null);
