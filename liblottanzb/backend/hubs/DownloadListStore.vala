@@ -84,4 +84,22 @@ public class Lottanzb.DownloadListStore : Gtk.ListStore, IterableTreeModel, Down
 		}
 	}
 
+	/**
+	 * Switches all downloads with a given status to a different status.
+	 *
+	 * @param old_status the old status to look for
+	 * @param status the new status to replace it with
+	*/
+	public void switch_download_status (DownloadStatus old_status, DownloadStatus status) {
+		foreach (var iter in this) {
+			var download = get_download (iter);
+			if (download.status == old_status) {
+				download.status = status;
+				var path = get_path (iter);
+				row_changed (path, iter);
+			}
+		}	
+	
+	}
+
 }

@@ -111,17 +111,10 @@ public class Lottanzb.GeneralHubImpl : Object, GeneralHub {
 						query_processor.resume ();
 					}
 					last_queue_query_response = null;
-					foreach (var iter in download_list_store) {
-						var download = download_list_store.get_download (iter);
-						if (download.status == DownloadStatus.DOWNLOADING) {
-							download.status = DownloadStatus.QUEUED;
-							var path = download_list_store.get_path (iter);
-							download_list_store.row_changed (path, iter);
-						}
-					}
+					download_list_store.switch_download_status (
+							DownloadStatus.DOWNLOADING, DownloadStatus.QUEUED);
 				}	
 			}
-
 		}
 	}
 
