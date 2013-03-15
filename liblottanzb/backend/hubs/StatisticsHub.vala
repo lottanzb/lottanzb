@@ -20,6 +20,7 @@ public interface Lottanzb.StatisticsHub : Object {
 	public abstract DataSize history_total_size { get; protected set; }
 	public abstract DataSize history_month_size { get; protected set; }
 	public abstract DataSize history_week_size { get; protected set; }
+	public abstract DataSize history_day_size { get; protected set; }
 	public abstract DataSize total_download_folder_space { get; protected set; }
 	public abstract DataSize total_temp_folder_space { get; protected set; }
 	public abstract DataSize free_download_folder_space { get; protected set; }
@@ -34,6 +35,7 @@ public class Lottanzb.StatisticsHubImpl : Object, StatisticsHub {
 	public DataSize history_total_size { get; protected set; }
 	public DataSize history_month_size { get; protected set; }
 	public DataSize history_week_size { get; protected set; }
+	public DataSize history_day_size { get; protected set; }
 	public DataSize total_download_folder_space { get; protected set; }
 	public DataSize total_temp_folder_space { get; protected set; }
 	public DataSize free_download_folder_space { get; protected set; }
@@ -52,6 +54,7 @@ public class Lottanzb.StatisticsHubImpl : Object, StatisticsHub {
 		history_total_size = DataSize.UNKNOWN;
 		history_month_size = DataSize.UNKNOWN;
 		history_week_size = DataSize.UNKNOWN;
+		history_day_size = DataSize.UNKNOWN;
 		total_download_folder_space = DataSize.UNKNOWN;
 		total_temp_folder_space = DataSize.UNKNOWN;
 		free_download_folder_space = DataSize.UNKNOWN;
@@ -69,6 +72,7 @@ public class Lottanzb.StatisticsHubImpl : Object, StatisticsHub {
 		history_total_size = query.get_response ().history_total_size;
 		history_month_size = query.get_response ().history_month_size;
 		history_week_size = query.get_response ().history_week_size;
+		history_day_size = query.get_response ().history_day_size;
 	}
 
 }

@@ -20,6 +20,7 @@ public class Lottanzb.MockStatisticsHub : Object, StatisticsHub {
 	public DataSize history_total_size { get; protected set; }
 	public DataSize history_month_size { get; protected set; }
 	public DataSize history_week_size { get; protected set; }
+	public DataSize history_day_size { get; protected set; }
 	public DataSize total_download_folder_space { get; protected set; }
 	public DataSize total_temp_folder_space { get; protected set; }
 	public DataSize free_download_folder_space { get; protected set; }
@@ -29,6 +30,7 @@ public class Lottanzb.MockStatisticsHub : Object, StatisticsHub {
 		history_total_size = DataSize.UNKNOWN;
 		history_month_size = DataSize.UNKNOWN;
 		history_week_size = DataSize.UNKNOWN;
+		history_day_size = DataSize.UNKNOWN;
 	}
 
 }

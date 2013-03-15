@@ -37,5 +37,9 @@ public class Lottanzb.MockGetQueueQueryResponse : GetQueueQueryResponse, Object 
 	public TimeDelta time_left { get { return _time_left; } }
 	public DataSize size_left { get { return _size_left; } }
 	public DataSpeed speed { get { return _speed; } }
+	public DataSize total_download_folder_space { get { return DataSize.UNKNOWN; } }
+	public DataSize total_temp_folder_space { get { return DataSize.UNKNOWN; } }
+	public DataSize free_download_folder_space { get { return DataSize.UNKNOWN; } }
+	public DataSize free_temp_folder_space { get { return DataSize.UNKNOWN; } }
 
 }

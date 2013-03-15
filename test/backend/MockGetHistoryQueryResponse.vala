@@ -32,4 +32,8 @@ public class Lottanzb.MockGetHistoryQueryResponse : GetHistoryQueryResponse, Obj
 		get { return _downloads; }
 	}
 
+	public DataSize history_total_size { get { return DataSize.UNKNOWN; } }
+	public DataSize history_month_size { get { return DataSize.UNKNOWN; } }
+	public DataSize history_week_size { get { return DataSize.UNKNOWN; } }
+	public DataSize history_day_size { get { return DataSize.UNKNOWN; } }
 }

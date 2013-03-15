@@ -28,7 +28,8 @@ public class Lottanzb.GetHistoryQueryTest : Lottanzb.TestSuiteBuilder {
 		var query = new GetHistoryQueryImpl ();
 		var raw_response = get_fixture ("get_history_query_response.json");
 		query.set_raw_response (raw_response);
-		var downloads = query.get_response ().downloads;
+		var response = query.get_response ();
+		var downloads = response.downloads;
 		assert (downloads.size == 2);
 		Download succeeded_download = downloads[0];
 		assert (succeeded_download.id == "spam");
@@ -85,6 +86,22 @@ public class Lottanzb.GetHistoryQueryTest : Lottanzb.TestSuiteBuilder {
 		assert (failed_download.unpack_percentage == 0);
 		assert (failed_download.recovery_block_count == 0);
 
+		/* assert (response.total_download_folder_space ==
+				DataSize.with_unit (214, DataSizeUnit.GIGABYTES));
+		assert (response.total_temp_folder_space ==
+				DataSize.with_unit (214, DataSizeUnit.GIGABYTES));
+		assert (response.free_download_folder_space ==
+				DataSize.with_unit (0.97, DataSizeUnit.GIGABYTES));
+		assert (response.free_temp_folder_space ==
+				DataSize.with_unit (0.97, DataSizeUnit.GIGABYTES)); */
+		assert (response.history_total_size ==
+				DataSize.with_unit (50.2, DataSizeUnit.GIGABYTES));
+		assert (response.history_month_size ==
+				DataSize.with_unit (2.4, DataSizeUnit.GIGABYTES));
+		assert (response.history_week_size ==
+				DataSize.with_unit (587, DataSizeUnit.MEGABYTES));
+		assert (response.history_day_size ==
+				DataSize.with_unit (12, DataSizeUnit.MEGABYTES));
 	}
 
 }

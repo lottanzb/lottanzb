@@ -39,6 +39,7 @@ public interface Lottanzb.GetHistoryQueryResponse : Object {
 	public abstract DataSize history_total_size { get; }
 	public abstract DataSize history_month_size { get; }
 	public abstract DataSize history_week_size { get; }
+	public abstract DataSize history_day_size { get; }
 
 }
 
@@ -96,4 +97,13 @@ public class Lottanzb.GetHistoryQueryResponseImpl : GetHistoryQueryResponse, Obj
 		}
 	}
 
+	public DataSize history_day_size {
+		get {
+			if (_object.has_member ("day_size")) {
+				var size = _object.get_string_member ("day_size");
+				return DataSize.parse (size);
+			}
+			return DataSize.UNKNOWN;
+		}
+	}
 }
