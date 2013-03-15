@@ -110,42 +110,35 @@ public class Lottanzb.GetQueueQueryResponseImpl : Object, GetQueueQueryResponse 
 
 	public DataSize total_download_folder_space {
 		get {
-			if (_object.has_member ("diskspacetotal2")) {
-				var space = double.parse (_object.get_string_member ("diskspacetotal2"));
-				return DataSize.with_unit (space, DataSizeUnit.GIGABYTES);
-			}
-			return DataSize.UNKNOWN;
+			return try_to_get_data_size ("diskspacetotal2");
 		}
 	}
 
 	public DataSize total_temp_folder_space {
 		get {
-			if (_object.has_member ("diskspacetotal1")) {
-				var space = double.parse (_object.get_string_member ("diskspacetotal1"));
-				return DataSize.with_unit (space, DataSizeUnit.GIGABYTES);
-			}
-			return DataSize.UNKNOWN;
+			return try_to_get_data_size ("diskspacetotal1");
 		}
 	}
 
 	public DataSize free_download_folder_space {
 		get {
-			if (_object.has_member ("diskspace2")) {
-				var space = double.parse (_object.get_string_member ("diskspace2"));
-				return DataSize.with_unit (space, DataSizeUnit.GIGABYTES);
-			}
-			return DataSize.UNKNOWN;
+			return try_to_get_data_size ("diskspace2");
 		}
 	}
 
 	public DataSize free_temp_folder_space {
 		get {
-			if (_object.has_member ("diskspace1")) {
-				var space = double.parse (_object.get_string_member ("diskspace1"));
-				return DataSize.with_unit (space, DataSizeUnit.GIGABYTES);
-			}
-			return DataSize.UNKNOWN;
+			return try_to_get_data_size ("diskspace1");
 		}
+	}
+
+	private DataSize try_to_get_data_size (string name) {
+		if (_object.has_member (name)) {
+			var space = double.parse (_object.get_string_member (name));
+			return DataSize.with_unit (space, DataSizeUnit.GIGABYTES);
+		}
+		return DataSize.UNKNOWN;
+	
 	}
 
 }
