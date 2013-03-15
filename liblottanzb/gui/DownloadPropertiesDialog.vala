@@ -326,7 +326,7 @@ public class Lottanzb.SizeField : FormattedActivityField {
 
 	public SizeField (Download download) {
 		base (download, _("Size"), { "size" },
-			DownloadStatusGroup.NOT_FULLY_LOADED);
+			DownloadStatusGroup.ANY_STATUS);
 	}
 
 	protected override string get_text () {
