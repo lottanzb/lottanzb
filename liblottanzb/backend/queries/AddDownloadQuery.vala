@@ -76,7 +76,7 @@ public class Lottanzb.AddDownloadQueryImpl : AddDownloadQuery, SimpleQuery {
 			var mime_type = "application/octet-stream";
 			var multipart = new Soup.Multipart (mime_type);
 			multipart.append_form_file ("nzbfile", file.get_basename (), mime_type, buffer);
-			message = Soup.Form.request_new_from_multipart (message_uri.to_string (true), multipart);
+			message = Soup.Form.request_new_from_multipart (message_uri.to_string (false), multipart);
 			HashTable<string, string> content_type_params;
 			message.request_headers.get_content_type (out content_type_params);
 			message.request_headers.set_content_type ("multipart/form-data", content_type_params);

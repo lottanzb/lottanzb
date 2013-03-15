@@ -220,7 +220,7 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	public void on_open_web_interface_activate (Gtk.Window window) {
 		var uri = backend.query_processor.connection_info.build_uri ();
 		try {
-			Gtk.show_uri (null, uri.to_string (true), Gdk.CURRENT_TIME);
+			Gtk.show_uri (null, uri.to_string (false), Gdk.CURRENT_TIME);
 		} catch (Error e) {
 			var title = _("Could not open web interface");
 			run_error_message_dialog (title, e.message);
