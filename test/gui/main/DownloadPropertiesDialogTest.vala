@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012 Severin Heiniger <severinheiniger@gmail.com>
+ * Copyright (c) 2013 Severin Heiniger <severinheiniger@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,15 +13,20 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
-using Lottanzb;
+public class Lottanzb.DownloadPropertiesDialogTest : Lottanzb.TestSuiteBuilder {
 
-private static int main (string[] args) {
-	Environment.set_variable ("GSETTINGS_BACKEND", "memory", true);
-	Gtk.init_check (ref args);
-	Test.init (ref args);
-	TestSuite.get_root ().add_suite (new BackendTest ());
-	TestSuite.get_root ().add_suite (new GuiTest ());
-	return Test.run ();
+	public DownloadPropertiesDialogTest () {
+		base ("download_properties_dialog");
+		add_test ("construction", test_construction);
+	}
+
+	public void test_construction () {
+		var general_hub = new MockGeneralHub ();
+		var download = new DownloadImpl ();
+		var dialog = new DownloadPropertiesDialog (general_hub, download);
+	}
+
 }
+

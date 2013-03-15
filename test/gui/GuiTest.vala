@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012 Severin Heiniger <severinheiniger@gmail.com>
+ * Copyright (c) 2013 Severin Heiniger <severinheiniger@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,15 +13,18 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 using Lottanzb;
 
-private static int main (string[] args) {
-	Environment.set_variable ("GSETTINGS_BACKEND", "memory", true);
-	Gtk.init_check (ref args);
-	Test.init (ref args);
-	TestSuite.get_root ().add_suite (new BackendTest ());
-	TestSuite.get_root ().add_suite (new GuiTest ());
-	return Test.run ();
+public class Lottanzb.GuiTest : TestSuite {
+
+	public GuiTest () {
+		base ("gui");
+		add_suite (new GeneralPreferencesTabTest ().get_suite ());
+		add_suite (new SpeedLimitMenuTest ().get_suite ());
+		add_suite (new InfoBarTest ().get_suite ());
+		add_suite (new DownloadListTest ().get_suite ());
+	}
+
 }
