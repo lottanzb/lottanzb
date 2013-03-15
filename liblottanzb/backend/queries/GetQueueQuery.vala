@@ -79,9 +79,8 @@ public class Lottanzb.GetQueueQueryResponseImpl : Object, GetQueueQueryResponse 
 			if (_object.has_member ("timeleft")) {
 				var time_left_string = _object.get_string_member ("timeleft");
 				return TimeDelta.parse (time_left_string);
-			} else {
-				return 0;
 			}
+			return TimeDelta.UNKNOWN;
 		}
 	}
 
@@ -388,9 +387,9 @@ public class Lottanzb.DynamicDownload : Object, Download {
 	public TimeDelta post_processing_time { 
 		get {
 			if (_slot.has_member("postproc_time")) {
-				return (int) _slot.get_int_member("postproc_time");
+				return (TimeDelta) _slot.get_int_member("postproc_time");
 			}
-			return 0;
+			return TimeDelta.UNKNOWN;
 		}
 		internal set { assert_not_reached (); }
 	}
@@ -398,7 +397,7 @@ public class Lottanzb.DynamicDownload : Object, Download {
 	public TimeDelta download_time { 
 		get {
 			if (_slot.has_member("download_time")) {
-				return (int) _slot.get_int_member ("download_time");
+				return (TimeDelta) _slot.get_int_member ("download_time");
 			}
 			return TimeDelta.UNKNOWN;
 		}
