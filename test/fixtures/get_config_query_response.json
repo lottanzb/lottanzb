@@ -53,7 +53,7 @@
             "download_dir": "Downloads/incomplete",
             "size_limit": "",
             "enable_par_cleanup": 1,
-            "bandwidth_limit": 0,
+            "bandwidth_limit": 100,
             "safe_postproc": 1,
             "disable_api_key": 0,
             "cache_dir": "cache",

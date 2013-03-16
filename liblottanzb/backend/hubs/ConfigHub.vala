@@ -33,10 +33,12 @@ public class Lottanzb.ConfigHubImpl : Object, ConfigHub {
 
 	public DataSpeed speed_limit {
 		get {
-			return root.get_misc ().get_int ("bandwidth-limit");
+			var kbs = root.get_misc ().get_int ("bandwidth-limit");
+			return DataSpeed.with_unit (kbs, DataSizeUnit.KILOBYTES);
 		}
 		set {
-			root.get_misc ().set_int ("bandwidth-limit", (int) value);
+			var kbs = (int) value.kilobytes_per_second;
+			root.get_misc ().set_int ("bandwidth-limit", kbs);
 		}
 	}
 
