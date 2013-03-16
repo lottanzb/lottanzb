@@ -35,9 +35,7 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 		this.download_properties_dialog = null;
 		
 		widgets.window1.remove(widget);
-		widgets.treeview.append_column (new DownloadPrimaryColumn());
-		widgets.treeview.append_column (new DownloadSizeColumn());
-		widgets.treeview.append_column (new DownloadProgressColumn());
+		widgets.treeview.append_column (new DownloadSingleColumn ());
 		widgets.treeview.set_search_equal_func (search_equal_func);
 		widgets.treeview.set_model (general_hub.download_list_store);
 		widgets.treeview.get_selection ().set_mode (SelectionMode.BROWSE);
@@ -350,14 +348,6 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 
 public class Lottanzb.DownloadListColumn : TreeViewColumn {
 
-	// The download statuses that will represented by a higher row in the
-	// download list, having a second line with additional status information.
-	public static int EXPANDED_STATUS_GROUP =
-		DownloadStatusGroup.PROCESSING |
-		DownloadStatus.FAILED |
-		DownloadStatus.DOWNLOADING |
-		DownloadStatus.GRABBING |
-		DownloadStatus.DOWNLOADING_RECOVERY_DATA;
 
 	public Download? get_download (TreeModel tree_model, TreeIter iter) {
 		Value? model_value;
@@ -368,39 +358,190 @@ public class Lottanzb.DownloadListColumn : TreeViewColumn {
 
 }
 
+public class Lottanzb.DownloadSingleColumn : DownloadListColumn {
 
-public class Lottanzb.DownloadPrimaryColumn : DownloadListColumn {
-
-	private CellRendererText _cell_renderer;
-
-	public DownloadPrimaryColumn () {
-		base();
-		_cell_renderer = new CellRendererText();
-		_cell_renderer.ellipsize = EllipsizeMode.MIDDLE;
-		pack_start (_cell_renderer, true);
-		set_cell_data_func (_cell_renderer, cell_data_func);
-		set_title ("");
-		set_expand (true);
+	public DownloadSingleColumn () {
+		title = _("Download");
+		resizable = true;
+		sizing = Gtk.TreeViewColumnSizing.FIXED;
+		var renderer = new DownloadCellRenderer ();
+		pack_start (renderer, false);
+		add_attribute (renderer, "download", DownloadListStore.COLUMN);
 	}
-	
-	private void cell_data_func (CellLayout cell_layout, CellRenderer cell,
-		TreeModel tree_model, TreeIter iter) {
-		DownloadListStore download_list_store = (DownloadListStore) tree_model;
-		Download? download = download_list_store.get_download(iter);
-		if (download != null) {
-			var is_expanded = download.status.is_in_group(EXPANDED_STATUS_GROUP);
-			var is_paused = download.status != DownloadStatus.PAUSED;
-			var content = @"<b>$(html_escape(download.name))</b>";
-			if (is_expanded) {
-				var status_string = get_status_string (download, iter);
-				content += "\n" + status_string;
-			}
-			_cell_renderer.markup = content;
-			_cell_renderer.sensitive = is_paused;
+
+}
+
+public enum Lottanzb.GuiPadding {
+
+	SMALL = 3,
+	NORMAL = 6,
+	LARGE = 12
+
+}
+
+public class Lottanzb.DownloadCellRenderer : Gtk.CellRenderer {
+
+	// The download statuses that will represented by a higher row in the
+	// download list, having a second line with additional status information.
+	public static int EXPANDED_STATUS_GROUP =
+		DownloadStatusGroup.PROCESSING |
+		DownloadStatus.FAILED |
+		DownloadStatus.DOWNLOADING |
+		DownloadStatus.GRABBING |
+		DownloadStatus.DOWNLOADING_RECOVERY_DATA |
+		DownloadStatus.PAUSED;
+
+	private Gtk.CellRendererText name_renderer;
+	private Gtk.CellRendererText size_renderer;
+	private Gtk.CellRendererText status_renderer;
+	private Gtk.CellRendererProgress progress_renderer;
+
+	public Download? download { get; set; }
+	public uint progress_bar_height { get; set; default = 12; }
+
+	public DownloadCellRenderer () {
+		name_renderer = new Gtk.CellRendererText ();
+		name_renderer.weight = Pango.Weight.BOLD;
+		name_renderer.ellipsize = Pango.EllipsizeMode.MIDDLE;
+
+		size_renderer = new Gtk.CellRendererText ();
+		size_renderer.scale = 0.9;
+		size_renderer.yalign = 1.0f;
+		size_renderer.xalign = 1.0f;
+		status_renderer = new Gtk.CellRendererText ();
+		status_renderer.scale = 0.9;
+		progress_renderer = new Gtk.CellRendererProgress ();
+		progress_renderer.text = "";
+
+		xpad = GuiPadding.SMALL;
+		ypad = GuiPadding.SMALL;
+	}
+
+	public override void get_size (Gtk.Widget widget, Gdk.Rectangle? cell_area,
+								   out int x_offset, out int y_offset,
+								   out int width, out int height) {
+		Gtk.Requisition name_req;
+		Gtk.Requisition size_req;
+
+		name_renderer.text = get_name_string (); 
+		name_renderer.get_preferred_size (widget, null, out name_req);
+		size_renderer.text = get_size_string ();
+		size_renderer.get_preferred_size (widget, null, out size_req);
+
+		width = (int) (2 * xpad + name_req.width
+				+ GuiPadding.NORMAL + size_req.width);
+		height = (int) (2 * ypad + name_req.height);
+
+		if (has_progress_bar) {
+			height += (int) (GuiPadding.SMALL + progress_bar_height);
+		}
+
+		if (has_status) {
+			Gtk.Requisition status_req;
+			status_renderer.text = get_status_string ();
+			status_renderer.get_preferred_size (widget, null, out status_req);
+			height += (int) (status_req.height);
+		}
+
+		if (cell_area == null) {
+			x_offset = 0;
+			y_offset = 0;
+		} else {
+			x_offset = cell_area.x;
+			y_offset = cell_area.height - (int) ((ypad * 2 + height) / 2.0);
 		}
 	}
-	
-	private string get_status_string (Download download, Gtk.TreeIter iter) {
+
+	public override void render (Cairo.Context ctx, Gtk.Widget widget,
+								 Gdk.Rectangle background_area,
+								 Gdk.Rectangle cell_area,
+								 Gtk.CellRendererState flags) {
+		if (download == null) {
+			return;
+		}
+
+		Gtk.Requisition size = { 0, 0 };
+		Gdk.Rectangle fill_area = { 0, 0 };
+		Gdk.Rectangle name_area = { 0, 0 };
+		Gdk.Rectangle size_area = { 0, 0 };
+		Gdk.Rectangle bar_area = { 0, 0 };
+		Gdk.Rectangle status_area = { 0, 0 };
+
+		name_renderer.text = get_name_string ();
+		name_renderer.get_preferred_size (widget, null, out size);
+		name_area.width = size.width;
+		name_area.height = size.height;
+
+		size_renderer.text = get_size_string ();
+		size_renderer.get_preferred_size (widget, null, out size);
+		size_area.width = size.width;
+		size_area.height = size.height;
+
+		if (has_status) { 
+			status_renderer.text = get_status_string ();
+			status_renderer.get_preferred_size (widget, null, out size);
+			status_area.width = size.width;
+			status_area.height = size.height;
+		}
+
+		fill_area = background_area;
+		fill_area.x += (int) xpad;
+		fill_area.y += (int) ypad;
+		fill_area.width -= (int) xpad * 2;
+		fill_area.height -= (int) ypad * 2;
+
+		size_area.x = fill_area.x + fill_area.width - size_area.width;
+		size_area.y = fill_area.y;
+		size_area.height = name_area.height;
+
+		name_area.x = fill_area.x;
+		name_area.y = fill_area.y;
+		name_area.width = size_area.x - fill_area.x - GuiPadding.NORMAL;
+
+		bar_area.x = fill_area.x;
+		bar_area.y = fill_area.y + name_area.height + GuiPadding.SMALL;
+		bar_area.width = fill_area.width;
+		bar_area.height = (int) progress_bar_height;
+
+		if (has_status) {
+			status_area.x = fill_area.x;
+			if (has_progress_bar) {
+				status_area.y = bar_area.y + bar_area.height;
+			} else {
+				status_area.y = name_area.y + name_area.height;
+			}
+			status_area.width = fill_area.width;
+		}
+
+		name_renderer.text = get_name_string ();
+		name_renderer.render (ctx, widget, background_area, name_area, flags);
+
+		size_renderer.text = get_size_string ();
+		size_renderer.render (ctx, widget, background_area, size_area, flags);
+
+		if (has_progress_bar) {
+			progress_renderer.value = download.percentage;
+			progress_renderer.render (ctx, widget, background_area, bar_area, flags);
+		}
+
+		if (has_status) {
+			status_renderer.text = get_status_string ();
+			status_renderer.render (ctx, widget, background_area, status_area, flags);
+		}
+	}
+
+	private string get_name_string () {
+		return html_escape (download.name);
+	}
+
+	private string get_size_string () {
+		if (download.size.is_known && download.size > 0) {
+			return download.size.to_string ();
+		}
+		return "";
+	}
+
+	private string get_status_string () {
 		switch (download.status) {
 			case DownloadStatus.DOWNLOADING_RECOVERY_DATA:
 				var recovery_block_count = download.recovery_block_count;
@@ -422,13 +563,16 @@ public class Lottanzb.DownloadPrimaryColumn : DownloadListColumn {
 				return _("Executing user script...");
 			case DownloadStatus.FAILED:
 				var error_message = _("Unknown error");
-				if (download.error_message != null) {
+				// TODO:
+				/* if (download.error_message != null) {
 					error_message = html_escape (download.error_message);
-				}
+				} */
 				// Only use red color when the download is not selected.
 				// Otherwise, depending on the selection color,
 				// the message may be hard to read.
-				var is_download_selected = is_iter_selected (iter);
+				// TODO: 
+				// var is_download_selected = is_iter_selected (iter);
+				var is_download_selected = false;
 				if (!is_download_selected) {
 					error_message = @"<span foreground='red'>$(error_message)</span>";
 				}
@@ -441,13 +585,35 @@ public class Lottanzb.DownloadPrimaryColumn : DownloadListColumn {
 				}
 			case DownloadStatus.GRABBING:
 				return _("Downloading NZB file...");
+			case DownloadStatus.PAUSED:
+				return _("Paused");
 			default:
 				break;
 		}
 		return "";
 	}
 
-	private bool is_iter_selected (Gtk.TreeIter iter) {
+	private bool has_progress_bar {
+		get {
+			return download.status.is_in_group (DownloadStatusGroup.INCOMPLETE);
+		}
+	}
+
+	private bool has_status {
+		get {
+			return download.status.is_in_group (EXPANDED_STATUS_GROUP);
+		}
+	}
+
+	private string html_escape (string unescaped) {
+		return unescaped
+			.replace ("\"", "&quot;")
+			.replace ("<", "&lt;")
+			.replace (">", "&gt;");
+	}
+
+	// TODO:
+	/* private bool is_iter_selected (Gtk.TreeIter iter) {
 		var tree_view = (Gtk.TreeView) get_tree_view ();
 		var selection = tree_view.get_selection ();
 		if (selection == null) {
@@ -462,67 +628,6 @@ public class Lottanzb.DownloadPrimaryColumn : DownloadListColumn {
 			return selected_path.compare (path) == 0;
 		}
 		return false;
-	}
-	
-	private string html_escape (string unescaped) {
-		return unescaped
-			.replace ("\"", "&quot;")
-			.replace ("<", "&lt;")
-			.replace (">", "&gt;");
-	}
-
-}
-
-
-public class Lottanzb.DownloadSizeColumn : DownloadListColumn {
-
-	private CellRendererText _cell_renderer;
-
-	public DownloadSizeColumn () {
-		_cell_renderer = new CellRendererText();
-		_cell_renderer.xalign = 1.0f;
-		pack_start(_cell_renderer, true);
-		set_cell_data_func(_cell_renderer, cell_data_func);
-	}
-	
-	private void cell_data_func (CellLayout cell_layout, CellRenderer cell,
-		TreeModel tree_model, TreeIter iter) {
-		Download? download = get_download(tree_model, iter);
-		if (download != null) {
-			var is_paused = download.status != DownloadStatus.PAUSED;
-			var size_string = "";
-			if (download.size.is_known && download.size > 0) {
-				size_string = download.size.to_string();
-			}
-			_cell_renderer.text = size_string;
-			_cell_renderer.sensitive = is_paused;
-		}
-	}
-
-}
-
-
-public class Lottanzb.DownloadProgressColumn : DownloadListColumn {
-
-	private CellRendererProgress _cell_renderer;
-
-	public DownloadProgressColumn () {
-		_cell_renderer = new CellRendererProgress();
-		pack_start(_cell_renderer, true);
-		set_cell_data_func(_cell_renderer, cell_data_func);
-		set_min_width(150);
-	}
-	
-	private void cell_data_func (CellLayout cell_layout, CellRenderer cell,
-		TreeModel tree_model, TreeIter iter) {
-		Download? download = get_download(tree_model, iter);
-		if (download != null) {
-			var is_expanded = download.status.is_in_group(EXPANDED_STATUS_GROUP);
-			var is_paused = download.status != DownloadStatus.PAUSED;
-			_cell_renderer.ypad = (is_expanded) ? 8 : 0;
-			_cell_renderer.value = download.percentage;
-			_cell_renderer.sensitive = is_paused;
-		}
-	}
+	} */
 
 }
