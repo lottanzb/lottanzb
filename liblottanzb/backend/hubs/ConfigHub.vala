@@ -57,7 +57,7 @@ public class Lottanzb.ConfigHubImpl : Object, ConfigHub {
 			settings_updater.update (query.get_response ());
 		});
 
-		query_processor.get_config ();
+		query_processor.get_config.begin ();
 		connect_to_changed_signal (root);
 	}
 
@@ -91,7 +91,7 @@ public class Lottanzb.ConfigHubImpl : Object, ConfigHub {
 		var entries = new Gee.HashMap<string, string> ();
 		var variant = settings.get_value (key);
 		entries[key.replace ("-", "_")] = get_string_from_variant (variant);
-		query_processor.set_config (path_elements, entries);
+		query_processor.set_config.begin (path_elements, entries);
 	}
 
 	private string get_string_from_variant (Variant variant) {

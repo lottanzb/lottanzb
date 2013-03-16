@@ -42,8 +42,8 @@ public class Lottanzb.BackendImpl : Object, Backend {
 		config_hub = new ConfigHubImpl (query_processor);
 
 		Timeout.add_seconds (1, () => {
-			query_processor.get_queue ();
-			query_processor.get_history ();
+			query_processor.get_queue.begin ();
+			query_processor.get_history.begin ();
 			return true;
 		});
 	}

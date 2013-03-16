@@ -77,8 +77,8 @@ public class Lottanzb.GeneralHubImpl : Object, GeneralHub {
 			DownloadStatusGroup.INCOMPLETE);
 		this.history_updater = new DownloadListStoreUpdater (download_list_store,
 			DownloadStatusGroup.COMPLETE | DownloadStatusGroup.PROCESSING);
-		this.query_processor.get_queue ();
-		this.query_processor.get_history ();
+		this.query_processor.get_queue.begin ();
+		this.query_processor.get_history.begin ();
 	}
 
 	private void handle_queue_query (GetQueueQuery query) {
@@ -106,9 +106,9 @@ public class Lottanzb.GeneralHubImpl : Object, GeneralHub {
 					last_queue_query_response.is_paused != value;
 				if (is_query_required) {
 					if (value) {
-						query_processor.pause ();
+						query_processor.pause.begin ();
 					} else {
-						query_processor.resume ();
+						query_processor.resume.begin ();
 					}
 					last_queue_query_response = null;
 					download_list_store.switch_download_status (
@@ -123,7 +123,7 @@ public class Lottanzb.GeneralHubImpl : Object, GeneralHub {
 		foreach (var download in downloads) {
 			download_ids.add (download.id);
 		}
-		query_processor.pause_downloads (download_ids);
+		query_processor.pause_downloads.begin (download_ids);
 	}
 
 	public void resume_downloads (Gee.List<Download> downloads) {
@@ -131,7 +131,7 @@ public class Lottanzb.GeneralHubImpl : Object, GeneralHub {
 		foreach (var download in downloads) {
 			download_ids.add (download.id);
 		}
-		query_processor.resume_downloads (download_ids);
+		query_processor.resume_downloads.begin (download_ids);
 	}
 
 	public void move_download (Download download, int index)
@@ -162,7 +162,7 @@ public class Lottanzb.GeneralHubImpl : Object, GeneralHub {
 		} else {
 			LottanzbResource.move_after (download_list_store, source_iter, target_iter);
 		}
-		query_processor.switch_downloads (download.id, target_download.id);
+		query_processor.switch_downloads.begin (download.id, target_download.id);
 	}
 
 	public void move_download_relative (Download download, int shift) {
@@ -210,18 +210,19 @@ public class Lottanzb.GeneralHubImpl : Object, GeneralHub {
 	}
 
 	public void rename_download (Download download, string new_name) {
-		query_processor.rename_download (download.id, new_name);
+		query_processor.rename_download.begin (download.id, new_name);
 	}
 
 	public void set_download_priority (Download download, DownloadPriority new_priority) {
 		var download_ids = new Gee.ArrayList<string> ();
 		download_ids.add (download.id);
-		query_processor.set_download_priority (download_ids, new_priority);
+		query_processor.set_download_priority.begin (download_ids, new_priority);
 	}
 
 	public void delete_download (Download download) {
 		var download_ids = new Gee.ArrayList<string> ();
 		download_ids.add (download.id);
-		query_processor.delete_downloads (download_ids);
+		query_processor.delete_downloads.begin (download_ids);
 	}
+
 }

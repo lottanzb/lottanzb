@@ -110,7 +110,7 @@ public class Lottanzb.GeneralHubTest : Lottanzb.TestSuiteBuilder {
 		assert (rename_download_query.new_name == "bar");
 		assert (has_row_changed);
 		has_row_changed = false;
-		query_processor.rename_download (download.id, "baz");
+		query_processor.rename_download.begin (download.id, "baz");
 		// Assert that running a RenameDownloadQuery changes the download name,
 		// but does not trigger a subsequent (useless) RenameDownloadQuery.
 		rename_download_queries = query_processor.get_queries<RenameDownloadQuery> ();
@@ -119,8 +119,8 @@ public class Lottanzb.GeneralHubTest : Lottanzb.TestSuiteBuilder {
 		assert (download.name == "baz");
 		// Assert that during a subsequent DownloadListStore update using remote data,
 		// no accidental RenameDownloadQueries are run.
-		query_processor.get_queue ();
-		query_processor.get_history ();
+		query_processor.get_queue.begin ();
+		query_processor.get_history.begin ();
 		rename_download_queries = query_processor.get_queries<RenameDownloadQuery> ();
 		assert (rename_download_queries.size == 2);
 	}
@@ -147,7 +147,7 @@ public class Lottanzb.GeneralHubTest : Lottanzb.TestSuiteBuilder {
 		assert (set_download_priority_query.new_priority == DownloadPriority.FORCE);
 		assert (has_row_changed);
 		has_row_changed = false;
-		query_processor.set_single_download_priority (download.id, DownloadPriority.HIGH);
+		query_processor.set_single_download_priority.begin (download.id, DownloadPriority.HIGH);
 		// Assert that running a SetDownloadPriorityQuery changes the download name,
 		// but does not trigger a subsequent (useless) SetDownloadPriorityQuery.
 		set_download_priority_queries = query_processor.get_queries<SetDownloadPriorityQuery> ();
@@ -156,8 +156,8 @@ public class Lottanzb.GeneralHubTest : Lottanzb.TestSuiteBuilder {
 		assert (download.priority == DownloadPriority.HIGH);
 		// Assert that during a subsequent DownloadListStore update using remote data,
 		// no accidental SetDownloadPriorityQueries are run.
-		query_processor.get_queue ();
-		query_processor.get_history ();
+		query_processor.get_queue.begin ();
+		query_processor.get_history.begin ();
 		set_download_priority_queries = query_processor.get_queries<SetDownloadPriorityQuery> ();
 		assert (set_download_priority_queries.size == 2);
 

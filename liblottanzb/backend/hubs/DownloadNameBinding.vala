@@ -27,7 +27,7 @@ public class Lottanzb.DownloadNameBinding : DownloadPropertyBinding {
 		if (!download_list_store.is_updating) {
 			base.handle_download_property_change (download);
 			var new_name = download.name;
-			query_processor.rename_download (download.id, new_name);
+			query_processor.rename_download.begin (download.id, new_name);
 		}
 	}
 
