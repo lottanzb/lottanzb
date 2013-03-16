@@ -72,6 +72,9 @@ public class Lottanzb.ConfigHubImpl : Object, ConfigHub {
 	}
 
 	private void on_settings_changed (BetterSettings settings, string key) {
+		if (settings_updater.is_updating) {
+			return;
+		}
 		// Do not write-back settings that are internal to LottaNZB
 		if (settings.is_internal (key)) {
 			return;
