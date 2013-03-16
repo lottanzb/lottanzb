@@ -19,7 +19,7 @@
           <object class="GtkAction" id="move_down">
             <property name="label" translatable="yes">Move _down</property>
             <property name="tooltip" translatable="yes">Move the selected download down</property>
-            <property name="stock_id">gtk-go-down</property>
+            <property name="icon-name">go-down-symbolic</property>
             <signal name="activate" handler="lottanzb_download_list_on_move_down_activate" swapped="no"/>
           </object>
         </child>
@@ -27,7 +27,7 @@
           <object class="GtkAction" id="move_up">
             <property name="label" translatable="yes">Move _up</property>
             <property name="tooltip" translatable="yes">Move the selected download up</property>
-            <property name="stock_id">gtk-go-up</property>
+            <property name="icon-name">go-up-symbolic</property>
             <signal name="activate" handler="lottanzb_download_list_on_move_up_activate" swapped="no"/>
           </object>
         </child>
@@ -35,7 +35,7 @@
           <object class="GtkAction" id="move_up_to_top">
             <property name="label" translatable="yes">_Start</property>
             <property name="tooltip" translatable="yes">Start the selected download</property>
-            <property name="stock_id">gtk-goto-top</property>
+            <property name="icon-name">go-top-symbolic</property>
             <signal name="activate" handler="lottanzb_download_list_on_move_up_to_top_activate" swapped="no"/>
           </object>
         </child>
@@ -43,7 +43,7 @@
           <object class="GtkAction" id="move_down_to_bottom">
             <property name="label" translatable="yes">Move to _bottom of queue</property>
             <property name="tooltip" translatable="yes">Move the selected download to the bottom of the queue</property>
-            <property name="stock_id">gtk-goto-bottom</property>
+            <property name="icon-name">go-bottom-symbolic</property>
             <signal name="activate" handler="lottanzb_download_list_on_move_down_to_bottom_activate" swapped="no"/>
           </object>
         </child>
