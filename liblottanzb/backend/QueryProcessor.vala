@@ -47,13 +47,13 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public abstract QueryNotifier<T> get_query_notifier<T> ();
 
-	public abstract void run_query (T query);
+	public abstract async void run_query (T query);
 
 	public abstract SetConfigQuery make_set_config_query (Gee.List<string> path, Gee.Map<string, string> entries);
 	
 	public SetConfigQuery set_config (Gee.List<string> path, Gee.Map<string, string> entries) {
 		var query = make_set_config_query (path, entries);
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 
@@ -61,7 +61,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public GetConfigQuery get_config () {
 		var query = make_get_config_query ();
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 	
@@ -69,7 +69,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 
 	public DeleteConfigQuery delete_config (Gee.List<string> path, string key) {
 		var query = make_delete_config_query (path, key);
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 	
@@ -83,7 +83,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 
 	public GetQueueQuery get_queue () {
 		var query = make_get_queue_query ();
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 
@@ -93,7 +93,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public DeleteDownloadsQuery delete_downloads (Gee.List<string> download_ids) {
 		var query = make_delete_downloads_query (download_ids);
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 
@@ -105,7 +105,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public RenameDownloadQuery rename_download (string download_id, string new_name) {
 		var query = make_rename_download_query (download_id, new_name);
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 
@@ -115,7 +115,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public PauseDownloadsQuery pause_downloads (Gee.List<string> download_ids) {
 		var query = make_pause_downloads_query (download_ids);
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 
@@ -123,7 +123,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public ResumeDownloadsQuery resume_downloads (Gee.List<string> download_ids) {
 		var query = make_resume_downloads_query (download_ids);
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 
@@ -133,7 +133,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 
 	public SwitchDownloadsQuery switch_downloads (string first_download_id, string second_download_id) {
 		var query = make_switch_downloads_query (first_download_id, second_download_id);
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 
@@ -141,7 +141,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public SetDownloadPriorityQuery set_download_priority (Gee.List<string> download_ids, DownloadPriority new_priority) {
 		var query = make_set_download_priority_query (download_ids, new_priority);
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 
@@ -164,7 +164,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	public AddDownloadQuery add_download (string uri,
 		AddDownloadQueryOptionalArguments optional_arguments) {
 		var query = make_add_download_query (uri, optional_arguments);
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 	
@@ -176,7 +176,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public GetHistoryQuery get_history () {
 		var query = make_get_history_query ();
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 
@@ -188,7 +188,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 
 	public PauseQuery pause () {
 		var query = make_pause_query ();
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 
@@ -196,7 +196,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public ResumeQuery resume () {
 		var query = make_resume_query ();
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 
@@ -212,7 +212,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public GetWarningsQuery get_warnings () {
 		var query = make_get_warnings_query ();
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 
@@ -224,7 +224,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public GetVersionQuery get_version () {
 		var query = make_get_version_query ();
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 
@@ -238,7 +238,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 
 	public GetAuthenticationTypeQuery get_authentication_type () {
 		var query = make_get_authentication_type_query ();
-		run_query (query);
+		run_query.begin (query);
 		return query;
 	}
 

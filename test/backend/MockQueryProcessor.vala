@@ -70,7 +70,7 @@ public class Lottanzb.MockQueryProcessor : Object, QueryNotifier<Query>, QueryPr
 		return false;
 	}
 
-	public void run_query (Query query) {
+	public async void run_query (Query query) {
 		Type query_type = Type.from_instance (query); 
 		Gee.List<Query>? queries_of_same_type = queries_by_type [query_type];
 		if (queries_of_same_type == null) {
