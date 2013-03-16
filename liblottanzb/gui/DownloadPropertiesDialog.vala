@@ -363,7 +363,7 @@ public class Lottanzb.ETAField : FormattedActivityField {
 
 	protected override string get_text () {
 		if (download.eta != null) {
-			return download.eta.to_string ();
+			return download.eta.format ("%c");
 		}
 		return LABEL_TEXT_UNKNOWN_VALUE;
 	}
