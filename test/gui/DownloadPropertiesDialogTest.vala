@@ -25,8 +25,16 @@ public class Lottanzb.DownloadPropertiesDialogTest : Lottanzb.TestSuiteBuilder {
 	public void test_construction () {
 		var general_hub = new MockGeneralHub ();
 		var download = new DownloadImpl ();
-		download.name = "Foobar";
+		download.name = "foo";
 		var dialog = new DownloadPropertiesDialog (general_hub, download);
+
+		// Switching the dialog to a new download should not alter the
+		// previous download in any way.
+		var other_download = new DownloadImpl ();
+		other_download.name = "bar";
+		dialog.download = other_download;		
+		assert (download.name == "foo");
+		assert (other_download.name == "bar");
 	}
 
 }
