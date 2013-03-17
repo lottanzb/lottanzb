@@ -35,7 +35,7 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 		this.download_properties_dialog = null;
 		
 		widgets.window1.remove(widget);
-		widgets.treeview.append_column (new DownloadSingleColumn ());
+		widgets.treeview.append_column (new DownloadListColumn ());
 		widgets.treeview.set_search_equal_func (search_equal_func);
 		widgets.treeview.set_model (general_hub.download_list_store);
 		widgets.treeview.get_selection ().set_mode (SelectionMode.BROWSE);
@@ -346,21 +346,9 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 
 }
 
-public class Lottanzb.DownloadListColumn : TreeViewColumn {
+public class Lottanzb.DownloadListColumn : Gtk.TreeViewColumn {
 
-
-	public Download? get_download (TreeModel tree_model, TreeIter iter) {
-		Value? model_value;
-		tree_model.get_value(iter, DownloadListStore.COLUMN, out model_value);
-		Download download = (Download) model_value;
-		return download;
-	}
-
-}
-
-public class Lottanzb.DownloadSingleColumn : DownloadListColumn {
-
-	public DownloadSingleColumn () {
+	public DownloadListColumn () {
 		title = _("Download");
 		resizable = true;
 		sizing = Gtk.TreeViewColumnSizing.FIXED;
