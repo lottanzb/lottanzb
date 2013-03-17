@@ -22,8 +22,14 @@ public class Lottanzb.DownloadPropertiesDialog : AbstractDownloadPropertiesDialo
 	protected Download _download;
 	protected ActivityField[] _activity_fields;
 	protected ulong _download_status_changed_signal_id;
-	protected Binding? download_name_binding;
-	protected Binding? download_priority_binding;
+
+	// There is no need to increase the reference count of the binding when
+	// creating it because it is already set to 1. The binding is finalized
+	// automatically when the corresponding widget is finalized. To finalize
+	// the binding when changing the download, we can unref it explicitly.
+	protected unowned Binding? download_name_binding;
+	protected unowned Binding? download_priority_binding;
+
 	protected ulong _priority_change_signal_id;
 	
 	public DownloadPropertiesDialog (GeneralHub general_hub, Download download) {
@@ -50,8 +56,9 @@ public class Lottanzb.DownloadPropertiesDialog : AbstractDownloadPropertiesDialo
 		}
 		set {
 			if (_download != null) {
-				download_name_binding = null;
-				download_priority_binding = null;
+				// Unbind the properties explicitly.
+				download_name_binding.unref ();
+				download_priority_binding.unref ();
 				_download.disconnect (_download_status_changed_signal_id);	
 			}
 			_download = value;
@@ -71,8 +78,8 @@ public class Lottanzb.DownloadPropertiesDialog : AbstractDownloadPropertiesDialo
 			};
 
 			// Change the download name seamlessly
-			download_name_binding = LottanzbResource.bind_property (
-				download, "name", widgets.name, "text",
+			download_name_binding = download.bind_property (
+				"name", widgets.name, "text",
 				BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL, null,
 				(binding, source_value, ref target_value) => {
 					var name = source_value.get_string ();
@@ -86,8 +93,8 @@ public class Lottanzb.DownloadPropertiesDialog : AbstractDownloadPropertiesDialo
 				});
 			
 			// Change the download priority seamlessly
-			download_priority_binding = LottanzbResource.bind_property (
-				download, "priority", widgets.priority, "active",
+			download_priority_binding = download.bind_property (
+				"priority", widgets.priority, "active",
 				BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL,
 				(binding, source_value, ref target_value) => {
 					var priority = (DownloadPriority) source_value.get_enum ();
