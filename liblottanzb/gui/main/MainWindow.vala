@@ -37,7 +37,7 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	private DownloadList? _download_list;
 	private InfoBar? _info_bar;
 	private uint ui_manager_merge_id;
-	private Binding? _pause_general_hub_action_binding;
+	private unowned Binding? _pause_general_hub_action_binding;
 	private PreferencesWindow preferences_window;
 
 	public DownloadList? download_list {
@@ -100,6 +100,8 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 				download_list = null;
 				info_bar = null;
 				widgets.backend_action_group.sensitive = false;
+				// Explicitly destroy the binding
+				_pause_general_hub_action_binding.unref ();
 				_pause_general_hub_action_binding = null;
 			}
 		}

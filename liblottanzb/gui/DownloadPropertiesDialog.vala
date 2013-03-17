@@ -71,7 +71,8 @@ public class Lottanzb.DownloadPropertiesDialog : AbstractDownloadPropertiesDialo
 			};
 
 			// Change the download name seamlessly
-			download_name_binding = download.bind_property ("name", widgets.name, "text",
+			download_name_binding = LottanzbResource.bind_property (
+				download, "name", widgets.name, "text",
 				BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL, null,
 				(binding, source_value, ref target_value) => {
 					var name = source_value.get_string ();
@@ -85,7 +86,8 @@ public class Lottanzb.DownloadPropertiesDialog : AbstractDownloadPropertiesDialo
 				});
 			
 			// Change the download priority seamlessly
-			download_priority_binding = download.bind_property ("priority", widgets.priority, "active",
+			download_priority_binding = LottanzbResource.bind_property (
+				download, "priority", widgets.priority, "active",
 				BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL,
 				(binding, source_value, ref target_value) => {
 					var priority = (DownloadPriority) source_value.get_enum ();
