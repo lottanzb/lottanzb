@@ -23,6 +23,7 @@ public class Lottanzb.DownloadListStoreTest : Lottanzb.TestSuiteBuilder {
 		base ("download_list_store");
 		add_test ("basic", test_basic);
 		add_test ("filtering", test_filtering);
+		add_test ("switch_download_status", test_switch_download_status);
 	}
 
 	public void test_basic () {
@@ -65,4 +66,27 @@ public class Lottanzb.DownloadListStoreTest : Lottanzb.TestSuiteBuilder {
 		assert (store.get_filter_movable ().iter_n_children (null) == 2);
 		assert (store.get_filter_by_status (DownloadStatus.DOWNLOADING_RECOVERY_DATA).iter_n_children (null) == 1);
 	}
+
+	public void test_switch_download_status () {
+		var store = new DownloadListStore ();
+		var first_download = make_download ("a", DownloadStatus.DOWNLOADING);
+		var second_download = make_download ("b", DownloadStatus.QUEUED);
+		Gtk.TreeIter iter;
+		store.insert_with_values (out iter, 0, DownloadListStore.COLUMN,
+				first_download);
+		store.insert_with_values (out iter, 1, DownloadListStore.COLUMN,
+				second_download);
+		var row_changed_emitted = false;
+		store.row_changed.connect ((path, iter) => {
+				if (store.get_download (iter) == first_download) {
+					row_changed_emitted = true;
+				}
+		});
+		store.switch_download_status (DownloadStatus.DOWNLOADING, DownloadStatus.PAUSED);	
+
+		assert (first_download.status == DownloadStatus.PAUSED);
+		assert (second_download.status == DownloadStatus.QUEUED);
+		assert (row_changed_emitted);
+	}
+
 }
