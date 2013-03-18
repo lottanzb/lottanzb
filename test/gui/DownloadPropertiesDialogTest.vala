@@ -20,21 +20,47 @@ public class Lottanzb.DownloadPropertiesDialogTest : Lottanzb.TestSuiteBuilder {
 	public DownloadPropertiesDialogTest () {
 		base ("download_properties_dialog");
 		add_test ("construction", test_construction);
+		add_test ("modification", test_modification);
 	}
 
 	public void test_construction () {
 		var general_hub = new MockGeneralHub ();
 		var download = new DownloadImpl ();
 		download.name = "foo";
+		download.priority = DownloadPriority.HIGH;
 		var dialog = new DownloadPropertiesDialog (general_hub, download);
 
 		// Switching the dialog to a new download should not alter the
 		// previous download in any way.
 		var other_download = new DownloadImpl ();
 		other_download.name = "bar";
-		dialog.download = other_download;		
+		other_download.priority = DownloadPriority.NORMAL;
+		dialog.download = other_download;
 		assert (download.name == "foo");
+		assert (download.priority == DownloadPriority.HIGH);
 		assert (other_download.name == "bar");
+		assert (other_download.priority == DownloadPriority.NORMAL);
+	}
+
+	public void test_modification () {
+		var general_hub = new MockGeneralHub ();
+		var download = new DownloadImpl ();
+		download.name = "foo";
+		var dialog = new DownloadPropertiesDialog (general_hub, download);
+
+		dialog.widgets.name.text = "bar";
+		assert (download.name == "bar");
+		// It must not be possible to change the download name to an empty
+		// string.
+		dialog.widgets.name.text = "";
+		assert (download.name == "bar");
+		download.name = "baz";
+		assert (dialog.widgets.name.text == "baz");
+
+		dialog.widgets.priority.active = DownloadPriority.LOW.to_index ();
+		assert (download.priority == DownloadPriority.LOW);
+		download.priority = DownloadPriority.HIGH;
+		assert (dialog.widgets.priority.active == DownloadPriority.HIGH.to_index ());
 	}
 
 }
