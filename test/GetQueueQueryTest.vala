@@ -34,6 +34,15 @@ public class Lottanzb.GetQueueQueryTest : Lottanzb.TestSuiteBuilder {
 		assert (response.size_left.bytes == 0);
 		assert (response.speed.bytes_per_second == 0);
 		assert (response.downloads.size == 3);
+		assert (response.total_download_folder_space ==
+				DataSize.with_unit (214, DataSizeUnit.GIGABYTES));
+		assert (response.total_temp_folder_space ==
+				DataSize.with_unit (214, DataSizeUnit.GIGABYTES));
+		assert (response.free_download_folder_space ==
+				DataSize.with_unit (1.62, DataSizeUnit.GIGABYTES));
+		assert (response.free_temp_folder_space ==
+				DataSize.with_unit (1.62, DataSizeUnit.GIGABYTES));
+
 		var active_download = response.downloads[0];
 		assert (active_download.id == "foo");
 		assert (active_download.status == DownloadStatus.DOWNLOADING);
