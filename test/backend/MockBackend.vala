@@ -15,16 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Lottanzb.InfoBarTest : Lottanzb.TestSuiteBuilder {
+public class Lottanzb.MockBackend : Object, Backend {
+	
+	public QueryProcessor query_processor { get; protected set; }
+	public GeneralHub general_hub { get; protected set; }
+	public StatisticsHub statistics_hub { get; protected set; }
+	public ConfigHub config_hub { get; protected set; }
 
-	public InfoBarTest () {
-		base ("info_bar");
-		add_test ("updates", test_updates);
+	public MockBackend () {
+		query_processor = new MockQueryProcessor ();
+		general_hub = new MockGeneralHub ();
+		statistics_hub = new MockStatisticsHub ();
+		config_hub = new MockConfigHub ();	
 	}
-
-	public void test_updates () {
-		var backend = new MockBackend ();
-		var info_bar = new InfoBar (backend);
-	}
-
+	
 }

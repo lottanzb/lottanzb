@@ -15,16 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Lottanzb.InfoBarTest : Lottanzb.TestSuiteBuilder {
+public class Lottanzb.MainWindowTest : Lottanzb.TestSuiteBuilder {
 
-	public InfoBarTest () {
-		base ("info_bar");
-		add_test ("updates", test_updates);
+	public MainWindowTest () {
+		base ("main_window");
+		add_test ("construction", test_construction);
 	}
 
-	public void test_updates () {
+	public void test_construction () {
+		var config_provider = new ConfigProviderImpl.with_memory_backend ();
 		var backend = new MockBackend ();
-		var info_bar = new InfoBar (backend);
+		var main_window = new MainWindow (config_provider);
+		main_window.backend = backend;
 	}
 
 }

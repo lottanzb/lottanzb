@@ -21,6 +21,7 @@ public class Lottanzb.GuiTest : TestSuite {
 
 	public GuiTest () {
 		base ("gui");
+		add_suite (new MainWindowTest ().get_suite ());
 		add_suite (new GeneralPreferencesTabTest ().get_suite ());
 		add_suite (new SpeedLimitMenuTest ().get_suite ());
 		add_suite (new InfoBarTest ().get_suite ());

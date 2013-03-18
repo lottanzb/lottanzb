@@ -26,6 +26,7 @@ public interface Lottanzb.GeneralHub : Object {
 	public abstract TimeDelta time_left { get; protected set; default = TimeDelta.UNKNOWN; }
 	public abstract DataSize size_left { get; protected set; default = DataSize.UNKNOWN; }
 	public abstract DateTime eta { get; protected set; }
+	public abstract bool paused { get; set; }
 
 	public abstract void pause_downloads (Gee.List<Download> downloads);
 	public abstract void resume_downloads (Gee.List<Download> downloads);

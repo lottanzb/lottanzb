@@ -24,6 +24,7 @@ public class Lottanzb.MockGeneralHub : Object, GeneralHub {
 	public TimeDelta time_left { get; protected set; default = TimeDelta.UNKNOWN; }
 	public DataSize size_left { get; protected set; default = DataSize.UNKNOWN; }
 	public DateTime eta { get; protected set; }
+	public bool paused { get; set; }
 
 	public MockGeneralHub () {
 		query_processor = new MockQueryProcessor ();
