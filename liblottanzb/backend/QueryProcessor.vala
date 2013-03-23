@@ -119,11 +119,25 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 		return query;
 	}
 
+		public async PauseDownloadsQuery pause_download (string download_id) {
+		var download_ids = new Gee.ArrayList<string> ();
+		download_ids.add (download_id);
+		var query = yield pause_downloads (download_ids);
+		return query;
+	}
+
 	public abstract ResumeDownloadsQuery make_resume_downloads_query (Gee.List<string> download_ids);
 	
 	public async ResumeDownloadsQuery resume_downloads (Gee.List<string> download_ids) {
 		var query = make_resume_downloads_query (download_ids);
 		yield run_query (query);
+		return query;
+	}
+
+	public async ResumeDownloadsQuery resume_download (string download_id) {
+		var download_ids = new Gee.ArrayList<string> ();
+		download_ids.add (download_id);
+		var query = yield resume_downloads (download_ids);
 		return query;
 	}
 
