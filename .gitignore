@@ -4,3 +4,5 @@ po/.intlcache
 .waf*
 .lock*
 *.swp
+lottanzb.sublime-project
+lottanzb.sublime-workspace
