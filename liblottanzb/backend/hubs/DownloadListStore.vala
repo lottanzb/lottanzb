@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 public class Lottanzb.DownloadListStore : Gtk.ListStore, IterableTreeModel, DownloadListStoreMixin {
 
 	public static int COLUMN = 0;

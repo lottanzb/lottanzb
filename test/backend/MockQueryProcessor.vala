@@ -60,6 +60,23 @@ public class Lottanzb.MockQueryProcessor : Object, QueryNotifier<Query>, QueryPr
 		return result;
 	}
 
+	public T get_first_query<T> () {
+		Gee.List<T> queries = get_queries<T> ();
+		assert (queries.size > 0);
+		return queries[0];
+	}
+
+	public int get_query_count<T> () {
+		Type query_type = typeof (T);
+		int result = 0;
+		foreach (var type in queries_by_type.keys) {
+			if (type.is_a (query_type)) {
+				result += queries_by_type [type].size;
+			}
+		}
+		return result;
+	}
+
 	public bool has_queries<T> () {
 		Type query_type = typeof (T);
 		foreach (var type in queries_by_type.keys) {
