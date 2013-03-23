@@ -57,6 +57,24 @@ public class Lottanzb.DownloadPropertiesDialogTest : Lottanzb.TestSuiteBuilder {
 		download.name = "baz";
 		assert (dialog.widgets.name.text == "baz");
 
+		// When the only change is adding whitespace to the download name,
+		// it must not be overwritten by the one provided by SABnzbd.
+		// The problem is that SABnzbd strips this whitespace from the
+		// name, LottaNZB propagates this change back to the UI. But
+		// since the cursor may not be at an invalid position, it is reset.
+		// This leads to an odd behavior when entering multiple-word names.
+		dialog.widgets.name.text = "baz ";
+		download.name = "baz";
+		assert (dialog.widgets.name.text == "baz ");
+		dialog.widgets.name.text = " baz ";
+		download.name = "baz";
+		assert (dialog.widgets.name.text == " baz ");
+		dialog.widgets.name.text = " baaz ";
+		download.name = "baaz";
+		// Not it is fine to overwrite the whitespace, since non-whitespace
+		// characters have changed.
+		assert (download.name == "baaz");
+
 		dialog.widgets.priority.active = DownloadPriority.LOW.to_index ();
 		assert (download.priority == DownloadPriority.LOW);
 		download.priority = DownloadPriority.HIGH;

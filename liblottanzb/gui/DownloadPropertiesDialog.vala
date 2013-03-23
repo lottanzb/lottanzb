@@ -80,10 +80,23 @@ public class Lottanzb.DownloadPropertiesDialog : AbstractDownloadPropertiesDialo
 			// Change the download name seamlessly
 			download_name_binding = download.bind_property (
 				"name", widgets.name, "text",
-				BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL, null,
+				BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL,
 				(binding, source_value, ref target_value) => {
 					var name = source_value.get_string ();
-					// Only sync when the given download name is non-empty
+					// Do not strip trailing and leading whitespace entered
+					// by the user (SABnzbd automatically strips it).
+					// This leads to a jumpy cursor while entering a multi-
+					// word download name.
+					if (widgets.name.text.strip () == name) {
+						return false;
+					} else {
+						target_value.set_string (name);
+						return true;
+					}
+				},
+				(binding, source_value, ref target_value) => {
+					var name = source_value.get_string ();
+					// Do not sync when the given download name is empty
 					if (name.length == 0) {
 						return false;
 					} else {
