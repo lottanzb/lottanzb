@@ -24,11 +24,9 @@ public class Lottanzb.DownloadPriorityBinding : DownloadPropertyBinding<Download
 	}
 
 	public override void handle_download_property_change (Download download) {
-		if (!download_list_store.is_updating) {
-			base.handle_download_property_change (download);
-			var new_priority = download.priority;
-			query_processor.set_single_download_priority.begin (download.id, new_priority);
-		}
+		base.handle_download_property_change (download);
+		var new_priority = download.priority;
+		query_processor.set_single_download_priority.begin (download.id, new_priority);
 	}
 
 	public void on_set_download_priority_query_started (QueryNotifier query_notifier,

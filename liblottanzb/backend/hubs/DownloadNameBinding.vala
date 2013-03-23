@@ -24,11 +24,9 @@ public class Lottanzb.DownloadNameBinding : DownloadPropertyBinding<string> {
 	}
 	
 	public override void handle_download_property_change (Download download) {
-		if (!download_list_store.is_updating) {
-			base.handle_download_property_change (download);
-			var new_name = download.name;
-			query_processor.rename_download.begin (download.id, new_name);
-		}
+		base.handle_download_property_change (download);
+		var new_name = download.name;
+		query_processor.rename_download.begin (download.id, new_name);
 	}
 
 	public void on_download_rename_query_started (QueryNotifier query_notifier,

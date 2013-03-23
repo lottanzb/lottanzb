@@ -43,7 +43,7 @@ public abstract class Lottanzb.DownloadPropertyBinding<T> : Object {
 
 	private void handle_download_insertion (Download download) {
 		download.notify[property].connect ((object, param) => {
-			if (!ignore_property_changes) {
+			if (!ignore_property_changes && !download_list_store.is_updating) {
 				handle_download_property_change (download);
 			}
 		});
