@@ -57,6 +57,7 @@ public class Lottanzb.Main {
 		var backend = new BackendImpl (config_provider, session_provider);
 		var main_window = new MainWindow (config_provider);
 		main_window.backend = backend;
+		main_window.show ();
 
 		Gtk.main ();
 		return 0;
