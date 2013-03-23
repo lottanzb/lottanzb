@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public class Lottanzb.DownloadNameBinding : DownloadPropertyBinding {
+public class Lottanzb.DownloadNameBinding : DownloadPropertyBinding<string> {
 
 	public DownloadNameBinding (DownloadListStore download_list_store, QueryProcessor query_processor) {
 		base (download_list_store, query_processor, "name");
@@ -37,10 +37,7 @@ public class Lottanzb.DownloadNameBinding : DownloadPropertyBinding {
 		var new_name = rename_download_query.new_name;
 		var download = download_list_store.get_download_by_id (download_id);
 		if (download != null && download.name != new_name) {
-			ignore_property_changes = true;
-			download.name = new_name;
-			ignore_property_changes = false;
-			download_list_store.register_download_change (download);
+			set_property_silently (download, new_name);
 		}
 	}
 

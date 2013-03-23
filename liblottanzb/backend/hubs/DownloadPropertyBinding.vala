@@ -15,13 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public abstract class Lottanzb.DownloadPropertyBinding : Object {
+public abstract class Lottanzb.DownloadPropertyBinding<T> : Object {
 
 	public QueryProcessor query_processor { get; construct set; }
 	public DownloadListStore download_list_store { get; construct set; }
 	public string property { get; construct set; }
 
-	// TODO: The class is currently only suited for single-thread usage	
 	protected bool ignore_property_changes { get; set; }
 
 	public DownloadPropertyBinding (DownloadListStore download_list_store, QueryProcessor query_processor, string property) {
@@ -48,6 +47,22 @@ public abstract class Lottanzb.DownloadPropertyBinding : Object {
 				handle_download_property_change (download);
 			}
 		});
+	}
+
+	/**
+	 * Set the property of a given download to a new value, but do not call
+	 * handle_download_property_change in the process. Use this method
+	 * to avoid infinite loops, e.g., because handle_download_property_change
+	 * would eventually cause this method to be called again.
+	 *
+	 * Also make sure that the value is actually different from the current
+	 * one to avoid unnecessary work.
+	 */
+	protected void set_property_silently (Download download, T value) {
+		ignore_property_changes = true;
+		download[property] = value;
+		ignore_property_changes = false;
+		download_list_store.register_download_change (download);
 	}
 
 	protected virtual void handle_download_property_change (Download download) {
