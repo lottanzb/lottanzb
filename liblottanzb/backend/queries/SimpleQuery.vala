@@ -45,6 +45,7 @@ public class Lottanzb.PauseDownloadsQueryImpl : PauseDownloadsQuery, SimpleQuery
 
 	public PauseDownloadsQueryImpl (Gee.List<string> download_ids) {
 		base.with_argument ("queue", "name", "pause");
+		arguments["value"] = string.joinv (",", download_ids.to_array ());
 	}
 
 }
@@ -57,6 +58,7 @@ public class Lottanzb.ResumeDownloadsQueryImpl : ResumeDownloadsQuery, SimpleQue
 
 	public ResumeDownloadsQueryImpl (Gee.List<string> download_ids) {
 		base.with_argument ("queue", "name", "resume");
+		arguments["value"] = string.joinv (",", download_ids.to_array ());
 	}
 
 }

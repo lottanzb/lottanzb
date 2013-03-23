@@ -23,6 +23,8 @@ public class Lottanzb.SimpleQueryTest : Lottanzb.TestSuiteBuilder {
 		base ("simple_query");
 		add_test ("construction", test_construction);
 		add_test ("message_building", test_message_building);
+		add_test ("resume_downloads_query", test_resume_downloads_query);
+		add_test ("pause_downloads_query", test_pause_downloads_query);
 	}
 
 	public void test_construction () {
@@ -54,6 +56,26 @@ public class Lottanzb.SimpleQueryTest : Lottanzb.TestSuiteBuilder {
 		assert (message.uri.port == 8080);
 		assert (message.uri.scheme == "http");
 		assert (message.uri.path == "/api");
+	}
+
+	public void test_resume_downloads_query () {
+		var download_ids = new Gee.ArrayList<string> ();
+		download_ids.add ("foo");
+		download_ids.add ("bar");
+		var query = new ResumeDownloadsQueryImpl (download_ids);
+		assert (query.method == "queue");
+		assert (query.arguments["name"] == "resume");
+		assert (query.arguments["value"] == "foo,bar");
+	}
+
+	public void test_pause_downloads_query () {
+		var download_ids = new Gee.ArrayList<string> ();
+		download_ids.add ("foo");
+		download_ids.add ("bar");
+		var query = new PauseDownloadsQueryImpl (download_ids);
+		assert (query.method == "queue");
+		assert (query.arguments["name"] == "pause");
+		assert (query.arguments["value"] == "foo,bar");
 	}
 
 }
