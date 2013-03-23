@@ -23,6 +23,7 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 	private GeneralHub general_hub;
 	private Window? parent_window;
 	private DownloadPropertiesDialog? download_properties_dialog;
+	protected unowned Binding? download_status_binding;
 	
 	private enum DnDTargets {
 		DOWNLOAD,
@@ -39,9 +40,7 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 		widgets.treeview.set_search_equal_func (search_equal_func);
 		widgets.treeview.set_model (general_hub.download_list_store);
 		widgets.treeview.get_selection ().set_mode (SelectionMode.BROWSE);
-		widgets.treeview.get_selection ().changed.connect ((selection) => {
-			update_action_sensitivity ();
-		});
+		widgets.treeview.get_selection ().changed.connect (on_selection_changed);
 		
 		general_hub.download_list_store.rows_reordered.connect ((model, iter, path, new_order) => {
 			update_action_sensitivity ();		
@@ -77,6 +76,32 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 		get {
 			return widgets.important_action_group;
 		}
+	}
+
+	private void on_selection_changed (Gtk.TreeSelection selection) {
+		if (download_status_binding != null) {
+			download_status_binding.unref ();
+			download_status_binding = null;
+		}
+		var download = get_selected_download ();
+		download_status_binding = download.bind_property (
+			"status", widgets.pause, "active",
+			BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL,
+			(binding, source_value, ref target_value) => {
+				var status = (DownloadStatus) source_value.get_flags ();
+				target_value.set_boolean (status == DownloadStatus.PAUSED);
+				return true;
+			},
+			(binding, source_value, ref target_value) => {
+				if (source_value.get_boolean ()) {
+					target_value.set_flags (DownloadStatus.PAUSED);
+				} else {
+					// TODO: Could already set to the right status.
+					target_value.set_flags (DownloadStatus.QUEUED);
+				}
+				return true;
+			});
+		update_action_sensitivity ();
 	}
 	
 	private bool search_equal_func (TreeModel tree_model, int column,
@@ -219,11 +244,6 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 	[CCode (instance_pos = -1)]
 	public void on_show_properties_dialog_activate (Gtk.Window window) {
 		show_properties_of_selected_download();
-	}
-	
-	[CCode (instance_pos = -1)]
-	public void on_pause_toggled (Gtk.Window window) {
-		
 	}
 	
 	[CCode (instance_pos = -1)]
