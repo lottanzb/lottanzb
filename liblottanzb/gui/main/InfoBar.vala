@@ -63,7 +63,12 @@ public class Lottanzb.InfoBar : AbstractInfoBar {
 	}
 
 	private void on_speed_changed () {
-		var new_label = _general_hub.speed.to_string();
+		string new_label;
+		if (_general_hub.speed == 0 && _general_hub.size_left == 0) {
+			new_label = _("Idle");
+		} else {
+			new_label = _general_hub.speed.to_string();
+		}
 		if (widgets.speed.label != new_label) {
 			widgets.speed.label = new_label;
 		}
@@ -71,7 +76,9 @@ public class Lottanzb.InfoBar : AbstractInfoBar {
 
 	private void on_remaining_changed () {
 		string new_label;
-		if (_general_hub.time_left.seconds == 0) {
+		if (_general_hub.size_left == 0) {
+			new_label = "";
+		} else if (_general_hub.time_left.seconds == 0) {
 			new_label = @"$(_general_hub.size_left) left";
 		} else {
 			new_label = @"$(_general_hub.size_left) left ($(_general_hub.time_left))"; 
