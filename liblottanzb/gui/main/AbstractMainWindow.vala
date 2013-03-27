@@ -13,7 +13,7 @@ public abstract class Lottanzb.AbstractMainWindow : Object {
 		public Gtk.Action quit { get; protected set; }
 		public Gtk.ToggleAction show_toolbar { get; protected set; }
 		public Gtk.ToggleAction show_infobar { get; protected set; }
-		public Gtk.ToggleAction show_reordering_pane { get; protected set; }
+		public Gtk.ToggleAction show_download_action_pane { get; protected set; }
 		public Gtk.Action show_help_content { get; protected set; }
 		public Gtk.Action show_message_log { get; protected set; }
 		public Gtk.Action show_about_dialog { get; protected set; }

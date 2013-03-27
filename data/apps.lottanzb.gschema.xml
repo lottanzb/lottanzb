@@ -131,11 +131,11 @@
       <summary>Show the infobar</summary>
       <description>Whether to show the infobar in the main window.</description>
     </key>
-    <key type="b" name="show-reordering-pane">
+    <key type="b" name="show-download-action-pane">
       <default>true</default>
-      <summary>Show the reordering pane</summary>
+      <summary>Show the download action pane</summary>
       <description>
-        Whether to show the download reordering pane in the main window.
+        Whether to show the download action pane in the main window.
       </description>
     </key>
     <key type="b" name="show-toolbar">

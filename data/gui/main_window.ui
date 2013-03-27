@@ -42,8 +42,8 @@
           </object>
         </child>
         <child>
-          <object class="GtkToggleAction" id="show_reordering_pane">
-            <property name="label" translatable="yes">_Reordering Pane</property>
+          <object class="GtkToggleAction" id="show_download_action_pane">
+            <property name="label" translatable="yes">_Download Actions</property>
           </object>
         </child>
         <child>
@@ -174,7 +174,7 @@
         <menu action="view">
           <menuitem action="show_toolbar" />
           <menuitem action="show_infobar" />
-          <menuitem action="show_reordering_pane" />
+          <menuitem action="show_download_action_pane" />
         </menu>
         <menu action="help">
           <menuitem action="show_help_content" />

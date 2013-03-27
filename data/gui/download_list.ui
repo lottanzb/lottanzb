@@ -73,7 +73,7 @@
         <menuitem action="pause"/>
         <menuitem action="delete"/>
       </popup>
-      <toolbar name="reordering_pane">
+      <toolbar name="download_action_pane">
         <toolitem action="move_up_to_top"/>
         <toolitem action="move_up"/>
         <toolitem action="delete"/>
@@ -93,7 +93,7 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>
-          <object class="GtkToolbar" id="reordering_pane" constructor="ui_manager">
+          <object class="GtkToolbar" id="download_action_pane" constructor="ui_manager">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>

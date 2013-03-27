@@ -66,9 +66,9 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 		}
 	}
 
-	public Toolbar reordering_pane {
+	public Toolbar download_action_pane {
 		get {
-			return widgets.reordering_pane;
+			return widgets.download_action_pane;
 		}
 	}
 

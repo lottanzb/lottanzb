@@ -17,7 +17,7 @@ public abstract class Lottanzb.AbstractDownloadList : Object {
 		public Gtk.Menu context_menu { get; protected set; }
 		public Gtk.Window window1 { get; protected set; }
 		public Gtk.HBox download_list { get; protected set; }
-		public Gtk.Toolbar reordering_pane { get; protected set; }
+		public Gtk.Toolbar download_action_pane { get; protected set; }
 		public Gtk.ScrolledWindow download_list_container { get; protected set; }
 		public Gtk.TreeView treeview { get; protected set; }
 		public Gtk.TreeSelection treeview_selection1 { get; protected set; }

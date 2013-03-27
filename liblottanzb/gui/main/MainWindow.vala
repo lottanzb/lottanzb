@@ -22,7 +22,7 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	public static string SETTINGS_POSITION_KEY = "position";
 	public static string SETTINGS_STATE_KEY = "state";
 	public static string SETTINGS_SHOW_INFOBAR = "show-infobar";
-	public static string SETTINGS_SHOW_REORDERING_PANE = "show-reordering-pane";
+	public static string SETTINGS_SHOW_DOWNLOAD_ACTION_PANE = "show-download-action-pane";
 	public static string SETTINGS_SHOW_TOOLBAR = "show-toolbar";
 
 	private static string LAUNCHPAD_ITEMS_PATH = "/menu_bar/help/launchpad_items";
@@ -50,8 +50,8 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 			_download_list = value;
 			if (_download_list != null) {
 				widgets.download_list.add(_download_list.widget);
-				window_settings.bind (SETTINGS_SHOW_REORDERING_PANE,
-					_download_list.reordering_pane, "visible", SettingsBindFlags.GET);
+				window_settings.bind (SETTINGS_SHOW_DOWNLOAD_ACTION_PANE,
+					_download_list.download_action_pane, "visible", SettingsBindFlags.GET);
 			}
 		}
 	}
@@ -100,8 +100,8 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 		window_settings = gui_settings.get_child (SETTINGS_KEY);
 		window_settings.bind (SETTINGS_SHOW_INFOBAR,
 			widgets.show_infobar, "active", SettingsBindFlags.DEFAULT);
-		window_settings.bind (SETTINGS_SHOW_REORDERING_PANE,
-			widgets.show_reordering_pane, "active", SettingsBindFlags.DEFAULT);
+		window_settings.bind (SETTINGS_SHOW_DOWNLOAD_ACTION_PANE,
+			widgets.show_download_action_pane, "active", SettingsBindFlags.DEFAULT);
 		window_settings.bind (SETTINGS_SHOW_TOOLBAR,
 			widgets.show_toolbar, "active", SettingsBindFlags.DEFAULT);
 		window_settings.bind (SETTINGS_SHOW_TOOLBAR,
