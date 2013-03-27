@@ -9,7 +9,7 @@
     <property name="type_hint">dialog</property>
     <property name="program_name">LottaNZB</property>
     <property name="version">0.7</property>
-    <property name="copyright" translatable="yes">Copyright © 2007-2011 LottaNZB Development Team</property>
+    <property name="copyright" translatable="yes">Copyright © 2007-2013 LottaNZB Development Team</property>
     <property name="website">http://www.lottanzb.org/</property>
     <property name="website_label">LottaNZB Website</property>
     <property name="authors">Severin Heiniger &lt;severinheiniger@gmail.com&gt;
