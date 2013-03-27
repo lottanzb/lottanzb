@@ -39,6 +39,7 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	private uint ui_manager_merge_id;
 	private unowned Binding? _pause_general_hub_action_binding;
 	private PreferencesWindow preferences_window;
+	private AboutDialog about_dialog;
 
 	public DownloadList? download_list {
 		get {
@@ -249,8 +250,13 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 
 	[CCode (instance_pos = -1)]
 	public void on_show_about_dialog_activate (Gtk.Window window) {
-		var about_dialog = new AboutDialog();
-		about_dialog.run (widgets.main_window);
+		if (about_dialog == null) {
+			about_dialog = new AboutDialog();
+			about_dialog.show (widgets.main_window);
+			about_dialog.dialog.delete_event.connect (about_dialog.dialog.hide_on_delete);
+		} else {
+			about_dialog.dialog.present ();
+		}
 	}
 
 	[CCode (instance_pos = -1)]

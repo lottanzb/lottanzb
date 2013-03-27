@@ -17,22 +17,36 @@
 
 public class Lottanzb.AboutDialog : AbstractAboutDialog {
 
-	public void run (Gtk.Window? window = null) {
-		if (window != null) {
-			widgets.about_dialog.set_transient_for (window);
-		}
+	public AboutDialog () {
 		widgets.about_dialog.set_version (LottanzbConfig.VERSION);
 		try {
 			var resource = LottanzbResource.get_resource ();
 			var logo_stream = resource.open_stream ("/org/lottanzb/gui/logo.png", ResourceLookupFlags.NONE);
 			var logo = new Gdk.Pixbuf.from_stream (logo_stream);
-			widgets.about_dialog.set_logo (logo);
+			dialog.set_logo (logo);
 		} catch (Error e) {
 			warning ("Could not load application logo: %s", e.message);
 		}
-		widgets.about_dialog.show_all ();
-		widgets.about_dialog.run ();
-		widgets.about_dialog.destroy ();
+	}
+
+	public void show (Gtk.Window? window = null) {
+		if (window != null) {
+			dialog.set_transient_for (window);
+		}
+		dialog.show_all ();
+	}
+
+	public Gtk.AboutDialog dialog {
+		get {
+			return widgets.about_dialog;
+		}
+	}
+
+	[CCode (instance_pos = -1)]
+	public void on_response (Gtk.Dialog dialog, Gtk.ResponseType response) {
+		if (response == Gtk.ResponseType.CANCEL) {
+			dialog.hide ();
+		}
 	}
 
 }

@@ -20,6 +20,7 @@ Andrew Williams &lt;andy@tensixtyone.com&gt;</property>
     <property name="translator_credits" translatable="yes">translator-credits</property>
     <property name="artists">Severin Heiniger &lt;severinheiniger@gmail.com&gt;</property>
     <property name="license_type">gpl-3-0</property>
+    <signal name="response" handler="lottanzb_about_dialog_on_response" swapped="no"/>
     <child internal-child="vbox">
       <object class="GtkBox" id="vbox">
         <property name="visible">True</property>
