@@ -187,8 +187,6 @@
       </menubar>
       <toolbar name="toolbar">
         <toolitem action="add" />
-        <placeholder name="download_list_actions" />
-        <separator />
         <toolitem action="paused" />
         <toolitem action="clear" />
         <toolitem action="open_download_folder" />

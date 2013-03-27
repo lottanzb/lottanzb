@@ -71,12 +71,6 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 			return widgets.reordering_pane;
 		}
 	}
-	
-	public Gtk.ActionGroup important_action_group {
-		get {
-			return widgets.important_action_group;
-		}
-	}
 
 	private void on_selection_changed (Gtk.TreeSelection selection) {
 		if (download_status_binding != null) {
@@ -127,7 +121,7 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 			var is_complete = download.status.is_in_group(DownloadStatusGroup.COMPLETE);
 			var is_movable = download.status.is_in_group(DownloadStatusGroup.MOVABLE);
 			var queue = general_hub.download_list_store.get_filter_movable ();
-			widgets.remove.sensitive = is_movable;
+			widgets.delete.sensitive = is_movable;
 			widgets.move_up.sensitive = is_movable;
 			widgets.move_up_to_top.sensitive = is_movable;
 			widgets.move_down.sensitive = is_movable;
@@ -157,11 +151,11 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 		}
 	}
 	
-	private void remove_selected_download () {
+	private void delete_selected_download () {
 		var download = get_selected_download ();
 		if (download != null &&
 			download.status.is_in_group (DownloadStatusGroup.MOVABLE)) {
-			var title = _("Remove download?");
+			var title = _("Delete download?");
 			var message = _("This cannot be undone.");
 			var dialog = new MessageDialog (parent_window, DialogFlags.MODAL,
 				MessageType.WARNING, ButtonsType.OK_CANCEL, title);
@@ -205,8 +199,8 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 	}
 
 	[CCode (instance_pos = -1)]
-	public void on_remove_activate (Gtk.Window window) {
-		remove_selected_download();
+	public void on_delete_activate (Gtk.Window window) {
+		delete_selected_download();
 	}
 
 	[CCode (instance_pos = -1)]
@@ -277,7 +271,7 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 	[CCode (instance_pos = -1)]
 	public bool on_treeview_key_press_event (TreeView treeview, Gdk.EventKey event) {
 		if (event.keyval == 65535) {
-			remove_selected_download ();
+			delete_selected_download ();
 		}
 		return false;
 	}

@@ -26,7 +26,6 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	public static string SETTINGS_SHOW_TOOLBAR = "show-toolbar";
 
 	private static string LAUNCHPAD_ITEMS_PATH = "/menu_bar/help/launchpad_items";
-	private static string DOWNLOAD_LIST_ITEMS_PATH = "/toolbar/download_list_actions";
 
 	public BetterSettings settings { get; construct set; }
 	public BetterSettings gui_settings { get; construct set; }
@@ -36,7 +35,6 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	private Gdk.WindowState window_state;
 	private DownloadList? _download_list;
 	private InfoBar? _info_bar;
-	private uint ui_manager_merge_id;
 	private unowned Binding? _pause_general_hub_action_binding;
 	private PreferencesWindow preferences_window;
 	private AboutDialog about_dialog;
@@ -48,22 +46,10 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 		private set {
 			if (_download_list != null) {
 				widgets.download_list.remove(_download_list.widget);
-				var action_group = _download_list.important_action_group;
-				widgets.ui_manager.remove_ui (ui_manager_merge_id);
-				ui_manager_merge_id = 0;
-				widgets.ui_manager.remove_action_group (action_group);
 			}
 			_download_list = value;
 			if (_download_list != null) {
 				widgets.download_list.add(_download_list.widget);
-				var action_group = _download_list.important_action_group;
-				widgets.ui_manager.insert_action_group (action_group, -1);
-				ui_manager_merge_id = widgets.ui_manager.new_merge_id ();
-				foreach (var action in action_group.list_actions()) {
-					widgets.ui_manager.add_ui (ui_manager_merge_id,
-						DOWNLOAD_LIST_ITEMS_PATH, action.name, action.name,
-						Gtk.UIManagerItemType.AUTO, false);
-				}
 				window_settings.bind (SETTINGS_SHOW_REORDERING_PANE,
 					_download_list.reordering_pane, "visible", SettingsBindFlags.GET);
 			}

@@ -3,18 +3,14 @@
   <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkUIManager" id="ui_manager">
     <child>
-      <object class="GtkActionGroup" id="important_action_group">
+      <object class="GtkActionGroup" id="action_group">
         <child>
-          <object class="GtkAction" id="remove">
-            <property name="tooltip" translatable="yes">Remove the selected download</property>
-            <property name="stock_id">gtk-remove</property>
-            <signal name="activate" handler="lottanzb_download_list_on_remove_activate" swapped="no"/>
+          <object class="GtkAction" id="delete">
+            <property name="tooltip" translatable="yes">Delete the selected download</property>
+            <property name="icon-name">edit-delete-symbolic</property>
+            <signal name="activate" handler="lottanzb_download_list_on_delete_activate" swapped="no"/>
           </object>
         </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkActionGroup" id="action_group">
         <child>
           <object class="GtkAction" id="move_down">
             <property name="label" translatable="yes">Move _down</property>
@@ -75,11 +71,12 @@
         <separator/>
         <menuitem action="move_up_to_top"/>
         <menuitem action="pause"/>
-        <menuitem action="remove"/>
+        <menuitem action="delete"/>
       </popup>
       <toolbar name="reordering_pane">
         <toolitem action="move_up_to_top"/>
         <toolitem action="move_up"/>
+        <toolitem action="delete"/>
         <toolitem action="move_down"/>
         <toolitem action="move_down_to_bottom"/>
       </toolbar>

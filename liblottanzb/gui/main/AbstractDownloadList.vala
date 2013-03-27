@@ -5,9 +5,8 @@ public abstract class Lottanzb.AbstractDownloadList : Object {
 	public class WindowWidgets : Object {
 
 		public Gtk.UIManager ui_manager { get; protected set; }
-		public Gtk.ActionGroup important_action_group { get; protected set; }
-		public Gtk.Action remove { get; protected set; }
 		public Gtk.ActionGroup action_group { get; protected set; }
+		public Gtk.Action delete { get; protected set; }
 		public Gtk.Action move_down { get; protected set; }
 		public Gtk.Action move_up { get; protected set; }
 		public Gtk.Action move_up_to_top { get; protected set; }
