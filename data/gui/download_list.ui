@@ -6,6 +6,7 @@
       <object class="GtkActionGroup" id="action_group">
         <child>
           <object class="GtkAction" id="delete">
+            <property name="label" translatable="yes">_Delete</property>
             <property name="tooltip" translatable="yes">Delete the selected download</property>
             <property name="icon-name">edit-delete-symbolic</property>
             <signal name="activate" handler="lottanzb_download_list_on_delete_activate" swapped="no"/>
