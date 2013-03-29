@@ -47,4 +47,13 @@ public class Lottanzb.MockGeneralHub : Object, GeneralHub {
 	public void set_download_priority (Download download, DownloadPriority new_priority) { }
 	public void delete_download (Download download) { }
 
+	public Download add_mock_download (string name) {
+		var download = new DownloadImpl ();
+		download.name = name;
+		var download_count = download_list_store.iter_n_children (null);
+		download_list_store.insert_with_values (null, download_count,
+			DownloadListStore.COLUMN, download);
+		return download;
+	}
+
 }

@@ -36,11 +36,11 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 		this.download_properties_dialog = null;
 		
 		widgets.window1.remove(widget);
-		widgets.treeview.append_column (new DownloadListColumn ());
-		widgets.treeview.set_search_equal_func (search_equal_func);
-		widgets.treeview.set_model (general_hub.download_list_store);
-		widgets.treeview.get_selection ().set_mode (SelectionMode.BROWSE);
-		widgets.treeview.get_selection ().changed.connect (on_selection_changed);
+		tree_view.append_column (new DownloadListColumn ());
+		tree_view.set_search_equal_func (search_equal_func);
+		tree_view.set_model (general_hub.download_list_store);
+		tree_view.get_selection ().set_mode (SelectionMode.BROWSE);
+		tree_view.get_selection ().changed.connect (on_selection_changed);
 		
 		general_hub.download_list_store.rows_reordered.connect ((model, iter, path, new_order) => {
 			update_action_sensitivity ();		
@@ -55,14 +55,20 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 			{ "DOWNLOAD", TargetFlags.SAME_WIDGET, DnDTargets.DOWNLOAD },
 			{ "text/plain", 0, 1 }
 		};
-		widgets.treeview.enable_model_drag_source (Gdk.ModifierType.BUTTON1_MASK,
+		tree_view.enable_model_drag_source (Gdk.ModifierType.BUTTON1_MASK,
 			drag_targets, Gdk.DragAction.MOVE);
-		widgets.treeview.enable_model_drag_dest (drop_targets, Gdk.DragAction.MOVE);
+		tree_view.enable_model_drag_dest (drop_targets, Gdk.DragAction.MOVE);
 	}
 	
 	public Widget widget {
 		get {
 			return widgets.download_list;
+		}
+	}
+
+	public Gtk.TreeView tree_view {
+		get {
+			return widgets.treeview;
 		}
 	}
 
@@ -73,28 +79,7 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 	}
 
 	private void on_selection_changed (Gtk.TreeSelection selection) {
-		if (download_status_binding != null) {
-			download_status_binding.unref ();
-			download_status_binding = null;
-		}
-		var download = get_selected_download ();
-		download_status_binding = download.bind_property (
-			"status", widgets.pause, "active",
-			BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL,
-			(binding, source_value, ref target_value) => {
-				var status = (DownloadStatus) source_value.get_flags ();
-				target_value.set_boolean (status == DownloadStatus.PAUSED);
-				return true;
-			},
-			(binding, source_value, ref target_value) => {
-				if (source_value.get_boolean ()) {
-					target_value.set_flags (DownloadStatus.PAUSED);
-				} else {
-					// TODO: Could already set to the right status.
-					target_value.set_flags (DownloadStatus.QUEUED);
-				}
-				return true;
-			});
+		update_download_status_binding ();
 		update_action_sensitivity ();
 	}
 	
@@ -106,6 +91,33 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 			return false;
 		} else {
 			return key.down () in download.name.down ();
+		}
+	}
+
+	private void update_download_status_binding () {
+		if (download_status_binding != null) {
+			download_status_binding.unref ();
+			download_status_binding = null;
+		}
+		var download = get_selected_download ();
+		if (download != null) {
+			download_status_binding = download.bind_property (
+				"status", widgets.pause, "active",
+				BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL,
+				(binding, source_value, ref target_value) => {
+					var status = (DownloadStatus) source_value.get_flags ();
+					target_value.set_boolean (status == DownloadStatus.PAUSED);
+					return true;
+				},
+				(binding, source_value, ref target_value) => {
+					if (source_value.get_boolean ()) {
+						target_value.set_flags (DownloadStatus.PAUSED);
+					} else {
+						// TODO: Could already set to the right status.
+						target_value.set_flags (DownloadStatus.QUEUED);
+					}
+					return true;
+				});
 		}
 	}
 	
@@ -185,7 +197,7 @@ public class Lottanzb.DownloadList : AbstractDownloadList {
 	}
 
 	private Download? get_selected_download () {
-		var selection = widgets.treeview.get_selection ();
+		var selection = tree_view.get_selection ();
 		if (selection != null) {
 			TreeModel tree_model;
 			TreeIter? iter;
