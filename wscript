@@ -72,8 +72,8 @@ def configure(conf):
     conf.define('WEBSITE', WEBSITE)
     conf.define('GETTEXT_PACKAGE', APPNAME);
     conf.env.append_value('CFLAGS', '-w')
-    # conf.env.append_value('VALAFLAGS', '-g')
-    # conf.env.append_value('VALAFLAGS', '--save-temps')
+    conf.env.append_value('VALAFLAGS', '-g')
+    conf.env.append_value('VALAFLAGS', '--save-temps')
  
     conf.write_config_header ('config.h')
 
