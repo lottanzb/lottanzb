@@ -61,15 +61,6 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 		}
 	}
 
-	public void run (Gtk.Window? window = null) {
-		if (window != null) {
-			widgets.servers_dialog.set_transient_for (window);
-		}
-		widgets.servers_dialog.show_all ();
-		widgets.servers_dialog.run ();
-		widgets.servers_dialog.destroy ();
-	}
-
 	private void update_server_editor_pane () {
 		if (server_editor_pane != null) {
 			widgets.server_editor_pane_container.remove (server_editor_pane.widget);
@@ -119,6 +110,10 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 			case Gtk.ResponseType.APPLY:
 				servers.remove_empty_children ();
 				servers.apply_recursively ();
+				break;
+			case Gtk.ResponseType.CLOSE:
+				servers.revert_recursively ();
+				dialog.hide ();
 				break;
 			case Gtk.ResponseType.HELP:
 				break;

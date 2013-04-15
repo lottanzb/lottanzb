@@ -36,6 +36,7 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	private DownloadList? _download_list;
 	private InfoBar? _info_bar;
 	private unowned Binding? _pause_general_hub_action_binding;
+	private ServersDialog servers_dialog;
 	private PreferencesWindow preferences_window;
 	private AboutDialog about_dialog;
 
@@ -176,8 +177,12 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	[CCode (instance_pos = -1)]
 	public void on_manage_servers_activate (Gtk.Window window) {
 		if (backend != null) {
-			var dialog = new ServersDialog (backend.config_hub);
-			dialog.run (widgets.main_window);
+			if (servers_dialog == null) {
+				servers_dialog = new ServersDialog (backend.config_hub);
+				servers_dialog.dialog.delete_event.connect (servers_dialog.dialog.hide_on_delete);
+				servers_dialog.dialog.set_transient_for (widgets.main_window);
+			}
+			servers_dialog.dialog.present ();
 		}
 	}
 
@@ -188,9 +193,9 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 			if (preferences_window == null) {
 				preferences_window = new PreferencesWindow (backend, settings, sabnzbd_settings);
 				preferences_window.dialog.delete_event.connect (preferences_window.dialog.hide_on_delete);
-			} else {
-				preferences_window.dialog.present ();
+				preferences_window.dialog.set_transient_for (widgets.main_window);
 			}
+			preferences_window.dialog.present ();
 		}
 	}
 

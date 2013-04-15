@@ -28,7 +28,6 @@ public class Lottanzb.PreferencesWindow : AbstractPreferencesWindow {
 		this.general_tab = new GeneralPreferencesTab (
 			backend, lottanzb_settings, sabnzbd_settings);
 		add_tab (general_tab);
-		widgets.prefs_window.show ();
 	}
 
 	public Gtk.Dialog dialog { get { return widgets.prefs_window; } }
