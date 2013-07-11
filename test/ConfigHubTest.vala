@@ -166,6 +166,13 @@ public class Lottanzb.ConfigHubTest : Lottanzb.TestSuiteBuilder {
 		assert (row_deleted_count == 1);
 		assert (last_row_deleted_index == 4);
 		assert (server_tree_model.iter_n_children (null) == 4);
+
+		servers.delay_recursively ();
+		servers.add_child ();
+		// Reverting must cause the newly created row to be deleted
+		servers.revert_recursively ();
+		assert (server_tree_model.iter_n_children (null) == 4);
+		assert (row_deleted_count == 2);
 	}
 
 	public void test_server_write_back () {

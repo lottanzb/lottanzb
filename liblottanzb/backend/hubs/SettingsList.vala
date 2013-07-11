@@ -17,7 +17,7 @@
 
 public abstract class Lottanzb.SettingsList : BetterSettings, Copyable<SettingsList> {
 
-	private static string SIZE_KEY = "size";
+	public static string SIZE_KEY = "size";
 
 	public int max_size { get; private construct set; default = 20; }
 

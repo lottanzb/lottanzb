@@ -26,7 +26,7 @@ public class Lottanzb.ServerTreeModel : Gtk.TreeModel, Object {
 			connect_to_change (server, index);
 		}
 		var old_size = servers.size;
-		servers.notify ["size"].connect ((object, prop) => {
+		servers.changed [SettingsList.SIZE_KEY].connect ((object, key) => {
 			var new_size = servers.size;
 			if (old_size < new_size) {
 				for (var index = old_size; index < new_size; index++) {
