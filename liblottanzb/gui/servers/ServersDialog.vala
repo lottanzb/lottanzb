@@ -31,6 +31,7 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 		widgets.tree_view.append_column (new ServerColumn ());
 		widgets.tree_view.get_selection ().set_mode (Gtk.SelectionMode.BROWSE);
 		widgets.tree_view.get_selection ().changed.connect ((selection) => {
+			debug ("Server selection has changed");
 			update_server_editor_pane ();
 		});
 
@@ -63,13 +64,17 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 		if (server_editor_pane != null) {
 			widgets.server_editor_pane_container.remove (server_editor_pane.widget);
 			server_editor_pane = null;
+			debug ("Old server editor pane destroyed");
 		}
 
 		var selected_server = get_selected_server ();
 		if (selected_server != null) {
 			server_editor_pane = new ServerEditorPane (selected_server);
 			widgets.server_editor_pane_container.child = server_editor_pane.widget;
+			debug ("New server editor pane created");
 		}
+
+		debug ("Server editor pane updated");
 	}
 
 	private BetterSettings? get_selected_server () {
@@ -97,6 +102,7 @@ public class Lottanzb.ServersDialog : AbstractServersDialog {
 	private void set_selected_server_index (int index) {
 		var selection = widgets.tree_view.get_selection ();
 		if (selection != null) {
+			debug ("Selecting server %d...", index);
 			var path = new Gtk.TreePath.from_indices (index);
 			selection.select_path (path);
 		}
