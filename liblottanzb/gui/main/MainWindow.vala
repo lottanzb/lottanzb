@@ -178,7 +178,8 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	public void on_manage_servers_activate (Gtk.Window window) {
 		if (backend != null) {
 			if (servers_dialog == null) {
-				servers_dialog = new ServersDialog (backend.config_hub);
+				var servers = backend.config_hub.root.get_servers ();
+				servers_dialog = new ServersDialog (servers);
 				servers_dialog.dialog.delete_event.connect (servers_dialog.dialog.hide_on_delete);
 				servers_dialog.dialog.set_transient_for (widgets.main_window);
 			}

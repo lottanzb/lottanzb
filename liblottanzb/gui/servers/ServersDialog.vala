@@ -17,16 +17,14 @@
 
 public class Lottanzb.ServersDialog : AbstractServersDialog {
 
-	private ConfigHub config_hub;
 	private ServerList servers;
 	private ServerTreeModel model;
 	private ServerEditorPane? server_editor_pane;
 
-	public ServersDialog (ConfigHub config_hub) {
+	public ServersDialog (ServerList servers) {
 		base ();
 
-		this.config_hub = config_hub;
-		this.servers = config_hub.root.get_servers ().get_copy ();
+		this.servers = servers.get_copy ();
 		this.servers.delay_recursively ();
 		this.model = new ServerTreeModel (servers);
 		widgets.tree_view.set_model (model);
