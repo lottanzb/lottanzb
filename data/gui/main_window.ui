@@ -55,12 +55,6 @@
           <accelerator key="F1" signal="activate"/>
         </child>
         <child>
-          <object class="GtkAction" id="show_message_log">
-            <property name="label" translatable="yes">Message _Log</property>
-            <signal name="activate" handler="lottanzb_main_window_on_show_message_log_activate" swapped="no"/>
-          </object>
-        </child>
-        <child>
           <object class="GtkAction" id="show_about_dialog">
             <property name="label" translatable="yes">_About</property>
             <property name="icon_name">help-about</property>
@@ -181,7 +175,6 @@
           <separator />
           <placeholder name="launchpad_items" />
           <separator />
-          <menuitem action="show_message_log" />
           <menuitem action="show_about_dialog" />
         </menu>
       </menubar>

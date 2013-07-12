@@ -257,11 +257,6 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	}
 
 	[CCode (instance_pos = -1)]
-	public void on_show_message_log_activate (Gtk.Window window) {
-
-	}
-
-	[CCode (instance_pos = -1)]
 	public void on_destroy (Gtk.Window window) {
 		save_window_settings ();
 	}
