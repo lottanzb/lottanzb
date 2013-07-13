@@ -15,7 +15,6 @@ public abstract class Lottanzb.AbstractMainWindow : Object {
 		public Gtk.ToggleAction show_infobar { get; protected set; }
 		public Gtk.ToggleAction show_download_action_pane { get; protected set; }
 		public Gtk.Action show_help_content { get; protected set; }
-		public Gtk.Action show_message_log { get; protected set; }
 		public Gtk.Action show_about_dialog { get; protected set; }
 		public Gtk.ActionGroup backend_action_group { get; protected set; }
 		public Gtk.Action add { get; protected set; }
