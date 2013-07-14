@@ -28,15 +28,12 @@ public interface Lottanzb.Backend : Object {
 
 public class Lottanzb.BackendImpl : Object, Backend {
 	
-	public Session session { get; protected set; }
 	public QueryProcessor query_processor { get; protected set; }
 	public GeneralHub general_hub { get; protected set; }
 	public StatisticsHub statistics_hub { get; protected set; }
 	public ConfigHub config_hub { get; protected set; }
 	
-	public BackendImpl (ConfigProvider config_provider, SessionProvider session_provider) {
-		session = session_provider.build_session ();
-		query_processor = session.query_processor;
+	public BackendImpl (QueryProcessor query_processor) {
 		general_hub = new GeneralHubImpl (query_processor);
 		statistics_hub = new StatisticsHubImpl (query_processor);
 		config_hub = new ConfigHubImpl (query_processor);
@@ -46,6 +43,22 @@ public class Lottanzb.BackendImpl : Object, Backend {
 			query_processor.get_history.begin ();
 			return true;
 		});
+	}
+
+	/**
+	 * Asynchronously build the session and establish the connection.
+	 */
+	public async static BackendImpl make (ConfigProvider config_provider,
+			SessionProvider session_provider) throws SessionError {
+		var session = session_provider.build_session ();
+		var query_processor = session.query_processor;
+		try {
+			yield query_processor.handshake ();
+		} catch (QueryError e) {
+			throw new SessionError.CONNECTION (e.message);
+		}
+		var backend = new BackendImpl (query_processor);
+		return backend;
 	}
 
 }

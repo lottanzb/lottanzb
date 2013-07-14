@@ -25,6 +25,7 @@ public class Lottanzb.SimpleQueryTest : Lottanzb.TestSuiteBuilder {
 		add_test ("message_building", test_message_building);
 		add_test ("resume_downloads_query", test_resume_downloads_query);
 		add_test ("pause_downloads_query", test_pause_downloads_query);
+		add_test ("authenticate_query", test_authenticate_query);
 	}
 
 	public void test_construction () {
@@ -76,6 +77,31 @@ public class Lottanzb.SimpleQueryTest : Lottanzb.TestSuiteBuilder {
 		assert (query.method == "queue");
 		assert (query.arguments["name"] == "pause");
 		assert (query.arguments["value"] == "foo,bar");
+	}
+
+	public void test_authenticate_query () {
+		// Ensure that a `QueryError' is thrown when the credentials are incorrect
+		var query = new AuthenticateQueryImpl ();
+		var has_thrown_query_error = false;
+		try {
+			query.set_raw_response ("{\"status\":false,\"error\":\"API Key Incorrect\"}");
+		} catch (QueryError e) {
+			has_thrown_query_error = true;
+		}
+
+		assert (has_thrown_query_error);
+
+		// Ensure that no `QueryError' is thrown when the API method
+		// cannot be found. This is how `AuthenticateQueryImpl' works.
+		query = new AuthenticateQueryImpl ();
+		has_thrown_query_error = false;
+		try {
+			query.set_raw_response ("{\"status\":false,\"error\":\"not implemented\"}");
+		} catch (QueryError e) {
+			has_thrown_query_error = true;
+		}
+
+		assert (!has_thrown_query_error);
 	}
 
 }

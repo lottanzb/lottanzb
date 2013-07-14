@@ -25,17 +25,20 @@ public class Lottanzb.GetAuthenticationTypeQueryTest : Lottanzb.TestSuiteBuilder
 	}
 
 	public void test_simple () {
-		GetAuthenticationTypeQueryImpl query;
-		query = new GetAuthenticationTypeQueryImpl ();
-		assert (query.method == "auth");
-		query.set_raw_response ("{\"auth\":\"apikey\"}");
-		assert (query.get_response () == AuthenticationType.API_KEY);
-		query = new GetAuthenticationTypeQueryImpl ();
-		query.set_raw_response ("{\"auth\":\"login\"}");
-		assert (query.get_response () == AuthenticationType.USERNAME_AND_PASSWORD);
-		query = new GetAuthenticationTypeQueryImpl ();
-		query.set_raw_response ("{\"auth\":\"None\"}");
-		assert (query.get_response () == AuthenticationType.NOTHING);
+		assert_response (AuthenticationType.API_KEY, "apikey");
+		assert_response (AuthenticationType.USERNAME_AND_PASSWORD, "login");
+		assert_response (AuthenticationType.NOTHING, "None");
+	}
+
+	private void assert_response (AuthenticationType expected_type, string raw_type) {
+		try {
+			var query = new GetAuthenticationTypeQueryImpl ();
+			assert (query.method == "auth");
+			query.set_raw_response ("{\"auth\":\"" + raw_type + "\"}");
+			assert (query.get_response () == expected_type);
+		} catch (QueryError e) {
+			assert_not_reached ();
+		}
 	}
 
 }

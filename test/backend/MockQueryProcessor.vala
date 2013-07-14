@@ -184,6 +184,11 @@ public class Lottanzb.MockQueryProcessor : Object, QueryNotifier<Query>, QueryPr
 		var query = new MockGetVersionQuery (response);
 		return query;
 	}
+
+	public AuthenticateQuery make_authenticate_query () {
+		var query = new MockAuthenticateQuery ();
+		return query;
+	}
 	
 	public GetAuthenticationTypeQuery make_get_authentication_type_query () {
 		var response = AuthenticationType.NOTHING;

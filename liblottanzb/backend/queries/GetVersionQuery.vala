@@ -26,9 +26,8 @@ public class Lottanzb.GetVersionQueryImpl : QueryImpl<string>, GetVersionQuery {
 	}
 	
 	public override string get_response_from_json_object(Json.Object json_object) throws QueryError {
-		// var version = json_object.get_string_member ("version");
-		// return version;
-		return "0.5";
+		var version = json_object.get_string_member ("version");
+		return version;
 	}
 
 }

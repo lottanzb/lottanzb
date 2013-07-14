@@ -87,3 +87,34 @@ public class Lottanzb.ResumeQueryImpl : ResumeQuery, SimpleQuery {
 	}
 
 }
+
+/**
+ * The `VersionQuery' will be successfully executed even if the username,
+ * password or API key is invalid. This query however will not perform any
+ * actions either and doesn't have any output but simply checks whether
+ * the connection information are valid and throws the proper errors.
+ */
+public interface Lottanzb.AuthenticateQuery : Query<Object> {
+
+}
+
+public class Lottanzb.AuthenticateQueryImpl : AuthenticateQuery, SimpleQuery {
+
+	public AuthenticateQueryImpl () {
+		// Choose a method name that will always yield a
+		// `QueryError.NOT_IMPLEMENTED`.
+		base ("will_never_be_implemented");
+	}
+
+	public override void check_response_json_object (Json.Object json_object)
+		throws QueryError {
+		try {
+			base.check_response_json_object (json_object);
+		} catch (QueryError e) {
+			if (!(e is QueryError.NOT_IMPLEMENTED)) {
+				throw e;
+			}
+		}
+	}
+
+}

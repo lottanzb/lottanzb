@@ -26,7 +26,7 @@ public class Lottanzb.SessionProviderImpl : Object, SessionProvider {
 		this.backend_settings = config_provider.lottanzb_config.get_child (Backend.SETTINGS_KEY);
 	}
 
-	public Session? build_session () {
+	public Session build_session () throws SessionError {
 		var active_session_name = backend_settings.get_string ("active-session");
 		switch (active_session_name) {
 			case "local":
@@ -34,7 +34,7 @@ public class Lottanzb.SessionProviderImpl : Object, SessionProvider {
 			case "remote":
 				return new RemoteSession (config_provider);
 			default:
-				assert_not_reached ();
+				throw new SessionError.UNKNOWN ("unknown session");
 		}
 	}
 	

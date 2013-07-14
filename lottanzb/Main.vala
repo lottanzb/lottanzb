@@ -54,11 +54,18 @@ public class Lottanzb.Main {
 
 		var config_provider = new ConfigProviderImpl ();
 		var session_provider = new SessionProviderImpl (config_provider);
-		var backend = new BackendImpl (config_provider, session_provider);
 		var main_window = new MainWindow (config_provider);
-		main_window.backend = backend;
 		main_window.show ();
 
+		BackendImpl.make.begin (config_provider, session_provider, (obj, res) => {
+			try {
+				var backend = BackendImpl.make.end (res);
+				main_window.backend = backend;
+			} catch (SessionError e) {
+				warning (_("Could not start session") + ": " + e.message);
+			}
+		});
+		
 		Gtk.main ();
 		return 0;
 	}

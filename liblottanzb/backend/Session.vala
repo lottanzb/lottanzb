@@ -15,6 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+public errordomain Lottanzb.SessionError {
+	START,
+	NOT_SPECIFIED,
+	UNKNOWN,
+	CONNECTION,
+	NO_EXECUTABLE,
+	NO_SERVER,
+	PERMISSION
+}
 
 public interface Lottanzb.Session : Object {
 

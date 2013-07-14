@@ -191,6 +191,11 @@ public class Lottanzb.MockResumeQuery : ResumeQuery, SimpleMockQuery {
 
 }
 
+public class Lottanzb.MockAuthenticateQuery : AuthenticateQuery, SimpleMockQuery {
+
+}
+
+
 public class Lottanzb.MockGetWarningsQuery : GetWarningsQuery, MockQuery<Gee.List<LogMessage>> {
 
 	public MockGetWarningsQuery (Gee.List<LogMessage> response) {

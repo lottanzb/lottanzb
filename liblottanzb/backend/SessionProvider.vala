@@ -18,6 +18,6 @@
 
 public interface Lottanzb.SessionProvider : Object {
 
-	public abstract Session? build_session ();
+	public abstract Session build_session () throws SessionError;
 
 }

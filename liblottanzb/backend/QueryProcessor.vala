@@ -47,11 +47,29 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public abstract QueryNotifier<T> get_query_notifier<T> ();
 
-	public abstract async void run_query (T query);
+	public abstract async void run_query (T query) throws QueryError;
+
+	/**
+	 * Performs two initial queries to the SABnzbd instance in order to check
+	 * if the connection can be established.
+	 *
+	 * Also check if SABnzbd version is supported and whether the username,
+	 * password as well as the API key are valid.
+	 *
+	 * May throw a `QueryError`
+	 */
+	public async void handshake () throws QueryError {
+		var version_query = yield get_version ();
+		var version = version_query.get_response ();
+		debug (@"SABnzbd has supported version $version.");
+
+		yield authenticate ();
+		debug (@"SABnzbd credentials verified.");
+	}
 
 	public abstract SetConfigQuery make_set_config_query (Gee.List<string> path, Gee.Map<string, string> entries);
 	
-	public async SetConfigQuery set_config (Gee.List<string> path, Gee.Map<string, string> entries) {
+	public async SetConfigQuery set_config (Gee.List<string> path, Gee.Map<string, string> entries) throws QueryError {
 		var query = make_set_config_query (path, entries);
 		yield run_query (query);
 		return query;
@@ -59,7 +77,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 
 	public abstract GetConfigQuery make_get_config_query ();
 	
-	public async GetConfigQuery get_config () {
+	public async GetConfigQuery get_config () throws QueryError {
 		var query = make_get_config_query ();
 		yield run_query (query);
 		return query;
@@ -67,7 +85,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public abstract DeleteConfigQuery make_delete_config_query (Gee.List<string> path, string key);
 
-	public async DeleteConfigQuery delete_config (Gee.List<string> path, string key) {
+	public async DeleteConfigQuery delete_config (Gee.List<string> path, string key) throws QueryError {
 		var query = make_delete_config_query (path, key);
 		yield run_query (query);
 		return query;
@@ -81,7 +99,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public abstract GetQueueQuery make_get_queue_query ();
 
-	public async GetQueueQuery get_queue () {
+	public async GetQueueQuery get_queue () throws QueryError {
 		var query = make_get_queue_query ();
 		yield run_query (query);
 		return query;
@@ -91,7 +109,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public abstract DeleteDownloadsQuery make_delete_downloads_query (Gee.List<string> download_ids);
 	
-	public async DeleteDownloadsQuery delete_downloads (Gee.List<string> download_ids) {
+	public async DeleteDownloadsQuery delete_downloads (Gee.List<string> download_ids) throws QueryError {
 		var query = make_delete_downloads_query (download_ids);
 		yield run_query (query);
 		return query;
@@ -103,7 +121,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 
 	public abstract RenameDownloadQuery make_rename_download_query (string download_id, string new_name);
 	
-	public async RenameDownloadQuery rename_download (string download_id, string new_name) {
+	public async RenameDownloadQuery rename_download (string download_id, string new_name) throws QueryError {
 		var query = make_rename_download_query (download_id, new_name);
 		yield run_query (query);
 		return query;
@@ -113,13 +131,13 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public abstract PauseDownloadsQuery make_pause_downloads_query (Gee.List<string> download_ids);
 	
-	public async PauseDownloadsQuery pause_downloads (Gee.List<string> download_ids) {
+	public async PauseDownloadsQuery pause_downloads (Gee.List<string> download_ids) throws QueryError {
 		var query = make_pause_downloads_query (download_ids);
 		yield run_query (query);
 		return query;
 	}
 
-		public async PauseDownloadsQuery pause_download (string download_id) {
+	public async PauseDownloadsQuery pause_download (string download_id) throws QueryError {
 		var download_ids = new Gee.ArrayList<string> ();
 		download_ids.add (download_id);
 		var query = yield pause_downloads (download_ids);
@@ -128,13 +146,13 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 
 	public abstract ResumeDownloadsQuery make_resume_downloads_query (Gee.List<string> download_ids);
 	
-	public async ResumeDownloadsQuery resume_downloads (Gee.List<string> download_ids) {
+	public async ResumeDownloadsQuery resume_downloads (Gee.List<string> download_ids) throws QueryError {
 		var query = make_resume_downloads_query (download_ids);
 		yield run_query (query);
 		return query;
 	}
 
-	public async ResumeDownloadsQuery resume_download (string download_id) {
+	public async ResumeDownloadsQuery resume_download (string download_id) throws QueryError {
 		var download_ids = new Gee.ArrayList<string> ();
 		download_ids.add (download_id);
 		var query = yield resume_downloads (download_ids);
@@ -145,7 +163,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public abstract SwitchDownloadsQuery make_switch_downloads_query (string first_download_id, string second_download_id);
 
-	public async SwitchDownloadsQuery switch_downloads (string first_download_id, string second_download_id) {
+	public async SwitchDownloadsQuery switch_downloads (string first_download_id, string second_download_id) throws QueryError {
 		var query = make_switch_downloads_query (first_download_id, second_download_id);
 		yield run_query (query);
 		return query;
@@ -153,13 +171,13 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 
 	public abstract SetDownloadPriorityQuery make_set_download_priority_query (Gee.List<string> download_ids, DownloadPriority new_priority);
 	
-	public async SetDownloadPriorityQuery set_download_priority (Gee.List<string> download_ids, DownloadPriority new_priority) {
+	public async SetDownloadPriorityQuery set_download_priority (Gee.List<string> download_ids, DownloadPriority new_priority) throws QueryError {
 		var query = make_set_download_priority_query (download_ids, new_priority);
 		yield run_query (query);
 		return query;
 	}
 
-	public async SetDownloadPriorityQuery set_single_download_priority (string download_id, DownloadPriority new_priority) {
+	public async SetDownloadPriorityQuery set_single_download_priority (string download_id, DownloadPriority new_priority) throws QueryError {
 		var download_ids = new Gee.ArrayList<string> ();
 		download_ids.add (download_id);
 		var query = yield set_download_priority (download_ids, new_priority);
@@ -176,7 +194,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 		AddDownloadQueryOptionalArguments optional_arguments);
 
 	public async AddDownloadQuery add_download (string uri,
-		AddDownloadQueryOptionalArguments optional_arguments) {
+		AddDownloadQueryOptionalArguments optional_arguments) throws QueryError {
 		var query = make_add_download_query (uri, optional_arguments);
 		yield run_query (query);
 		return query;
@@ -188,7 +206,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public abstract GetHistoryQuery make_get_history_query ();
 	
-	public async GetHistoryQuery get_history () {
+	public async GetHistoryQuery get_history () throws QueryError {
 		var query = make_get_history_query ();
 		yield run_query (query);
 		return query;
@@ -200,7 +218,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public abstract PauseQuery make_pause_query ();
 
-	public async PauseQuery pause () {
+	public async PauseQuery pause () throws QueryError {
 		var query = make_pause_query ();
 		yield run_query (query);
 		return query;
@@ -208,7 +226,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 
 	public abstract ResumeQuery make_resume_query ();
 	
-	public async ResumeQuery resume () {
+	public async ResumeQuery resume () throws QueryError {
 		var query = make_resume_query ();
 		yield run_query (query);
 		return query;
@@ -224,7 +242,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public abstract GetWarningsQuery make_get_warnings_query ();
 	
-	public async GetWarningsQuery get_warnings () {
+	public async GetWarningsQuery get_warnings () throws QueryError {
 		var query = make_get_warnings_query ();
 		yield run_query (query);
 		return query;
@@ -236,7 +254,7 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public abstract GetVersionQuery make_get_version_query ();
 	
-	public async GetVersionQuery get_version () {
+	public async GetVersionQuery get_version () throws QueryError {
 		var query = make_get_version_query ();
 		yield run_query (query);
 		return query;
@@ -248,9 +266,17 @@ public interface Lottanzb.QueryProcessor<T> : Object, QueryNotifier<Query> {
 	
 	public abstract Query get_newzbin_bookmarks (); */
 	
+	public abstract AuthenticateQuery make_authenticate_query ();
+
+	public async AuthenticateQuery authenticate () throws QueryError {
+		var query = make_authenticate_query ();
+		yield run_query (query);
+		return query;
+	}
+
 	public abstract GetAuthenticationTypeQuery make_get_authentication_type_query ();
 
-	public async GetAuthenticationTypeQuery get_authentication_type () {
+	public async GetAuthenticationTypeQuery get_authentication_type () throws QueryError {
 		var query = make_get_authentication_type_query ();
 		yield run_query (query);
 		return query;

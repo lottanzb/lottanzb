@@ -26,8 +26,12 @@ public class Lottanzb.ResumeQueryTest : Lottanzb.TestSuiteBuilder {
 
 	public void test_simple () {
 		var query = new SimpleQuery ("resume");
-		query.set_raw_response ("{\"status\":true}");
-		assert (query.has_succeeded);
+		try {
+			query.set_raw_response ("{\"status\":true}");
+			assert (query.has_succeeded);
+		} catch (QueryError e) {
+			assert_not_reached ();
+		}
 	}
 
 }

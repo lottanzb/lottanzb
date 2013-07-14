@@ -24,7 +24,7 @@ public class Lottanzb.InfoBarTest : Lottanzb.TestSuiteBuilder {
 
 	public void test_updates () {
 		var backend = new MockBackend ();
-		var info_bar = new InfoBar (backend);
+		new InfoBar (backend);
 	}
 
 }

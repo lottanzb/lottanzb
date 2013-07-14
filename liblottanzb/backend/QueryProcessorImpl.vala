@@ -35,24 +35,21 @@ public class Lottanzb.QueryProcessorImpl : Object, QueryNotifier<Query>, QueryPr
 		return result;
 	}
 	
-	public async void run_query (QueryImpl query) {
+	public async void run_query (QueryImpl query) throws QueryError {
 		SourceFunc callback = run_query.callback;
 		query_started (query);
 		debug ("Started %s", query.to_string ());
 		var session = new Soup.SessionAsync ();
 		var message = query.build_message (connection_info);
+		var raw_response = "";
 		session.queue_message (message, (session, message) => {
-			try {
-				var raw_response = (string) message.response_body.flatten ().data;
-				query.set_raw_response (raw_response);
-			} catch (Error e) {
-				stderr.printf ("Query failed: %s", e.message);
-			}
-			debug ("Completed %s", query.to_string ());
-			query_completed (query);
+			raw_response = (string) message.response_body.flatten ().data;
 			callback ();
 		});
 		yield;
+		query.set_raw_response (raw_response);
+		debug ("Completed %s", query.to_string ());
+		query_completed (query);
 	}
 
 	public SetConfigQuery make_set_config_query (Gee.List<string> path, Gee.Map<string, string> entries) {
@@ -252,7 +249,12 @@ public class Lottanzb.QueryProcessorImpl : Object, QueryNotifier<Query>, QueryPr
 		var query = new QueryImpl("newzbin");
 		return query;
 	} */
-	
+
+	public AuthenticateQuery make_authenticate_query () {
+		var query = new AuthenticateQueryImpl ();
+		return query;
+	}
+
 	public GetAuthenticationTypeQuery make_get_authentication_type_query () {
 		var query = new GetAuthenticationTypeQueryImpl ();
 		return query;

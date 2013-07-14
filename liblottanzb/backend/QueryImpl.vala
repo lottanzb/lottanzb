@@ -89,14 +89,21 @@ public abstract class Lottanzb.QueryImpl<R> : Object, Query<R> {
 		return _raw_response;
 	}
 
-	public void set_raw_response (string raw_response) throws QueryError, Error {
+	public void set_raw_response (string raw_response) throws QueryError {
 		try {
 			_raw_response = raw_response;
 			var parser = new Json.Parser ();
 			parser.load_from_data (raw_response, -1);
 			var root_object = parser.get_root ().get_object ();
+			check_response_json_object (root_object);
 			_response = get_response_from_json_object (root_object);
-			has_succeeded = get_status_from_json_object (root_object);
+			has_succeeded = true;
+		} catch (QueryError e) {
+			has_succeeded = false;
+			throw e;
+		} catch (Error e) {
+			has_succeeded = false;
+			throw new QueryError.INVALID_RESPONSE (e.message);
 		} finally {
 			has_completed = true;	
 		}
@@ -125,11 +132,27 @@ public abstract class Lottanzb.QueryImpl<R> : Object, Query<R> {
 	public abstract R get_response_from_json_object(Json.Object json_object)
 		throws QueryError;
 
-	public bool get_status_from_json_object (Json.Object json_object) {
-		if (json_object.has_member("status")) {
-			return json_object.get_boolean_member("status");
-		} else {
-			return true;
+	public virtual void check_response_json_object (Json.Object json_object)
+		throws QueryError {
+		var status = true;
+		if (json_object.has_member ("status")) {
+			status = json_object.get_boolean_member ("status");
+		}
+
+		if (!status && json_object.has_member ("error")) {
+			var error = json_object.get_string_member ("error");
+			error = error.down ();
+			if (error == "missing authentication") {
+				throw new QueryError.USERNAME_PASSWORD ("");
+			} else if (error == "api key required") {
+				throw new QueryError.API_KEY ("API key required");
+			} else if (error == "api key incorrect") {
+				throw new QueryError.API_KEY ("API key incorrect");
+			} else if (error == "not implemented") {
+				throw new QueryError.NOT_IMPLEMENTED ("method not implemented");
+			} else {
+				throw new QueryError.INVALID_RESPONSE (error);
+			}
 		}
 	}
 
