@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Run the local LottaNZB binary built by WAF in GDB.
+# Execution will stop when fatal errors occur in the application.
+
+LD_LIBRARY_PATH=build/liblottanzb:$LD_LIBRARY_PATH G_DEBUG=fatal-criticals gdb ./build/lottanzb/lottanzb

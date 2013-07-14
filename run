@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Run the local LottaNZB binary built by WAF.
+# Any arguments are passed on to LottaNZB.
+
+LD_LIBRARY_PATH=build/liblottanzb:$LD_LIBRARY_PATH ./build/lottanzb/lottanzb $1
