@@ -43,7 +43,7 @@ def build(bld):
         cflags=['-g'] + ['-include' + bld.path.find_or_declare(header_file).abspath() \
                 for header_file in ['../config.h', '../data/lottanzb.gresource.h']],
         packages='glib-2.0 gio-2.0 gtk+-3.0 gmodule-2.0 json-glib-1.0 ' + \
-            'libsoup-2.4 gee-1.0 launchpad-integration-3.0 unique-3.0 ' + \
+            'libsoup-2.4 gee-1.0 unique-3.0 ' + \
             'lottanzb-config lottanzb-resource lottanzb-test-resource',
         uselib='GLIB GIO GTK+ GMODULE LIBSOUP JSON GEE LP UNIQUE',
         vala_defines=['DEBUG'])

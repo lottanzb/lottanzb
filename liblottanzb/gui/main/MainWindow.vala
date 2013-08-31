@@ -25,8 +25,6 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 	public static string SETTINGS_SHOW_DOWNLOAD_ACTION_PANE = "show-download-action-pane";
 	public static string SETTINGS_SHOW_TOOLBAR = "show-toolbar";
 
-	private static string LAUNCHPAD_ITEMS_PATH = "/menu_bar/help/launchpad_items";
-
 	public BetterSettings settings { get; construct set; }
 	public BetterSettings gui_settings { get; construct set; }
 	public BetterSettings window_settings { get; construct set; }
@@ -111,9 +109,6 @@ public class Lottanzb.MainWindow : AbstractMainWindow {
 			widgets.infobar, "visible", SettingsBindFlags.GET);
 
 		restore_window_settings ();
-
-		LaunchpadIntegration.set_sourcepackagename("lottanzb");
-		LaunchpadIntegration.add_ui(widgets.ui_manager, LAUNCHPAD_ITEMS_PATH);
 
 		widgets.backend_action_group.set_sensitive(false);
 	}

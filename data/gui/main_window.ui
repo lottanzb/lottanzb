@@ -173,8 +173,6 @@
         <menu action="help">
           <menuitem action="show_help_content" />
           <separator />
-          <placeholder name="launchpad_items" />
-          <separator />
           <menuitem action="show_about_dialog" />
         </menu>
       </menubar>

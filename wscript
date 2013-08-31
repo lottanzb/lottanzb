@@ -49,8 +49,6 @@ def configure(conf):
         atleast_version='0.18', args='--cflags --libs')
     conf.check_cfg(package='gee-1.0', uselib_store='GEE',
         atleast_version='0.6', args='--cflags --libs')
-    conf.check_cfg(package='launchpad-integration-3.0', uselib_store='LP',
-        atleast_version='0.1', args='--cflags --libs')
     conf.check_cfg(package='unique-3.0', uselib_store='UNIQUE',
         atleast_version='0.1', args='--cflags --libs')
 
